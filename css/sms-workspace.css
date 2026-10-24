@@ -1,0 +1,58 @@
+.sms-tabs { display:flex; gap:24px; border-bottom:1px solid var(--border, #dce5df); margin-bottom:24px; overflow-x:auto; }
+.sms-tabs a { color:inherit; text-decoration:none; padding:12px 0; white-space:nowrap; border-bottom:3px solid transparent; }
+.sms-tabs a[aria-current] { color:#176b3a; border-color:#176b3a; font-weight:700; }
+.sms-compose { display:grid; grid-template-columns:minmax(0, 1.2fr) minmax(0, 1fr); gap:32px; align-items:start; }
+.sms-compose > *, .sms-filters > * { min-width:0; }
+.sms-compose [hidden] { display:none !important; }
+.sms-compose input, .sms-compose select, .sms-compose textarea { max-width:100%; box-sizing:border-box; }
+.sms-compose input[readonly] { background:#f2f5f3; }
+.sms-preview { border-left:1px solid var(--border, #dce5df); padding-left:24px; }
+.sms-preview h3, .sms-automatic h3, .sms-dialog h3 { font-size:18px; margin:0 0 18px; }
+.sms-preview dl { display:grid; grid-template-columns:110px minmax(0, 1fr); gap:10px; }
+.sms-preview dt { color:#617369; }
+.sms-preview dd { margin:0; overflow-wrap:anywhere; }
+.sms-message-text { white-space:pre-wrap; overflow-wrap:anywhere; line-height:1.65; }
+.sms-preview .sms-message-text { background:#fff; border:1px solid #dce5df; border-radius:8px; padding:18px; min-height:100px; margin:20px 0 10px; }
+.sms-actions { display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:18px; }
+.sms-actions a { text-decoration:none !important; }
+.sms-check, .sms-rule { display:flex; gap:12px; align-items:flex-start; }
+.sms-check input, .sms-rule input { width:18px !important; height:18px !important; flex:none; margin:3px 0 0; }
+.sms-dialog { box-sizing:border-box; width:min(520px, calc(100% - 32px)); max-height:85dvh; overflow:auto; padding:24px; border:1px solid #dce5df; border-radius:8px; color:#183327; }
+.sms-dialog::backdrop { background:#10251a80; }
+.sms-rule { padding:18px 0; border-bottom:1px solid #dce5df; }
+.sms-rule strong, .sms-rule span span { display:block; }
+.sms-rule span span { color:#617369; margin-top:8px; }
+.sms-automatic { width:100%; min-width:0; }
+.sms-filters { display:grid; grid-template-columns:minmax(160px, 2fr) minmax(120px, 1fr) minmax(120px, 1fr) auto; gap:16px; align-items:end; margin-bottom:16px; }
+.sms-history small { display:block; margin-top:6px; color:#617369; white-space:normal; overflow-wrap:anywhere; }
+.sms-history td { vertical-align:top; min-width:130px; }
+.sms-history td:nth-child(3) { min-width:200px; max-width:360px; }
+.sms-history details summary { cursor:pointer; color:#176b3a; }
+.sms-retry { min-width:220px; max-width:320px; }
+.sms-retry .btn { margin-top:12px; }
+.sms-error { color:#b42318; }
+@media(max-width:850px) {
+  .sms-compose { grid-template-columns:minmax(0, 1fr); gap:24px; }
+  .sms-preview { border-left:0; border-top:1px solid #dce5df; padding:24px 0 0; }
+  .sms-filters { grid-template-columns:repeat(2, minmax(0, 1fr)); }
+  .sms-tabs { gap:18px; }
+}
+@media(max-width:420px) {
+  .sms-tabs { display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:10px; overflow:visible; }
+  .sms-tabs a { display:flex; align-items:center; justify-content:center; white-space:normal; text-align:center; font-size:14px; min-height:56px; padding:8px 0; }
+  .sms-filters { grid-template-columns:minmax(0, 1fr); }
+  .sms-preview dl { grid-template-columns:90px minmax(0, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .sms-history { display: block; width: 100%; min-width: 0; }
+  .sms-history thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .sms-history tbody { display: grid; gap: 14px; }
+  .sms-history tbody tr { display: grid; grid-template-columns: minmax(0,1fr); gap: 12px; padding: 16px; border: 1px solid #c5dace; border-radius: 12px; background: #fff; }
+  .sms-history tbody td, .sms-history tbody td:nth-child(3) { display: block; min-width: 0; max-width: 100%; padding: 0; border: 0; white-space: normal; word-break: normal; overflow-wrap: break-word; }
+  .sms-history td[data-label]::before { content: attr(data-label); display: block; color: #56705f; font-size: 12px; font-weight: 600; margin-bottom: 5px; }
+  .sms-retry { min-width: 0; max-width: 100%; }
+  .sms-preview dl { grid-template-columns: minmax(0,1fr); gap: 6px; }
+  .sms-preview dd { margin-bottom: 10px; }
+  .sms-dialog { padding: 16px; }
+}

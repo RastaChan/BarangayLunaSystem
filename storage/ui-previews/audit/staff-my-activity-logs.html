@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><base href="/BARANGAY%20LUNA%20SYSTEM/"><script>window.fetch=async()=>({ok:false,status:403,headers:{get:()=>"application/json"},json:async()=>({ok:false,success:false,message:"Layout fixture"})});</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Activity Logs | Staff - Barangay Luna MIS</title>
+  <link rel="stylesheet" href="css/dashboard.css?v=1792827043">
+  <link rel="stylesheet" href="css/mobile-select.css?v=1792815332">
+  <link rel="stylesheet" href="css/motion.css?v=1792819969">
+  <link rel="stylesheet" href="css/portal-design.css?v=1792815332">
+</head>
+<body class="app-dashboard">
+
+  <aside class="sidebar" id="appSidebar">
+  <div class="sidebar-brand">
+    <img src="branding-logo.php" alt="Barangay Luna" class="sidebar-logo"
+         onerror="this.style.visibility='hidden';">
+    <div class="sidebar-brand-text">
+      <strong>Layout Test Staff</strong>
+      <span>Staff Portal</span>
+    </div>
+    <button type="button" class="sidebar-collapse-btn" id="sidebarCollapseBtn" aria-label="Collapse sidebar" title="Collapse sidebar">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </div>
+
+  <div class="sidebar-role">
+    <span class="role-pill">BARANGAY STAFF</span>
+  </div>
+
+  <nav class="sidebar-nav" id="sidebarNav" aria-label="Barangay Staff navigation">
+    <p class="nav-section">Overview</p>
+    <a href="staff-dashboard.php?view=staff-dashboard" class="nav-link " data-nav-view="staff-dashboard"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 11 12 4l8 7v9H4v-9Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="nav-link-label">Dashboard</span></a>
+    <p class="nav-section">Services</p>
+    <a href="staff-dashboard.php?view=issue-documents" class="nav-link " data-nav-view="issue-documents" data-notification-count-view="staff-document-requests"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 3h7l4 4v14H7V3Zm7 0v5h5M9 13h6M9 17h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="nav-link-label">Issue Documents</span></a>    <a href="staff-dashboard.php?view=walk-in-payments" class="nav-link " data-nav-view="walk-in-payments"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 3h12v18H6V3Zm3 4h6M9 11h6M9 15h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="nav-link-label">Walk-in Payments</span></a>    <a href="staff-dashboard.php?view=resident-account-registration" class="nav-link " data-nav-view="resident-account-registration"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM5 20v-1a7 7 0 0 1 14 0v1M19 8v6M16 11h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="nav-link-label">Resident Account Registration</span></a>    <a href="staff-dashboard.php?view=resident-management" class="nav-link " data-nav-view="resident-management"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM5 20v-1a7 7 0 0 1 14 0v1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="nav-link-label">QR and Resident Management</span></a>
+    <p class="nav-section">Community</p>
+    <a href="staff-dashboard.php?view=husay-schedule" class="nav-link " data-nav-view="husay-schedule"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5h16v16H4V5Zm4-3v6m8-6v6M4 11h16m-12 4h2m4 0h2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="nav-link-label">Husay Schedule</span></a>    <a href="staff-dashboard.php?view=staff-complaints" class="nav-link " data-nav-view="staff-complaints"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 9v4m0 4h.01M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="nav-link-label">Complaints</span></a>    <a href="staff-dashboard.php?view=staff-feedbacks" class="nav-link " data-nav-view="staff-feedbacks"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="nav-link-label">Feedbacks</span></a>
+    <p class="nav-section">Communication</p>
+    <a href="staff-dashboard.php?view=staff-sms-alerts" class="nav-link " data-nav-view="staff-sms-alerts"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8ZM9 10h6M9 14h3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="nav-link-label">SMS Notifications</span></a>
+    <p class="nav-section">Reports</p>
+    <a href="staff-dashboard.php?view=my-activity-logs" class="nav-link is-active" data-nav-view="my-activity-logs"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 11l3 3L22 4M11 20H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="nav-link-label">My Activity Logs</span></a>    <a href="staff-dashboard.php?view=service-reports" class="nav-link " data-nav-view="service-reports"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-6M22 20H2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="nav-link-label">Service Reports</span></a>
+  </nav>
+
+</aside>
+
+  <div class="main-area">
+    <header class="top-header header">
+  <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Open menu">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+  </button>
+
+  <div class="header-title">
+    <h1>My Activity Logs</h1>
+    <p>Barangay Luna Smart Barangay Portal</p>
+  </div>
+
+  <div class="header-actions">
+    <div class="notification-menu" data-notification-menu data-notification-owner="staff:3" >
+  <button type="button" class="header-icon-btn notification-btn" data-notification-toggle aria-label="Notifications" aria-controls="headerNotificationPanel" aria-expanded="false">
+    <svg viewBox="0 0 24 24" fill="none" width="20" height="20" aria-hidden="true"><path d="M15 17H9l-1 2h8l-1-2ZM18 8a6 6 0 1 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9Z" stroke="currentColor" stroke-width="1.5"/></svg>
+      </button>
+  <div id="headerNotificationPanel" class="notification-dropdown" data-notification-dropdown role="region" aria-label="Notifications">
+    <div class="notification-dropdown-head">
+      <strong>Notifications</strong>
+      <span data-notification-summary>
+                No new alerts
+              </span>
+    </div>
+    <div class="notification-list">
+                  <div class="notification-empty">No notifications yet.</div>
+          </div>
+  </div>
+</div>
+    <div class="profile-menu" data-profile-menu>
+  <button type="button" class="user-menu user-profile profile-menu-toggle" data-profile-toggle aria-expanded="false" aria-haspopup="true">
+    <span class="user-avatar">
+            L          </span>
+    <div class="user-meta">
+      <strong class="user-name">Layout Test Staff</strong>
+      <span>Staff</span>
+    </div>
+    <svg class="profile-caret" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M7 10l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+
+  <div class="profile-dropdown" data-profile-dropdown>
+    <button type="button" class="profile-dropdown-item" data-modal-open="profileSettingsModal">
+      <span>Profile Settings</span>
+    </button>
+    <button type="button" class="profile-dropdown-item" data-modal-open="securitySettingsModal">
+      <span>Security Settings</span>
+    </button>
+    <a href="logout.php" class="profile-dropdown-item profile-dropdown-item--danger">
+      <span>Logout</span>
+    </a>
+  </div>
+</div>
+
+<div id="profileSettingsModal" class="modal " aria-hidden="true" role="dialog" aria-labelledby="profileSettingsTitle">
+  <div class="modal-backdrop" data-modal-close></div>
+  <div class="modal-panel ">
+    <header class="modal-header">
+      <h2 id="profileSettingsTitle">Profile Settings</h2>
+      <button type="button" class="modal-close" data-modal-close aria-label="Close">&times;</button>
+    </header>
+    <form id="profileSettingsForm" class="modal-body form-grid" action="#" method="post" enctype="multipart/form-data" data-profile-settings-form>
+      <input type="hidden" name="action" value="update_account_profile">
+      <input type="hidden" name="redirect" value="my-activity-logs">
+      <input type="hidden" name="profile_photo_cropped" id="profilePhotoCropped">
+
+      
+      <div class="profile-photo-tools">
+      <div class="profile-photo-upload">
+        <span class="profile-photo-preview" id="profilePhotoPreview">
+                    L                  </span>
+        <div class="field">
+          <label for="profilePhotoUpload">Profile picture</label>
+          <input type="file" id="profilePhotoUpload" name="profile_photo" accept="image/jpeg,image/png,image/webp">
+          <p class="field-hint">Upload a JPG, PNG, or WEBP photo. Drag or pinch the preview to crop before saving.</p>
+        </div>
+      </div>
+            </div>
+      <div class="profile-cropper" id="profilePhotoCropper" hidden>
+        <div class="profile-cropper__stage" id="profileCropStage">
+          <img id="profileCropImage" alt="Selected profile crop preview">
+          <span class="profile-cropper__mask" aria-hidden="true"></span>
+        </div>
+        <div class="profile-cropper__controls">
+          <label for="profilePhotoZoom">Crop zoom</label>
+          <input type="range" id="profilePhotoZoom" min="1" max="3" step="0.01" value="1">
+        </div>
+      </div>
+
+      <div class="form-grid-2">
+        <div class="field">
+          <label for="profileFullName">Full name</label>
+          <input type="text" id="profileFullName" value="Layout Test Staff" disabled>
+        </div>
+        <div class="field">
+          <label for="profileRole">Role</label>
+          <input type="text" id="profileRole" value="Staff" disabled>
+        </div>
+      </div>
+
+      <div class="form-grid-2">
+        <div class="field">
+          <label for="profileUsername">Username</label>
+          <input type="text" id="profileUsername" name="username" value="layout-staff@example.test" readonly aria-readonly="true">
+                    <p class="field-hint">Only an administrator can change usernames.</p>
+                  </div>
+        <div class="field">
+          <label for="profileContact">Mobile number</label>
+          <input type="tel" id="profileContact" name="mobile" value="09123456789">
+        </div>
+      </div>
+
+      <p class="profile-note">If your name or personal information needs to be changed, please visit the barangay office for verification.</p>
+    </form>
+    <footer class="modal-footer">
+      <button type="button" class="btn btn-outline" data-modal-close>Cancel</button>
+      <button type="submit" form="profileSettingsForm" class="btn btn-primary">Save profile</button>
+    </footer>
+  </div>
+</div>
+
+<div id="securitySettingsModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="securitySettingsTitle">
+  <div class="modal-backdrop" data-modal-close></div>
+  <div class="modal-panel">
+    <header class="modal-header">
+      <h2 id="securitySettingsTitle">Security Settings</h2>
+      <button type="button" class="modal-close" data-modal-close aria-label="Close">&times;</button>
+    </header>
+    <form id="securitySettingsForm" class="modal-body form-grid" action="#" method="post" data-security-form>
+      <input type="hidden" name="csrf" value="1712d2d698e03c65b380a13b66ffe8e5602eab1fe2ede69dea7e2704aa44d18f">
+      <div class="field">
+        <label for="currentPassword">Current password</label>
+        <input type="password" id="currentPassword" name="current_password" autocomplete="current-password" required>
+      </div>
+      <div class="field">
+        <label for="newPassword">New password</label>
+        <input type="password" id="newPassword" name="new_password" autocomplete="new-password" minlength="8" maxlength="72" required>
+      </div>
+      <div class="field">
+        <label for="confirmPassword">Confirm password</label>
+        <input type="password" id="confirmPassword" name="confirm_password" autocomplete="new-password" required>
+        <p class="field-hint password-match-message" data-password-message></p>
+      </div>
+    </form>
+    <footer class="modal-footer">
+      <button type="button" class="btn btn-outline" data-modal-close>Cancel</button>
+      <button type="submit" form="securitySettingsForm" class="btn btn-primary">Save password</button>
+    </footer>
+  </div>
+</div>
+  </div>
+</header>
+
+    <main class="content-area">
+            <div class="page-intro">
+  <h2>My Activity Logs</h2>
+  <p>View your own recorded actions across service modules.</p>
+</div>
+
+<section class="panel-card mobile-record-panel">
+  <div class="panel-head"><h3>My system actions</h3></div>
+  <div class="table-wrap">
+    <table class="data-table mobile-record-table" role="table" aria-label="My system actions">
+      <thead><tr><th>Date and time</th><th>Action performed</th><th>Module</th><th>Status</th></tr></thead>
+      <tbody>
+                <tr><td colspan="4">No activity recorded yet.</td></tr>      </tbody>
+    </table>
+  </div>
+</section>
+    </main>
+  </div>
+
+  <script src="js/dashboard.js?v=1792826581"></script>
+  <script src="js/portal-design.js?v=1792815332"></script>
+  <script src="js/mobile-select.js?v=1792815333"></script>
+  <script src="js/location-disclosures.js?v=1792815332"></script>
+  </body>
+</html>

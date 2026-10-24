@@ -1,0 +1,743 @@
+{
+  "ratings": {
+    "R01": [
+      [
+        5,
+        5,
+        4,
+        3,
+        5
+      ],
+      [
+        5,
+        4,
+        5,
+        3,
+        5
+      ],
+      [
+        5,
+        4,
+        3,
+        5,
+        5
+      ],
+      [
+        4,
+        5,
+        3,
+        4,
+        5
+      ],
+      [
+        5,
+        4,
+        4,
+        5,
+        4
+      ],
+      [
+        5,
+        5,
+        4,
+        3,
+        4
+      ]
+    ],
+    "R02": [
+      [
+        4,
+        4,
+        5,
+        5,
+        4
+      ],
+      [
+        4,
+        4,
+        5,
+        5,
+        4
+      ],
+      [
+        4,
+        4,
+        5,
+        5,
+        4
+      ],
+      [
+        4,
+        4,
+        5,
+        5,
+        4
+      ],
+      [
+        5,
+        5,
+        5,
+        5,
+        5
+      ],
+      [
+        4,
+        5,
+        5,
+        4,
+        5
+      ]
+    ],
+    "R03": [
+      [
+        4,
+        4,
+        4,
+        4,
+        5
+      ],
+      [
+        5,
+        5,
+        5,
+        5,
+        4
+      ],
+      [
+        5,
+        4,
+        4,
+        5,
+        4
+      ],
+      [
+        4,
+        4,
+        4,
+        5,
+        5
+      ],
+      [
+        5,
+        5,
+        4,
+        4,
+        4
+      ],
+      [
+        5,
+        5,
+        4,
+        5,
+        5
+      ]
+    ],
+    "R04": [
+      [
+        4,
+        5,
+        4,
+        4,
+        4
+      ],
+      [
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      [
+        3,
+        4,
+        4,
+        4,
+        4
+      ],
+      [
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      [
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      [
+        5,
+        5,
+        4,
+        4,
+        4
+      ]
+    ],
+    "R05": [
+      [
+        4,
+        4,
+        5,
+        4,
+        4
+      ],
+      [
+        5,
+        5,
+        4,
+        4,
+        5
+      ],
+      [
+        4,
+        4,
+        4,
+        5,
+        4
+      ],
+      [
+        4,
+        4,
+        5,
+        4,
+        5
+      ],
+      [
+        5,
+        4,
+        5,
+        4,
+        4
+      ],
+      [
+        4,
+        5,
+        5,
+        4,
+        5
+      ]
+    ],
+    "R06": [
+      [
+        3,
+        4,
+        5,
+        5,
+        5
+      ],
+      [
+        3,
+        4,
+        4,
+        4,
+        3
+      ],
+      [
+        5,
+        3,
+        4,
+        5,
+        3
+      ],
+      [
+        3,
+        4,
+        4,
+        4,
+        4
+      ],
+      [
+        5,
+        5,
+        5,
+        5,
+        5
+      ],
+      [
+        4,
+        5,
+        5,
+        4,
+        4
+      ]
+    ],
+    "R07": [
+      [
+        5,
+        3,
+        4,
+        5,
+        3
+      ],
+      [
+        5,
+        5,
+        5,
+        5,
+        5
+      ],
+      [
+        4,
+        5,
+        4,
+        5,
+        5
+      ],
+      [
+        5,
+        5,
+        5,
+        5,
+        4
+      ],
+      [
+        5,
+        5,
+        4,
+        5,
+        4
+      ],
+      [
+        5,
+        5,
+        4,
+        5,
+        5
+      ]
+    ],
+    "R08": [
+      [
+        5,
+        4,
+        4,
+        5,
+        4
+      ],
+      [
+        5,
+        4,
+        5,
+        5,
+        4
+      ],
+      [
+        4,
+        4,
+        5,
+        4,
+        5
+      ],
+      [
+        5,
+        4,
+        5,
+        4,
+        4
+      ],
+      [
+        4,
+        4,
+        4,
+        5,
+        5
+      ],
+      [
+        5,
+        5,
+        5,
+        5,
+        4
+      ]
+    ],
+    "R09": [
+      [
+        4,
+        4,
+        5,
+        4,
+        4
+      ],
+      [
+        4,
+        5,
+        4,
+        5,
+        4
+      ],
+      [
+        4,
+        5,
+        5,
+        3,
+        4
+      ],
+      [
+        3,
+        5,
+        5,
+        5,
+        4
+      ],
+      [
+        4,
+        5,
+        5,
+        4,
+        5
+      ],
+      [
+        4,
+        5,
+        5,
+        4,
+        4
+      ]
+    ],
+    "R10": [
+      [
+        5,
+        4,
+        5,
+        5,
+        5
+      ],
+      [
+        5,
+        5,
+        5,
+        4,
+        3
+      ],
+      [
+        "NA",
+        5,
+        5,
+        5,
+        5
+      ],
+      [
+        3,
+        5,
+        4,
+        5,
+        5
+      ],
+      [
+        5,
+        5,
+        5,
+        4,
+        "NA"
+      ],
+      [
+        5,
+        5,
+        5,
+        4,
+        5
+      ]
+    ],
+    "TS1": [
+      [
+        4,
+        5,
+        4,
+        4,
+        4
+      ],
+      [
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      [
+        4,
+        5,
+        4,
+        4,
+        5
+      ],
+      [
+        4,
+        5,
+        5,
+        4,
+        4
+      ],
+      [
+        5,
+        5,
+        5,
+        5,
+        5
+      ],
+      [
+        4,
+        5,
+        5,
+        3,
+        4
+      ]
+    ],
+    "TS2": [
+      [
+        4,
+        5,
+        4,
+        4,
+        4
+      ],
+      [
+        5,
+        5,
+        5,
+        4,
+        4
+      ],
+      [
+        4,
+        5,
+        4,
+        5,
+        4
+      ],
+      [
+        4,
+        5,
+        5,
+        5,
+        4
+      ],
+      [
+        5,
+        5,
+        5,
+        5,
+        5
+      ],
+      [
+        4,
+        5,
+        5,
+        3,
+        5
+      ]
+    ],
+    "TA1": [
+      [
+        4,
+        4,
+        5,
+        5,
+        5
+      ],
+      [
+        5,
+        4,
+        5,
+        5,
+        5
+      ],
+      [
+        4,
+        4,
+        5,
+        4,
+        4
+      ],
+      [
+        3,
+        4,
+        5,
+        5,
+        5
+      ],
+      [
+        5,
+        5,
+        5,
+        5,
+        5
+      ],
+      [
+        4,
+        4,
+        4,
+        3,
+        4
+      ]
+    ]
+  },
+  "source_pages": {
+    "R01": [
+      "838983607_2168358170743088_8775477051827181185_n.jpg",
+      "838327829_1566256351927129_3132549158109952971_n.jpg",
+      "842784941_988232550973604_7786896282574296696_n.jpg"
+    ],
+    "R02": [
+      "843410128_1111925888370924_3876357838011915548_n.jpg",
+      "846049817_1603506390679549_4805960671093787277_n.jpg",
+      "840263446_1658910409144375_5808230774727576242_n.jpg"
+    ],
+    "R03": [
+      "841338961_29869468782642333_7911800190156771830_n.jpg",
+      "846319696_1139332311946949_1877730862726785539_n.jpg",
+      "840951173_1515429757313855_6979476684122222298_n.jpg"
+    ],
+    "R04": [
+      "840922619_2143811039679481_7731470946586881149_n.jpg",
+      "838983607_1594739845737035_8103875275365846763_n.jpg",
+      "843907673_1064785643222308_5632644806142044930_n.jpg"
+    ],
+    "R05": [
+      "845115278_1838063270518134_3797715012364622644_n.jpg",
+      "844616222_3178772245646615_4600264718419462246_n.jpg",
+      "847549543_1391060419767463_6097338764791975831_n.jpg"
+    ],
+    "R06": [
+      "840697313_1132811312622398_6944210156104760603_n.jpg",
+      "844358799_980422754395750_7027955403511497935_n.jpg",
+      "843907673_1100129219476173_4319505033831440117_n.jpg"
+    ],
+    "R07": [
+      "837395891_1847918582869930_9110439192408142183_n.jpg",
+      "846528001_2277224209792760_1406597296073774990_n.jpg",
+      "847569531_3052383911773863_7697185115402552437_n.jpg"
+    ],
+    "R08": [
+      "837798095_1081287054779048_5182424533399623657_n.jpg",
+      "844301047_1903327324410143_4386711948320398950_n.jpg",
+      "841338961_1129510159607942_1282505525219881702_n.jpg"
+    ],
+    "R09": [
+      "843047937_3586242018192060_8618087881830277916_n.jpg",
+      "845011945_1788029179098510_6190325096569031781_n.jpg",
+      "844460473_1327772842665742_413457631360614642_n.jpg"
+    ],
+    "R10": [
+      "843223836_1122173074107702_1902172560250880410_n.jpg",
+      "842574275_1110775971676534_2115104418439695908_n.jpg",
+      "841165612_2518409131999212_5133690513716325668_n.jpg"
+    ],
+    "TS1": [
+      "839930897_1107651104994413_7554935902720300694_n.jpg",
+      "843457096_2020338985346499_2465633741465194480_n.jpg",
+      "839360719_4725329201065712_5587629752721451249_n.jpg"
+    ],
+    "TS2": [
+      "838658556_1060157477052089_33390820064688177_n.jpg",
+      "839842215_1027634313667932_8795676474421725501_n.jpg",
+      "845730375_2406438133514364_4218663030568657668_n.jpg"
+    ],
+    "TA1": [
+      "845115198_1467567575435707_4702976667316920643_n.jpg",
+      "846769969_1142083761592511_4544180939055425522_n.jpg",
+      "840051600_1411382457861690_3881603659085732566_n.jpg"
+    ]
+  },
+  "dimension_names": [
+    "Functionality",
+    "Usability",
+    "Reliability",
+    "Performance",
+    "Security",
+    "Overall satisfaction"
+  ],
+  "items": [
+    [
+      "The features available to my user role work as expected.",
+      "I can complete the tasks I need to perform using the system.",
+      "The system displays the correct information after I complete an action.",
+      "The system provides useful information about the status of my transactions.",
+      "The system provides the features I need for my barangay transactions or assigned duties."
+    ],
+    [
+      "The system is easy to learn.",
+      "Menus, buttons, and labels are easy to understand.",
+      "Forms and instructions are clear.",
+      "The layout is easy to use on the device I used during the evaluation.",
+      "I can navigate between sections without becoming confused."
+    ],
+    [
+      "The system operates without unexpected errors during my tasks.",
+      "Information I save remains available when I return to it.",
+      "Repeating a task produces consistent results.",
+      "When I enter invalid information, the system gives a clear message and lets me correct it.",
+      "The system completes my transactions without losing the information I submitted."
+    ],
+    [
+      "Pages load within an acceptable amount of time.",
+      "The system responds promptly when I click buttons or open menus.",
+      "Searches and filters display results promptly.",
+      "Saving or submitting information completes within an acceptable amount of time.",
+      "The system remains responsive while I complete several tasks in succession."
+    ],
+    [
+      "I am required to log in before accessing account-related features.",
+      "Passwords are hidden while I type them unless I choose to display them.",
+      "The features available to my account are appropriate for my user role.",
+      "After logging out, I cannot access protected account pages without logging in again.",
+      "The system asks me to enter my current password before changing my password."
+    ],
+    [
+      "Overall, I am satisfied with the system.",
+      "The system is useful for the barangay services or tasks I need.",
+      "I would be willing to use the system for future transactions or work.",
+      "I would recommend the system to other intended users.",
+      "The system meets my expectations for an online barangay service portal."
+    ]
+  ],
+  "resident_valid_n": 298,
+  "team_valid_n": 90,
+  "resident_overall": 4.419463087248322,
+  "team_overall": 4.455555555555556,
+  "dimensions": [
+    {
+      "dimension": "Functionality",
+      "resident_n": 50,
+      "resident_mean": 4.32,
+      "team_n": 15,
+      "team_mean": 4.333333333333333
+    },
+    {
+      "dimension": "Usability",
+      "resident_n": 50,
+      "resident_mean": 4.42,
+      "team_n": 15,
+      "team_mean": 4.466666666666667
+    },
+    {
+      "dimension": "Reliability",
+      "resident_n": 49,
+      "resident_mean": 4.326530612244898,
+      "team_n": 15,
+      "team_mean": 4.333333333333333
+    },
+    {
+      "dimension": "Performance",
+      "resident_n": 50,
+      "resident_mean": 4.32,
+      "team_n": 15,
+      "team_mean": 4.466666666666667
+    },
+    {
+      "dimension": "Security",
+      "resident_n": 49,
+      "resident_mean": 4.551020408163265,
+      "team_n": 15,
+      "team_mean": 5.0
+    },
+    {
+      "dimension": "Overall satisfaction",
+      "resident_n": 50,
+      "resident_mean": 4.58,
+      "team_n": 15,
+      "team_mean": 4.133333333333334
+    }
+  ]
+}

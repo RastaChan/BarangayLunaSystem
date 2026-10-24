@@ -1,0 +1,42 @@
+<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="../../css/dashboard.css"><link rel="stylesheet" href="../../css/mobile-select.css"><style>body.app-dashboard{display:block;height:auto;overflow:auto;padding:16px}.previews{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:20px}h2{font-size:16px}section{min-width:0}</style></head><body class="app-dashboard"><main class="previews"><section><h2>Document requests</h2><table class="data-table" style="min-width:0;width:100%;background:white"><tbody><tr><td class="request-action-cell"><div class="record-action-list">
+                        <button type="button" class="btn-icon" data-view-record data-title="Document request" data-json='{&quot;id&quot;:&quot;DOC-TEST&quot;,&quot;status&quot;:&quot;Pending&quot;}'>View</button>
+                        <form action="staff-actions.php" method="post" class="inline-form">
+              <input type="hidden" name="action" value="document_request_event">
+              <input type="hidden" name="event" value="prepare">
+              <input type="hidden" name="csrf" value="preview">
+              <input type="hidden" name="id" value="DOC-TEST">
+              <button class="btn-icon" type="submit">Prepare document</button>
+            </form>
+            <details><summary>Reject</summary>
+              <form action="staff-actions.php" method="post" class="table-edit-form">
+                <input type="hidden" name="action" value="document_request_event">
+                <input type="hidden" name="event" value="reject">
+                <input type="hidden" name="csrf" value="preview">
+                <input type="hidden" name="id" value="DOC-TEST">
+                <label>Reason for rejection<textarea name="reason" rows="3" aria-label="Reason for rejection" maxlength="1000" required></textarea></label>
+                <button class="btn-icon" type="submit">Confirm rejection</button>
+              </form>
+            </details>
+                      </div></td></tr></tbody></table></section><section><h2>QR status</h2><table class="data-table" style="min-width:0;width:100%;background:white"><tbody><tr><td class="qr-action-cell"><div class="record-action-list">
+            <button type="button" class="btn-icon" data-view-resident data-json='{&quot;id&quot;:&quot;RES-TEST&quot;,&quot;qr_status&quot;:&quot;Active&quot;}'>View</button>
+            <form action="admin-actions.php" method="post" class="table-edit-form">
+              <input type="hidden" name="action" value="update_qr_status">
+              <input type="hidden" name="redirect" value="qr-verification">
+              <input type="hidden" name="resident_id" value="RES-TEST">
+              <label>QR status<select name="qr_status" aria-label="QR status">
+                <option value="Active" selected>Active</option>
+                <option value="Inactive" >Inactive</option>
+              </select></label>
+              <button type="submit" class="btn btn-primary btn-sm">Save</button>
+            </form>
+          </div></td></tr></tbody></table></section><section><h2>Walk-in payments</h2><table class="data-table" style="min-width:0;width:100%;background:white"><tbody><tr><td class="payment-action-cell">
+                        <form action="staff-actions.php" method="post" class="payment-record-form table-edit-form">
+              <input type="hidden" name="action" value="record_walk_in_payment">
+              <input type="hidden" name="redirect" value="walk-in-payments">
+              <input type="hidden" name="payment_id" value="0">
+              <label>Amount received (PHP)<input type="number" name="amount_paid" min="0" step="0.01" inputmode="decimal" value="50.00" aria-label="Amount received for PAY-TEST" required></label>
+              <label>Receipt number (optional)<input type="text" name="receipt_number" aria-label="Receipt number for PAY-TEST"></label>
+              <label>Notes (optional)<input type="text" name="notes" aria-label="Notes for PAY-TEST"></label>
+              <button type="submit" class="btn btn-primary btn-sm">Record payment</button>
+            </form>
+                      </td></tr></tbody></table></section></main><script src="../../js/mobile-select.js"></script></body></html>

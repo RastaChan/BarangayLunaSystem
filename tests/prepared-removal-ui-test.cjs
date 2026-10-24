@@ -1,0 +1,24 @@
+const fs = require('node:fs');
+const vm = require('node:vm');
+const assert = require('node:assert/strict');
+const id = {value:''}, name = {}, error = {}, submit = {};
+const row = {dataset:{preparedDocumentId:'17'}, querySelector:()=>({textContent:'Test Applicant — Document'}), remove(){removed=true;}};
+let removed=false, opened=false, closed=false, succeed=false;
+const list = {listeners:{},addEventListener(n,f){this.listeners[n]=f;},querySelector:()=>removed?null:row,querySelectorAll:()=>removed?[]:[row]};
+const fields = {'[name="issued_id"]':id,'[data-remove-prepared-name]':name,'[data-remove-prepared-error]':error,'[type="submit"]':submit};
+const form = {listeners:{},querySelector:s=>fields[s],getAttribute:()=> 'staff-actions.php',reset(){id.value='';},addEventListener(n,f){this.listeners[n]=f;}};
+const modal = {id:'removePreparedModal',querySelector:()=>({click(){closed=true;}})};
+const count={}, empty={}, print={dataset:{documentId:'17',prepared:'true',previewUrl:'old'},querySelector:()=>({removeAttribute(){},hidden:false})};
+const context = {document:{querySelector:s=>({'[data-prepared-list]':list,'[data-remove-prepared-form]':form,'[data-prepared-count]':count,'[data-prepared-empty]':empty}[s]||null),getElementById:id=>id==='removePreparedModal'?modal:print},window:{barangayOpenModal(){opened=true;}},FormData:class {},fetch:async(url,options)=>{assert.equal(options.headers['X-Requested-With'],'PreparedRemoval');return {ok:succeed,headers:{get:()=> 'application/json'},json:async()=>({ok:succeed,id:17,message:'Removal failed'})};}};
+vm.runInNewContext(fs.readFileSync('js/prepared-documents.js','utf8'),context);
+(async()=>{
+  list.listeners.click({target:{closest:()=>({closest:()=>row})}});
+  assert.equal(opened,true); assert.equal(id.value,'17'); assert.match(name.textContent,/Test Applicant/);
+  await form.listeners.submit({preventDefault(){}});
+  assert.equal(removed,false); assert.equal(error.hidden,false); assert.equal(submit.disabled,false);
+  succeed=true;
+  await form.listeners.submit({preventDefault(){}});
+  assert.equal(removed,true); assert.equal(count.textContent,'0'); assert.equal(empty.hidden,false);
+  assert.equal(closed,true); assert.equal(print.dataset.prepared,undefined);
+  console.log('PASS: removal confirmation identifies applicant, failed removal retains entry, successful removal updates count and clears stale print state.');
+})().catch(error=>{console.error(error);process.exitCode=1;});

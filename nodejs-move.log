@@ -1,0 +1,15 @@
+2026-06-28 20:13:59  Starting Node.js folder cleanup.
+2026-06-28 20:13:59  Destination ready: C:\Program Files\nodejs
+2026-06-28 20:13:59  Moving C:\Program Files\node.exe
+2026-06-28 20:13:59  Moving C:\Program Files\nodevars.bat
+2026-06-28 20:13:59  Moving C:\Program Files\npm
+2026-06-28 20:13:59  Moving C:\Program Files\npm.cmd
+2026-06-28 20:13:59  Moving C:\Program Files\npm.ps1
+2026-06-28 20:13:59  Moving C:\Program Files\npx
+2026-06-28 20:13:59  Moving C:\Program Files\npx.cmd
+2026-06-28 20:13:59  Moving C:\Program Files\npx.ps1
+2026-06-28 20:13:59  Moving C:\Program Files\node_modules
+2026-06-28 20:13:59  User PATH already contains the nodejs folder.
+2026-06-28 20:13:59  Node version: v26.4.0
+2026-06-28 20:13:59  NPM version: 11.17.0
+2026-06-28 20:14:00  Done. You can close this window.

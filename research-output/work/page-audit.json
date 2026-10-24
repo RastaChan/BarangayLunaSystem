@@ -1,0 +1,428 @@
+[
+  {
+    "page": 1,
+    "chars": 370,
+    "start": " \n \n \n \nSmart Barangay Portal with QR Profiling and SMS Alerts for Barangay \nLuna \nA Capstone Project Manuscript \nPresented to the",
+    "end": " the Requirements for Capstone Project and Research \nBy \nCalang, April John B. \nDeloy, Christian \nDeloy, Lorlie D. \nOctober 2026 \n"
+  },
+  {
+    "page": 2,
+    "chars": 1325,
+    "start": " \n \nii \nTABLE OF CONTENTS \nABSTRACT iv \nCHAPTER 1 1 \n1.1 Project Context 1 \n1.2 Purpose and Description 2 \n1.3 Objectives of the S",
+    "end": "NDIX C 54 \nOriginal Requirements Interview Transcripts 54 \nAPPENDIX D 58 \nCurrent User Evaluation Questionnaire 58 \nAPPENDIX E 61 "
+  },
+  {
+    "page": 3,
+    "chars": 104,
+    "start": " \n \niii \nCurrent Evaluation Tally and Source Audit 61 \nAPPENDIX F 65 \nRegression Verification Record 65 ",
+    "end": " \n \niii \nCurrent Evaluation Tally and Source Audit 61 \nAPPENDIX F 65 \nRegression Verification Record 65 "
+  },
+  {
+    "page": 4,
+    "chars": 1746,
+    "start": " \n \niv \nABSTRACT \nThe Smart Barangay Portal with QR Profiling and SMS Alerts for Barangay Luna \nwas developed to organize resident",
+    "end": "ng. The study does not establish a measured reduction in processing time, \nsecurity certification, or formal barangay acceptance. "
+  },
+  {
+    "page": 5,
+    "chars": 2231,
+    "start": " \n \nv \nLIST OF TABLES \nTable 1  Relationship of documented systems to the present project 9 \nTable 2  Hardware and operational req",
+    "end": " satisfaction 63 \nTable 40  Rating photograph identifiers by questionnaire 63 \nTable 41  Regression scripts and verified scope 65 "
+  },
+  {
+    "page": 6,
+    "chars": 405,
+    "start": " \n \nvi \nLIST OF FIGURES \nFigure 1  Input process output framework 12 \nFigure 2  Architecture of the implemented portal 16 \nFigure ",
+    "end": " Logical context diagram with input and output descriptions 24 \nFigure 6  Level one logical data flow with grouped data stores 25 "
+  },
+  {
+    "page": 7,
+    "chars": 1596,
+    "start": " \n1 \nCHAPTER 1 \nINTRODUCTION \nBarangay services depend on accurate resident information, clear processing \nsteps, and accessible c",
+    "end": "filing and digital complaints. These requirements \nled to a controlled account model, staff-managed resident records, optional QR "
+  },
+  {
+    "page": 8,
+    "chars": 1681,
+    "start": " \n2 \nretrieval, and an integrated document and payment workflow. Existing personal \nverification remains necessary, particularly f",
+    "end": "ment is not counted as a released certificate, and unpaid fee -bearing \ndocuments cannot be released through the normal workflow. "
+  },
+  {
+    "page": 9,
+    "chars": 1430,
+    "start": " \n3 \nThe administrator manages staff access, system settings, document fees, \ntemplates, backups, and audit information. Service a",
+    "end": " history. \nTo provide service and collection reports, audit records, and administrative \nbackup and account management functions. "
+  },
+  {
+    "page": 10,
+    "chars": 1565,
+    "start": " \n4 \nTo verify core workflows through functional regression checks and describe \nresident perceptions of functionality, usability,",
+    "end": " may contain multiple copies of one document type; a single \ntransaction containing several  different document types is a future "
+  },
+  {
+    "page": 11,
+    "chars": 1117,
+    "start": " \n5 \nenhancement. QR retrieval does not eliminate the need to verify resident \nidentity, eligibility, or supporting information. \n",
+    "end": " study, production -scale load \ntest, penetration test, or formal accessibility certification was conducted for this \nmanuscript. "
+  },
+  {
+    "page": 12,
+    "chars": 1677,
+    "start": " \n6 \nCHAPTER 2 \nREVIEW OF RELATED LITERATURE \nThis chapter reviews verified sources on digital government, neighborhood \nadministr",
+    "end": "nnels for resident participation. Training, account \nadministration, connectivity, and maintenance are consider ed implementation "
+  },
+  {
+    "page": 13,
+    "chars": 1635,
+    "start": " \n7 \nrequirements. The global index is contextual literature and is not used to score \nBarangay Luna. \n2.1.2 QR Supported Neighbor",
+    "end": "wan, Zulfitra, Pratama, and Juniawan (2022) developed a \nwebsite for resident administration in Gubeng Kertajaya, Surabaya. Their "
+  },
+  {
+    "page": 14,
+    "chars": 1601,
+    "start": " \n8 \npublished abstract describes online resident submissions and review by \nneighborhood officers, with black-box testing and use",
+    "end": "ns. The Barangay Luna portal similarly summarizes \ndocument activity and collections. Its reports are descriptive views of stored "
+  },
+  {
+    "page": 15,
+    "chars": 1709,
+    "start": " \n9 \nrecords; the project does not claim to implement the personalized \nrecommendations described in the related work. \n2.3 Relate",
+    "end": "adoption depends on organizational support and user \nexperience. The April intervie ws supply the local requirements that broader "
+  },
+  {
+    "page": 16,
+    "chars": 1090,
+    "start": " \n10 \nliterature cannot determine, including the use of Word templates, verification \nthrough local personnel, and concerns about ",
+    "end": "on, gateway \nchecks, and sustained use are still needed before concluding that the portal has \nimproved barangay-wide operations. "
+  },
+  {
+    "page": 17,
+    "chars": 1049,
+    "start": " \n11 \nCHAPTER 3 \nTECHNICAL BACKGROUND AND METHODOLOGY \nThis chapter describes the current implementation, its development approach",
+    "end": "ommunication. Outputs include searchable profiles, request \nstatuses, printable certificates, cash records, notices, and reports. "
+  },
+  {
+    "page": 18,
+    "chars": 1100,
+    "start": " \n12 \n \nFigure 1  Input process output framework \nFeedback from evaluation leads to revisions of the forms, confirmations, \ntempla",
+    "end": "uestionnaire retained in the appendices. The \ninterviews identified template-based document work, local verification of identity \n"
+  },
+  {
+    "page": 19,
+    "chars": 1673,
+    "start": " \n13 \nand location, and a need for accessible reports. The planning stage translated \nthese concerns into controlled accounts, sea",
+    "end": "checked with automated PHP and JavaScript regression \nscripts and assessed through the supplied questionnaires. Development fixes "
+  },
+  {
+    "page": 20,
+    "chars": 1639,
+    "start": " \n14 \nwere rechecked in the current implementation. The evaluation is described in \nChapter 4. Production cutover remains a plan: ",
+    "end": "er \nLocal development and application hosting. \nPHP Authentication, validation, database actions, document workflow and \nreports. "
+  },
+  {
+    "page": 21,
+    "chars": 1019,
+    "start": " \n15 \nSoftware or \ntechnology \nPurpose \nMySQL Accounts, requests, documents, payments and other persistent \nrecords. \nHTML and CSS",
+    "end": "nication \ncomponent, so the database records the application’s sending outcome \nindependently of document preparation or release. "
+  },
+  {
+    "page": 22,
+    "chars": 938,
+    "start": " \n16 \n \nFigure 2  Architecture of the implemented portal \nA localhost installation is suitable for development but does not make Q",
+    "end": "-made Word document, print the certificate, and save \nthe completed document. Complaints are handled through personal discussion \n"
+  },
+  {
+    "page": 23,
+    "chars": 682,
+    "start": " \n17 \nwith notes by the responsible personnel. The interview does not establish a \nspecific existing cash ledger or a measured ave",
+    "end": "elds in the users record and associated location and \nrequirement records. The resident receives account access according to the \n"
+  },
+  {
+    "page": 24,
+    "chars": 1754,
+    "start": " \n18 \nconfigured activation and verification rules. A resident cannot create a new \naccount through a public self-registration wor",
+    "end": "inistrator request views retrieve new or changed \nrequests through periodic polling, ordinarily every five seconds while the page "
+  },
+  {
+    "page": 25,
+    "chars": 1683,
+    "start": " \n19 \nis active. The list is refreshed without discarding text being entered in an open \nrejection form. This is periodic synchron",
+    "end": " based on the configured unit fee and the number of \ncopies. Cash is collected at the office. Staff record the amount and payment "
+  },
+  {
+    "page": 26,
+    "chars": 869,
+    "start": " \n20 \ndetails, then use Confirm Release. A fee-bearing document cannot be released \nwith an incomplete payment. For a free documen",
+    "end": "ailable for preparation again. Reports count released \ndocuments and recorded paid collections according to their relevant dates. "
+  },
+  {
+    "page": 27,
+    "chars": 374,
+    "start": " \n21 \n \nFigure 4  Online and walk-in document preparation payment and release \nIf validation or payment fails, the action returns ",
+    "end": "sts and removed preparations are retained as non -released outcomes. \nSMS failure does not reverse a valid document transaction. \n"
+  },
+  {
+    "page": 28,
+    "chars": 1776,
+    "start": " \n22 \n3.6.5 Templates and Document Verification \nAuthorized operators upload and maintain DOCX templates for a document type \nand ",
+    "end": "mmarize document activity, elapsed request periods, \nand cash collections. A request -to-release duration can include waiting for "
+  },
+  {
+    "page": 29,
+    "chars": 825,
+    "start": " \n23 \npayment and pickup, overnight periods, or other delays, so it should not be \ninterpreted solely as staff working time. Reven",
+    "end": "and receives oversight \ninformation. The gateway receives outbound SMS requests and returns \napplication-level sending responses. "
+  },
+  {
+    "page": 30,
+    "chars": 567,
+    "start": " \n24 \n \nFigure 5  Logical context diagram with input and output descriptions \n3.7.2 Level One Data Flow \nThe level one model divid",
+    "end": "d records or a response. A double-direction connection denotes reads and \nwrites whose individual flows are detailed in Table 4. \n"
+  },
+  {
+    "page": 31,
+    "chars": 72,
+    "start": " \n25 \n \nFigure 6  Level one logical data flow with grouped data stores \n",
+    "end": " \n25 \n \nFigure 6  Level one logical data flow with grouped data stores \n"
+  },
+  {
+    "page": 32,
+    "chars": 1650,
+    "start": " \n26 \nTable 4  Detailed flows supporting the level one model \nProcess Incoming or read data Outgoing or written data \n1.0 Accounts",
+    "end": " arrangement allows \nregistered online requests and unregistered walk -in services to share the \nissuance and reporting workflow. "
+  },
+  {
+    "page": 33,
+    "chars": 1671,
+    "start": " \n27 \nTable 5  Core stored records in the current schema \nRecord group Main tables or files Purpose \nAccess and \nprofile \nusers, r",
+    "end": " subscription, \ncustomization, and training pric es are not treated as implemented barangay \nincome or committed project charges. "
+  },
+  {
+    "page": 34,
+    "chars": 1644,
+    "start": " \n28 \n3.9 Evaluation Procedure and Data Analysis \nThe supplied evaluation questionnaire contains 30 statements in six \ndimensions,",
+    "end": "4. All remaining rating items were assigned a visible selected response. \nN/A values were excluded rather than converted to zero. "
+  },
+  {
+    "page": 35,
+    "chars": 1152,
+    "start": " \n29 \nFor each item, the weighted mean is the sum of the rating multiplied by its \nfrequency, divided by the number of valid respo",
+    "end": "n suggestions. These observations guide improvements but do not \nestablish that each reported issue remains in the current build. "
+  },
+  {
+    "page": 36,
+    "chars": 1434,
+    "start": " \n30 \nCHAPTER 4 \nRESULTS AND DISCUSSION \nThis chapter presents the implemented system, verified regression checks, and \nthe descri",
+    "end": "narios in the current build; they are \ndistinct from a full office deployment, live SMS delivery, or a production capacity \ntest. "
+  },
+  {
+    "page": 37,
+    "chars": 1869,
+    "start": " \n31 \n4.2 System Modules and Features \nTable 7  Implemented modules and resulting behavior \nModule Current behavior \nAccounts and ",
+    "end": "ded, such as incomplete payment, missing confirmation, changing \ncopies after review, and resident access to another user’s data. "
+  },
+  {
+    "page": 38,
+    "chars": 1791,
+    "start": " \n32 \n4.3.2 Interface Regression Checks \nJavaScript regression checks examined new request rows during editing, safe \nstatus refre",
+    "end": "aves replaced the same type/year; new years stayed \nseparate; empty upload retained the file; saved list was read-\nonly. \nPasse\nd "
+  },
+  {
+    "page": 39,
+    "chars": 1458,
+    "start": " \n33 \nTest area Verified scenario and outcome Resul\nt \nSubmission \nand \nownership \nOwn Pending request or Open complaint removal a",
+    "end": "ty scenario has been tested. The test filenames and \ntheir scope are retained in Appendix F so that the checks can be reproduced. "
+  },
+  {
+    "page": 40,
+    "chars": 2001,
+    "start": " \n34 \nTable 9  Reported development issues and current disposition \nReported issue Current correction or \ndisposition \nEvidence or",
+    "end": "ronization checks show that updated work items can be \ndisplayed while staff continue editing a rejection reason. Template checks "
+  },
+  {
+    "page": 41,
+    "chars": 1623,
+    "start": " \n35 \nreduce duplicate active template entries for the same type and year. Pronoun \ntests confirm that beneficiary choices do not ",
+    "end": " ratings. The duplicate photograph was excluded before tallying. The item \nand evaluator audit tables are retained in Appendix E. "
+  },
+  {
+    "page": 42,
+    "chars": 1559,
+    "start": " \n36 \n4.6.2 Resident Dimension Results \nTable 11  Primary resident assessment by dimension \nDimension Valid \nratings \nMean Interpr",
+    "end": "n several \nother timing items. The result identifies a useful focus for measured testing on \nreal phones and the planned network. "
+  },
+  {
+    "page": 43,
+    "chars": 1232,
+    "start": " \n37 \nSecurity obtained a mean of 4.55 (strongly agree). Observed security behavior \nreceived favorable ratings for access and pas",
+    "end": "\n1\n0 \n4.40 Agree \nA5 The system provides the features I need for my \nbarangay transactions or assigned duties. \n1\n0 \n4.30 Agree \n "
+  },
+  {
+    "page": 44,
+    "chars": 1536,
+    "start": " \n38 \nTable 13  Resident item means for usability \nIte\nm \nStatement n Mea\nn \nInterpretation \nB1 The system is easy to learn. 1\n0 \n",
+    "end": "me. \n1\n0 \n4.50 Strongly agree \nD5 The system remains responsive while I complete \nseveral tasks in succession. \n1\n0 \n4.40 Agree \n "
+  },
+  {
+    "page": 45,
+    "chars": 1497,
+    "start": " \n39 \nTable 16  Resident item means for security \nIte\nm \nStatement n Mea\nn \nInterpretation \nE1 I am required to log in before acce",
+    "end": "actual features used, and \nthe comments. A favorable pooled mean does not remove the need to address \nspecific neutral responses. "
+  },
+  {
+    "page": 46,
+    "chars": 837,
+    "start": " \n40 \n4.6.4 Supplementary Team Role Assessment \nTable 18  Team role assessment reported separately \nDimension Staff role mean \nn 2",
+    "end": " not merged with the primary resident mean and \ncannot be used as official acceptance or as a comparison of occupational \ngroups. "
+  },
+  {
+    "page": 47,
+    "chars": 1782,
+    "start": " \n41 \n4.6.5 Comments and Suggestions \nTable 19  Comments transcribed or translated from the supplied pages \nSource Observation Sug",
+    "end": "nsultation, not acceptance of the present build. No \nsigned acceptance form or official approval is inferred from either dataset. "
+  },
+  {
+    "page": 48,
+    "chars": 1899,
+    "start": " \n42 \nThe next official evaluation should use concrete tasks: create and verify a \nresident account, find a profile, review a requ",
+    "end": "r Word -based service should remain available during a \nlimited pilot so that a portal outage does not prevent essential service. "
+  },
+  {
+    "page": 49,
+    "chars": 1555,
+    "start": " \n43 \n4.9 Risk Management \nTable 21  Operational risks and proposed controls \nRisk Effect Control or verification \nUnverified appl",
+    "end": "s automatically. In particular, the \naccess and password items reflect observed behavior rather than a technical \nsecurity audit. "
+  },
+  {
+    "page": 50,
+    "chars": 1632,
+    "start": " \n44 \nCHAPTER 5 \nSUMMARY CONCLUSIONS AND RECOMMENDATIONS \n5.1 Summary of the Project \nThe project developed a Smart Barangay Porta",
+    "end": " passed in the current build. Official staff and administrator \nacceptance and production deployment have not yet been completed. "
+  },
+  {
+    "page": 51,
+    "chars": 1688,
+    "start": " \n45 \n5.2 Conclusions \nThe project achieved an implemented prototype that links resident profiling, \ndocument requests, preparatio",
+    "end": "ty. QR and SMS features provide useful lookup and \ncommunication mechanisms, but their effectiveness must be tested within actual "
+  },
+  {
+    "page": 52,
+    "chars": 1711,
+    "start": " \n46 \ndeployment conditions. The overall conclusion is that the prototype is suitable \nfor further controlled evaluation and refin",
+    "end": "verification output before launch. Establish regular \nmaintenance of accounts, fees, templates, logs, and backups. Record defects "
+  },
+  {
+    "page": 53,
+    "chars": 1428,
+    "start": " \n47 \nand their retest evidence so that later manuscripts or deployment reports can \ndistinguish implemented fixes from suggestion",
+    "end": "date the questionnaire and preserve \nanonymized response and task records so that future findings can be audited \nand reproduced. "
+  },
+  {
+    "page": 54,
+    "chars": 1557,
+    "start": " \n48 \nREFERENCES \nAyuningtyas, Gunawan, M. C., Zulfitra, S. R., Pratama, I. B., & Juniawan, A. A. \n(2022). Rancang Bangun Website ",
+    "end": "ech/2022-gtmi \nWorld Wide Web Consortium. (2024). Web Content Accessibility Guidelines \n(WCAG) 2.2. https://www.w3.org/TR/WCAG22/ "
+  },
+  {
+    "page": 55,
+    "chars": 1109,
+    "start": " \n49 \nAPPENDIX A \nPreliminary Requirements Questionnaire \nThis appendix retains the predevelopment questionnaire from the original",
+    "end": "d for \nacademic purposes only. \nRespondent Profile \nPart I: Profile \n1. Name (Optional): __________________________ \n2. Age: ____ "
+  },
+  {
+    "page": 56,
+    "chars": 1235,
+    "start": " \n50 \n3. Gender: [ ] Male [ ] Female \n4. Do you own a smartphone? [ ] Yes [ ] No \nTable 22  Current manual process assessment \nSta",
+    "end": "r using a digital portal over the current manual process? \n[ ] Yes    [ ] No    [ ] Undecided \n2. Any suggestions for the system? "
+  },
+  {
+    "page": 57,
+    "chars": 143,
+    "start": " \n51 \n______________________________________________________________\n_____________________________________________________________",
+    "end": "_______________________________________________________\n______________________________________________________________\n__________ "
+  },
+  {
+    "page": 58,
+    "chars": 1140,
+    "start": " \n52 \nAPPENDIX B \nHistorical Preliminary Survey Results \nThese results are retained from the original proposal as preliminary \nreq",
+    "end": "tem has four recorded ratings rather than ten. The \nproposal’s overall manual value of 3.88 is the unweighted average of the five "
+  },
+  {
+    "page": 59,
+    "chars": 327,
+    "start": " \n53 \nitem means. Pooling its 44 recorded responses instead gives 3.73; neither value \nis a measured processing -time baseline. Th",
+    "end": "96. These historical measures are not \ncomparable before -and-after sco res against the different current evaluation \ninstrument. "
+  },
+  {
+    "page": 60,
+    "chars": 1602,
+    "start": " \n54 \nAPPENDIX C \nOriginal Requirements Interview Transcripts \nThe following transcripts are retained from the supplied proposal. ",
+    "end": "Answer: Yes \nQuestion 8: What do you think about QR-based resident identification? \nAnswer: QR-Based codes can easily be accessed "
+  },
+  {
+    "page": 61,
+    "chars": 1287,
+    "start": " \n55 \nQuestion 9: How do you currently inform residents about announcements or \nevents? \nAnswer: Highly important, a faster way of",
+    "end": "al would a digital profiling system be for monitoring \nresidents and services? \nAnswer: Beneficial both the LGU and the residents "
+  },
+  {
+    "page": 62,
+    "chars": 1978,
+    "start": " \n56 \nInterviewee: Savor Bantuas \nPosition: Barangay Staff \nLocation: Km. 4 Brgy. Luna, Surigao, Surigao del Norte \nDate: April 15",
+    "end": "rangay? \nAnswer: Complaints in this barangay handled one -on-one discussion and manually \nnotes taken by the in-charge personnel. "
+  },
+  {
+    "page": 63,
+    "chars": 1460,
+    "start": " \n57 \nQuestion 11: Would a digital complaint system with photo/video evidence \nimprove the process? \nAnswer: A discussion should b",
+    "end": "R-based profiling can help reduce duplicate records \nor errors? \nAnswer: A big help, it will lessen duplicate records and errors. "
+  },
+  {
+    "page": 64,
+    "chars": 1096,
+    "start": " \n58 \nAPPENDIX D \nCurrent User Evaluation Questionnaire \nSystem: Barangay Luna Smart Portal \nRole: Resident / Barangay Staff / Adm",
+    "end": "ctions. \n□ □ □ □ □ □ \nA5 The system provides the features I need for my \nbarangay transactions or assigned duties. \n□ □ □ □ □ □ \n "
+  },
+  {
+    "page": 65,
+    "chars": 1418,
+    "start": " \n59 \nTable 28  Evaluation instrument usability \nIte\nm \nStatement 1 2 3 4 5 N/A \nB1 The system is easy to learn. □ □ □ □ □ □ \nB2 M",
+    "end": "le amount of time. \n□ □ □ □ □ □ \nD\n5 \nThe system remains responsive while I complete \nseveral tasks in succession. \n□ □ □ □ □ □ \n "
+  },
+  {
+    "page": 66,
+    "chars": 1373,
+    "start": " \n60 \nTable 31  Evaluation instrument security \nIte\nm \nStatement 1 2 3 4 5 N/A \nE1 I am required to log in before accessing accoun",
+    "end": "_________________________________________ \nWhat improvements would you suggest? \n________________________________________________ "
+  },
+  {
+    "page": 67,
+    "chars": 1458,
+    "start": " \n61 \nAPPENDIX E \nCurrent Evaluation Tally and Source Audit \nR01–R10 identify the handwritten resident numbers 1–10. TS1 and TS2 i",
+    "end": "TS2 4 5 4 4 4 5 5 5 4 4 4 5 4 5 4 4 5 5 5 4 5 5 5 5 5 4 5 5 3 5 \nTA1 4 4 5 5 5 5 4 5 5 5 4 4 5 4 4 3 4 5 5 5 5 5 5 5 5 4 4 4 3 4  "
+  },
+  {
+    "page": 68,
+    "chars": 876,
+    "start": " \n62 \nTable 34  Resident frequency audit for functionality \nItem 5 4 3 2 1 NA n Sum Mean \nA1 4 5 1 0 0 0 10 43 4.30 \nA2 2 7 1 0 0 ",
+    "end": "5 3 0 0 0 10 39 3.90 \nD2 4 6 0 0 0 0 10 44 4.40 \nD3 5 4 1 0 0 0 10 44 4.40 \nD4 5 5 0 0 0 0 10 45 4.50 \nD5 4 6 0 0 0 0 10 44 4.40  "
+  },
+  {
+    "page": 69,
+    "chars": 1579,
+    "start": " \n63 \nTable 38  Resident frequency audit for security \nItem 5 4 3 2 1 NA n Sum Mean \nE1 7 3 0 0 0 0 10 47 4.70 \nE2 6 4 0 0 0 0 10 ",
+    "end": "731470946586881149_n \nCD: 838983607_1594739845737035_8103875275365846763_n  \nEF: 843907673_1064785643222308_5632644806142044930_n "
+  },
+  {
+    "page": 70,
+    "chars": 1874,
+    "start": " \n64 \nID Source photograph IDs for A B C D E F \nR05 AB: 845115278_1838063270518134_3797715012364622644_n \nCD: 844616222_3178772245",
+    "end": "he Chapter 4 comment table. The tally is based on the supplied images and the \nauthors’ clarification of evaluator participation. "
+  },
+  {
+    "page": 71,
+    "chars": 1603,
+    "start": " \n65 \nAPPENDIX F \nRegression Verification Record \nVerification date: October 13, 2026. PHP tests with database fixtures used \nisol",
+    "end": "ed popup resume and duplicate \nprevention. \nPasse\nd \nmodal-layering-test.cjs Modal placement, focus and retained values. Passe\nd  "
+  }
+]

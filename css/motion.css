@@ -1,0 +1,134 @@
+/* Shared motion for public, resident, staff, and administrator screens. */
+:root {
+  --motion-fast: 160ms;
+  --motion-normal: 240ms;
+  --motion-ease: cubic-bezier(.2, .8, .2, 1);
+}
+.btn, .btn-icon, .notice-hide, .modal-close, .nav-link,
+.notification-toggle, .profile-menu-toggle, .mobile-select-trigger,
+.mobile-select-option, .document-type-trigger, input, textarea, select {
+  transition: background-color var(--motion-fast) ease,
+    color var(--motion-fast) ease, border-color var(--motion-fast) ease,
+    box-shadow var(--motion-fast) ease, opacity var(--motion-fast) ease,
+    transform var(--motion-fast) var(--motion-ease);
+}
+@media (hover: hover) and (pointer: fine) {
+  .btn:not(:disabled):hover, .btn-icon:not(:disabled):hover,
+  .notice-hide:not(:disabled):hover { transform: translateY(-1px); }
+}
+.btn:not(:disabled):active, .btn-icon:not(:disabled):active,
+.notice-hide:not(:disabled):active { transform: translateY(0) scale(.99); }
+.modal {
+  transition: opacity var(--motion-normal) ease, visibility var(--motion-normal) ease;
+}
+.modal .modal-panel, .modal .modal-dialog {
+  transform: translateY(12px) scale(.985);
+  transition: transform var(--motion-normal) var(--motion-ease);
+}
+.modal.is-open .modal-panel, .modal.is-open .modal-dialog { transform: none; }
+.profile-dropdown, .document-type-menu {
+  transition: opacity var(--motion-fast) ease,
+    transform var(--motion-normal) var(--motion-ease), visibility var(--motion-fast) ease;
+}
+.content-area, .portal-login-card {
+  animation: portal-content-enter 260ms var(--motion-ease) both;
+}
+@keyframes portal-content-enter {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+/* Same-origin section links keep normal navigation, history, and form behavior. */
+@view-transition { navigation: auto; }
+.content-area { view-transition-name: portal-section; }
+.sms-tabs { view-transition-name: sms-section-tabs; }
+.sms-tabs a {
+  transition: color var(--motion-fast) ease, border-color var(--motion-normal) ease,
+    background-color var(--motion-fast) ease;
+}
+::view-transition-old(root), ::view-transition-new(root) { animation: none; }
+::view-transition-group(portal-section), ::view-transition-group(sms-section-tabs) {
+  animation-duration: 240ms;
+  animation-timing-function: var(--motion-ease);
+}
+::view-transition-old(portal-section) {
+  animation: portal-section-out 140ms ease both;
+}
+::view-transition-new(portal-section) {
+  animation: portal-section-in 240ms var(--motion-ease) both;
+}
+::view-transition-old(sms-section-tabs), ::view-transition-new(sms-section-tabs) {
+  animation-duration: 180ms;
+}
+@keyframes portal-section-out {
+  to { opacity: 0; transform: translateY(-6px); }
+}
+@keyframes portal-section-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+/* Mobile keeps its content fade without a snapshot of the previous open menu. */
+@media (max-width: 900px) {
+  @view-transition { navigation: none; }
+}
+/* Animate interaction feedback, never the contents replaced by live polling. */
+.header-icon-btn, .sidebar-toggle, .settings-nav-toggle, .modal-close,
+.notification-more, .recent-post-toggle, .notification-options button,
+[role="tab"], .pagination a, .pagination button, .husay-calendar-grid button,
+summary, .profile-dropdown a, .profile-dropdown button {
+  transition: background-color var(--motion-fast) ease,
+    color var(--motion-fast) ease, border-color var(--motion-fast) ease,
+    box-shadow var(--motion-fast) ease;
+}
+/* Keep menus anchored: feedback should not move a choice under the pointer. */
+.recent-post-actions .btn:hover, .notification-options button:hover,
+.profile-dropdown .btn:hover { transform: none; }
+.header-icon-btn, .modal-close, .mobile-select-trigger {
+  transition: background-color var(--motion-fast) ease,
+    color var(--motion-fast) ease, border-color var(--motion-fast) ease,
+    box-shadow var(--motion-fast) ease, transform 140ms var(--motion-ease);
+}
+.header-icon-btn:not(:disabled):active, .modal-close:active,
+.mobile-select-trigger:not(:disabled):active { transform: scale(.97); }
+.mobile-select-menu:not([hidden]) {
+  animation: portal-menu-enter 180ms var(--motion-ease);
+}
+@keyframes portal-menu-enter {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+/* Only cards that are actual links get interactive elevation. */
+a.panel-card, a.stat-card, a.staff-account-card, a.resident-profile-card {
+  transition: border-color var(--motion-fast) ease,
+    box-shadow var(--motion-normal) ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  a.panel-card:hover, a.stat-card:hover, a.staff-account-card:hover,
+  a.resident-profile-card:hover {
+    border-color: #80af91;
+    box-shadow: 0 4px 16px rgba(10,46,26,.14);
+  }
+}
+@media print {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+/* Husay details enter only after their final content has loaded. */
+#husayDetailsModal { transition: opacity 220ms ease, visibility 220ms ease; }
+#husayDetailsModal .modal-panel {
+  transform: translateY(8px) scale(.99);
+  transition: transform 220ms var(--motion-ease);
+}
+#husayDetailsModal.is-open .modal-panel { transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  @view-transition { navigation: none; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    transition-delay: 0ms !important;
+    scroll-behavior: auto !important;
+  }
+  .btn:hover, .btn:active, .btn-icon:hover, .btn-icon:active,
+  .notice-hide:hover, .notice-hide:active,
+  .header-icon-btn:active, .modal-close:active, .mobile-select-trigger:active,
+  .modal .modal-panel, .modal .modal-dialog { transform: none !important; }
+}

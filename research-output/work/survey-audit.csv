@@ -1,0 +1,14 @@
+﻿Evaluator,Participation,Device,A1,A2,A3,A4,A5,B1,B2,B3,B4,B5,C1,C2,C3,C4,C5,D1,D2,D3,D4,D5,E1,E2,E3,E4,E5,F1,F2,F3,F4,F5
+R01,Intended resident,Cellphone,5,5,4,3,5,5,4,5,3,5,5,4,3,5,5,4,5,3,4,5,5,4,4,5,4,5,5,4,3,4
+R02,Intended resident,Cellphone,4,4,5,5,4,4,4,5,5,4,4,4,5,5,4,4,4,5,5,4,5,5,5,5,5,4,5,5,4,5
+R03,Intended resident,Cellphone,4,4,4,4,5,5,5,5,5,4,5,4,4,5,4,4,4,4,5,5,5,5,4,4,4,5,5,4,5,5
+R04,Intended resident,Cellphone,4,5,4,4,4,4,4,4,4,4,3,4,4,4,4,4,4,4,4,4,4,4,4,4,4,5,5,4,4,4
+R05,Intended resident,Cellphone,4,4,5,4,4,5,5,4,4,5,4,4,4,5,4,4,4,5,4,5,5,4,5,4,4,4,5,5,4,5
+R06,Intended resident,Cellphone,3,4,5,5,5,3,4,4,4,3,5,3,4,5,3,3,4,4,4,4,5,5,5,5,5,4,5,5,4,4
+R07,Intended resident,Cellphone,5,3,4,5,3,5,5,5,5,5,4,5,4,5,5,5,5,5,5,4,5,5,4,5,4,5,5,4,5,5
+R08,Intended resident,Cellphone,5,4,4,5,4,5,4,5,5,4,4,4,5,4,5,5,4,5,4,4,4,4,4,5,5,5,5,5,5,4
+R09,Intended resident,Computer,4,4,5,4,4,4,5,4,5,4,4,5,5,3,4,3,5,5,5,4,4,5,5,4,5,4,5,5,4,4
+R10,Intended resident,Cellphone,5,4,5,5,5,5,5,5,4,3,NA,5,5,5,5,3,5,4,5,5,5,5,5,4,NA,5,5,5,4,5
+TS1,Project team role test,Computer,4,5,4,4,4,4,4,4,4,4,4,5,4,4,5,4,5,5,4,4,5,5,5,5,5,4,5,5,3,4
+TS2,Project team role test,Computer,4,5,4,4,4,5,5,5,4,4,4,5,4,5,4,4,5,5,5,4,5,5,5,5,5,4,5,5,3,5
+TA1,Project team role test,Computer,4,4,5,5,5,5,4,5,5,5,4,4,5,4,4,3,4,5,5,5,5,5,5,5,5,4,4,4,3,4

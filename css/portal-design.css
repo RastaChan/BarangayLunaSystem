@@ -1,0 +1,55 @@
+/* Shared portal dialog style. Resident identification cards have no theme overrides. */
+.portal-dialog-panel { border: 1px solid #ceded6; border-radius: 18px; box-shadow: 0 24px 70px #072d2440; }
+#viewStaffModal .portal-dialog-panel, #viewRecordModal .portal-dialog-panel { width: min(720px, 100%); }
+.portal-dialog-header {
+  display: grid; grid-template-columns: 52px minmax(0, 1fr) auto; gap: 16px;
+  min-height: 96px; padding: 20px 24px; color: #fff;
+  background: radial-gradient(ellipse at 85% 0, #25805a80, transparent 60%), linear-gradient(115deg, #125d49, #0b4936);
+  border-bottom: 0;
+}
+.portal-dialog-header::before {
+  content: ''; width: 52px; height: 52px; border-radius: 50%; border: 2px solid #ffffffb3;
+  background: #e0f4e9; background-image: var(--header-icon); background-repeat: no-repeat; background-position: center; background-size: 29px;
+}
+.portal-dialog-header h2 { color: #fff; font-size: 1.3rem; font-weight: 750; line-height: 1.25; }
+.portal-dialog-header .modal-close { width: 40px; height: 40px; color: #fff; background: #ffffff20; border-color: #ffffff35; border-radius: 50%; }
+.portal-dialog-header .modal-close:hover { background: #ffffff35; }
+.portal-dialog-panel .modal-footer { background: #fff; gap: 10px; border-top-color: #dce6e0; }
+.portal-dialog-panel .modal-footer .btn { min-height: 44px; border-radius: 10px; }
+.portal-dialog-panel .btn-primary { background: linear-gradient(110deg, #087447, #176c47); border-color: #168259; box-shadow: inset 0 0 0 1px #ffffff20; }
+.portal-dialog-panel .btn-outline { color: #115b3f; border-color: #a6c3b4; background: linear-gradient(110deg, #fff, #f5f8f6); }
+.portal-dialog-panel .btn-danger { color: #bb222c; border-color: #eea6ac; background: #fff0f1; }
+.portal-icon-action { display: inline-flex; align-items: center; justify-content: center; gap: 9px; }
+.portal-icon-action::before { content: ''; width: 19px; height: 19px; flex: 0 0 19px; background: currentColor; mask-image: var(--action-icon); mask-position: center; mask-repeat: no-repeat; mask-size: contain; }
+.auto-fill-grid .portal-detail-card {
+  display: grid; grid-template-columns: 42px minmax(0, 1fr); gap: 4px 12px; align-content: center;
+  background: linear-gradient(115deg, #fafcfc, #f4f8f6); border-color: #d8e3de; padding: 14px; border-radius: 12px; min-height: 84px;
+}
+.portal-detail-card::before { content: ''; grid-column: 1; grid-row: 1 / 3; align-self: center; width: 42px; height: 42px; border-radius: 50%; background: #dff2e8; background-image: var(--detail-icon); background-repeat: no-repeat; background-position: center; background-size: 23px; }
+.portal-detail-card > span, .portal-detail-card > strong { grid-column: 2; min-width: 0; }
+.auto-fill-grid .portal-detail-card > span { color: #556577; font-size: .76rem; margin: 0; font-weight: 500; }
+.auto-fill-grid .portal-detail-card > strong { color: #102031; font-size: .94rem; font-weight: 700; overflow-wrap: anywhere; }
+.portal-detail-card strong[data-detail-status] { width: fit-content; max-width: 100%; padding: 4px 10px; border-radius: 20px; font-size: .86rem; }
+.portal-detail-card strong[data-detail-status="positive"] { color: #086a2a; background: #d8f3df; }
+.portal-detail-card strong[data-detail-status="negative"] { color: #a62632; background: #fde6e8; }
+.portal-detail-card strong[data-detail-status="neutral"] { color: #785f12; background: #fff3cf; }
+.auto-fill-grid .portal-detail-card:is(.resident-detail-age, .resident-detail-gender, .resident-detail-civil) { grid-template-columns: minmax(0, 1fr); gap: 4px; min-height: 64px; padding: 10px; }
+.portal-detail-card:is(.resident-detail-age, .resident-detail-gender, .resident-detail-civil)::before { display: none; }
+.portal-detail-card:is(.resident-detail-age, .resident-detail-gender, .resident-detail-civil) > :is(span, strong) { grid-column: 1; }
+.issuance-resident-summary .portal-detail-card:is(.resident-detail-age, .resident-detail-gender, .resident-detail-civil) {
+  grid-column: span 2; grid-template-columns: 42px minmax(0, 1fr); gap: 4px 12px; min-height: 76px; padding: 12px;
+}
+.issuance-resident-summary .portal-detail-card:is(.resident-detail-age, .resident-detail-gender, .resident-detail-civil)::before { display: block; }
+.issuance-resident-summary .portal-detail-card:is(.resident-detail-age, .resident-detail-gender, .resident-detail-civil) > :is(span, strong) { grid-column: 2; }
+@media (max-width: 600px) {
+  .portal-dialog-header { grid-template-columns: 40px minmax(0, 1fr) auto; gap: 10px; padding: 16px; min-height: 80px; }
+  .portal-dialog-header::before { width: 40px; height: 40px; background-size: 24px; }
+  .portal-dialog-header h2 { font-size: 1.08rem; }
+  .portal-dialog-header .modal-close { width: 44px; height: 44px; }
+  .auto-fill-grid .portal-detail-card { min-height: 76px; padding: 12px; }
+}
+@media (max-width: 480px) {
+  .issuance-resident-summary .portal-detail-card:is(.resident-detail-age, .resident-detail-gender, .resident-detail-civil) { grid-template-columns: minmax(0, 1fr); gap: 5px; padding: 10px 8px; }
+  .issuance-resident-summary .portal-detail-card:is(.resident-detail-age, .resident-detail-gender, .resident-detail-civil)::before { grid-column: 1; grid-row: auto; width: 32px; height: 32px; background-size: 20px; }
+  .issuance-resident-summary .portal-detail-card:is(.resident-detail-age, .resident-detail-gender, .resident-detail-civil) > :is(span, strong) { grid-column: 1; }
+}

@@ -1,0 +1,297 @@
+      <div class="page-intro">
+        <h2>System Settings</h2>
+        <p>Configure barangay information, SMS settings, document types, and security options.</p>
+      </div>
+
+      <?php $_SESSION['settings_csrf'] ??= bin2hex(random_bytes(32)); ?>
+      <form class="settings-form" action="admin-actions.php" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="csrf" value="<?= htmlspecialchars($_SESSION['settings_csrf']) ?>">
+        <input type="hidden" name="action" value="save_settings">
+        <input type="hidden" name="redirect" value="system-settings">
+        <!-- Barangay Information -->
+        <section class="panel-card">
+          <div class="panel-head"><h3>Barangay Information</h3></div>
+          <div class="panel-body">
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label for="barangayName">Barangay Name</label>
+                <input type="text" id="barangayName" name="settings[barangay_name]" value="<?= htmlspecialchars($systemSettings['barangay_name'] ?? 'Barangay Luna') ?>" required>
+              </div>
+              <div class="form-group">
+                <label for="barangayCode">Barangay Code</label>
+                <input type="text" id="barangayCode" name="settings[barangay_code]" value="<?= htmlspecialchars($systemSettings['barangay_code'] ?? 'BL-001') ?>" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="barangayAddress">Complete Address</label>
+              <input type="text" id="barangayAddress" name="settings[barangay_address]" value="<?= htmlspecialchars($systemSettings['barangay_address'] ?? 'Barangay Luna, Surigao City, Surigao del Norte, Philippines') ?>" required>
+            </div>
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label for="contactNumber">Contact Number</label>
+                <input type="tel" id="contactNumber" name="settings[contact_number]" value="<?= htmlspecialchars($systemSettings['contact_number'] ?? '(02) 1234-5678') ?>" required>
+              </div>
+              <div class="form-group">
+                <label for="hotlineNumber">Hotline Number</label>
+                <input type="tel" id="hotlineNumber" name="settings[hotline_number]" value="<?= htmlspecialchars($systemSettings['hotline_number'] ?? '09506972820') ?>" required>
+              </div>
+            </div>
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label for="officeHours">Office Hours</label>
+                <input type="text" id="officeHours" name="settings[office_hours]" value="<?= htmlspecialchars($systemSettings['office_hours'] ?? 'Monday - Friday, 8:00 AM - 5:00 PM') ?>" placeholder="e.g., Monday - Friday, 8:00 AM - 5:00 PM">
+              </div>
+              <div class="form-group">
+                <label for="holidaySchedule">Holiday Schedule</label>
+                <?php $holidaySchedule = $systemSettings['holiday_schedule'] ?? 'Philippine National Holidays'; ?>
+                <select id="holidaySchedule" name="settings[holiday_schedule]">
+                  <option <?= $holidaySchedule === 'Philippine National Holidays' ? 'selected' : '' ?>>Philippine National Holidays</option>
+                  <option <?= $holidaySchedule === 'Custom Holidays' ? 'selected' : '' ?>>Custom Holidays</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Logo & Branding -->
+        <section class="panel-card">
+          <div class="panel-head"><h3>Logo & Branding</h3></div>
+          <div class="panel-body">
+            <div class="logo-upload">
+              <div class="logo-preview">
+                <img src="branding-logo.php" alt="Current logo" style="max-width:100px;max-height:100px">
+              </div>
+              <div class="logo-controls">
+                <input type="file" name="logo" accept="image/png,image/jpeg" id="logoUpload">
+                <p class="field-hint">PNG or JPG, up to 2 MB. Save Changes to apply.</p>
+                <button type="button" class="btn btn-outline btn-sm" onclick="document.getElementById('logoUpload').click()">
+                  <svg viewBox="0 0 24 24" fill="none" width="16" height="16"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                  Upload New Logo
+                </button>
+                <label class="checkbox-label"><input type="checkbox" name="remove_logo" value="1"> Remove uploaded logo and restore the default on save</label>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel-card"><div class="panel-head"><h3>Document QR verification</h3></div><div class="panel-body"><div class="form-group">
+          <label for="portalPublicUrl">Portal address for document QR codes</label>
+          <input type="url" id="portalPublicUrl" name="settings[portal_public_url]" maxlength="480" value="<?= htmlspecialchars($systemSettings['portal_public_url'] ?? '', ENT_QUOTES) ?>" placeholder="https://your-portal.example.com">
+          <p class="field-hint">Use the full portal address, including its folder, that phones can open. For local use, enter the server's LAN address. Leave blank to use the current browser address. Saved document QR links remain unchanged.</p>
+        </div></div></section>
+        <!-- SMS Configuration -->
+        <section class="panel-card">
+          <div class="panel-head"><h3>SMS Configuration</h3></div>
+
+          <div class="panel-body">
+            <div class="form-group">
+              <label for="smsProvider">SMS Provider</label>
+              <?php $smsProvider = $systemSettings['sms_provider'] ?? 'httpSMS'; ?>
+              <select id="smsProvider" name="settings[sms_provider]">
+                <option <?= $smsProvider === 'httpSMS' ? 'selected' : '' ?>>httpSMS</option>
+              </select>
+            </div>
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label for="smsSenderName">SMS Sender Name</label>
+                <input type="text" id="smsSenderName" name="settings[sms_sender_name]" maxlength="20" placeholder="BRGY LUNA" value="<?= htmlspecialchars($systemSettings['sms_sender_name'] ?? 'BRGY LUNA') ?>">
+              </div>
+              <div class="form-group">
+                <label for="smsApiKey">httpSMS API Key</label>
+                <input type="password" id="smsApiKey" name="settings[sms_api_key]" autocomplete="new-password" placeholder="<?= empty($systemSettings['sms_api_key']) ? 'Enter your httpSMS API key' : 'Leave blank to keep the current API key' ?>">
+              </div>
+            </div>
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label for="smsPhoneNumber">httpSMS Sender Number</label>
+                <input type="tel" id="smsPhoneNumber" name="settings[sms_sender_number]" placeholder="+639XXXXXXXXX" value="<?= htmlspecialchars($systemSettings['sms_sender_number'] ?? '') ?>">
+              </div>
+            </div>
+            <p class="field-hint">Use the mobile number connected to your httpSMS Android device, for example +639XXXXXXXXX.</p>
+            <div class="form-group">
+              <label class="checkbox-label">
+                <input type="hidden" name="settings[sms_enabled]" value="0">
+                <input type="checkbox" name="settings[sms_enabled]" value="1" <?= ($systemSettings['sms_enabled'] ?? '1') === '1' ? 'checked' : '' ?>>
+                <span>Enable SMS Alerts</span>
+              </label>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel-card">
+          <div class="panel-head"><h3>Document Templates</h3></div>
+          <div class="panel-body">
+            <p class="field-hint" style="margin:0">
+              Document types and Word templates are managed in the staff Issue Documents page, so residents and staff stay synchronized.
+            </p>
+          </div>
+        </section>
+
+        <!-- Security Settings -->
+        <section class="panel-card">
+          <div class="panel-head"><h3>Security Settings</h3></div>
+          <div class="panel-body">
+            <div class="form-group">
+              <label for="sessionTimeout">Session Timeout (minutes)</label>
+              <input type="number" id="sessionTimeout" name="settings[session_timeout]" value="<?= htmlspecialchars($systemSettings['session_timeout'] ?? '30') ?>" min="10" max="240">
+            </div>
+            <p class="field-hint">Passwords must contain 8 to 72 bytes. Additional rules apply when creating or changing passwords.</p>
+            <?php foreach (['password_uppercase' => 'Require uppercase letters', 'password_numbers' => 'Require numbers', 'password_special' => 'Require special characters', 'sms_2fa' => 'Require an SMS code at every sign-in', 'mobile_verification' => 'Verify mobile number at first sign-in and after number changes'] as $key => $label): ?>
+            <div class="form-group"><label class="checkbox-label">
+              <input type="hidden" name="settings[<?= $key ?>]" value="0">
+              <input type="checkbox" name="settings[<?= $key ?>]" value="1" <?= ($systemSettings[$key] ?? '0') === '1' ? 'checked' : '' ?>>
+              <span><?= htmlspecialchars($label) ?></span>
+            </label></div>
+            <?php endforeach; ?>
+            <p class="field-hint">SMS verification requires access to the registered mobile number and a working httpSMS sender phone. New security settings apply to future sign-ins.</p>
+          </div>
+        </section>
+
+        <!-- Actions -->
+        <div class="settings-actions">
+          <button type="submit" class="btn btn-primary">
+            <svg viewBox="0 0 24 24" fill="none" width="16" height="16"><path d="M9 12l2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            Save Changes
+          </button>
+          <button type="reset" class="btn btn-outline">
+            <svg viewBox="0 0 24 24" fill="none" width="16" height="16"><path d="M4 12a8 8 0 0 1 14.6-3.6M19.2 4v5h-5M4.8 20v-5h5a8 8 0 0 1-14.6 3.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            Reset
+          </button>
+        </div>
+      </form>
+
+<style>
+.settings-form {
+  display: grid;
+  gap: 1.5rem;
+  width: 100%;
+  min-width: 0;
+}
+
+.settings-form .form-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.form-group {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.form-group input[type="text"],
+.form-group input[type="tel"],
+.form-group input[type="tel"],
+.form-group input[type="password"],
+.form-group input[type="number"],
+.form-group select {
+  width: 100%;
+  min-width: 0;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  background: var(--white);
+  color: var(--text);
+  font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--green-600);
+  box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.12);
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: var(--text);
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  accent-color: var(--green-600);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.logo-upload {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.logo-preview {
+  width: 120px;
+  height: 120px;
+  border: 2px solid var(--border);
+  border-radius: var(--radius-lg);
+  display: grid;
+  place-items: center;
+  background: var(--green-50);
+}
+
+.logo-controls {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.settings-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.settings-form .btn-text {
+  background: transparent;
+  color: var(--text-muted);
+  font-weight: 500;
+  padding: 0.65rem 1rem;
+}
+
+.settings-form .btn-text:hover {
+  color: var(--text);
+  background: var(--green-50);
+}
+
+.logo-controls input[type="file"] { width: 100%; min-width: 0; }
+.logo-controls .btn { align-self: flex-start; }
+.logo-preview img { object-fit: contain; }
+.settings-form .panel-body { display: grid; gap: 1rem; }
+
+@media (max-width: 900px) {
+  .settings-form .form-grid-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .settings-form .form-group input,
+  .settings-form .form-group select { font-size: 16px; }
+  .logo-upload {
+    grid-template-columns: 1fr;
+  }
+
+  .settings-actions {
+    flex-direction: column;
+  }
+}
+</style>

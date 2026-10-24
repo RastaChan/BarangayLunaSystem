@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Document pages</title>
+  <style>
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    body { margin: 0; padding: 8px; background: #edf2ef; font: 14px system-ui, sans-serif; color: #17422f; }
+    #status { margin: 8px; }
+    #pages { display: grid; gap: 12px; }
+    canvas { display: block; width: 100%; height: auto; background: white; box-shadow: 0 1px 5px #143d2426; }
+    #open { display: inline-block; margin: 8px; color: #126744; }
+  </style>
+</head>
+<body>
+  <p id="status" role="status">Loading document pages…</p>
+  <main id="pages" aria-label="Document pages"></main>
+  <a id="open" target="_blank" rel="noopener" hidden>Open PDF</a>
+  <script type="module" src="js/document-page-viewer.mjs"></script>
+</body>
+</html>

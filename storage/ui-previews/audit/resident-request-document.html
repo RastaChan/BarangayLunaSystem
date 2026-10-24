@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><base href="/BARANGAY%20LUNA%20SYSTEM/"><script>window.fetch=async()=>({ok:false,status:403,headers:{get:()=>"application/json"},json:async()=>({ok:false,success:false,message:"Layout fixture"})});</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Request Document | Resident - Barangay Luna MIS</title>
+  <link rel="stylesheet" href="css/dashboard.css?v=1792835631">
+  <link rel="stylesheet" href="css/mobile-select.css?v=1792815332">
+  <link rel="stylesheet" href="css/motion.css?v=1792819969">
+  <link rel="stylesheet" href="css/portal-design.css?v=1792815332">
+</head>
+<body class="app-dashboard role-resident">
+
+  <aside class="sidebar" id="appSidebar">
+  <div class="sidebar-brand">
+    <img src="branding-logo.php" alt="Barangay Luna" class="sidebar-logo"
+         onerror="this.style.visibility='hidden';">
+    <div class="sidebar-brand-text">
+      <strong>Layout Test Resident</strong>
+      <span>Resident Portal</span>
+    </div>
+    <button type="button" class="sidebar-collapse-btn" id="sidebarCollapseBtn" aria-label="Collapse sidebar" title="Collapse sidebar">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </div>
+
+  <div class="sidebar-role">
+    <span class="role-pill">RESIDENT</span>
+  </div>
+
+  <nav class="sidebar-nav" id="sidebarNav" aria-label="Resident navigation">
+    <p class="nav-section">Overview</p>
+    <a href="resident-dashboard.php?view=resident-dashboard" class="nav-link " data-nav-view="resident-dashboard"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 11 12 4l8 7v9H4v-9Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="nav-link-label">Dashboard</span></a>
+    <p class="nav-section">Services</p>
+    <a href="resident-dashboard.php?view=request-document" class="nav-link is-active" data-nav-view="request-document"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 4h8l2 4v12H6V4h2Zm1 8h6M9 16h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="nav-link-label">Request Document</span></a>    <a href="resident-dashboard.php?view=my-document-requests" class="nav-link " data-nav-view="my-document-requests"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5h16M4 12h16M4 19h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="nav-link-label">My Document Requests</span></a>
+    <p class="nav-section">Community</p>
+    <a href="resident-dashboard.php?view=submit-complaint" class="nav-link " data-nav-view="submit-complaint"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 9v4m0 4h.01M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="nav-link-label">Submit Complaint</span></a>    <a href="resident-dashboard.php?view=my-complaints" class="nav-link " data-nav-view="my-complaints"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="nav-link-label">My Complaints</span></a>    <a href="resident-dashboard.php?view=send-feedback" class="nav-link " data-nav-view="send-feedback"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 4h16v12H7l-3 3V4Zm5 5h6M9 13h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="nav-link-label">Send Feedback</span></a>
+    <p class="nav-section">Updates</p>
+    <a href="resident-dashboard.php?view=sms-updates" class="nav-link " data-nav-view="sms-updates"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8ZM9 10h6M9 14h3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="nav-link-label">SMS Updates</span></a>
+    <p class="nav-section">Account</p>
+    <a href="resident-dashboard.php?view=my-activity-logs" class="nav-link " data-nav-view="my-activity-logs"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 8v4l3 2M3 12a9 9 0 1 0 9-9 9 9 0 0 0-9 9Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="nav-link-label">Activity Logs</span></a>  </nav>
+
+</aside>
+
+  <div class="main-area">
+    <header class="top-header header">
+  <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Open menu">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+  </button>
+
+  <div class="header-title">
+    <h1>Request Document</h1>
+    <p>Barangay Luna Smart Barangay Portal</p>
+  </div>
+
+  <div class="header-actions">
+    <div class="notification-menu" data-notification-menu data-notification-owner="resident:4" data-notification-account="4" data-notification-token="68473c9a1e281e245fad716dec19e42b56d67f180a7abc1fc16616756e25b922" data-notification-state="{&quot;seen&quot;:[],&quot;read&quot;:[],&quot;dismissed&quot;:[]}">
+  <button type="button" class="header-icon-btn notification-btn" data-notification-toggle aria-label="Notifications" aria-controls="headerNotificationPanel" aria-expanded="false">
+    <svg viewBox="0 0 24 24" fill="none" width="20" height="20" aria-hidden="true"><path d="M15 17H9l-1 2h8l-1-2ZM18 8a6 6 0 1 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9Z" stroke="currentColor" stroke-width="1.5"/></svg>
+        <span class="notification-count">1</span>
+      </button>
+  <div id="headerNotificationPanel" class="notification-dropdown" data-notification-dropdown role="region" aria-label="Notifications">
+    <div class="notification-dropdown-head">
+      <strong>Notifications</strong>
+      <span data-notification-summary>
+                <span data-notification-new-count>1</span> new
+              </span>
+    </div>
+    <div class="notification-list">
+                  <div class="notification-row" data-notification-row>
+        <a class="notification-item is-new" href="resident-dashboard.php?view=resident-announcements" data-notification-id="resident-announcement-1-2026-10-24" data-notification-new="true" data-notification-view="resident-announcements">
+          <strong>Barangay announcement</strong>
+          <span>Community announcement for layout testing</span>
+          <small>2026-10-24</small>
+        </a>
+        <button type="button" class="notification-more" data-notification-dismiss="resident-announcement-1-2026-10-24" aria-label="Remove notification">...</button>
+      </div>
+                </div>
+  </div>
+</div>
+    <div class="profile-menu" data-profile-menu>
+  <button type="button" class="user-menu user-profile profile-menu-toggle" data-profile-toggle aria-expanded="false" aria-haspopup="true">
+    <span class="user-avatar">
+            L          </span>
+    <div class="user-meta">
+      <strong class="user-name">Layout Test Resident</strong>
+      <span>Resident</span>
+    </div>
+    <svg class="profile-caret" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M7 10l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+
+  <div class="profile-dropdown" data-profile-dropdown>
+    <button type="button" class="profile-dropdown-item" data-modal-open="profileSettingsModal">
+      <span>Profile Settings</span>
+    </button>
+    <button type="button" class="profile-dropdown-item" data-modal-open="securitySettingsModal">
+      <span>Security Settings</span>
+    </button>
+    <a href="logout.php" class="profile-dropdown-item profile-dropdown-item--danger">
+      <span>Logout</span>
+    </a>
+  </div>
+</div>
+
+<div id="profileSettingsModal" class="modal resident-profile-modal" aria-hidden="true" role="dialog" aria-labelledby="profileSettingsTitle">
+  <div class="modal-backdrop" data-modal-close></div>
+  <div class="modal-panel modal-panel--wide resident-profile-panel">
+    <header class="modal-header">
+      <h2 id="profileSettingsTitle">Profile Settings</h2>
+      <button type="button" class="modal-close" data-modal-close aria-label="Close">&times;</button>
+    </header>
+    <form id="profileSettingsForm" class="modal-body form-grid" action="#" method="post" enctype="multipart/form-data" data-profile-settings-form>
+      <input type="hidden" name="action" value="update_account_profile">
+      <input type="hidden" name="redirect" value="request-document">
+      <input type="hidden" name="profile_photo_cropped" id="profilePhotoCropped">
+
+            <section class="resident-id-card resident-id-card--admin" data-resident-id-card>
+  <div class="resident-id-card__header">
+    <img src="branding-logo.php" alt="Barangay Luna seal" onerror="this.style.visibility='hidden';">
+    <div><span>Barangay Luna</span><strong>Resident Identification Profile</strong></div>
+    <span class="badge badge-active" data-resident-card-status>Active</span>
+  </div>
+  <div class="resident-id-card__body">
+    <div class="resident-id-card__photo" data-resident-card-photo>
+      LT    </div>
+    <div class="resident-id-card__info">
+      <span>Resident ID</span><strong data-resident-card-id>RES-TEST</strong>
+      <h3 data-resident-card-name>Layout Test Resident</h3>
+      <dl>
+                <div ><dt>Username</dt><dd data-resident-card-username>layout-resident@example.test</dd></div>
+                <div ><dt>Mobile</dt><dd data-resident-card-mobile>09123456789</dd></div>
+                <div ><dt>Purok/Sitio</dt><dd data-resident-card-purok>-</dd></div>
+                <div ><dt>Household</dt><dd data-resident-card-household>-</dd></div>
+                <div ><dt>Birthdate / Age</dt><dd data-resident-card-birthdate>-</dd></div>
+                <div ><dt>Gender</dt><dd data-resident-card-gender>Female</dd></div>
+                <div ><dt>Civil Status</dt><dd data-resident-card-civil-status>-</dd></div>
+                <div ><dt>Verification</dt><dd data-resident-card-verification>Pending</dd></div>
+                <div ><dt>Registered</dt><dd data-resident-card-registered>2026-10-24</dd></div>
+                <div class="resident-id-card__address-row"><dt>Address</dt><dd data-resident-card-address>A longer test address in Barangay Luna, Surigao City</dd></div>
+              </dl>
+    </div>
+    <div class="resident-id-card__qr" data-resident-card-qr>
+      <div class="resident-id-card__qr-empty">QR</div>      <span data-resident-card-qr-code>No QR code yet</span>
+    </div>
+  </div>
+</section>
+      
+      <div class="profile-photo-tools">
+      <div class="profile-photo-upload">
+        <span class="profile-photo-preview" id="profilePhotoPreview">
+                    L                  </span>
+        <div class="field">
+          <label for="profilePhotoUpload">Profile picture</label>
+          <input type="file" id="profilePhotoUpload" name="profile_photo" accept="image/jpeg,image/png,image/webp">
+          <p class="field-hint">Upload a JPG, PNG, or WEBP photo. Drag or pinch the preview to crop before saving.</p>
+        </div>
+      </div>
+            </div>
+      <div class="profile-cropper" id="profilePhotoCropper" hidden>
+        <div class="profile-cropper__stage" id="profileCropStage">
+          <img id="profileCropImage" alt="Selected profile crop preview">
+          <span class="profile-cropper__mask" aria-hidden="true"></span>
+        </div>
+        <div class="profile-cropper__controls">
+          <label for="profilePhotoZoom">Crop zoom</label>
+          <input type="range" id="profilePhotoZoom" min="1" max="3" step="0.01" value="1">
+        </div>
+      </div>
+
+      <div class="form-grid-2">
+        <div class="field">
+          <label for="profileFullName">Full name</label>
+          <input type="text" id="profileFullName" value="Layout Test Resident" disabled>
+        </div>
+        <div class="field">
+          <label for="profileRole">Role</label>
+          <input type="text" id="profileRole" value="Resident" disabled>
+        </div>
+      </div>
+
+      <div class="form-grid-2">
+        <div class="field">
+          <label for="profileUsername">Username</label>
+          <input type="text" id="profileUsername" name="username" value="layout-resident@example.test" readonly aria-readonly="true">
+                    <p class="field-hint">Only an administrator can change usernames.</p>
+                  </div>
+        <div class="field">
+          <label for="profileContact">Mobile number</label>
+          <input type="tel" id="profileContact" name="mobile" value="09123456789">
+        </div>
+      </div>
+
+      <p class="profile-note">If your name or personal information needs to be changed, please visit the barangay office for verification.</p>
+    </form>
+    <footer class="modal-footer">
+      <button type="button" class="btn btn-outline" data-modal-close>Cancel</button>
+      <button type="submit" form="profileSettingsForm" class="btn btn-primary">Save profile</button>
+    </footer>
+  </div>
+</div>
+
+<div id="securitySettingsModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="securitySettingsTitle">
+  <div class="modal-backdrop" data-modal-close></div>
+  <div class="modal-panel">
+    <header class="modal-header">
+      <h2 id="securitySettingsTitle">Security Settings</h2>
+      <button type="button" class="modal-close" data-modal-close aria-label="Close">&times;</button>
+    </header>
+    <form id="securitySettingsForm" class="modal-body form-grid" action="#" method="post" data-security-form>
+      <input type="hidden" name="csrf" value="f42d3ccb37036ceb17f2cb32c8af362ca6e972614f0ba64d5ccba379e5496f24">
+      <div class="field">
+        <label for="currentPassword">Current password</label>
+        <input type="password" id="currentPassword" name="current_password" autocomplete="current-password" required>
+      </div>
+      <div class="field">
+        <label for="newPassword">New password</label>
+        <input type="password" id="newPassword" name="new_password" autocomplete="new-password" minlength="8" maxlength="72" required>
+      </div>
+      <div class="field">
+        <label for="confirmPassword">Confirm password</label>
+        <input type="password" id="confirmPassword" name="confirm_password" autocomplete="new-password" required>
+        <p class="field-hint password-match-message" data-password-message></p>
+      </div>
+    </form>
+    <footer class="modal-footer">
+      <button type="button" class="btn btn-outline" data-modal-close>Cancel</button>
+      <button type="submit" form="securitySettingsForm" class="btn btn-primary">Save password</button>
+    </footer>
+  </div>
+</div>
+  </div>
+</header>
+
+    <main class="content-area">
+            <div class="page-intro">
+  <h2>Request Document</h2>
+  <p>Submit barangay document requests online and wait for staff updates.</p>
+</div>
+
+<section class="panel-card">
+  <div class="panel-head"><h3>New document request</h3><span class="badge badge-pending">Status after submission: Pending</span></div>
+  <div class="panel-body">
+            <form action="#" method="post" enctype="multipart/form-data" class="form-grid" data-resident-request-form data-resident-review="document" data-review-resident-name="Layout Test Resident" data-review-resident-address="A longer test address in Barangay Luna, Surigao City">
+      <input type="hidden" name="service_csrf" value="30d52f865c3bdf12685a0621b47099c1af3b937c56b2a0c48d0f52896ef0cf04">
+      <input type="hidden" name="review_confirmed" value="0">
+      <input type="hidden" name="reviewed_copies" value="">
+      <input type="hidden" name="preview_csrf" value="078f01e99300af4cebf2d01328fe9eec9e3ffff6a1bada9ea3cdc20c842049e9">
+      <input type="hidden" name="action" value="request_document">
+      <input type="hidden" name="redirect" value="request-document">
+      <div class="form-grid-2">
+        <div class="field">
+          <label>Document Type</label>
+          <div class="resident-document-type-picker" data-resident-document-type-picker data-seen-key="residentDocumentTypesSeen:RES-TEST">
+            <input type="hidden" name="document_type" value="Barangay Certification" required data-resident-document-type-input>
+            <button type="button" class="document-type-trigger" data-resident-document-type-trigger aria-expanded="false">
+              <span data-resident-document-type-label>Barangay Certification</span>
+              <span aria-hidden="true">v</span>
+            </button>
+            <div class="document-type-menu resident-document-type-menu" data-resident-document-type-options hidden>
+                                          <button
+                type="button"
+                class="document-type-choice resident-document-type-choice"
+                data-resident-document-type-choice
+                data-value="Barangay Certification"
+                data-type-key="barangay certification"
+                data-fee-amount=""
+                data-new="0">
+                                <span>Barangay Certification</span>
+              </button>
+                                          <button
+                type="button"
+                class="document-type-choice resident-document-type-choice"
+                data-resident-document-type-choice
+                data-value="Certificate of Indigency"
+                data-type-key="certificate of indigency"
+                data-fee-amount=""
+                data-new="0">
+                                <span>Certificate of Indigency</span>
+              </button>
+                                          <button
+                type="button"
+                class="document-type-choice resident-document-type-choice"
+                data-resident-document-type-choice
+                data-value="Certificate of Residency"
+                data-type-key="certificate of residency"
+                data-fee-amount=""
+                data-new="0">
+                                <span>Certificate of Residency</span>
+              </button>
+                                          <button
+                type="button"
+                class="document-type-choice resident-document-type-choice"
+                data-resident-document-type-choice
+                data-value="Other Barangay Certificate"
+                data-type-key="other barangay certificate"
+                data-fee-amount=""
+                data-new="0">
+                                <span>Other Barangay Certificate</span>
+              </button>
+                          </div>
+          </div>
+        </div>
+        <div class="field">
+          <label>Purpose</label>
+          <input type="text" name="purpose" placeholder="Employment, school, assistance, business permit..." required>
+        </div>
+      </div>
+      <div class="document-fee-notice" data-resident-document-fee>
+        <span>Fee per copy</span>
+        <strong data-resident-document-fee-value>Not set yet</strong>
+        <small data-resident-document-fee-help>Please contact the barangay office for the current fee.</small>
+      </div>
+      <div class="form-grid-2 residency-years-fields" data-resident-residency-years-fields hidden>
+        <div class="field">
+          <label>Years as resident</label>
+          <input type="number" name="residency_years" min="0" step="1" placeholder="8">
+        </div>
+      </div>
+      <div class="form-grid-2">
+        <div class="field">
+          <label for="requestCopies">Number of copies</label>
+          <input id="requestCopies" name="copies" type="number" min="1" max="100" step="1" value="1" required>
+          <p class="field-hint">Usually 1 copy is enough. Check the quantity before submitting.</p>
+        </div>
+        <div class="field">
+          <label for="requestTotal">Total fee</label>
+          <input id="requestTotal" type="text" readonly>
+        </div>
+      </div>
+      <div class="form-grid-2 indigency-fields" data-resident-indigency-fields hidden>
+        <div class="field">
+          <label>Requesting resident's gender</label>
+          <input type="text" value="Female" readonly>
+          <p class="field-hint">From your resident profile. “His daughter” refers to a male parent; “her daughter” refers to a female parent. For an incorrect profile gender, ask barangay staff to correct your record.</p>
+        </div>
+        <div class="field">
+          <label>Beneficiary name</label>
+          <input type="text" name="beneficiary_name" placeholder="Enter beneficiary name">
+        </div>
+        <div class="field">
+          <label>Relationship</label>
+          <input type="text" name="beneficiary_relationship" placeholder="son, daughter, spouse..."><p class="field-hint">Relationship to you. Daughter describes the child; his/her describes you, the requesting resident.</p>
+        </div>
+
+      </div>
+      <div class="form-grid-2 cohabitation-fields" data-resident-cohabitation-fields hidden>
+        <div class="field">
+          <label>Partner name</label>
+          <input type="text" name="partner_name" placeholder="Enter partner name">
+        </div>
+        <div class="field">
+          <label for="residentCohabitationStart">Living together since</label>
+          <div class="calendar-date-field">
+            <input id="residentCohabitationStart" type="date" name="cohabitation_start_date" aria-describedby="residentCohabitationHint">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5h16v16H4V5Zm4-3v6m8-6v6M4 11h16m-12 4h2m4 0h2m-8 3h2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <p id="residentCohabitationHint" class="field-hint">Choose the date you started living together.</p>
+        </div>
+      </div>
+      <div class="field"><label>Contact Number</label><input type="tel" name="contact_mobile" value="09123456789"></div>
+      <div class="field"><label>Supporting Document Upload (JPG, PNG, PDF; maximum 5 MB)</label><input type="file" name="supporting_document" accept=".pdf,.jpg,.jpeg,.png"></div>
+      <div class="field"><label>Remarks</label><textarea name="remarks" rows="4" placeholder="Optional notes/message for barangay staff"></textarea></div>
+      <div class="info-banner"><div><strong>Request confirmation</strong>Your request will be added to My Document Requests with Pending status. SMS updates may be sent when the status changes.</div></div>
+      <div class="resident-request-actions">
+        <button type="submit" class="btn btn-primary">Submit request</button>
+        <button type="button" class="btn btn-outline" data-resident-request-preview data-modal-open="residentRequestPreviewModal">Generated document preview</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<div id="residentRequestPreviewModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="residentRequestPreviewTitle">
+  <div class="modal-backdrop" data-modal-close></div>
+  <div class="modal-panel modal-panel--wide">
+    <header class="modal-header"><h2 id="residentRequestPreviewTitle">Generated document preview</h2><button type="button" class="modal-close" data-modal-close aria-label="Close">&times;</button></header>
+    <div class="modal-body"><p class="field-hint">Preview only. The barangay will review your request before issuing the final document.</p><p role="status" data-resident-preview-status></p><iframe title="Resident document preview" data-resident-preview-frame hidden></iframe></div>
+    <footer class="modal-footer"><button type="button" class="btn btn-outline" data-modal-close>Close</button></footer>
+  </div>
+</div>
+<script src="js/resident-request-preview.js?v=1792815332" defer></script>
+
+<script>
+(function () {
+  'use strict';
+
+  const picker = document.querySelector('[data-resident-document-type-picker]');
+  if (!picker) return;
+
+  const input = picker.querySelector('[data-resident-document-type-input]');
+  const trigger = picker.querySelector('[data-resident-document-type-trigger]');
+  const label = picker.querySelector('[data-resident-document-type-label]');
+  const options = picker.querySelector('[data-resident-document-type-options]');
+  const form = picker.closest('form');
+  const residencyYearsFields = form ? form.querySelector('[data-resident-residency-years-fields]') : null;
+  const indigencyFields = form ? form.querySelector('[data-resident-indigency-fields]') : null;
+  const cohabitationFields = form ? form.querySelector('[data-resident-cohabitation-fields]') : null;
+  const feeValue = form ? form.querySelector('[data-resident-document-fee-value]') : null;
+  const feeHelp = form ? form.querySelector('[data-resident-document-fee-help]') : null;
+  const copiesField = form.querySelector('[name="copies"]');
+  const totalField = form.querySelector('#requestTotal');
+  let unitFee = null;
+  function updateTotal() {
+    const copies = Number(copiesField.value);
+    totalField.value = unitFee === null ? 'Not set yet' :
+      (Number.isInteger(copies) && copies >= 1 && copies <= 100
+        ? `PHP ${(Math.round(Number(unitFee) * 100) * copies / 100).toFixed(2)}` : 'Enter 1 to 100 copies');
+  }
+  copiesField.addEventListener('input', updateTotal);
+  updateTotal();
+  const storageKey = picker.getAttribute('data-seen-key') || 'residentDocumentTypesSeen';
+  if (!input || !trigger || !label || !options) return;
+
+  function readSeen() {
+    try {
+      return JSON.parse(localStorage.getItem(storageKey) || '[]');
+    } catch (error) {
+      return [];
+    }
+  }
+
+  function writeSeen(values) {
+    localStorage.setItem(storageKey, JSON.stringify(Array.from(new Set(values))));
+  }
+
+  function syncBadges() {
+    const seen = readSeen();
+    picker.querySelectorAll('[data-resident-document-type-choice]').forEach((button) => {
+      const typeKey = button.getAttribute('data-type-key') || '';
+      const badge = button.querySelector('[data-new-badge]');
+      if (!badge) return;
+      badge.hidden = seen.includes(typeKey);
+    });
+  }
+
+  function closeOptions() {
+    options.hidden = true;
+    trigger.setAttribute('aria-expanded', 'false');
+  }
+
+  function normalizedDocumentType(value) {
+    return String(value || '').trim().toLowerCase().replace(/\s+/g, ' ');
+  }
+
+  function isIndigency(value) {
+    return normalizedDocumentType(value).includes('indigency');
+  }
+
+  function isBarangayCertification(value) {
+    const normalized = normalizedDocumentType(value);
+    return normalized === 'barangay certification' || normalized === 'certificate of barangay certification';
+  }
+
+  function isCohabitation(value) {
+    return normalizedDocumentType(value).includes('cohabitation');
+  }
+
+  function toggleSection(section, show) {
+    if (!section) return;
+    section.hidden = !show;
+    section.style.display = show ? '' : 'none';
+  }
+
+  function syncRequestFields() {
+    const value = input.value;
+    toggleSection(indigencyFields, isIndigency(value));
+    toggleSection(residencyYearsFields, isIndigency(value) || isBarangayCertification(value));
+    toggleSection(cohabitationFields, isCohabitation(value));
+  }
+
+  function choose(button) {
+    const value = button.getAttribute('data-value') || '';
+    const typeKey = button.getAttribute('data-type-key') || '';
+    input.value = value;
+    label.textContent = value;
+    const fee = button.getAttribute('data-fee-amount') || '';
+    unitFee = fee === '' ? null : Number(fee);
+    updateTotal();
+    if (feeValue) feeValue.textContent = fee === '' ? 'Not set yet' : `PHP ${Number(fee).toFixed(2)}`;
+    if (feeHelp) feeHelp.textContent = fee === '' ? 'Please contact the barangay office for the current fee.' : 'This amount will be included in your request.';
+    syncRequestFields();
+    if (button.getAttribute('data-new') === '1' && typeKey) {
+      const seen = readSeen();
+      seen.push(typeKey);
+      writeSeen(seen);
+      syncBadges();
+    }
+    closeOptions();
+  }
+
+  trigger.addEventListener('click', () => {
+    options.hidden = !options.hidden;
+    trigger.setAttribute('aria-expanded', options.hidden ? 'false' : 'true');
+  });
+
+  picker.querySelectorAll('[data-resident-document-type-choice]').forEach((button) => {
+    button.addEventListener('click', () => choose(button));
+  });
+
+  document.addEventListener('click', (event) => {
+    if (!picker.contains(event.target)) {
+      closeOptions();
+    }
+  });
+
+  syncBadges();
+  syncRequestFields();
+})();
+</script>
+
+    </main>
+  </div>
+
+  <div id="residentSubmissionReview" class="modal" role="dialog" aria-hidden="true" aria-labelledby="residentSubmissionReviewTitle">
+  <div class="modal-backdrop" data-modal-close></div>
+  <div class="modal-panel">
+    <header class="modal-header"><h2 id="residentSubmissionReviewTitle">Review before submitting</h2><button type="button" class="modal-close" data-modal-close aria-label="Close">&times;</button></header>
+    <div class="modal-body form-grid">
+      <p data-submission-review-message></p>
+      <dl class="resident-review-details" data-submission-review-details></dl>
+      <p class="resident-copy-warning" role="status" data-submission-copy-warning hidden></p>
+      <label class="resident-review-checkbox"><input type="checkbox" data-submission-reviewed> <span data-submission-reviewed-label>I checked these details and want to submit.</span></label>
+      <footer class="modal-footer"><button type="button" class="btn btn-outline" data-modal-close data-submission-back>Back to edit</button><button type="button" class="btn btn-primary" data-submission-confirm disabled>Confirm submission</button></footer>
+    </div>
+  </div>
+</div>
+  <script src="js/dashboard.js?v=1792834849"></script>
+  <script src="js/resident-submission-confirmation.js?v=1792815333" defer></script>
+  <script src="js/portal-design.js?v=1792834849"></script>
+  <script src="js/mobile-select.js?v=1792815333"></script>
+  <script src="js/location-disclosures.js?v=1792815332"></script>
+</body>
+</html>

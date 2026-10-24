@@ -1,0 +1,10 @@
+const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
+const search={value:'',addEventListener(k,fn){this[k]=fn;}},status={...search},empty={hidden:true};
+const rows=[{textContent:'REQ-002 Barangay Certification School Released',dataset:{requestStatus:'Released'}},{textContent:'REQ-001 Good Moral Certificate School Rejected',dataset:{requestStatus:'Rejected'}}];
+const list={querySelectorAll:()=>rows};let refresh;
+vm.runInNewContext(fs.readFileSync('js/resident-request-list.js','utf8'),{document:{querySelector:s=>s.includes('search')?search:s.includes('status')?status:s.includes('tracking')?list:empty},MutationObserver:class{constructor(fn){refresh=fn;}observe(){}}});
+assert.ok(rows.every(r=>!r.hidden));search.value='  good moral ';search.input();assert.equal(rows[0].hidden,true);assert.equal(rows[1].hidden,false);
+status.value='Released';status.change();assert.equal(empty.hidden,false);search.value='';search.input();assert.equal(rows[0].hidden,false);assert.equal(rows[1].hidden,true);
+rows.push({textContent:'REQ-003 Released',dataset:{requestStatus:'Released'}});refresh();assert.equal(rows[2].hidden,false,'Live updates preserve the selected filter');
+status.value='';status.change();assert.ok(rows.every(r=>!r.hidden));assert.equal(empty.hidden,true);
+console.log('PASS: request search, status filtering, clear search, no matches and live updates');

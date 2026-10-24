@@ -1,0 +1,77 @@
+<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="../../css/dashboard.css"><link rel="stylesheet" href="../../css/portal-design.css"></head><body class="app-dashboard" style="display:block;height:auto;overflow:auto;padding:12px">
+<section class="request-list-content" data-document-request-live-owner="admin:1">
+  <div class="panel-head">
+    <h3>Request list</h3>
+    <a class="btn btn-sm btn-outline" href="staff-export.php?type=document-requests">Export report</a>
+  </div>
+  <div class="table-wrap">
+    <table class="data-table staff-request-table">
+      <thead>
+        <tr><th>Request ID</th><th>Resident name</th><th>Document type</th><th>Copies</th><th>Total fee</th><th>Request date</th><th>Status</th><th>Actions</th></tr>
+      </thead>
+      <tbody data-document-request-live-list>
+                <tr data-document-request-code="REQ-1">
+          <td class="staff-request-id" data-label="Request ID">REQ-1</td>
+          <td class="staff-request-resident" data-label="Resident">Sample Resident With A Longer Family Name</td>
+          <td class="staff-request-document" data-label="Document">Barangay Certification</td>
+          <td class="staff-request-copies" data-label="Copies">2</td>
+          <td class="staff-request-fee" data-label="Total fee">PHP 0.00<br><small class="field-hint">PHP 0.00 per copy</small></td>
+          <td class="staff-request-date" data-label="Requested on">2026-10-24</td>
+          <td class="staff-request-status" data-label="Status"><span class="badge badge-pending">Pending</span></td>
+          <td class="request-action-cell"><div class="record-action-list">
+                        <button type="button" class="btn-icon" data-view-record data-title="Document request" data-json='{&quot;id&quot;:&quot;REQ-1&quot;,&quot;resident&quot;:&quot;Sample Resident With A Longer Family Name&quot;,&quot;type&quot;:&quot;Barangay Certification&quot;,&quot;fee_amount&quot;:&quot;0.00&quot;,&quot;copies&quot;:2,&quot;unit_fee&quot;:null,&quot;contact_mobile&quot;:&quot;&quot;,&quot;remarks&quot;:&quot;&quot;,&quot;purpose&quot;:&quot;&quot;,&quot;beneficiary_name&quot;:&quot;&quot;,&quot;beneficiary_relationship&quot;:&quot;&quot;,&quot;residency_years&quot;:&quot;&quot;,&quot;partner_name&quot;:&quot;&quot;,&quot;cohabitation_start_date&quot;:&quot;&quot;,&quot;resident_gender_override&quot;:&quot;&quot;,&quot;resident_code&quot;:&quot;RES-TEST&quot;,&quot;date&quot;:&quot;2026-10-24&quot;,&quot;status&quot;:&quot;Pending&quot;}'>View details</button>
+                        <form action="#" method="post" class="inline-form">
+              <input type="hidden" name="action" value="document_request_event">
+              <input type="hidden" name="event" value="prepare">
+              <input type="hidden" name="csrf" value="38fc0382604716bbf97d9ad79f613ce6f8be5f8fc0ba1e1fbe8120a1bfeaa55f">
+              <input type="hidden" name="id" value="REQ-1">
+              <button class="btn-icon" type="submit">Prepare document</button>
+            </form>
+            <details><summary>Reject request</summary>
+              <form action="#" method="post" class="table-edit-form">
+                <input type="hidden" name="action" value="document_request_event">
+                <input type="hidden" name="event" value="reject">
+                <input type="hidden" name="csrf" value="38fc0382604716bbf97d9ad79f613ce6f8be5f8fc0ba1e1fbe8120a1bfeaa55f">
+                <input type="hidden" name="id" value="REQ-1">
+                <label>Reason for rejection<textarea name="reason" rows="3" aria-label="Reason for rejection" maxlength="1000" required></textarea></label>
+                <button class="btn-icon" type="submit">Confirm rejection</button>
+              </form>
+            </details>
+                      </div></td>
+        </tr>
+                <tr data-document-request-code="REQ-20261024-00002">
+          <td class="staff-request-id" data-label="Request ID">REQ-20261024-00002</td>
+          <td class="staff-request-resident" data-label="Resident">Sample Resident With A Longer Family Name</td>
+          <td class="staff-request-document" data-label="Document">Barangay Certification</td>
+          <td class="staff-request-copies" data-label="Copies">2</td>
+          <td class="staff-request-fee" data-label="Total fee">PHP 0.00<br><small class="field-hint">PHP 0.00 per copy</small></td>
+          <td class="staff-request-date" data-label="Requested on">2026-10-24</td>
+          <td class="staff-request-status" data-label="Status"><span class="badge badge-pending">Pending</span></td>
+          <td class="request-action-cell"><div class="record-action-list">
+                        <button type="button" class="btn-icon" data-view-record data-title="Document request" data-json='{&quot;id&quot;:&quot;REQ-20261024-00002&quot;,&quot;resident&quot;:&quot;Sample Resident With A Longer Family Name&quot;,&quot;type&quot;:&quot;Barangay Certification&quot;,&quot;fee_amount&quot;:&quot;0.00&quot;,&quot;copies&quot;:2,&quot;unit_fee&quot;:null,&quot;contact_mobile&quot;:&quot;&quot;,&quot;remarks&quot;:&quot;&quot;,&quot;purpose&quot;:&quot;&quot;,&quot;beneficiary_name&quot;:&quot;&quot;,&quot;beneficiary_relationship&quot;:&quot;&quot;,&quot;residency_years&quot;:&quot;&quot;,&quot;partner_name&quot;:&quot;&quot;,&quot;cohabitation_start_date&quot;:&quot;&quot;,&quot;resident_gender_override&quot;:&quot;&quot;,&quot;resident_code&quot;:&quot;RES-TEST&quot;,&quot;date&quot;:&quot;2026-10-24&quot;,&quot;status&quot;:&quot;Pending&quot;}'>View details</button>
+                        <form action="#" method="post" class="inline-form">
+              <input type="hidden" name="action" value="document_request_event">
+              <input type="hidden" name="event" value="prepare">
+              <input type="hidden" name="csrf" value="38fc0382604716bbf97d9ad79f613ce6f8be5f8fc0ba1e1fbe8120a1bfeaa55f">
+              <input type="hidden" name="id" value="REQ-20261024-00002">
+              <button class="btn-icon" type="submit">Prepare document</button>
+            </form>
+            <details><summary>Reject request</summary>
+              <form action="#" method="post" class="table-edit-form">
+                <input type="hidden" name="action" value="document_request_event">
+                <input type="hidden" name="event" value="reject">
+                <input type="hidden" name="csrf" value="38fc0382604716bbf97d9ad79f613ce6f8be5f8fc0ba1e1fbe8120a1bfeaa55f">
+                <input type="hidden" name="id" value="REQ-20261024-00002">
+                <label>Reason for rejection<textarea name="reason" rows="3" aria-label="Reason for rejection" maxlength="1000" required></textarea></label>
+                <button class="btn-icon" type="submit">Confirm rejection</button>
+              </form>
+            </details>
+                      </div></td>
+        </tr>
+                      </tbody>
+    </table>
+  </div>
+</section>
+
+
+</body></html>

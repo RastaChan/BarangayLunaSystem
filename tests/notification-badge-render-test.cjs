@@ -1,0 +1,30 @@
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
+const vm = require('node:vm');
+const root = path.join(__dirname, '..');
+for (const file of ['sidebar.php', 'staff-sidebar.php', 'resident-sidebar.php']) {
+  const source = fs.readFileSync(path.join(root, 'includes', file), 'utf8');
+  const badges = source.match(/<span\b[^>]*data-notification-side-count[^>]*>/g) || [];
+  assert.ok(badges.length > 0);
+  badges.forEach(tag => assert.match(tag, /\bhidden\b/, `${file}: badge must stay hidden before seen-state reconciliation`));
+}
+const source = fs.readFileSync(path.join(root, 'js/dashboard.js'), 'utf8');
+const start = source.indexOf('  function formatCount(');
+const end = source.indexOf('  function setDashboardAnnouncementBadge(', start);
+const badge = {hidden: true, textContent: '5'};
+const issueBadge = {hidden: true, textContent: ''};
+const context = {document: {querySelectorAll: () => [{querySelector: () => badge}, {querySelector: () => issueBadge}]}};
+vm.createContext(context);
+vm.runInContext(source.slice(start, end), context);
+context.setSideBadge('documents', 0);
+assert.equal(badge.hidden, true, 'Seen notifications remain hidden');
+context.setSideBadge('documents', 2);
+assert.equal(badge.hidden, false, 'New notifications are still shown');
+assert.equal(badge.textContent, '2');
+assert.equal(issueBadge.textContent, '2', 'Issue Documents mirrors the request badge');
+assert.equal(issueBadge.hidden, false);
+context.setSideBadge('documents', 0);
+assert.equal(badge.hidden, true, 'Zero count remains hidden');
+assert.equal(issueBadge.hidden, true, 'Both badges clear together');
+console.log('PASS: all sidebar badges start hidden; reconciled new counts show and seen/zero counts stay hidden.');

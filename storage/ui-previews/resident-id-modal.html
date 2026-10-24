@@ -1,0 +1,95 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="../../css/dashboard.css"></head><body class="app-dashboard"><div class="modal is-open"><div class="modal-panel modal-panel--wide resident-profile-panel">
+    <header class="modal-header">
+      <h2 id="profileSettingsTitle">Profile Settings</h2>
+      <button type="button" class="modal-close" data-modal-close aria-label="Close">×</button>
+    </header>
+    <form id="profileSettingsForm" class="modal-body form-grid" action="resident-actions.php" method="post" enctype="multipart/form-data" data-profile-settings-form>
+      <input type="hidden" name="action" value="update_account_profile">
+      <input type="hidden" name="redirect" value="resident-dashboard">
+      <input type="hidden" name="profile_photo_cropped" id="profilePhotoCropped">
+
+            <section class="resident-id-card resident-id-card--profile" aria-label="Resident profile ID card">
+        <div class="resident-id-card__header">
+          <img src="../../branding-logo.php" alt="Barangay Luna seal" onerror="this.style.visibility='hidden';">
+          <div>
+            <strong>Barangay Luna</strong>
+            <span>Surigao City, Surigao del Norte</span>
+          </div>
+          <span class="badge badge-inactive">
+            QR inactive          </span>
+        </div>
+        <div class="resident-id-card__body">
+          <div class="resident-id-card__photo">
+                        S                      </div>
+          <div class="resident-id-card__info">
+            <span>Resident Profile ID</span>
+            <strong>RES-PREVIEW</strong>
+            <h3>Sample Resident With A Longer Name</h3>
+            <dl>
+              <div><dt>Purok/Sitio</dt><dd>Purok-Cortes</dd></div>
+              <div><dt>Household</dt><dd>Not recorded</dd></div>
+              <div><dt>Account status</dt><dd>Active</dd></div>
+              <div><dt>Mobile</dt><dd>Not recorded</dd></div>
+              <div class="resident-id-card__address-row"><dt>Address</dt><dd>Barangay Luna, Surigao City, Surigao del Norte, Philippines</dd></div>
+            </dl>
+          </div>
+          <div class="resident-id-card__qr">
+                        <div class="resident-id-card__qr-empty">QR pending</div>
+            <span>Ask staff to generate your QR code.</span>
+                      </div>
+        </div>
+        <div class="resident-id-card__actions">
+          <span class="resident-id-card__footer-label">Resident record</span>
+                  </div>
+      </section>
+      
+      <div class="profile-photo-upload">
+        <span class="profile-photo-preview" id="profilePhotoPreview">
+                    S                  </span>
+        <div class="field">
+          <label for="profilePhotoUpload">Profile picture</label>
+          <input type="file" id="profilePhotoUpload" name="profile_photo" accept="image/jpeg,image/png,image/webp">
+          <p class="field-hint">Upload a JPG, PNG, or WEBP photo. Drag or pinch the preview to crop before saving.</p>
+        </div>
+      </div>
+      <div class="profile-cropper" id="profilePhotoCropper" hidden>
+        <div class="profile-cropper__stage" id="profileCropStage">
+          <img id="profileCropImage" alt="Selected profile crop preview">
+          <span class="profile-cropper__mask" aria-hidden="true"></span>
+        </div>
+        <div class="profile-cropper__controls">
+          <label for="profilePhotoZoom">Crop zoom</label>
+          <input type="range" id="profilePhotoZoom" min="1" max="3" step="0.01" value="1">
+        </div>
+      </div>
+
+      <div class="form-grid-2">
+        <div class="field">
+          <label for="profileFullName">Full name</label>
+          <input type="text" id="profileFullName" value="Sample Resident With A Longer Name" disabled>
+        </div>
+        <div class="field">
+          <label for="profileRole">Role</label>
+          <input type="text" id="profileRole" value="User" disabled>
+        </div>
+      </div>
+
+      <div class="form-grid-2">
+        <div class="field">
+          <label for="profileUsername">Username</label>
+          <input type="text" id="profileUsername" name="username" value="" readonly aria-readonly="true">
+                    <p class="field-hint">Only an administrator can change usernames.</p>
+                  </div>
+        <div class="field">
+          <label for="profileContact">Mobile number</label>
+          <input type="tel" id="profileContact" name="mobile" value="Not recorded">
+        </div>
+      </div>
+
+      <p class="profile-note">If your name or personal information needs to be changed, please visit the barangay office for verification.</p>
+    </form>
+    <footer class="modal-footer">
+      <button type="button" class="btn btn-outline" data-modal-close>Cancel</button>
+      <button type="submit" form="profileSettingsForm" class="btn btn-primary">Save profile</button>
+    </footer>
+  </div></div></body></html>

@@ -1,0 +1,656 @@
+0: Smart Barangay Portal with QR Profiling & SMS Alerts For Barangay Luna
+1: 
+2: 
+3: A Project Proposal
+Presented to the
+Faculty of College of Information Technology
+Northeastern Mindanao Colleges
+4: In Partial Fulfillment
+Of the Requirements for Capstone Project and Research 1
+5: 
+6: 
+7: By: 
+Calang, April John B. 
+Deloy, Christian
+8: Deloy, Lorlie D.
+9: 
+10: 
+11: 
+12: 
+13: 
+14: May 2026
+15: Table of Contents
+16: 										Page
+17: TITLE PAGE										  i
+18: ABSTRACT										  ii
+19: LIST OF TABLES									  iii
+20: LIST OF FIGURES   								  IV
+21: Chapter 1 – Introduction								  1
+22: 		1.1 Project Context								  1
+23: 		1.2 Purpose and Description						  1
+24: 		1.3 Objectives of the Study							  2
+25: 			1.3.1 General Objectives						  2
+26: 			1.3.2 Specific Objectives						  2
+27: 		1.4 Scope and Limitation							  3
+28: 			1.4.1 Scope								  3
+29: 			1.4.2 Limitation							  4
+30: Chapter 2 – Review of Related Literature					  5
+31: 		2.1 Related Literature							  5
+32: 		2.2 Related Studies								  6
+33: 	2.3 Related Systems							  7
+34: 	2.4 Synthesis of the Study							  8
+35: Chapter 3 – Technical Background						 10
+36: 	3.1 Conceptual Framework						 10
+37: 	3.2 Methodology								 11
+38: 		3.2.1 Requirements Planning Phase				 12
+39: 		3.2.2 User Design Phase						 12
+40: 		3.2.3 Construction Phase						 13
+41: 		3.2.4 Cutover Phase						 13
+42: 	3.3 System Requirements							 14
+43: 	3.4 System Architecture							 15
+44: 	3.5 Process Model and Data Design					 16
+45: 	3.6 Gantt Chart								 24
+46: 3.7 Revenue Streams							 25
+47: 
+48: 
+49: 
+50: 
+51: 
+52: 
+53: 
+54: 
+55: 
+56: 
+57: 
+58: 
+59: 
+60: 
+61: ABSTRACT
+62: This study developed the Smart Barangay Portal with QR Profiling & SMS Alerts For Barangay Luna, integrating QR-based profiling and SMS notifications to replace inefficient manual administration. Current operations are hampered by slow document processing, physical bottlenecks, and fragmented record-keeping. Utilizing the Rapid Application Development (RAD) model, the researchers engineered a web-based system using PHP, MySQL, and JavaScript to centralize governance tasks. Key features include automated QR code generation for instant resident verification, an online request module for certifications, and an integrated SMS gateway for real-time status updates. Testing and deployment demonstrate that the system minimizes physical visits to the Barangay Hall, eliminates redundant data entry, and provides officials with an administrative dashboard for revenue and service analytics. The implementation of this portal enhances the speed, transparency, and data integrity of local government transactions in Barangay Luna.
+63: 
+64: 
+65: 
+66: 
+67:  
+68: 
+69: 
+70: 
+71: 
+72: LIST OF TABLES
+73: TABLES
+74: 1. Hardware Requirements (Admin/Development Side)		14  
+75: 	2. Software Requirements (Admin/Development Side)			14
+76: 3. Revenue Streams							25
+77: 
+78: 
+79: 
+80: 
+81: 
+82: 
+83: 
+84: 
+85: 
+86: 
+87: 
+88: 
+89: 
+90: 
+91: 
+92: 
+93: 
+94: 
+95: LIST OF FIGURES
+96: FIGURES
+97: 	1. Diagram of RAD Methodology						11
+98: 	2. System Architecture							15
+99: 	3. Existing Data Context Diagram						16
+100: 	4. Existing Data Flow Diagram						17
+101: 	5. Proposed Data Context Diagram					19
+102: 	6. Proposed Data Flow Diagram						22
+103: 	7. Gantt Chart								23
+104: 	
+105: 
+106: 
+107: 		
+108: 
+109: 
+110: 
+111: 
+112: 
+113: 
+114: 
+115: 
+116: 
+117: 
+118: CHAPTER 1
+119: 
+INTRODUCTION
+120: 
+121: 	This chapter presents the project context, purpose and description, objectives and the scope and limitation of the study.
+122: Project Context
+123: Barangays are the primary government units responsible for issuing essential certifications, including clearances and certificates of residency or indigency. Currently, Barangay Luna relies on manual, paper-based processes, resulting in operational inefficiencies such as long wait times, data redundancy, and misplaced records. The lack of a real-time notification system further necessitates multiple physical visits by residents. To address these challenges, this study proposes the Smart Barangay Portal with QR Profiling & SMS Alerts For Barangay Luna. This web-based platform automates document processing and record management to enhance service delivery, transparency, and administrative organization.
+124: Purpose and Description
+125: The study aims to digitalize Barangay Luna’s governance by providing a centralized platform for document requests and resident data management. The system enables residents to create digital profiles and apply for various certifications—such as Barangay Clearances and Certificates of Indigency—online. A key feature is the integration of QR-based identification, assigning each resident a unique code for rapid data retrieval and document verification to prevent fraud. For administrators, the system provides a dashboard to manage records, process applications, and monitor service analytics. Automated SMS notifications are integrated to provide residents with real-time updates, reducing physical bottlenecks at the Barangay Hall.
+126: Objectives of the Study
+127: General Objective
+128: To develop a Smart Barangay Portal with QR Profiling & SMS Alerts For Barangay Luna that streamlines document processing, improves data integrity, and enhances service accessibility.
+129: Specific Objectives
+130: The study specifically aims to:
+131: 1. To design a module that can manage resident profiles, staff accounts, barangay services, document templates, complaint records, announcements, and data analytics for revenue and service monitoring.
+132: 2. To design and develop a resident management module that generates unique QR codes for secure profiling and identity verification.
+133: 3. To design and develop an online document request module that enables digital applications and provides real-time updates via an integrated SMS notification system.
+134: 4. To implement a transaction and payment module for recording walk-in payments and maintaining digital financial records.
+135: 5. To develop the system using a technical stack comprising HTML, CSS, and JavaScript for the frontend; PHP and for the backend; and MySQL for data management within a Laragon local server environment.
+136: Scope and Limitation
+137: Scope
+138: This study focuses on the development of a Smart Barangay Portal with QR Profiling & SMS Alerts For Barangay Luna designed to improve the efficiency of barangay document processing and resident service management. The system includes the following features:
+139: The system maintains a digital database of resident profiles and generates unique QR codes for secure identification.
+140: The system provides a web-based portal for the online requesting of various barangay certifications.
+141: The system implements QR-scanning functionality for officials to verify document authenticity and retrieve resident data.
+142: The system features an administrative dashboard for request processing, account management, and community announcements.
+143: The system utilizes an SMS gateway to automate status updates for residents.
+144: The system records walk-in payments to ensure financial transparency and transaction tracking.
+145: The system enables digital filing of complaint records and the collection of resident feedback.
+146: The system provides a data analytics module to monitor revenue and service trends.
+147: Limitation
+148: The proposed system has the following limitations:
+149: The system does not support online payment processing; all fees must be settled via walk-in transactions.
+150: The system is focused on administrative document services and does not include emergency response or law enforcement modules.
+151: The system is limited to the predefined document types configured within the system settings.
+152: 
+153: 
+154: 
+155: 
+156: 
+157: 
+158: 
+159: 
+160: 
+161: 
+162: 
+163: CHAPTER 2
+164: REVIEW OF RELATED LITERATURE
+165: The Review of Related Literature (RRL) provides a comprehensive overview of existing research and systems relevant to the development of the Smart Barangay Portal with QR Profiling & SMS Alerts For Barangay Luna. This chapter examines local and foreign perspectives on e-governance and digital record management to identify best practices and technological gaps. The literature presented highlights the transition from manual to automated processes, emphasizing the roles of web platforms, QR code identification, and data analytics in enhancing public service delivery.
+166: Related Literature
+167: In the global landscape of e-governance, Decarli (2024) describes the myCIVIS portal in Italy as a critical interface that bridges national systems with local administrative needs through user-centric design. This necessity for evolution is supported by Andréasson (2023), who explores rural digitalization trends and asserts that grassroots governance must adopt new technologies to ensure continued social development. Furthermore, Qin (2023) provides a theoretical framework on the legal aspects of grassroots governance, highlighting digital transformation as a requirement for sustainable development and social cohesion. In the context of urban administration, Idrus et al. (2022) emphasizes that innovative administrative systems are vital for modernizing population records and village-level services through electronic applications. These concepts are exemplified by Yuwono et al. (2020), who showcases the Banyuwangi model in Asia as a standard for re-engineering government governance to be more efficient and transparent at the grassroots level.
+168: In the Philippines, the push for digitalization is supported by national initiatives aimed at streamlining public service delivery. Caotivo (2025) argues that digitalizing frontline services and capacitating digital frontliners are essential priorities for sustainable LGU operations. Albano (2024) supports this by advocating for the use of open-source tools as a cost-effective method for LGUs to build dynamic web-based information systems even in resource-limited settings. The practical implementation of such systems is discussed by Morrison (2023), who highlights the Unified Barangay E-Services System and its use of augmented analytics to monitor service usage patterns. This drive toward accountability is further cited by Daga-ang et al. (2023), who identifies automated profiling as a key step toward achieving the "Seal of Good Local Governance for Barangays." Finally, Sardan et al. (2023) emphasizes that digitizing services through programs like the BEGin initiative in Bacoor City significantly increases public trust and improves accessibility during administrative crises.
+169: Related Studies
+170: Recent foreign studies demonstrate the practical application of mobile and web technologies in village administration. Suriyani et al. (2024) developed the siPalui application in Indonesia to shift services to electronic formats, noting that while it improved convenience, network stability remains a primary challenge. Similarly, Pertiwi et al. (2024) developed a Village Citizen Reporting Website and found that online platforms significantly enhance the speed of administrative response. Technological integration is further explored by Budiarto et al. (2024), who proved that web-based designs in the Pakuhaji District streamline multi-village interactions. In Surabaya, Ayuningtyas et al. (2022) supported "Smart City" initiatives by centralizing resident data and service requests through a unified website. These studies are complemented by Hanafiah et al. (2021), who demonstrated that utilizing G-Suite with QR codes for administrative services improved accessibility by allowing services to be performed at any time.
+171: Local studies have extensively explored barangay management systems tailored to Philippine needs. The Kabataan-Konek (2025) study developed a youth information system integrating QR codes for document verification, achieving high marks for reliability. In Pasig City, Enaño et al. (2025) utilized linear regression algorithms in the BarangayConnect portal for demographic forecasting, which resulted in reduced manual workloads. Evaluation of these tools is provided by Rey et al. (2024), who used the Technology Acceptance Model to confirm that residents perceive web-based e-governance as useful and easy to navigate. Furthermore, Duco et al. (2023) tested a framework for a mobile and web platform in Mandaluyong City, receiving high satisfaction ratings for its digital profiling capabilities. This is supported by Alegado (2023), who found that the Docu-Go system serves as a secure and efficient modern alternative to traditional record-keeping.
+172: Related Systems
+173: Several existing systems offer benchmarks for the Smart Barangay Citizen Portal, such as WeBarangay in Quezon City, which is noted for its high-speed performance, and BarangayConnect in Pasig City, which automates document requests and community planning. International systems like siPalui in Indonesia provide smartphone-based document services, while the BALANGAY System aids in incident reporting through decision-support heatmaps. Additionally, the One Barangay system serves as a mobile and web-based solution designed for secure data management and service productivity in the City of Manila.
+174: Synthesis of the Study
+175: The reviewed literature and studies emphasize that digital transformation is essential for improving the efficiency and transparency of local government services. Existing platforms primarily focus on digitizing traditional processes such as record management and document requests to reduce manual workloads. However, while these systems contribute to administrative efficiency, many remain limited to basic automation and lack integrated mechanisms for secure identity verification and real-time notification.
+176: The proposed Smart Barangay Portal with QR Profiling & SMS Alerts For Barangay Luna differentiates itself by integrating QR-based resident profiling and an SMS notification system into a single platform. The use of QR codes enables fast and secure identification, prevents duplicate records, and supports document verification through scanning, which improves data integrity. Furthermore, the inclusion of an SMS gateway strengthens communication by providing residents with real-time updates on the status of their requests. Unlike traditional systems that depend on manual follow-ups, this project incorporates a feedback mechanism and a data analytics module for revenue monitoring. These enhancements provide a more secure, transparent, and user-centered solution, contributing to the advancement of smart governance at the local level.
+177: 
+178: 
+179: 
+180: 
+181: 
+182: 
+183: 
+184: 
+185: 
+186: 
+187: 
+188: 
+189: 
+190: 
+191: 
+192: 
+193: 
+194: 
+195: 
+196: 
+197: 
+198: CHAPTER 3
+199: 
+200: TECHNICAL BACKGROUND
+201: 
+202: Conceptual Framework
+203: The conceptual framework of this study follows the Input–Process–Output (IPO) model to define the operational logic of the Smart Barangay Portal with QR Profiling & SMS Alerts For Barangay Luna. This model delineates the flow of data from user entry through technical execution to the generation of administrative outputs. By structuring the system into these three distinct phases, the framework demonstrates how resident data, document requests, and payment details are systematically transformed into secure QR profiles, real-time notifications, and analytical reports.
+204: 
+205: 
+206: Through this framework, the system enables residents to conveniently request documents online while allowing barangay personnel to efficiently manage records and service requests in a centralized and organized digital platform.
+207: Methodology
+208:  The researchers adopted the Rapid Application Development (RAD) methodology to prioritize iterative prototyping and continuous user feedback over traditional, linear development. This methodology is divided into four distinct phases: Requirements Planning, User Design, Construction, and Cutover. By utilizing RAD, the researchers can rapidly develop and refine the system’s core features—such as the QR code generator and SMS module—ensuring the final portal aligns with the operational requirements of Barangay Luna and the accessibility needs of its residents.
+209: 
+210: 
+211: 
+212: 
+213: 
+214: 
+215: 
+216: This study will utilize the Rapid Application Development (RAD) model in developing the Smart Barangay Portal with QR Profiling & SMS Alerts For Barangay Luna. RAD is a software development approach that emphasizes fast development, user involvement, and iterative prototyping. It is suitable for this study because the system requires continuous feedback from users and quick modifications during development.
+217: 
+218: 1. Requirements Planning Phase
+219: During the Requirements Planning Phase, the researchers identified the objectives, scope, and requirements of the system. Data was gathered through informal discussions, observation, and a review of existing barangay processes.  The researchers analyzed the current manual system for barangay document requests and identified common problems, including:
+220: Long waiting time
+221: Manual record-keeping
+222: Lack of tracking system
+223: Based on these findings, the necessary system features are defined, including:
+224: Online document request
+225: QR code-based resident profile
+226: Notification system
+227: Feedback system
+228: 2. User Design Phase
+229: During this phase, the researchers will design and develop initial prototypes of the system based on the identified requirements. These prototypes will include system interface designs, flowcharts, and basic system functionalities. The development process will follow an iterative cycle consisting of:
+230: Prototype – Initial versions of the system will be created to demonstrate how the system works.
+231: Test – The prototypes will be evaluated to identify errors, usability issues, and missing features.
+232: Refine – Necessary improvements and revisions will be made based on the results of testing and feedback.
+233: This cycle will be repeated several times to ensure that the system design meets user requirements and is easy to use.
+234: 3. Construction Phase
+235: In this phase, the actual development of the system will be carried out. The researchers will translate the approved designs into a working system using appropriate technologies. The system will include:
+236: Frontend interface for residents and administrators
+237: Backend processing for managing requests and data
+238: Database for storing resident information and transactions
+239: Testing will also be conducted in this phase to identify and fix errors. The system will be continuously improved based on testing results.
+240: 4. Cutover Phase
+241: This is the final phase where the system will be prepared for deployment and use. The researchers will conduct final testing and ensure that the system meets the required functionality. 
+242: Activities in this phase will include:
+243: System testing and debugging
+244: Data preparation
+245: User orientation or demonstration
+246: The system will be evaluated based on usability, efficiency, and performance to ensure that it meets the objectives of the study.
+247: System Requirements
+248: The system requirements describe the necessary hardware, software, and user-side requirements needed to develop, operate, and access the Smart Barangay Portal with QR Profiling & SMS Alerts For Barangay Luna.
+249: Table 1
+250: Hardware Requirements (Admin/Development Side)
+251: 
+252: These hardware components ensure smooth system development, deployment, and operation within the barangay office.
+253: Table 2
+254: Software Requirements (Admin/Development Side)
+255: These software tools are essential for developing, managing, and maintaining the system.
+256: System Architecture
+257: The system utilizes a three-tier client-server architecture, comprising presentation, application, and data layers. Admins and users interact with the system via devices, sending requests to the web server which processes application logic and communicates with the MySQL database. The web server then returns the processed data to the users, ensuring efficient, centralized data management and information flow.
+258: 
+259: 
+260: 
+261: 
+262: 
+263: 
+264: 
+265: 
+266: 
+267: 
+268: 
+269: Process Model and Data Design
+270: The Existing Context Diagram delineates the manual administrative workflow of Barangay Luna. Labeled as the Barangay Manual Processing System, the current model involves two primary external entities: the Resident and the Barangay Staff. The resident serves as the data source for physical inputs, including handwritten personal profiles, document applications, and cash payments. Conversely, the Barangay Staff functions as the manual processor, responsible for physical record verification and document issuance. This diagram identifies a significant technological gap, as data at rest is stored in physical logbooks rather than a digital database, leading to systemic inefficiencies in data retrieval, transaction tracking, and resident communication.
+271: 
+272: 
+273: 
+274: 
+275: 
+276: 
+277: 
+278: 
+279: 
+280: 
+281: 
+282: 
+283: Existing Data Flow Diagram
+284: The Existing Data Flow Diagram provides a functional decomposition of the current manual operations in Barangay Luna. The data flow initiates with the Resident providing "Document Request Data" or "Complaint Details" to the Initial Intake Process. This data is then transmitted to the Verification Phase, where the Barangay Staff manually cross-references the information against existing paper files.
+285: Upon validation, the data is written into a Physical Logbook, which acts as the system's primary Data Store. This "Data at Rest" is later retrieved by staff to facilitate the Document Preparation or Resolution Process. The final "Output Data"—in the form of a physical certification or a complaint update—is then released to the Resident. This diagram underscores the systemic vulnerabilities of the current model, specifically the high latency in data retrieval and the risk of data loss inherent in a non-redundant, paper-based storage system.
+286: 
+287: 
+288: 
+289: 
+290: 	
+291: 
+292: 
+293: 
+294: 
+295: Proposed Data Context Diagram
+296: The Proposed Data Context Diagram illustrates the high-level operational structure of the Smart Barangay Portal with QR Profiling & SMS Alerts For Barangay Luna. Centered as a single automated process, the system acts as a unified data hub for three primary external entities: the Resident, Barangay Staff, and Administrator. The Resident acts as the primary data source, providing "Profile Information," "Digital Requests," and "Payment Proof," while receiving high-value outputs such as "Unique QR Identifiers," "Automated SMS Notifications," and "Electronic Document Previews." The Barangay Staff manages the operational flow by processing "Verification Commands" and "Transaction Updates," receiving "Real-time Task Summaries" in return. The Administrator interacts with the system for high-level monitoring, inputting "Report Parameters" to generate "Statistical Analytics" and "Revenue Visualizations." This diagram characterizes the shift from a fragmented manual workflow to an integrated, data-driven environment designed to optimize administrative transparency and service speed.
+297: 
+298: 
+299: 
+300: 
+301: 
+302: 
+303: 
+304: 
+305: 
+306: 
+307: 
+308: 
+309: 
+310: 
+311: 
+312: 
+313: 
+314: 
+315: 
+316: 
+317: 
+318: 
+319: 
+320: 
+321: 
+322: 
+323: 
+324: 
+325: 
+326: 
+327: 
+328: Proposed Data Flow Diagram
+329: The revised Proposed Data Flow Diagram (Level 1) illustrates the detailed flow of data within the Smart Barangay Portal with QR Profiling & SMS Alerts For Barangay Luna. The system begins with Process 1.0: Resident Verification, Registration and QR Generation, where residents submit their personal information and valid ID for verification by the barangay staff. Once approved, the system stores the resident record in the Residents Database (D1) and generates a digital QR profile for the resident.
+330: In Process 2.0: Document Request Handling, residents submit document requests which are validated using resident data retrieved from D1. The request details are then stored in the Document Request Database (D2). The requests proceed to Process 3.0: Barangay Staff Approval and SMS Notification, where the barangay staff reviews and approves or rejects the requests. The system updates the request status in D2, sends SMS notifications to residents regarding their request status, and stores notification records in the SMS Logs (D3).
+331: The system also includes Process 5.0: Feedback Management, where residents submit feedback and ratings that are stored in the Feedback Database (D5). Feedback summaries are then made accessible to the admin for monitoring purposes. In Process 6.0: Payment Processing, barangay staff confirms walk-in payments, and the transaction details are stored in the Payment Records database (D4).
+332: Lastly, Process 4.0: Reports and Analytics retrieves resident data, request records, payment data, and feedback data from the databases to generate reports and statistical analytics requested by the admin. The revised diagram provides a clearer and more organized representation of the system by improving data flow directions, separating the responsibilities of the admin and barangay staff, and ensuring compliance with proper Data Flow Diagram standards.
+333: 
+334: 
+335: 
+336: 
+337: 
+338: 
+339: 
+340: 
+341: 
+342: 
+343: 
+344: 
+345: 
+346: 
+347: 
+348: 
+349: 
+350: 
+351: 
+352: 
+353: 
+354: 
+355: 
+356: 
+357: 
+358: 
+359: 
+360: 
+361: 
+362: 
+363: 
+364: 
+365: 
+366: 
+367: 
+368: 
+369: 
+370: 
+371: 
+372: 
+373: 
+374: 
+375: 
+376: 
+377: 
+378: 
+379: 
+380: 
+381: 
+382: 
+383: 
+384: 
+385: 
+386: 
+387: 
+388: 
+389: 
+390: 
+391: 
+392: 
+393: 
+394: 
+395: 
+396: 
+397: 
+398: 
+399: 
+400: 
+401: 
+402: 
+403: 
+404: 
+405: 
+406: 
+407: 
+408: 
+409: 
+410: 
+411: 
+412: 
+413: 
+414: 
+415: 
+416: 
+417: 
+418: 
+419: 
+420: 
+421: Revenue Streams
+422: 
+423: 	
+424: 
+425: 
+426: 
+427: 
+428: 
+429: APPENDIX A
+430: Survey-Questionnaire
+431: Project Title: Smart Barangay Portal with QR Profiling & SMS Alerts For Barangay Luna.
+432: Respondents: Registered Residents of Luna, Surigao City, Surigao del Norte
+433: Purpose: To evaluate the current manual document request process and determine the potential impact of the Smart Barangay Portal with QR Profiling & SMS Alerts For Barangay Luna.
+434: Instructions
+435: Please read each statement carefully and check (☑) the box that best reflects your level of agreement. All responses are confidential and will be used for academic purposes only.
+436: Respondent Profile
+437: Part I: Profile
+438: 1. Name (Optional): __________________________
+439: 2. Age: ____
+440: 3. Gender: [ ] Male [ ] Female
+441: 4. Do you own a smartphone? [ ] Yes [ ] No
+442: Part IV: General Recommendation
+443: 1. Would you prefer using a digital portal over the current manual process?
+444: [ ] Yes    [ ] No    [ ] Undecided
+445: 2. Any suggestions for the system?
+446: ______________________________________________________________________________________________________________________________________
+447: APPENDIX B
+448: Survey Results
+449: Likert Scale
+450: 		The study uses a five-point Likert Scale to interpret the survey data, where a weighted mean of 4.50 to 5.00 is interpreted as Strongly Agree or Very Helpful, and a mean of 3.50 to 4.49 is classified as Agree or Helpful. Scores between 2.50 and 3.49 are considered Neutral, while lower ranges from 1.50 to 2.49 and 1.00 to 1.49 indicate that residents either Disagree/Find it Not Helpful or Strongly Disagree/View it as a Waste of Time, respectively.
+451: 
+452: Part I: Respondent’s Profile
+453: 
+454: Part II: Current Manual Process Assessment
+455: Scale: 5 = Strongly Agree | 4 = Agree | 3 = Neutral | 2 = Disagree | 1 = Strongly Disagree
+456: 	The findings reveal that residents generally agree with the existence of significant issues in the current manual system, as shown by an overall weighted mean of 3.88. The most critical problem identified is the long waiting lines at the Barangay Hall, which received a perfect weighted mean of 5.00, indicating that residents strongly agree this is a major inconvenience. Additionally, respondents agreed that filling out physical paper forms and the difficulty of checking document status for pickup are persistent challenges, both receiving a mean of 3.90.
+457: 
+458: Part III: Proposed System Features
+459: Scale: 5 = Very Helpful | 4 = Helpful | 3 = Neutral | 2 = Not Helpful | 1 = Waste of Time
+460: 
+461: The community expressed a positive outlook toward the digital transition, with an overall weighted mean of 3.96, interpreting the proposed features as "Helpful". The SMS notification system was rated the most helpful feature (WM: 4.30), showing that residents highly value real-time updates regarding their documents. Other key features, including the ability to make online requests via phone (WM: 4.00) and the use of QR codes for instant profiling (WM: 4.00), were also identified as effective solutions to the current manual delays.
+462: 
+463: 
+464: 
+465: 
+466: 
+467: 
+468: 
+469: 
+470: 
+471: 
+472: 
+473: 
+474: 
+475: 
+476: 
+477: 
+478: 
+479: 
+480: 
+481: 
+482: APPENDIX C
+483: Transcript of Interview
+484: Interviewee: Niel Vincent B. Aldonza
+485: Position: Barangay Captain
+486: Location: Km. 4 Brgy. Luna, Surigao, Surigao del Norte
+487: Date: April 15, 2026
+488: Time Start: 10:00 a.m
+489: Time End: 10:30 a.m
+490: 
+491: Question 1: How do you monitor the overall performance of barangay services?
+492: Answer: They were properly monitored though focal person assigned in different services
+493: Question 2: What Challenges do you face in managing records and services?
+494: Answer: Identification on new residents, through updates
+495: Question 3: How do you track the number of issued documents and services?
+496: Answer: Through our focal person / staff in-charge
+497: Question 4: Is revenue tracking from barangay services important to you? Why?
+498: Answer: Extremely important, for a better way of providing services, project, and support
+499: Question 5: What is your opinion about implementing a web-based barangay system?
+500: Answer: Highly a big of help
+501: Question 6: How important is transparency in barangay operations?
+502: Answer: Transparency is important in building trust and accountability
+503: Question 7: Would a system with revenue monitoring and analytics be useful?
+504: Answer: Yes
+505: Question 8: What do you think about QR-based resident identification?
+506: Answer: QR-Based codes can easily be accessed
+507: Question 9: How do you currently inform residents about announcements or events?
+508: Answer: Highly important, a faster way of information
+509: Question 10: How do you currently inform residents about announcements or events?
+510: Answer: Announcements through bandelio – patrol vehicle
+511: Question 11: Would an announcement dashboard improve communication?
+512: Answer: We have proposals about this already
+513: Question 12: What features do you expect from a “Smart Barangay System”?
+514: Answer: Easy access, proper identification, faster updates, compilation
+515: Question 13: How important is accurate resident identification in barangay services?
+516: Answer: Strictly Important for proper identification
+517: Question 14: What issues have you encountered regarding incorrect or duplicate resident records?
+518: Answer: Complaints, Misspelled, Not properly compiled
+519: Question 15: What is your opinion on implementing a QR-based resident identification system?
+520: Answer: It can be easily accessed
+521: Question 16: Do you think QR codes can help improve security and prevent fake or unauthorized document requests?
+522: Answer: Yes, through proper implementation
+523: Question 17: How beneficial would a digital profiling system be for monitoring residents and services?
+524: Answer: Beneficial both the LGU and the residents
+525: 
+526: 
+527: 
+528: 
+529: 
+530: 
+531: 
+532: Interviewee: Savor Bantuas
+533: Position: Barangay Staff
+534: Location: Km. 4 Brgy. Luna, Surigao, Surigao del Norte
+535: Date: April 15, 2026
+536: Time Start: 10:45 a.m
+537: Time End: 11:15 a.m
+538: 
+539: Question 1: How do you currently process barangay document requests (e.g., clearance, indigency)?
+540: Answer: We have a ready-made documents regarding the issuance of certificates such as clearances, indigency, through MS-word.
+541: Question 2: What are the common problems you encounter in handling requests?
+542: Answer: Misspelled from the residents and they don’t know what certificate they need.
+543: Question 3: How do you manage and store resident records?
+544: Answer: We save each document for the records.
+545: Question 4: Do you experience delays in processing requests? What causes them?
+546: Answer: Mostly delays are from the residents, mostly spellings and the proper identification of the purok they belong.
+547: Question 5: How do you verify resident information before issuing documents?
+548: Answer: We verify resident’s information through our purok chairmans, BHW, and district kagawads.
+549: Question 6: Have you experienced issues like lost records or duplicate entries?
+550: Answer: So far no issues on records, we saved each document.
+551: Question 7: Do you think a system that auto-fills resident information would help your work?
+552: Answer: That would be great for an automated info system, a faster way in identifying residents.
+553: Question 8: How helpful would it be if documents can be generated automatically and printed?
+554: Answer: If it will be generated (Automated) automatically and printed, it’s a less-hassle for the staff and residents.
+555: Question 9: What do you think about having a QR-based resident profile?
+556: Answer: QR-based resident profile would be great but needs proper authority before implementation.
+557: Question 10: How are complaints currently handled in the barangay?
+558: Answer: Complaints in this barangay handled one-on-one discussion and manually notes taken by the in-charge personnel.
+559: Question 11: Would a digital complaint system with photo/video evidence improve the process?
+560: Answer: A discussion should be discussed first between the LGU and the residents before implementation.
+561: Question 12: What features would you like to see in a barangay system?
+562: Answer: Proper identification of residents, separate identification by purok, cases filed thru compilation Civil Cases and Criminal Cases.
+563: Question 13: How do you currently verify the identity of residents when processing requests? 
+564: Answer: We identify them through our active purok chairman and BHW’s.
+565: Question 14: Do you experience difficulty in locating resident records?
+566: Answer: Difficulty refers to new residents because they cannot identify their purok and district.
+567: Question 15: What problems occur when verifying resident information manually?
+568: Answer: Problem occurs only on senior citizens and uneducated person (no-read / no-write).
+569: Question 16: Do you think a QR code system that instantly shows resident information would help your work?
+570: Answer: A breach of information case might be raise so it should be discussed / deliberated properly.
+571: Question 17: How useful would it be if scanning a QR code automatically fills in resident details in forms?
+572: Answer: Faster, proper identity, Hassle-free.
+573: Question 18: Do you think QR-based profiling can help reduce duplicate records or errors?
+574: Answer: A big help, it will lessen duplicate records and errors.
+575: 
+576: 
+577: 
+578: 
+579: 
+580: 
+581: 
+582: 
+583: 
+584: 
+585: 
+586: 
+587: 
+588: 
+589: 
+590: 
+591: 
+592: 
+593: 
+594: References
+595: [1] M. Decarli, "myCIVIS: lokales eGovernment im Spannungsfeld nationaler Systeme," *E-Government Review*, 2024. DOI: (https://doi.org/10.57708/bcuobvlxzqeopb4vvbpqk2g). Retrieved March 2026
+596: 
+597: [2] K. Andréasson, "Polska wieś 2044 – wizja niespecjalisty," in *Vision of Rural Poland*, 2023. DOI: (https://doi.org/10.53098/978-83-89900-71-5_6). Retrieved March 2026
+598: 
+599: [3] S. Qin, "Grassroots governance and social development: theoretical and comparative legal aspects," *Humanities & Social Sciences Communications*, vol. 10, 2023. DOI: (https://doi.org/10.1057/s41599-023-01830-8). Retrieved March 2026
+600: 
+601:  [4] M. Idrus et al., "Inovasi Sistem Manajemen Administrasi Kependudukan Warga Berbasis Infomasi Elektronik Pada Aplikasi Pelayanan Dinas Kependudukan dan Pencatatan Sipil DKI Jakarta," *Journal of Political Issues*, vol. 3, no. 2, 2022. DOI: (https://doi.org/10.33019/jpi.v3i2.69). Retrieved March 2026
+602: 
+603: [5] H. Yuwono et al., "Semua Berawal dari IT: Terobosan Banyuwangi dalam Menata Ulang Tatakelola Pemerintahan," *Jurnal Politika*, vol. 11, no. 2, 2020. DOI: (https://doi.org/10.14710/POLITIKA.11.2.2020.148-162). Retrieved March 2026
+604: 
+605: [6] G. Caotivo, "Efforts on Digitalization of Frontline Services in the Philippine Government Setting," *Environmental and Instructional Review*, 2025. DOI: (https://doi.org/10.62596/eir.4a9t8g56). Retrieved March 2026
+606: 
+607: [7] R. Albano, "Empowering Local Government Units with Open-Source Tools: Building A Dynamic Web-Based Information System," *Journal of Engineering and Computer Technology*, vol. 1, no. 1, 2024. DOI: (https://doi.org/10.65141/ject.v1i1.n1). Retrieved March 2026
+608: 
+609: [8] P. J. Morrison, "Unified Barangay E-Services System with Augmented Analytics," *Zenodo Repository*, 2023. DOI: [10.5281/zenodo.7796702] (https://doi.org/10.5281/zenodo.7796702). Retrieved March 2026
+610: 
+611:  [9] J. Daga-ang et al., "Digital Management Information System for Streamlining Seal of Good Local Governance for Barangays (SGLGB) Compliance in the Philippines," 2023. DOI: (10.46382/mjbas.2026.10101). Retrieved March 2026
+612: 
+613: [10] J. Sardan et al., "Let's BEGin Bacoor City! – Policy analysis of the barangay e-governance innovation network program amidst a global health pandemic," *Social Science Research Network*, 2023. DOI: [10.5281/zenodo.8254298] (https://doi.org/10.5281/zenodo.8254298). Retrieved March 2026
+614: 
+615: [11] E. Suriyani et al., "Innovation Of Administrative Services In Pemurus Village In South Banjarmasin Sub-District, Banjarmasin City," *International Journal of Educational Research and Social Sciences*, vol. 5, no. 2, 2024. DOI: [10.51601/ijersc.v5i2.806] (https://doi.org/10.51601/ijersc.v5i2.806). Retrieved March 2026
+616: 
+617: [12] D. Pertiwi et al., "Development of a Village Citizen Reporting Website for Smart Village Village Public Services," *Abdi Masyarakat*, vol. 6, no. 2, 2024. DOI: [10.58258/abdi.v6i2.7491] (https://doi.org/10.58258/abdi.v6i2.7491). Retrieved March 2026
+618: 
+619: [13] A. Budiarto et al., "Digital Transformation of Local Government: Design and Development of the Pakuhaji District Community Service Information System Website," *International Journal of Cyber and IT Service Management*, vol. 4, no. 1, 2024. DOI: [10.34306/ijcitsm.v4i1.143] (https://doi.org/10.34306/ijcitsm.v4i1.143). Retrieved March 2026
+620:  [14] D. Ayuningtyas et al., "Rancang Bangun Website untuk Administrasi Warga Gubeng Kertajaya Surabaya untuk mendukung Penerapan Smart City," *Journal of Technology and Informatics (JoTI)*, vol. 4, no. 1, 2022. DOI: [10.37802/joti.v4i1.238 ](https://doi.org/10.37802/joti.v4i1.238). Retrieved March 2026
+621: 
+622: [15] N. Hanafiah et al., "Assistance and utilization of g-suite with qr-code in improving administrative services for rt residents," *International Journal of Engagement and Empowerment*, vol. 1, no. 3, 2021. DOI: [10.53067/ije2.v1i3.35] (https://doi.org/10.53067/ije2.v1i3.35). Retrieved March 2026
+623: 
+624: [16] "Kabataan-Konek: A Barangay Web-Based Youth Information Management System with Data Analytics," *International Journal of Science and Applied Information Technology*, 2025. DOI: [10.30534/ijsait/2025/011432025] ( https://www.warse.org/IJSAIT/static/pdf/file/ijsait011432025.pdf). Retrieved March 2026
+625: 
+626: [17] J. V. Enaño et al., "BarangayConnect: A Web-Based Information Portal for Resident Data, Administrative Services, and Community Records Using Data Analytics and Linear Regression Algorithms," *International Journal of Research and Innovation in Social Science*, vol. 9, 2025. DOI: [10.47772/ijriss.2025.910000127] (https://www.researchgate.net/publication/397316875_BarangayConnect_A_Web-Based_Information_Portal_for_Resident_Data_Administrative_Services_and_Community_Records_Using_Data_Analytics_and_Linear_Regression_Algorithms). Retrieved March 2026
+627: 
+628:  [18] W. P. Rey et al., "WeBarangay: A Local E-Government Services Web Application for N.S. Amoranto in Quezon City, Philippines," in *Proc. ICCT*, 2024. DOI: [10.1145/3641181.3641199] (https://doi.org/10.1145/3641181.3641199). Retrieved March 2026
+629: 
+630: [19] C. A. Duco et al., "A Framework for a Mobile and Web Platform for Barangay Remote Services, Collaboration and Disaster Response with Web Analytics in Mandaluyong City," in *Proc. HNICEM*, 2023. DOI: [10.1109/hnicem60674.2023.10589069] (https://doi.org/10.1109/hnicem60674.2023.10589069). Retrieved March 2026
+631: 
+632: [20] R. T. Alegado, "Docu-Go: The Development and Assessment of a Web-Based Barangay Document Requesting System," *International Journal of IT & Computer*, vol. 3, no. 4, 2023. DOI: [10.55529/ijitc.34.40.49] (https://doi.org/10.55529/ijitc.34.40.49). Retrieved March 2026
+633: 
+634: [21] W. P. Rey et al., "Optimizing WeBarangay: A Comprehensive Performance and Security Audit," in *Proc. ICCTech*, 2024. DOI: [10.1109/icctech61708.2024.00024] (https://ui.adsabs.harvard.edu/abs/2024jsgd.conf...22R/abstract). Retrieved March 2026
+635: 
+636: [22] B. A. Guadagnolo, "BALANGAY: A Web-Based Document Request and Incident Reporting System with Decision Support for Barangay Program Development," in *Intelligent Systems and Applications*, 2023. DOI: [10.1007/978-981-19-7663-6_13] (https://doi.org/10.1007/978-981-19-7663-6_13). Retrieved March 2026
+637: 
+638: [23] B. Jamis et al., "One Barangay: A Mobile And Web Barangay Management System," in *Proc. iCORE*, 2022. DOI: [10.1109/iCORE58172.2022.00055] ( https://www.researchgate.net/publication/369611901_One_Barangay_A_Mobile_And_Web_Barangay_Management_System). Retrieved March 2026
+639: 
+640: [24] "Community Request Queue Management System for Local Government Unit of Cabanatuan City," *International Journal of Advanced Trends in Computer Science and Engineering*, vol. 11, no. 6, 2022. DOI: [10.30534/ijatcse/2022/091162022] (https://doi.org/10.30534/ijatcse/2022/091162022). Retrieved March 2026
+TABLES
+[['Hardware', 'Specification'], ['Processor', 'Intel Core i3 or higher'], ['RAM', '8GB minimum '], ['Storage', '256GB SSD, or higher']]
+[['Software', 'Purpose'], ['Operating System', 'Windows 10 or higher'], ['Web Browser', 'Google Chrome / Firefox'], ['Programming Language', 'HTML, CSS, JavaScript, PHP'], ['Database', 'MySQL'], ['Local Server Environment', 'Laragon']]
+[['Revenue Source', 'Description'], ['System Subscription', 'Monthly or annual fee for using the system (e.g., ₱500–₱1,000/month).'], ['Customization Fee', 'One-time payment for additional or barangay-specific features such as custom reports, additional modules, or interface adjustments.'], ['Support and Maintenance', 'Optional yearly fee for system updates, technical support, data backup, and system monitoring (e.g., ₱3,000/year).'], ['Training Service', 'Optional training sessions for barangay staff on how to use the system efficiently (e.g., ₱1,000–₱2,000/session).'], ['Setup/Installation Fee', 'One-time fee for system installation, configuration, and initial deployment in the barangay (e.g., ₱5,000–₱10,000).']]
+[['Statements', '5', '4', '3', '2', '1'], ['Part II: Current Manual Process Assessment\n(5: Strongly Agree, 4: Agree, 3: Neutral, 2: Disagree, 1: Strongly Disagree)', 'Part II: Current Manual Process Assessment\n(5: Strongly Agree, 4: Agree, 3: Neutral, 2: Disagree, 1: Strongly Disagree)', 'Part II: Current Manual Process Assessment\n(5: Strongly Agree, 4: Agree, 3: Neutral, 2: Disagree, 1: Strongly Disagree)', 'Part II: Current Manual Process Assessment\n(5: Strongly Agree, 4: Agree, 3: Neutral, 2: Disagree, 1: Strongly Disagree)', 'Part II: Current Manual Process Assessment\n(5: Strongly Agree, 4: Agree, 3: Neutral, 2: Disagree, 1: Strongly Disagree)', 'Part II: Current Manual Process Assessment\n(5: Strongly Agree, 4: Agree, 3: Neutral, 2: Disagree, 1: Strongly Disagree)'], ['1. I spend a long time waiting in line at the Barangay Hall.', '☐', '☐', '☐', '☐', '☐'], ['2. Filling out physical paper forms is a hassle.', '☐', '☐', '☐', '☐', '☐'], ['3. I find it difficult to check if my document is ready for pickup.', '☐', '☐', '☐', '☐', '☐'], ['4. I have experienced going to the hall only to find out the office is closed or the staff is busy.', '☐', '☐', '☐', '☐', '☐'], ['5. I think the current paper-based system is slow and outdated.', '☐', '☐', '☐', '☐', '☐'], ['Part III: Proposed System Features (Smart Barangay Citizen Portal)\nHow helpful would the following features be for you? \n(5: Very Helpful, 4: Helpful, 3: Neutral, 2: Not Helpful, 1: Waste of Time)', 'Part III: Proposed System Features (Smart Barangay Citizen Portal)\nHow helpful would the following features be for you? \n(5: Very Helpful, 4: Helpful, 3: Neutral, 2: Not Helpful, 1: Waste of Time)', 'Part III: Proposed System Features (Smart Barangay Citizen Portal)\nHow helpful would the following features be for you? \n(5: Very Helpful, 4: Helpful, 3: Neutral, 2: Not Helpful, 1: Waste of Time)', 'Part III: Proposed System Features (Smart Barangay Citizen Portal)\nHow helpful would the following features be for you? \n(5: Very Helpful, 4: Helpful, 3: Neutral, 2: Not Helpful, 1: Waste of Time)', 'Part III: Proposed System Features (Smart Barangay Citizen Portal)\nHow helpful would the following features be for you? \n(5: Very Helpful, 4: Helpful, 3: Neutral, 2: Not Helpful, 1: Waste of Time)', 'Part III: Proposed System Features (Smart Barangay Citizen Portal)\nHow helpful would the following features be for you? \n(5: Very Helpful, 4: Helpful, 3: Neutral, 2: Not Helpful, 1: Waste of Time)'], ['1. Online Request: Being able to request documents using my phone.', '☐', '☐', '☐', '☐', '☐'], ['2. QR Code Profiling: Using a QR code so the staff can find my info instantly.', '☐', '☐', '☐', '☐', '☐'], ['3. SMS Notification: Receiving a text message when my document is ready.', '☐', '☐', '☐', '☐', '☐'], ['4. Feedback System: Being able to give a rating or comment about the service.', '☐', '☐', '☐', '☐', '☐'], ['5. Status Tracking: Checking the progress of my request without leaving home.', '☐', '☐', '☐', '☐', '☐']]
+[['VARIABLES', 'FREQUENCY (N=10)', 'PERCENTAGE (%)'], ['MALE', '4', '40%'], ['FEMALE', '6', '60%'], ['SMARTPHONE (YES)', '10', '100%'], ['SMARTPHONE (NO)', '-', '']]
+[['Part II: Current Manual Process Assessment', 'Part II: Current Manual Process Assessment', 'Part II: Current Manual Process Assessment', 'Part II: Current Manual Process Assessment', 'Part II: Current Manual Process Assessment', 'Part II: Current Manual Process Assessment', 'Part II: Current Manual Process Assessment', 'Part II: Current Manual Process Assessment', 'Part II: Current Manual Process Assessment'], ['Survey Item', '5', '4', '3', '2', '1', 'n', 'WM', 'Interpretation'], ['1. I spend a long time waiting in line at the Barangay Hall.', '4', '-', '-', '-', '-', '4', '5.00', 'Strongly Agree'], ['2. Filling out physical paper forms is a hassle.', '3', '4', '2', '1', '-', '10', '3.90', 'Agree'], ['3. I find it difficult to check if my document is ready for pickup.', '4', '3', '1', '2', '-', '10', '3.90', 'Agree'], ['4. I have experienced going to the hall only to find out the office is closed or the staff is busy.', '3', '2', '1', '4', '-', '10', '3.40', 'Neutral'], ['5. I think the current paper-based system is slow and outdated.', '2', '2', '3', '2', '1', '10', '3.20', 'Neutral'], ['Overall Weighted Mean', '', '', '', '', '', '', '3.88', 'Agree']]
+[['Part III: Proposed System Features (Smart Barangay Citizen Portal)', 'Part III: Proposed System Features (Smart Barangay Citizen Portal)', 'Part III: Proposed System Features (Smart Barangay Citizen Portal)', 'Part III: Proposed System Features (Smart Barangay Citizen Portal)', 'Part III: Proposed System Features (Smart Barangay Citizen Portal)', 'Part III: Proposed System Features (Smart Barangay Citizen Portal)', 'Part III: Proposed System Features (Smart Barangay Citizen Portal)', 'Part III: Proposed System Features (Smart Barangay Citizen Portal)', 'Part III: Proposed System Features (Smart Barangay Citizen Portal)'], ['Survey Item', '5', '4', '3', '2', '1', 'n', 'WM', 'Interpretation'], ['1. Online Request: Being able to request documents using my phone.', '4', '3', '2', '1', '-', '10', '4.00', 'Helpful'], ['2. QR Code Profiling: Using a QR code so the staff can find my info instantly.', '3', '5', '1', '1', '-', '10', '4.00', 'Helpful'], ['3. SMS Notification: Receiving a text message when my document is ready.', '4', '5', '1', '-', '-', '10', '4.30', 'Helpful'], ['4. Feedback System: Being able to give a rating or comment about the service.', '2', '3', '4', '1', '-', '10', '3.60', 'Helpful'], ['5. Status Tracking: Checking the progress of my request without leaving home.', '5', '2', '1', '1', '1', '10', '3.90', 'Helpful'], ['Overall Weighted Mean', '', '', '', '', '', '', '3.96', 'Helpful']]

@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><base href="/BARANGAY%20LUNA%20SYSTEM/"><script>window.fetch=async()=>({ok:false,status:403,headers:{get:()=>"application/json"},json:async()=>({ok:false,success:false,message:"Layout fixture"})});</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Staff Dashboard | Staff - Barangay Luna MIS</title>
+  <link rel="stylesheet" href="css/dashboard.css?v=1792836241">
+  <link rel="stylesheet" href="css/mobile-select.css?v=1792815332">
+  <link rel="stylesheet" href="css/motion.css?v=1792819969">
+  <link rel="stylesheet" href="css/portal-design.css?v=1792815332">
+</head>
+<body class="app-dashboard">
+
+  <aside class="sidebar" id="appSidebar">
+  <div class="sidebar-brand">
+    <img src="branding-logo.php" alt="Barangay Luna" class="sidebar-logo"
+         onerror="this.style.visibility='hidden';">
+    <div class="sidebar-brand-text">
+      <strong>Layout Test Staff</strong>
+      <span>Staff Portal</span>
+    </div>
+  </div>
+
+  <div class="sidebar-role">
+    <span class="role-pill">BARANGAY STAFF</span>
+  </div>
+
+  <nav class="sidebar-nav" id="sidebarNav" aria-label="Barangay Staff navigation">
+    <p class="nav-section">Overview</p>
+    <a href="staff-dashboard.php?view=staff-dashboard" class="nav-link is-active" data-nav-view="staff-dashboard"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 11 12 4l8 7v9H4v-9Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="nav-link-label">Dashboard</span></a>
+    <p class="nav-section">Services</p>
+    <a href="staff-dashboard.php?view=issue-documents" class="nav-link " data-nav-view="issue-documents" data-notification-count-view="staff-document-requests"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 3h7l4 4v14H7V3Zm7 0v5h5M9 13h6M9 17h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="nav-link-label">Issue Documents</span></a>    <a href="staff-dashboard.php?view=walk-in-payments" class="nav-link " data-nav-view="walk-in-payments"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 3h12v18H6V3Zm3 4h6M9 11h6M9 15h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="nav-link-label">Walk-in Payments</span></a>    <a href="staff-dashboard.php?view=resident-account-registration" class="nav-link " data-nav-view="resident-account-registration"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM5 20v-1a7 7 0 0 1 14 0v1M19 8v6M16 11h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="nav-link-label">Resident Account Registration</span></a>    <a href="staff-dashboard.php?view=resident-management" class="nav-link " data-nav-view="resident-management"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM5 20v-1a7 7 0 0 1 14 0v1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="nav-link-label">QR and Resident Management</span></a>
+    <p class="nav-section">Community</p>
+    <a href="staff-dashboard.php?view=husay-schedule" class="nav-link " data-nav-view="husay-schedule"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5h16v16H4V5Zm4-3v6m8-6v6M4 11h16m-12 4h2m4 0h2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="nav-link-label">Husay Schedule</span></a>    <a href="staff-dashboard.php?view=staff-complaints" class="nav-link " data-nav-view="staff-complaints"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 9v4m0 4h.01M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="nav-link-label">Complaints</span></a>    <a href="staff-dashboard.php?view=staff-feedbacks" class="nav-link " data-nav-view="staff-feedbacks"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="nav-link-label">Feedbacks</span></a>
+    <p class="nav-section">Communication</p>
+    <a href="staff-dashboard.php?view=staff-sms-alerts" class="nav-link " data-nav-view="staff-sms-alerts"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8ZM9 10h6M9 14h3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="nav-link-label">SMS Notifications</span></a>
+    <p class="nav-section">Reports</p>
+    <a href="staff-dashboard.php?view=my-activity-logs" class="nav-link " data-nav-view="my-activity-logs"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 11l3 3L22 4M11 20H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="nav-link-label">My Activity Logs</span></a>    <a href="staff-dashboard.php?view=service-reports" class="nav-link " data-nav-view="service-reports"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-6M22 20H2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="nav-link-label">Service Reports</span></a>
+  </nav>
+
+</aside>
+
+  <div class="main-area">
+    <header class="top-header header">
+  <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Open menu">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+  </button>
+
+  <div class="header-title">
+    <h1>Dashboard</h1>
+    <p>Barangay Luna Smart Barangay Portal</p>
+  </div>
+
+  <div class="header-actions">
+    <div class="notification-menu" data-notification-menu data-notification-owner="staff:3" >
+  <button type="button" class="header-icon-btn notification-btn" data-notification-toggle aria-label="Notifications" aria-controls="headerNotificationPanel" aria-expanded="false">
+    <svg viewBox="0 0 24 24" fill="none" width="20" height="20" aria-hidden="true"><path d="M15 17H9l-1 2h8l-1-2ZM18 8a6 6 0 1 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9Z" stroke="currentColor" stroke-width="1.5"/></svg>
+      </button>
+  <div id="headerNotificationPanel" class="notification-dropdown" data-notification-dropdown role="region" aria-label="Notifications">
+    <div class="notification-dropdown-head">
+      <strong>Notifications</strong>
+      <span data-notification-summary>
+                No new alerts
+              </span>
+    </div>
+    <div class="notification-list">
+                  <div class="notification-empty">No notifications yet.</div>
+          </div>
+  </div>
+</div>
+    <div class="profile-menu" data-profile-menu>
+  <button type="button" class="user-menu user-profile profile-menu-toggle" data-profile-toggle aria-expanded="false" aria-haspopup="true">
+    <span class="user-avatar">
+            L          </span>
+    <div class="user-meta">
+      <strong class="user-name">Layout Test Staff</strong>
+      <span>Staff</span>
+    </div>
+    <svg class="profile-caret" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M7 10l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+
+  <div class="profile-dropdown" data-profile-dropdown>
+    <button type="button" class="profile-dropdown-item" data-modal-open="profileSettingsModal">
+      <span>Profile Settings</span>
+    </button>
+    <button type="button" class="profile-dropdown-item" data-modal-open="securitySettingsModal">
+      <span>Security Settings</span>
+    </button>
+    <a href="logout.php" class="profile-dropdown-item profile-dropdown-item--danger">
+      <span>Logout</span>
+    </a>
+  </div>
+</div>
+
+<div id="profileSettingsModal" class="modal " aria-hidden="true" role="dialog" aria-labelledby="profileSettingsTitle">
+  <div class="modal-backdrop" data-modal-close></div>
+  <div class="modal-panel ">
+    <header class="modal-header">
+      <h2 id="profileSettingsTitle">Profile Settings</h2>
+      <button type="button" class="modal-close" data-modal-close aria-label="Close">&times;</button>
+    </header>
+    <form id="profileSettingsForm" class="modal-body form-grid" action="#" method="post" enctype="multipart/form-data" data-profile-settings-form>
+      <input type="hidden" name="action" value="update_account_profile">
+      <input type="hidden" name="redirect" value="staff-dashboard">
+      <input type="hidden" name="profile_photo_cropped" id="profilePhotoCropped">
+
+      
+      <div class="profile-photo-tools">
+      <div class="profile-photo-upload">
+        <span class="profile-photo-preview" id="profilePhotoPreview">
+                    L                  </span>
+        <div class="field">
+          <label for="profilePhotoUpload">Profile picture</label>
+          <input type="file" id="profilePhotoUpload" name="profile_photo" accept="image/jpeg,image/png,image/webp">
+          <p class="field-hint">Upload a JPG, PNG, or WEBP photo. Drag or pinch the preview to crop before saving.</p>
+        </div>
+      </div>
+            </div>
+      <div class="profile-cropper" id="profilePhotoCropper" hidden>
+        <div class="profile-cropper__stage" id="profileCropStage">
+          <img id="profileCropImage" alt="Selected profile crop preview">
+          <span class="profile-cropper__mask" aria-hidden="true"></span>
+        </div>
+        <div class="profile-cropper__controls">
+          <label for="profilePhotoZoom">Crop zoom</label>
+          <input type="range" id="profilePhotoZoom" min="1" max="3" step="0.01" value="1">
+        </div>
+      </div>
+
+      <div class="form-grid-2">
+        <div class="field">
+          <label for="profileFullName">Full name</label>
+          <input type="text" id="profileFullName" value="Layout Test Staff" disabled>
+        </div>
+        <div class="field">
+          <label for="profileRole">Role</label>
+          <input type="text" id="profileRole" value="Staff" disabled>
+        </div>
+      </div>
+
+      <div class="form-grid-2">
+        <div class="field">
+          <label for="profileUsername">Username</label>
+          <input type="text" id="profileUsername" name="username" value="layout-staff@example.test" readonly aria-readonly="true">
+                    <p class="field-hint">Only an administrator can change usernames.</p>
+                  </div>
+        <div class="field">
+          <label for="profileContact">Mobile number</label>
+          <input type="tel" id="profileContact" name="mobile" value="09123456789">
+        </div>
+      </div>
+
+      <p class="profile-note">If your name or personal information needs to be changed, please visit the barangay office for verification.</p>
+    </form>
+    <footer class="modal-footer">
+      <button type="button" class="btn btn-outline" data-modal-close>Cancel</button>
+      <button type="submit" form="profileSettingsForm" class="btn btn-primary">Save profile</button>
+    </footer>
+  </div>
+</div>
+
+<div id="securitySettingsModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="securitySettingsTitle">
+  <div class="modal-backdrop" data-modal-close></div>
+  <div class="modal-panel">
+    <header class="modal-header">
+      <h2 id="securitySettingsTitle">Security Settings</h2>
+      <button type="button" class="modal-close" data-modal-close aria-label="Close">&times;</button>
+    </header>
+    <form id="securitySettingsForm" class="modal-body form-grid" action="#" method="post" data-security-form>
+      <input type="hidden" name="csrf" value="cb93e6c3f596202a549553e90b52c5bab8486910e968b150354cea7119cfed5f">
+      <div class="field">
+        <label for="currentPassword">Current password</label>
+        <input type="password" id="currentPassword" name="current_password" autocomplete="current-password" required>
+      </div>
+      <div class="field">
+        <label for="newPassword">New password</label>
+        <input type="password" id="newPassword" name="new_password" autocomplete="new-password" minlength="8" maxlength="72" required>
+      </div>
+      <div class="field">
+        <label for="confirmPassword">Confirm password</label>
+        <input type="password" id="confirmPassword" name="confirm_password" autocomplete="new-password" required>
+        <p class="field-hint password-match-message" data-password-message></p>
+      </div>
+    </form>
+    <footer class="modal-footer">
+      <button type="button" class="btn btn-outline" data-modal-close>Cancel</button>
+      <button type="submit" form="securitySettingsForm" class="btn btn-primary">Save password</button>
+    </footer>
+  </div>
+</div>
+  </div>
+</header>
+
+    <main class="content-area">
+            <div class="dashboard-intro">
+<div class="page-intro">
+  <h2>Daily staff overview</h2>
+  <p>Track today&apos;s service work, resident assistance, and assigned barangay office activity.</p>
+</div>
+<button type="button" class="btn btn-primary" data-modal-open="communityPostModal">Announcement and Event</button>
+</div>
+
+<div class="stats-grid" data-live-overview="stats" data-overview-owner="3">
+  <article class="stat-card">
+    <div class="label">Pending document requests</div>
+    <div class="value">0</div>
+    <div class="trend">Needs review</div>
+  </article>
+  <article class="stat-card">
+    <div class="label">Documents issued today</div>
+    <div class="value">1</div>
+    <div class="trend">Recorded by office staff</div>
+  </article>
+  <article class="stat-card">
+    <div class="label">Open complaints</div>
+    <div class="value">0</div>
+    <div class="trend">For status updates</div>
+  </article>
+  <article class="stat-card">
+    <div class="label">Residents registered today</div>
+    <div class="value">1</div>
+    <div class="trend">Ready for resident services</div>
+  </article>
+</div>
+
+<section class="panel-card husay-today-panel" data-live-overview="husay-today">
+  <div class="panel-head"><div><h3>Today's Husay <span class="badge badge-active">0</span></h3><p class="field-hint">October 24, 2026 · Philippine time</p></div><a class="btn btn-outline btn-sm" href="staff-dashboard.php?view=husay-schedule">Open Husay Schedule</a></div>
+  <div class="panel-body husay-today-list">
+        <p class="field-hint">No Husay sessions today. Open the schedule to view upcoming appointments or add a walk-in.</p>  </div>
+</section>
+<section id="community-posts" class="community-posts">
+          <div class="recent-posts-heading"><h3>Recent posts</h3></div>
+          <div class="recent-posts-feed">
+                        <article class="ann-card recent-post-card">
+              <div class="recent-post-options" data-post-options>
+                <button type="button" class="recent-post-toggle" data-post-toggle aria-controls="postActions1" aria-expanded="false" aria-label="Post options for Community announcement for layout testing" title="Post options">
+                  <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg>
+                </button>
+              <div id="postActions1" class="recent-post-actions" data-post-actions hidden>
+                                <button type="button" class="btn btn-sm btn-outline" data-modal-open="editAnnouncementModal1">Edit</button>
+                                <button type="button" class="btn btn-sm btn-danger" data-modal-open="deleteAnnouncementModal1">Delete</button>
+              </div>
+              </div>
+              <header class="recent-post-meta">
+  <span class="badge badge-active">Announcement · Published</span>
+  <time>2026-10-24 00:00</time>
+</header>
+<h4>Community announcement for layout testing</h4>
+<p class="recent-post-message">A published test announcement with multiple lines.
+Second line of the announcement.</p>
+            </article>
+            <div id="deleteAnnouncementModal1" class="modal" aria-hidden="true" role="dialog">
+              <div class="modal-backdrop" data-modal-close></div>
+              <div class="modal-panel">
+                <header class="modal-header"><h2>Delete post</h2><button type="button" class="modal-close" data-modal-close aria-label="Close">&times;</button></header>
+                <div class="modal-body">
+                  <p>Are you sure you want to delete <strong>Community announcement for layout testing</strong>?</p>
+                  <p class="field-hint">This will permanently remove this post and its uploaded photo.</p>
+                </div>
+                <form id="deleteAnnouncementForm1" action="#" method="post" data-server-form="true">
+                  <input type="hidden" name="action" value="delete_announcement">
+                  <input type="hidden" name="redirect" value="staff-dashboard">
+                  <input type="hidden" name="csrf" value="77c5891fff4b33218d7fc0f46ca24c230f7f0d2f6ee6398892f5627b13a91996">
+                  <input type="hidden" name="id" value="1">
+                </form>
+                <footer class="modal-footer">
+                  <button type="button" class="btn btn-outline" data-modal-close>Cancel</button>
+                  <button type="submit" form="deleteAnnouncementForm1" class="btn btn-danger">Delete</button>
+                </footer>
+              </div>
+            </div>
+            <div id="editAnnouncementModal1" class="modal" aria-hidden="true" role="dialog">
+              <div class="modal-backdrop" data-modal-close></div>
+              <div class="modal-panel">
+                <header class="modal-header"><h2>Edit post</h2><button type="button" class="modal-close" data-modal-close aria-label="Close">&times;</button></header>
+                <form action="#" method="post" enctype="multipart/form-data" class="modal-body form-grid" data-server-form="true">
+                  <input type="hidden" name="action" value="update_announcement">
+                  <input type="hidden" name="redirect" value="staff-dashboard">
+                  <input type="hidden" name="csrf" value="77c5891fff4b33218d7fc0f46ca24c230f7f0d2f6ee6398892f5627b13a91996">
+                  <input type="hidden" name="MAX_FILE_SIZE" value="52428800">
+                  <input type="hidden" name="id" value="1">
+                  <div class="field">
+                    <label for="editPostType1">Post type</label>
+                    <select id="editPostType1" name="post_type" data-post-type>
+                      <option value="announcement" selected>Announcement</option>
+                      <option value="event" >Event</option>
+                    </select>
+                  </div>
+                  <div class="form-grid-2" data-event-fields hidden>
+                    <div class="field">
+                      <label>Event date and time</label>
+                      <input type="datetime-local" name="event_at" value="">
+                    </div>
+                    <div class="field">
+                      <label>Event location</label>
+                      <input type="text" name="event_location" maxlength="255" value="">
+                    </div>
+                  </div>
+                  <div class="field">
+                    <label>Title</label>
+                    <input type="text" name="title" value="Community announcement for layout testing" required>
+                  </div>
+                  <div class="field">
+                    <label>Content</label>
+                    <textarea name="body" rows="5" required>A published test announcement with multiple lines.
+Second line of the announcement.</textarea>
+                  </div>
+                  <div class="field">
+                    <label>Replace photo</label>
+                    <div class="file-upload-field">
+                      <input type="file" id="announcementPhotoEdit1" name="photo" accept="image/jpeg,image/png,image/webp,image/gif" data-file-input data-empty-label="No new photo selected">
+                      <label for="announcementPhotoEdit1" class="btn btn-outline btn-sm">Upload Photo</label>
+                      <span data-file-name>No new photo selected</span>
+                    </div>
+                    <small class="field-hint">Leave blank to keep the current photo. Max 50 MB.</small>
+                  </div>
+                                    <div class="field">
+                    <label>Schedule publication</label>
+                    <label class="check check-left">
+                      <input type="checkbox" name="schedule_enabled" value="1" data-schedule-toggle data-schedule-reset="true" >
+                      <span>Enable schedule</span>
+                    </label>
+                  </div>
+                  <div class="form-grid-2">
+                    <div class="field" data-schedule-panel hidden>
+                      <label>Publish date</label>
+                      <input type="date" name="publish_date" value="2026-10-24" data-schedule-date readonly required>
+                    </div>
+                    <div class="field" data-schedule-panel hidden>
+                      <label>Publish time</label>
+                      <input type="time" name="publish_time" value="00:00" data-schedule-time readonly required>
+                    </div>
+                  </div>
+                  <footer class="modal-footer">
+                    <button type="button" class="btn btn-outline" data-modal-close>Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                  </footer>
+                </form>
+              </div>
+            </div>
+                                  </div>
+</section>
+<div id="communityPostModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="communityPostModalTitle">
+  <div class="modal-backdrop" data-modal-close></div>
+  <div class="modal-panel">
+    <header class="modal-header">
+      <h2 id="communityPostModalTitle">Announcement and Event</h2>
+      <button type="button" class="modal-close" data-modal-close aria-label="Close">&times;</button>
+    </header>
+    <form id="announcementForm" class="modal-body form-grid" action="#" method="post" enctype="multipart/form-data" data-server-form="true">
+  <input type="hidden" name="action" value="create_announcement">
+  <input type="hidden" name="redirect" value="staff-dashboard">
+  <input type="hidden" name="csrf" value="77c5891fff4b33218d7fc0f46ca24c230f7f0d2f6ee6398892f5627b13a91996">
+  <input type="hidden" name="MAX_FILE_SIZE" value="52428800">
+  <div class="field">
+    <label for="communityPostType">Post type</label>
+    <select id="communityPostType" name="post_type" data-post-type>
+      <option value="announcement">Announcement</option>
+      <option value="event">Event</option>
+    </select>
+  </div>
+  <div class="field">
+    <label for="communityPostTitle">Title</label>
+    <input id="communityPostTitle" type="text" name="title" maxlength="180" required>
+  </div>
+  <div class="field">
+    <label for="communityPostBody">Content</label>
+    <textarea id="communityPostBody" name="body" rows="4" required></textarea>
+  </div>
+  <div class="form-grid-2" data-event-fields hidden>
+    <div class="field">
+      <label for="communityEventDate">Event date and time</label>
+      <input id="communityEventDate" type="datetime-local" name="event_at" disabled>
+    </div>
+    <div class="field">
+      <label for="communityEventLocation">Event location</label>
+      <input id="communityEventLocation" type="text" name="event_location" maxlength="255" disabled>
+    </div>
+  </div>
+  <div class="field">
+    <label for="announcementPhotoUpload">Post photo</label>
+    <div class="file-upload-field">
+      <input type="file" id="announcementPhotoUpload" name="photo" accept="image/jpeg,image/png,image/webp,image/gif" data-file-input data-empty-label="No photo selected">
+      <label for="announcementPhotoUpload" class="btn btn-outline btn-sm">Upload Photo</label>
+      <span data-file-name>No photo selected</span>
+    </div>
+    <small class="field-hint">Optional. JPG, PNG, WEBP, or GIF up to 50 MB.</small>
+  </div>
+  <div class="field">
+    <label class="check check-left">
+      <input type="checkbox" name="schedule_enabled" value="1" data-schedule-toggle data-schedule-reset="true">
+      <span>Schedule publication</span>
+    </label>
+  </div>
+  <div class="form-grid-2">
+    <div class="field" data-schedule-panel hidden>
+      <label for="communityPublishDate">Publish date</label>
+      <input id="communityPublishDate" type="date" name="publish_date" value="2026-10-24" data-schedule-date readonly required>
+    </div>
+    <div class="field" data-schedule-panel hidden>
+      <label for="communityPublishTime">Publish time</label>
+      <input id="communityPublishTime" type="time" name="publish_time" value="10:05" data-schedule-time readonly required>
+    </div>
+  </div>
+  <p class="field-hint">Posts appear on the resident portal immediately, or at the scheduled publication time. Event dates are separate from publication dates.</p>
+  <footer class="modal-footer">
+    <button type="button" class="btn btn-outline" data-modal-close>Cancel</button>
+    <button type="submit" class="btn btn-primary" data-publish-label>Publish post</button>
+  </footer>
+</form>
+  </div>
+</div>
+
+  <section class="panel-card mobile-record-panel">
+    <div class="panel-head">
+      <h3>Resident accounts</h3>
+      <a href="staff-dashboard.php?view=resident-account-registration" class="btn btn-sm btn-outline">Register resident</a>
+    </div>
+    <div class="table-wrap">
+      <table class="data-table mobile-record-table" role="table" aria-label="Resident accounts">
+        <thead><tr><th>Resident ID</th><th>Name</th><th>Status</th></tr></thead>
+        <tbody data-live-overview="residents">
+                    <tr>
+            <td data-label="Resident ID">RES-TEST</td>
+            <td data-label="Name">Layout Test Resident</td>
+            <td data-label="Status"><span class="badge badge-active">Active</span></td>
+          </tr>
+                  </tbody>
+      </table>
+    </div>
+  </section>
+
+
+
+<section class="panel-card mobile-record-panel" style="margin-top:1.25rem">
+  <div class="panel-head">
+    <h3>My recent activities</h3>
+    <a href="staff-dashboard.php?view=my-activity-logs" class="btn btn-sm btn-outline">View logs</a>
+  </div>
+  <div class="table-wrap">
+    <table class="data-table mobile-record-table" role="table" aria-label="My recent activities">
+      <thead><tr><th>Date and time</th><th>Action</th><th>Module</th><th>Status</th></tr></thead>
+      <tbody data-live-overview="activities">
+                <tr><td colspan="4">No recent activity recorded yet.</td></tr>      </tbody>
+    </table>
+  </div>
+</section>
+    </main>
+  </div>
+
+  <script src="js/dashboard.js?v=1792836241"></script>
+  <script src="js/portal-design.js?v=1792834849"></script>
+  <script src="js/mobile-select.js?v=1792815333"></script>
+  <script src="js/location-disclosures.js?v=1792815332"></script>
+  </body>
+</html>

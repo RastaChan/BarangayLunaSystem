@@ -1,0 +1,14 @@
+const fs = require('node:fs');
+const assert = require('node:assert/strict');
+const css = fs.readFileSync('css/dashboard.css', 'utf8');
+const settings = fs.readFileSync('includes/views/system-settings.php', 'utf8');
+const reports = fs.readFileSync('includes/views/reports-analytics.php', 'utf8');
+assert.match(css, /\.form-grid\s*\{[^}]*max-width:\s*none/s);
+assert.match(css, /\.grid-2\s*\{[^}]*minmax\(0, 1fr\)/s);
+assert.match(css, /\.sidebar-logo\s*\{[^}]*object-fit:\s*contain/s);
+assert.match(css, /\.modal-panel\.modal-panel--wide\s*\{/);
+assert.match(css, /\.modal-panel\.modal-panel--wide\.resident-profile-panel\s*\{[^}]*width:\s*min\(960px, 100%\)/);
+assert.doesNotMatch(settings, /^\.btn\s*\{/m);
+assert.doesNotMatch(settings, /^\.form-grid-2\s*\{/m);
+assert.doesNotMatch(reports, /^\.grid-2\s*\{/m);
+console.log('PASS: full-width forms, shrinkable grids, uncropped branding, wide dialogs, preserved profile size and scoped page styles.');

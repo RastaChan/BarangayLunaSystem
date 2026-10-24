@@ -1,0 +1,30 @@
+<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="../../css/dashboard.css"></head><body class="app-dashboard" style="padding:24px"><table class="data-table" style="min-width:0;width:300px;align-self:flex-start;background:white"><tbody><tr><td class="resident-registration-actions">
+            <form id="resident-status-RES-TEST" action="staff-actions.php" method="post" class="resident-status-form">
+              <input type="hidden" name="action" value="update_resident_status">
+              <input type="hidden" name="redirect" value="resident-account-registration">
+              <input type="hidden" name="id" value="RES-TEST">
+              <label>Account<select name="status" aria-label="Account status">
+                                <option >Pending</option>
+                                <option selected>Active</option>
+                                <option >Inactive</option>
+                              </select></label>
+              <label>Verification<select name="verification_status" aria-label="Verification status">
+                                <option >Pending</option>
+                                <option selected>Verified</option>
+                                <option >Rejected</option>
+                              </select></label>
+              <label>QR status<select name="qr_status" aria-label="QR status">
+                                <option >Inactive</option>
+                                <option selected>Active</option>
+                              </select></label>
+            </form>
+            <div class="resident-status-buttons">
+              <button type="submit" form="resident-status-RES-TEST" class="btn btn-primary btn-sm">Save</button>
+            <form action="staff-actions.php" method="post">
+              <input type="hidden" name="action" value="generate_resident_qr">
+              <input type="hidden" name="redirect" value="resident-account-registration">
+              <input type="hidden" name="id" value="RES-TEST">
+              <button type="submit" class="btn btn-outline btn-sm">Generate QR</button>
+            </form>
+            </div>
+          </td></tr></tbody></table></body></html>

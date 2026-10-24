@@ -1,0 +1,37 @@
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const vm = require('node:vm');
+const source = fs.readFileSync(require('node:path').join(__dirname, '../js/dashboard.js'), 'utf8');
+const start = source.indexOf("  document.querySelectorAll('[data-document-fee-form]')");
+const end = source.indexOf('  /* Sidebar mobile */', start);
+assert.ok(start >= 0 && end > start);
+function control(value = '') {
+  return {value, checked: false, listeners: {}, addEventListener(event, fn) {this.listeners[event] = fn;}, focus() {this.focused = true;}};
+}
+const options = [control('Barangay Certification'), control('Certificate of Indigency')];
+const all = control(), label = control(), error = {hidden: true}, amount = control('123.45');
+const summary = control();
+const picker = {...control(), open: false, contains: () => false, querySelector: () => summary};
+const fields = {'[data-fee-picker]': picker, '[data-fee-select-all]': all, '[data-fee-selection-label]': label, '[data-fee-selection-error]': error, '[name="fee_amount"]': amount};
+const form = {...control(), querySelector: key => fields[key], querySelectorAll: () => options};
+vm.runInNewContext(source.slice(start, end), {document: {querySelectorAll: () => [form], addEventListener() {}}});
+options[0].checked = true; options[0].listeners.change();
+assert.equal(label.textContent, 'Barangay Certification');
+assert.equal(all.indeterminate, true);
+options[1].checked = true; options[1].listeners.change();
+assert.equal(label.textContent, '2 document types selected');
+assert.equal(amount.value, '123.45');
+assert.equal(all.checked, true);
+all.checked = false; all.listeners.change();
+assert.equal(options.some(option => option.checked), false);
+let blocked = false;
+form.listeners.submit({preventDefault() {blocked = true;}});
+assert.equal(blocked, true);
+assert.equal(error.hidden, false);
+all.checked = true; all.listeners.change();
+blocked = false;
+form.listeners.submit({preventDefault() {blocked = true;}});
+assert.equal(blocked, false);
+assert.equal(error.hidden, true);
+assert.equal(amount.value, '123.45');
+console.log('PASS: multi-selection, select all, empty validation, and typed fee preservation.');

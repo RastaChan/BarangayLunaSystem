@@ -1,0 +1,611 @@
+PAGE 1
+CHAPTER 4 
+RESULTS AND DISCUSSION 
+This chapter presents the results of the development, testing, and evaluation of the RFID-Based 
+Attendance Monitoring System . It describes the implemented system modules, testing 
+procedures, test cases, user evaluation, implementation plan, and identified risks. The results 
+presented in this chapter are based on the actual functions implemented and tested in the 
+completed system. 
+4.1 Development and Testing 
+The researchers developed an RFID-Based Attendance Monitoring System designed to improve 
+the recording and monitoring of student attendance. The system addresses problems commonly 
+encountered in manual attendance recording, such as time -consuming roll calls, inaccurate 
+attendance records, duplicate entries, and difficulty in retrieving attendance information. 
+The developed system uses Radio Frequency Identification (RFID) technology to identify students 
+through their assigned RFID cards or tags. When an RFID card is scanned, the system retrieves 
+the corresponding student information and records the attendance transaction in the database. 
+The completed system includes functions for student registration, RFID card assignment, 
+attendance recording, attendance monitoring, and attendance report generation. The system also 
+records the date and time of attendance transactions, allowing authorized  users to monitor 
+student attendance and retrieve attendance records. 
+The system was subjected to functional, integration, system, performance, usability, and user 
+acceptance testing, as applicable to the implemented functions. The testing focused on 
+determining whether the system performed according to its specified requirements. 
+4.2 System Modules / Features 
+The completed RFID-Based Attendance Monitoring System consists of several modules that work 
+together to automate the recording and monitoring of student attendance. 
+Module 1: User Management 
+PAGE 2
+The User Management module provides secure access to the system through user login, 
+authentication, account management, and role -based access. Administrators can manage user 
+accounts and access privileges, while authorized users can access functions accord ing to their 
+assigned roles. This module helps maintain system security and ensures that only authorized 
+personnel can access and manage attendance information. 
+Module 2: Student Management 
+The Student Management module allows administrators and authorized personnel to add, update, 
+search, and manage student records. It stores the information needed to identify students and 
+associate them with their assigned RFID cards. This module supports t he accurate identification 
+and management of students within the attendance monitoring system. 
+Module 3: RFID Registration 
+The RFID Registration module allows administrators or authorized personnel to register RFID 
+cards and associate them with individual student records. It manages RFID identification numbers 
+and their corresponding student information. This module enables th e system to recognize 
+registered students during attendance scanning and ensures that attendance records are 
+associated with the correct student. 
+Module 4: RFID Attendance Monitoring 
+The RFID Attendance Monitoring module automatically records student attendance when a 
+registered RFID card is scanned. It identifies the student, records the date and time of the 
+transaction, and handles duplicate scans based on the implemented system rule s. Students use 
+the module by scanning their RFID cards, while teachers and authorized personnel monitor the 
+recorded attendance. This module provides a faster and more organized alternative to manual 
+attendance recording. 
+Module 5: Attendance Records 
+The Attendance Records module allows teachers, administrators, and authorized personnel to 
+view, search, and filter recorded attendance transactions. Users can retrieve attendance 
+PAGE 3
+information based on available criteria such as student name or date range. This module 
+facilitates efficient monitoring and retrieval of student attendance records. 
+Module 6: Attendance Reports 
+The Attendance Reports module allows authorized users to view and generate attendance 
+information for monitoring and documentation purposes. It provides organized attendance records 
+based on selected students, dates, or other available criteria. This modul e supports the 
+preparation and review of attendance information for administrative and monitoring purposes. 
+4.3 System Testing Procedures 
+The researchers conducted several testing procedures to determine whether the completed 
+RFID-Based Attendance Monitoring System operated according to its specified requirements. 
+A. Unit Testing 
+Unit testing was conducted on individual functions and modules of the system. The researchers 
+tested functions such as user login, student registration, RFID registration, RFID scanning, 
+attendance recording, searching, and report generation.  The purpose was to determine whether 
+each individual function produced the expected result before being integrated with other modules. 
+B. Integration Testing 
+Integration testing was conducted to determine whether the different modules worked correctly 
+when connected to one another. For example, when an RFID card was scanned, the system was 
+expected to retrieve the corresponding student information and automatically create an 
+attendance record in the database. 
+C. System Testing 
+System testing was conducted on the completed RFID -Based Attendance Monitoring System. 
+The researchers tested the system as a complete application to determine whether its major 
+components worked together according to the specified requirements. 
+D. Performance Testing 
+PAGE 4
+Performance testing was conducted to determine the responsiveness of the RFID scanning and 
+attendance-recording functions. 
+The researchers measured the time required for the system to process an RFID scan and display 
+or record the corresponding attendance information. 
+E. Usability Testing 
+Usability testing was conducted to determine whether intended users could navigate and use the 
+system effectively. 
+The evaluation considered aspects such as: 
+• Ease of navigation  
+• Ease of learning  
+• Clarity of information  
+• Ease of RFID attendance recording  
+• Ease of retrieving attendance records  
+F. User Acceptance Testing 
+User Acceptance Testing (UAT) was conducted with intended users to determine whether the 
+completed system could perform the attendance -related tasks required in the actual operating 
+environment. 
+4.4 Test Cases 
+The following table presents sample successful test cases conducted on the RFID -Based 
+Attendance Monitoring System. 
+Table 4.1 Successful Test Cases 
+Test 
+Case 
+ID 
+Module/Feature Description Testing 
+Type 
+Expected 
+Outcome 
+Actual 
+Outcome 
+Status 
+TC001 Login Log in using 
+valid 
+credentials 
+Functional User 
+successfully 
+logs in 
+User 
+successfully 
+logged in 
+Pass 
+PAGE 5
+TC002 Student 
+Management 
+Add a new 
+student 
+record 
+Functional Student 
+record is 
+saved 
+Student 
+record was 
+saved 
+Pass 
+TC003 RFID 
+Registration 
+Assign an 
+RFID card 
+to a student 
+Functional RFID card 
+is assigned 
+successfully 
+RFID card 
+was 
+successfully 
+assigned 
+Pass 
+TC004 RFID Scanning Scan a 
+registered 
+RFID card 
+Integration Student is 
+identified 
+and 
+attendance 
+is recorded 
+Student 
+was 
+identified 
+and 
+attendance 
+was 
+recorded 
+Pass 
+TC005 Attendance Record 
+student 
+attendance 
+Functional Attendance 
+transaction 
+is stored 
+Attendance 
+transaction 
+was stored 
+Pass 
+TC006 Duplicate Scan Scan the 
+same RFID 
+card 
+repeatedly 
+Functional Duplicate 
+attendance 
+is handled 
+according to 
+system 
+rules 
+Duplicate 
+scan was 
+handled 
+correctly 
+Pass 
+TC007 Search Search for a 
+student's 
+attendance 
+record 
+Functional Correct 
+attendance 
+record is 
+displayed 
+Correct 
+record was 
+displayed 
+Pass 
+TC008 Date Filter Filter 
+attendance 
+by date 
+range 
+Functional Records 
+within 
+selected 
+dates are 
+displayed 
+Correct 
+records 
+were 
+displayed 
+Pass 
+TC009 Report Generate 
+attendance 
+report 
+Functional Correct 
+attendance 
+report is 
+generated 
+Attendance 
+report was 
+generated 
+correctly 
+Pass 
+TC010 RFID Response Scan a 
+registered 
+RFID card 
+Performance Attendance 
+is 
+processed 
+within the 
+established 
+response 
+target 
+Attendance 
+was 
+processed 
+within the 
+target 
+Pass 
+ 
+PAGE 6
+The results in Table 4.1 show that the major functions of the RFID-Based Attendance Monitoring 
+System successfully produced their expected outcomes during testing. The login function 
+successfully authenticated authorized users, while the student management module successfully 
+stored student information. 
+The RFID registration function successfully associated RFID cards with student records. During 
+attendance scanning, registered RFID cards were correctly identified, and the corresponding 
+attendance transactions were stored in the database. 
+The search and date-filter functions also successfully retrieved the required attendance records. 
+The report function generated the required attendance information for monitoring purposes. 
+These results indicate that the major implemented functions of the system operated according to 
+their specified requirements during the conducted tests. 
+Table 4.2 Failed Test Cases and Corrective Actions 
+Test 
+Case 
+ID 
+Module/Function Initial 
+Result 
+Problem Identified Corrective Action Retest 
+Result 
+TC011 RFID Scanning Failed Some scans were 
+recorded twice 
+when the card 
+remained near the 
+reader 
+Added duplicate -
+scan validation and 
+a short scan -
+processing interval 
+Passed 
+TC012 Attendance 
+Search 
+Failed Search returned 
+incomplete results 
+when combined 
+filters were used 
+Corrected the 
+database query and 
+filter conditions 
+Passed 
+ 
+Several test cases initially encountered problems during the testing phase. The identified issues 
+involved duplicate RFID scans and attendance record filtering. 
+PAGE 7
+In TC011, the system initially recorded duplicate attendance transactions when an RFID card 
+remained within the reading range of the RFID reader. The researchers identified that the system 
+was processing repeated RFID readings as separate attendance transa ctions. A duplicate-scan 
+validation mechanism was subsequently implemented to prevent repeated recording within the 
+defined processing interval. 
+In TC012, the attendance search function initially returned incomplete results when multiple 
+filtering conditions were applied. The researchers reviewed the database query and corrected the 
+filtering conditions. The function was then retested and successfu lly displayed the appropriate 
+attendance records. 
+The successful retesting of the affected functions indicated that the identified problems were 
+addressed through the implemented corrective actions. 
+4.5 Results and Discussion 
+The testing results demonstrated that the major implemented functions of the RFID -Based 
+Attendance Monitoring System operated according to their expected behavior. 
+The system successfully performed student registration, RFID card registration, attendance 
+scanning, attendance recording, attendance searching, date filtering, and attendance report 
+generation. 
+One of the important findings was the system's ability to automatically record attendance when a 
+registered RFID card was scanned. This reduces the need for manual recording and minimizes 
+repetitive attendance entry. 
+The testing also demonstrated the importance of duplicate -scan handling. During the initial 
+testing, repeated RFID readings could result in duplicate attendance records. After the duplicate 
+validation mechanism was implemented, the system successfully prev ented the identified 
+problem during retesting. 
+PAGE 8
+The attendance search and date-range filtering functions also assisted users in retrieving specific 
+attendance records. Instead of manually reviewing attendance sheets, authorized users could 
+search for records based on the available filtering options. 
+Based on the completed testing, the system addressed the identified problem of manual 
+attendance recording by providing an automated RFID-based method of identifying students and 
+recording their attendance. 
+However, the researchers should recognize that successful functional testing does not 
+automatically mean that the system is free from all possible errors. Actual performance may vary 
+depending on the RFID reader, RFID card or tag, computer specifications, network/database 
+configuration, and operating environment. 
+4.6 User Evaluation / Acceptance Results 
+After system testing, the RFID -Based Attendance Monitoring System was evaluated by its 
+intended users. The evaluation was conducted to determine how the users assessed the system 
+in terms of functionality, usability, reliability, performance, and security. 
+Table 4.3 User Evaluation Results 
+Evaluation Criterion Mean Interpretation 
+Functionality 4.50 Strongly Agree 
+Usability 4.40 Strongly Agree 
+Reliability 4.30 Strongly Agree 
+Performance 4.20 Agree 
+Security 4.10 Agree 
+Overall Mean 4.30 Strongly Agree 
+ 
+Based on the sample results, the system obtained an overall mean of 4.30, interpreted as Strongly 
+Agree using the stated evaluation scale. 
+PAGE 9
+Functionality obtained the highest mean of 4.50, indicating that the evaluators strongly agreed 
+that the system provided the functions required for attendance monitoring. Usability obtained a 
+mean of 4.40, suggesting that the system was generally easy to navigate and use. 
+Reliability obtained a mean of 4.30, indicating positive assessment of the system's ability to 
+perform its intended functions consistently. Performance obtained a mean of 4.20, interpreted as 
+Agree, indicating that the system's response and processing were generally acceptable. 
+Security obtained a mean of 4.10, also interpreted as Agree. This suggests that the evaluators 
+considered the implemented access-control and data-protection mechanisms acceptable. 
+Overall, the sample evaluation results indicate that the system was positively assessed by the 
+evaluators. However, the final manuscript should report only the results obtained from the actual 
+evaluation. 
+4.7 User Acceptance Testing (UAT) 
+User Acceptance Testing was conducted to determine whether the RFID -Based Attendance 
+Monitoring System could perform the tasks required by its intended users. 
+Table 4.4 User Acceptance Testing 
+Test No. User Task Expected Result Actual Result Status 
+UAT-01 Log in User successfully logs in User successfully logged in Passed 
+UAT-02 Register 
+student 
+Student information is saved Student information was 
+saved 
+Passed 
+UAT-03 Register 
+RFID 
+RFID is assigned to student RFID was successfully 
+assigned 
+Passed 
+UAT-04 Scan RFID Student is identified Student was correctly 
+identified 
+Passed 
+UAT-05 Record 
+attendance 
+Attendance is saved Attendance was 
+successfully saved 
+Passed 
+Commented [NA1]: The results presented in this 
+section are based on the testing conducted with the 
+intended users and their responses to the survey 
+instrument. The responses were consolidated, analyzed, 
+and presented to determine the users’ assessment of the 
+system. The results are also interpreted to provide 
+insights into the system’s performance, usability, 
+functionality, and overall acceptability.  
+PAGE 10
+UAT-06 Search 
+attendance 
+Correct records are 
+displayed 
+Correct records were 
+displayed 
+Passed 
+UAT-07 Filter by 
+date 
+Records within date range 
+are displayed 
+Correct records were 
+displayed 
+Passed 
+UAT-08 Generate 
+report 
+Attendance report is 
+generated 
+Report was successfully 
+generated 
+Passed 
+ 
+Based on the sample UAT results, the system was considered Accepted because the intended 
+users were able to perform the specified attendance-related tasks and the expected results were 
+achieved. 
+The actual acceptance decision, however, should be based on the UAT criteria established by the 
+researchers and the results obtained from the actual evaluators. 
+4.8 Implementation Plan 
+The following implementation plan presents the activities that may be performed for deployment 
+and continued use of the RFID-Based Attendance Monitoring System. 
+Table 4.5 Implementation Plan 
+Phase Activity Description Duration 
+Pre-
+Deployment 
+System Setup Install the application, database, and RFID 
+hardware 
+1–2 days 
+Pre-
+Deployment 
+RFID Registration Register students and assign RFID cards 2–5 days 
+Pre-
+Deployment 
+Data Preparation Verify student information and database 
+records 
+1–2 days 
+Deployment Final Testing Conduct final tests in the actual 
+environment 
+1–2 days 
+PAGE 11
+Deployment System 
+Deployment 
+Make the system available to authorized 
+users 
+1 day 
+Post-
+Deployment 
+User Training Train teachers and administrators on 
+system operation 
+1–2 days 
+Post-
+Deployment 
+Monitoring Monitor attendance recording and system 
+operation 
+Ongoing 
+Post-
+Deployment 
+Maintenance Perform database maintenance and system 
+updates 
+Ongoing 
+Post-
+Deployment 
+Backup Create regular backups of attendance 
+records 
+Regularly 
+ 
+4.9 Risk Management 
+The following risks may affect the operation of the RFID-Based Attendance Monitoring System. 
+Table 4.6 Risk Management 
+Risk Possible Impact Mitigation 
+RFID card damage Student may be unable to scan 
+attendance 
+Provide replacement RFID cards 
+RFID reader failure Attendance cannot be recorded 
+automatically 
+Prepare a backup reader or 
+manual recording procedure 
+Duplicate RFID scans Incorrect attendance records 
+may be created 
+Implement duplicate -scan 
+validation 
+Database failure Attendance records may become 
+unavailable 
+Perform regular database backups 
+Unauthorized access Student information may be 
+compromised 
+Implement authentication and 
+access controls 
+PAGE 12
+Power interruption System may temporarily become 
+unavailable 
+Provide a backup power source 
+when necessary 
+Incorrect student 
+information 
+Attendance may be associated 
+with incorrect records 
+Validate student information before 
+RFID registration 
+User error Incorrect records or system 
+operations may occur 
+Provide user training and clear 
+procedures 
+Hardware 
+connectivity problem 
+RFID scanning may fail Check cables, ports, drivers, and 
+device configuration 
+System downtime Attendance monitoring may be 
+interrupted 
+Establish maintenance and 
+recovery procedures 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+PAGE 13
+CHAPTER 5 
+CONCLUSION AND RECOMMENDATIONS 
+This chapter presents the conclusion and recommendations of the project based on the 
+development, testing, and evaluation of the RFID -Based Attendance Monitoring System. It 
+summarizes the project, presents conclusions based on the objectives and findings, and provides 
+recommendations for the beneficiary and future researchers. 
+5.1 Summary of the Project 
+The project developed an RFID-Based Attendance Monitoring System  designed to improve the 
+process of recording and monitoring student attendance. The system was developed to address 
+problems associated with manual attendance recording, including the time required for 
+attendance checking, possible recording errors, duplic ate entries, and difficulty in retrieving 
+historical attendance information. 
+The completed system provides several major functions, including user authentication, student 
+management, RFID registration, RFID attendance scanning, attendance monitoring, attendance 
+searching, date-range filtering, and attendance report generation. 
+The RFID scanning feature allows registered students to be identified through their assigned RFID 
+cards. Once a card is scanned, the system retrieves the corresponding student information and 
+records the attendance transaction in the database. 
+The system underwent functional, integration, system, performance, usability, and user 
+acceptance testing as applicable to the implemented features. Initial testing identified issues 
+related to duplicate RFID scans and attendance filtering. These issues we re corrected and the 
+affected functions were retested. 
+Based on the sample evaluation results, the system received a positive assessment from the 
+evaluators. The findings indicate that the system can provide an automated approach to 
+attendance recording and monitoring. 
+5.2 Conclusion 
+PAGE 14
+The study was conducted to address the difficulties associated with manual student attendance 
+recording and monitoring. Manual attendance processes can require considerable time and may 
+make the retrieval and management of attendance records more difficult. 
+To address these concerns, the researchers developed an RFID-Based Attendance Monitoring 
+System capable of identifying registered students through RFID cards and automatically recording 
+attendance transactions. 
+Based on the system testing, the implemented modules successfully performed their intended 
+functions. Student information could be managed, RFID cards could be registered and associated 
+with students, and attendance could be recorded through RFID scanning. 
+The testing process also demonstrated the importance of validating repeated RFID scans. An 
+issue involving duplicate attendance records was identified during initial testing and was 
+subsequently corrected. The affected function successfully passed retestin g after the corrective 
+action. 
+The attendance search, filtering, and reporting functions also provided users with a more 
+organized means of retrieving attendance information. 
+Based on the sample user evaluation and UAT results, the system was positively assessed and 
+was able to perform the attendance-related tasks required by the intended users. 
+Therefore, based on the presented findings, the researchers concluded that the developed RFID-
+Based Attendance Monitoring System achieved its intended objectives of automating attendance 
+recording, improving the organization of attendance information, and providing authorized users 
+with tools for monitoring and retrieving attendance records. 
+The conclusion should be revised if the actual testing or evaluation results do not support these 
+claims. 
+5.3 Recommendations 
+Based on the findings, testing results, and identified limitations of the RFID -Based Attendance 
+Monitoring System, the following recommendations are proposed. 
+PAGE 15
+A. Recommendations to the Beneficiary 
+1. The beneficiary should consider adopting the RFID-Based Attendance Monitoring System 
+to improve the efficiency of student attendance recording and monitoring.  
+2. Authorized users should undergo proper training before using the system to minimize user 
+errors and ensure that the implemented functions are used correctly.  
+3. Student and RFID information should be validated  before assigning RFID cards to 
+students to prevent incorrect attendance associations.  
+4. Regular database backups should be conducted to minimize the risk of losing attendance 
+and student records.  
+5. The RFID hardware should be regularly inspected and maintained  to ensure reliable 
+scanning and attendance recording.  
+6. A backup attendance procedure should be maintained  in case of RFID reader failure, 
+power interruption, or system downtime.  
+7. The system should undergo regular maintenance and updates  to address technical 
+problems and improve its reliability.  
+8. User feedback should be collected periodically  to identify problems encountered during 
+actual use and determine possible improvements.  
+B. Recommendations to Future Researchers and Developers 
+1. Future researchers may integrate multiple RFID readers  if the system will be deployed 
+across several classrooms, entrances, or attendance areas.  
+2. Future researchers may develop a web-based or mobile monitoring interface  that allows 
+authorized personnel to access attendance information remotely.  
+3. Future researchers may integrate SMS, email, or other notification mechanisms  for 
+attendance-related notifications, subject to the institution's requirements and privacy 
+policies.  
+PAGE 16
+4. Future researchers may improve the system's reporting and analytics capabilities  by 
+providing graphical attendance summaries and student attendance trends.  
+5. Future researchers may conduct larger-scale performance testing  involving a greater 
+number of students and simultaneous RFID scans.  
+6. Future researchers may explore offline synchronization mechanisms if the system needs 
+to operate in environments with intermittent network connectivity.  
+7. Future researchers may strengthen the system's security and privacy controls, particularly 
+for protecting student information and attendance records.  
+8. Future researchers may investigate the integration of the system with other school 
+information systems , provided that data -sharing requirements, security, and privacy 
+policies are properly addressed. 
+ 

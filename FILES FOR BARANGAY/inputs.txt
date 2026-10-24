@@ -1,0 +1,110 @@
+Use these inputs/placeholders inside your Word `.docx` template:
+
+{{resident_name}}
+
+Resident name in ALL CAPS.
+
+
+{{resident_name_proper}}
+
+Resident name in normal format.
+
+
+{{resident_address}}
+
+Resident address.
+
+
+{{age}}
+
+Resident age.
+
+
+{{gender}}
+
+Resident gender.
+
+
+{{civil_status}}
+
+Resident civil status.
+
+
+{{purpose}}
+
+Purpose entered when issuing the document.
+
+
+{{date_issued}}
+
+Full date, example: `June 25, 2026`.
+
+
+{{date_day}}
+
+Day only, example: `25`.
+
+
+{{date_day_ordinal}}
+
+Day with suffix, example: `25th`.
+
+
+{{date_month}}
+
+Month name, example: `June`.
+
+
+{{date_month_upper}}
+
+Month in ALL CAPS, example: `JUNE`.
+
+
+{{date_year}}
+
+Year only, example: `2026`.
+
+
+{{barangay_name}}
+
+Outputs `Barangay Luna`.
+
+
+{{barangay_captain}}
+
+Barangay captain text.
+
+
+{{document_number}}
+
+Document control number.
+
+{{pronoun_subject}}
+
+Outputs `He` or `She`.
+
+
+{{pronoun_subject_lower}}
+
+Outputs `he` or `she`.
+
+
+{{pronoun_object}}
+
+Outputs `him` or `her`.
+
+
+{{pronoun_possessive}}
+
+Outputs `his` or `her`.
+
+Example:
+{{pronoun_subject}} is known to me and {{pronoun_possessive}} purpose is {{purpose}}.
+
+Result:
+He is known to me and his purpose is SCHOOL REQUIREMENT.
+
+
+Checks passed.
+
+D:\laragon\bin\php\php-8.3.30-Win32-vs16-x64\php.ini.bak-codex-20260626205334

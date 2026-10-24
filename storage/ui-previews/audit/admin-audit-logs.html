@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><base href="/BARANGAY%20LUNA%20SYSTEM/"><script>window.fetch=async()=>({ok:false,status:403,headers:{get:()=>"application/json"},json:async()=>({ok:false,success:false,message:"Layout fixture"})});</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Audit Logs | Admin — Barangay Luna MIS</title>
+  <link rel="stylesheet" href="css/dashboard.css?v=1792827043">
+  <link rel="stylesheet" href="css/mobile-select.css?v=1792815332">
+  <link rel="stylesheet" href="css/motion.css?v=1792819969">
+  <link rel="stylesheet" href="css/portal-design.css?v=1792815332">
+</head>
+<body class="app-dashboard role-admin">
+
+  <aside class="sidebar" id="appSidebar">
+  <div class="sidebar-brand">
+    <!-- IMAGE PLACEHOLDER: Sidebar logo -->
+    <img src="branding-logo.php" alt="Barangay Luna" class="sidebar-logo"
+         onerror="this.style.visibility='hidden';">
+    <div class="sidebar-brand-text">
+      <strong>Christian Deloy</strong>
+      <span>Admin Portal</span>
+    </div>
+    <button type="button" class="sidebar-collapse-btn" id="sidebarCollapseBtn" aria-label="Collapse sidebar" title="Collapse sidebar">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </div>
+
+  <div class="sidebar-role">
+    <span class="role-pill">ADMINISTRATOR</span>
+  </div>
+
+  <nav class="sidebar-nav" id="sidebarNav" aria-label="Admin navigation">
+    <p class="nav-section">Overview</p>
+    <a href="?role=admin&view=dashboard" class="nav-link " data-nav-view="dashboard" title="Dashboard">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 11 12 4l8 7v9H4v-6Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+      <span class="nav-label">Dashboard</span>
+    </a>
+
+    <p class="nav-section">Management</p>
+    <a href="?role=admin&view=user-management" class="nav-link " data-nav-view="user-management" title="User Management">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM6 20v-1a6 6 0 0 1 12 0v1" stroke="currentColor" stroke-width="1.5"/><path d="M19 8v6M16 11h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <span class="nav-label">User Management</span>
+    </a>
+    <a href="?role=admin&view=residents" class="nav-link " data-nav-view="residents" title="QR and Resident Management">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm12 10v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke="currentColor" stroke-width="1.5"/></svg>
+      <span class="nav-label">QR and Resident Management</span>
+    </a>
+
+    <p class="nav-section">Operations</p>
+    <a href="?role=admin&view=issue-documents" class="nav-link " data-nav-view="issue-documents" data-notification-count-view="documents" title="Issue Documents">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 3h7l4 4v14H7V3Zm7 0v5h5M9 13h6M9 17h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="nav-label">Issue Documents</span>
+    </a>
+    <a href="?role=admin&view=resident-account-registration" class="nav-link " data-nav-view="resident-account-registration" title="Resident Account Registration">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM5 20v-1a7 7 0 0 1 14 0v1M19 8v6M16 11h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <span class="nav-label">Resident Account Registration</span>
+    </a>
+    <a href="?role=admin&view=sms-alerts" class="nav-link " data-nav-view="sms-alerts" title="SMS Alerts">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8Z" stroke="currentColor" stroke-width="1.5"/><path d="M9 10h6M9 14h3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <span class="nav-label">SMS Alerts</span>
+    </a>
+    <a href="?role=admin&view=walk-in-payments" class="nav-link " data-nav-view="walk-in-payments" title="Walk-in Payments">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 3h12v18H6V3Zm3 4h6M9 11h6M9 15h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="nav-label">Walk-in Payments</span>
+    </a>
+    <a href="?role=admin&view=husay-schedule" class="nav-link " data-nav-view="husay-schedule" title="Husay Schedule">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5h16v16H4V5Zm4-3v6m8-6v6M4 11h16m-12 4h2m4 0h2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="nav-label">Husay Schedule</span>
+    </a>
+    <a href="?role=admin&view=complaints" class="nav-link " data-nav-view="complaints" title="Complaints">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 9v4M12 17h.01M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z" stroke="currentColor" stroke-width="1.5"/></svg>
+      <span class="nav-label">Complaints</span>
+          </a>
+    <a href="?role=admin&view=feedbacks" class="nav-link " data-nav-view="feedbacks" title="Feedbacks">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8Z" stroke="currentColor" stroke-width="1.5"/></svg>
+      <span class="nav-label">Feedbacks</span>
+          </a>
+
+    <p class="nav-section">Reports</p>
+    <a href="?role=admin&view=reports-analytics" class="nav-link " data-nav-view="reports-analytics" title="Reports &amp; Analytics">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-6M22 20H2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <span class="nav-label">Reports &amp; Analytics</span>
+    </a>
+    <a href="?role=admin&view=service-reports" class="nav-link " data-nav-view="service-reports" title="Service Reports">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-6M22 20H2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <span class="nav-label">Service Reports</span>
+    </a>
+    <a href="?role=admin&view=audit-logs" class="nav-link is-active" data-nav-view="audit-logs" title="Audit Logs">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 11l3 3L22 4M11 20H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <span class="nav-label">Audit Logs</span>
+    </a>
+
+    <p class="nav-section">System</p>
+    <a href="?role=admin&view=backup-restore" class="nav-link " data-nav-view="backup-restore" title="Backup &amp; Restore">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9 9 0 0 0-9 9Zm9-5v4l3 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <span class="nav-label">Backup &amp; Restore</span>
+    </a>
+    <details class="settings-nav-group" >
+      <summary class="nav-link settings-nav-toggle" title="System Settings">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM4 9h2a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1Zm12-2h2a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1h-2a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1Z" stroke="currentColor" stroke-width="1.5"/></svg>
+        <span class="nav-label">System Settings</span>
+      </summary>
+      <div class="settings-nav-children">
+        <a href="?role=admin&view=system-settings" class="nav-link " data-nav-view="system-settings" title="General Settings" >
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1Z" stroke="currentColor" stroke-width="1.5"/></svg>
+          <span class="nav-label">General Settings</span>
+        </a>
+        <a href="?role=admin&view=template-placeholders" class="nav-link " data-nav-view="template-placeholders" title="Template Placeholders" >
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Z" stroke="currentColor" stroke-width="1.5"/><path d="M14 2v6h6M10 13l-2 2 2 2m4-4 2 2-2 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="nav-label">Template Placeholders</span>
+        </a>
+        <a href="?role=admin&view=document-fees" class="nav-link " data-nav-view="document-fees" title="Document Fees" >
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="2.5" stroke="currentColor" stroke-width="1.5"/><path d="M6 12h.01M18 12h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <span class="nav-label">Document Fees</span>
+        </a>
+      </div>
+    </details>
+  </nav>
+
+</aside>
+
+  <div class="main-area">
+    ﻿<header class="top-header header">
+  <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle navigation" title="Toggle sidebar">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+  </button>
+
+  <div class="header-title">
+    <h1>Audit Logs</h1>
+    <p>Barangay Luna Smart Barangay Portal</p>
+  </div>
+
+  <div class="header-actions">
+    <div class="notification-menu" data-notification-menu data-notification-owner="admin:1" >
+  <button type="button" class="header-icon-btn notification-btn" data-notification-toggle aria-label="Notifications" aria-controls="headerNotificationPanel" aria-expanded="false">
+    <svg viewBox="0 0 24 24" fill="none" width="20" height="20" aria-hidden="true"><path d="M15 17H9l-1 2h8l-1-2ZM18 8a6 6 0 1 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9Z" stroke="currentColor" stroke-width="1.5"/></svg>
+      </button>
+  <div id="headerNotificationPanel" class="notification-dropdown" data-notification-dropdown role="region" aria-label="Notifications">
+    <div class="notification-dropdown-head">
+      <strong>Notifications</strong>
+      <span data-notification-summary>
+                No new alerts
+              </span>
+    </div>
+    <div class="notification-list">
+                  <div class="notification-empty">No notifications yet.</div>
+          </div>
+  </div>
+</div>
+    <div class="profile-menu" data-profile-menu>
+  <button type="button" class="user-menu user-profile profile-menu-toggle" data-profile-toggle aria-expanded="false" aria-haspopup="true">
+    <span class="user-avatar">
+            C          </span>
+    <div class="user-meta">
+      <strong class="user-name">Christian Deloy</strong>
+      <span>Administrator</span>
+    </div>
+    <svg class="profile-caret" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M7 10l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+
+  <div class="profile-dropdown" data-profile-dropdown>
+    <button type="button" class="profile-dropdown-item" data-modal-open="profileSettingsModal">
+      <span>Profile Settings</span>
+    </button>
+    <button type="button" class="profile-dropdown-item" data-modal-open="securitySettingsModal">
+      <span>Security Settings</span>
+    </button>
+    <a href="logout.php" class="profile-dropdown-item profile-dropdown-item--danger">
+      <span>Logout</span>
+    </a>
+  </div>
+</div>
+
+<div id="profileSettingsModal" class="modal " aria-hidden="true" role="dialog" aria-labelledby="profileSettingsTitle">
+  <div class="modal-backdrop" data-modal-close></div>
+  <div class="modal-panel ">
+    <header class="modal-header">
+      <h2 id="profileSettingsTitle">Profile Settings</h2>
+      <button type="button" class="modal-close" data-modal-close aria-label="Close">&times;</button>
+    </header>
+    <form id="profileSettingsForm" class="modal-body form-grid" action="#" method="post" enctype="multipart/form-data" data-profile-settings-form>
+      <input type="hidden" name="action" value="update_account_profile">
+      <input type="hidden" name="redirect" value="audit-logs">
+      <input type="hidden" name="profile_photo_cropped" id="profilePhotoCropped">
+
+      
+      <div class="profile-photo-tools">
+      <div class="profile-photo-upload">
+        <span class="profile-photo-preview" id="profilePhotoPreview">
+                    C                  </span>
+        <div class="field">
+          <label for="profilePhotoUpload">Profile picture</label>
+          <input type="file" id="profilePhotoUpload" name="profile_photo" accept="image/jpeg,image/png,image/webp">
+          <p class="field-hint">Upload a JPG, PNG, or WEBP photo. Drag or pinch the preview to crop before saving.</p>
+        </div>
+      </div>
+            </div>
+      <div class="profile-cropper" id="profilePhotoCropper" hidden>
+        <div class="profile-cropper__stage" id="profileCropStage">
+          <img id="profileCropImage" alt="Selected profile crop preview">
+          <span class="profile-cropper__mask" aria-hidden="true"></span>
+        </div>
+        <div class="profile-cropper__controls">
+          <label for="profilePhotoZoom">Crop zoom</label>
+          <input type="range" id="profilePhotoZoom" min="1" max="3" step="0.01" value="1">
+        </div>
+      </div>
+
+      <div class="form-grid-2">
+        <div class="field">
+          <label for="profileFullName">Full name</label>
+          <input type="text" id="profileFullName" value="Christian Deloy" disabled>
+        </div>
+        <div class="field">
+          <label for="profileRole">Role</label>
+          <input type="text" id="profileRole" value="Administrator" disabled>
+        </div>
+      </div>
+
+      <div class="form-grid-2">
+        <div class="field">
+          <label for="profileUsername">Username</label>
+          <input type="text" id="profileUsername" name="username" value="christiandeloy@luna.gov" >
+                  </div>
+        <div class="field">
+          <label for="profileContact">Mobile number</label>
+          <input type="tel" id="profileContact" name="mobile" value="09506972820">
+        </div>
+      </div>
+
+      <p class="profile-note">If your name or personal information needs to be changed, please visit the barangay office for verification.</p>
+    </form>
+    <footer class="modal-footer">
+      <button type="button" class="btn btn-outline" data-modal-close>Cancel</button>
+      <button type="submit" form="profileSettingsForm" class="btn btn-primary">Save profile</button>
+    </footer>
+  </div>
+</div>
+
+<div id="securitySettingsModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="securitySettingsTitle">
+  <div class="modal-backdrop" data-modal-close></div>
+  <div class="modal-panel">
+    <header class="modal-header">
+      <h2 id="securitySettingsTitle">Security Settings</h2>
+      <button type="button" class="modal-close" data-modal-close aria-label="Close">&times;</button>
+    </header>
+    <form id="securitySettingsForm" class="modal-body form-grid" action="#" method="post" data-security-form>
+      <input type="hidden" name="csrf" value="3d08f541b9affcb7d430bf9d765aeacb496344dc2bdc6aa33cd7ee33001c7a93">
+      <div class="field">
+        <label for="currentPassword">Current password</label>
+        <input type="password" id="currentPassword" name="current_password" autocomplete="current-password" required>
+      </div>
+      <div class="field">
+        <label for="newPassword">New password</label>
+        <input type="password" id="newPassword" name="new_password" autocomplete="new-password" minlength="8" maxlength="72" required>
+      </div>
+      <div class="field">
+        <label for="confirmPassword">Confirm password</label>
+        <input type="password" id="confirmPassword" name="confirm_password" autocomplete="new-password" required>
+        <p class="field-hint password-match-message" data-password-message></p>
+      </div>
+    </form>
+    <footer class="modal-footer">
+      <button type="button" class="btn btn-outline" data-modal-close>Cancel</button>
+      <button type="submit" form="securitySettingsForm" class="btn btn-primary">Save password</button>
+    </footer>
+  </div>
+</div>
+  </div>
+</header>
+
+    <main class="content-area">
+                  <div class="page-intro">
+        <h2>Audit Logs</h2>
+        <p>Track system activity and staff actions for accountability and compliance.</p>
+      </div>
+
+      <form class="page-toolbar audit-log-filters" method="get" action="#">
+          <input type="hidden" name="view" value="audit-logs">
+          <div class="field"><label for="auditSearch">Search activity</label>
+          <input id="auditSearch" type="search" name="search" value="" placeholder="User, action, module, role or status"></div>
+          <div class="field"><label for="auditAction">Action</label>
+          <select id="auditAction" name="audit_action">
+            <option value="">All actions</option>
+                      </select></div>
+          <button class="btn btn-primary" type="submit">Search</button>
+          <a class="btn btn-outline" href="dashboard.php?view=audit-logs">Clear</a>
+          <a class="btn btn-outline" href="admin-export.php?type=audit&amp;search=&amp;audit_action=">
+            <svg viewBox="0 0 24 24" fill="none" width="16" height="16" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            Export
+          </a>
+      </form>
+      <p class="field-hint">Showing the latest 0 matching records (up to 100). Export includes all matching records.</p>
+
+      <section class="panel-card mobile-record-panel">
+        <div class="panel-body">
+          <div class="logs-container">
+            <table class="logs-table mobile-record-table" role="table" aria-label="Audit activity records">
+              <thead>
+                <tr>
+                  <th>Date & Time</th>
+                  <th>User / Staff</th>
+                  <th>Role</th>
+                  <th>Action</th>
+                  <th>Module</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                                                <tr><td colspan="6">No activity matches the selected filters.</td></tr>
+                              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Add Staff Modal -->
+  <div id="addStaffModal" class="modal" aria-hidden="true" role="dialog">
+    <div class="modal-backdrop" data-modal-close></div>
+    <div class="modal-panel">
+      <header class="modal-header">
+        <h2>Add staff account</h2>
+        <button type="button" class="modal-close" data-modal-close aria-label="Close">&times;</button>
+      </header>
+      <form id="createStaffForm" class="modal-body form-grid" action="#" method="post" data-server-form="true">
+        <input type="hidden" name="action" value="create_staff">
+        <input type="hidden" name="redirect" value="user-management">
+        <div class="form-grid-2">
+          <div class="field">
+            <label>Full name</label>
+            <input type="text" name="full_name" required placeholder="Full name">
+          </div>
+          <div class="field">
+            <label>Mobile number</label>
+            <input type="tel" name="mobile" placeholder="09XX XXX XXXX">
+          </div>
+        </div>
+        <div class="form-grid-2">
+          <div class="field">
+            <label>Username</label>
+            <input type="text" name="username" required placeholder="staffname@luna.gov">
+            <p class="field-hint">Used for portal sign-in</p>
+          </div>
+          <div class="field">
+            <label>Temporary password</label>
+            <input type="password" name="password" required minlength="8">
+            <p class="field-hint">Staff should change on first login</p>
+          </div>
+        </div>
+        <div class="field">
+          <label>Account status</label>
+          <select name="status">
+            <option value="Active">Active</option>
+            <option value="Inactive">Inactive</option>
+          </select>
+        </div>
+      </form>
+      <footer class="modal-footer">
+        <button type="button" class="btn btn-outline" data-modal-close>Cancel</button>
+        <button type="submit" form="createStaffForm" class="btn btn-primary">Add staff account</button>
+      </footer>
+    </div>
+  </div>
+
+  <!-- View Staff Modal -->
+  <div id="viewStaffModal" class="modal" aria-hidden="true" role="dialog">
+    <div class="modal-backdrop" data-modal-close></div>
+    <div class="modal-panel">
+      <header class="modal-header">
+        <h2>Staff account details</h2>
+        <button type="button" class="modal-close" data-modal-close aria-label="Close">&times;</button>
+      </header>
+      <div class="modal-body auto-fill-grid resident-details-grid" data-staff-view>
+        <div><span>Staff ID</span><strong data-field="id">-</strong></div>
+        <div><span>Name</span><strong data-field="name">-</strong></div>
+        <div><span>Position</span><strong data-field="position">-</strong></div>
+        <div><span>Username</span><strong data-field="username">-</strong></div>
+        <div><span>Mobile</span><strong data-field="mobile">-</strong></div>
+        <div><span>Status</span><strong data-field="status">-</strong></div>
+        <div class="resident-detail-full"><span>Date created</span><strong data-field="created">-</strong></div>
+      </div>
+      <footer class="modal-footer staff-view-actions" data-staff-view-actions>
+        <button type="button" class="btn btn-primary" data-edit-staff>Edit</button>
+        <button type="button" class="btn btn-outline" data-reset-password>Reset Password</button>
+        <form action="#" method="post" id="staffViewStatusForm">
+          <input type="hidden" name="action" value="set_user_status">
+          <input type="hidden" name="redirect" value="user-management">
+          <input type="hidden" name="id">
+          <input type="hidden" name="status">
+          <button type="submit" class="btn btn-danger" data-staff-view-status>Deactivate</button>
+        </form>
+        <button type="button" class="btn btn-outline" data-modal-close>Close</button>
+      </footer>
+    </div>
+  </div>
+
+  <!-- Edit Staff Modal -->
+  <div id="editStaffModal" class="modal" aria-hidden="true" role="dialog">
+    <div class="modal-backdrop" data-modal-close></div>
+    <div class="modal-panel">
+      <header class="modal-header">
+        <h2>Edit staff account</h2>
+        <button type="button" class="modal-close" data-modal-close aria-label="Close">&times;</button>
+      </header>
+      <form id="editStaffForm" class="modal-body form-grid" action="#" method="post" data-server-form="true">
+        <input type="hidden" name="action" value="update_staff">
+        <input type="hidden" name="redirect" value="user-management">
+        <input type="hidden" name="id">
+        <div class="field"><label>Name</label><input type="text" name="name" required></div>
+        <div class="field"><label>Position</label>
+          <select name="position" required>
+                        <option>Barangay Staff</option>
+                        <option>Barangay Staff - Computer Desk</option>
+                        <option>Barangay Secretary</option>
+                        <option>Barangay Treasurer</option>
+                        <option>Barangay Health Worker</option>
+                        <option>Barangay Tanod</option>
+                        <option>Administrative Aide</option>
+                      </select>
+        </div>
+        <div class="field"><label>Username</label><input type="text" name="username" required></div>
+        <div class="field"><label>Mobile</label><input type="tel" name="mobile"></div>
+        <div class="field"><label>Status</label>
+          <select name="status"><option>Active</option><option>Inactive</option></select>
+        </div>
+      </form>
+      <footer class="modal-footer">
+        <button type="button" class="btn btn-outline" data-modal-close>Cancel</button>
+        <button type="submit" form="editStaffForm" class="btn btn-primary">Save changes</button>
+      </footer>
+    </div>
+  </div>
+
+  <!-- Reset Password Modal -->
+    <div id="resetPasswordModal" class="modal" aria-hidden="true" role="dialog">
+    <div class="modal-backdrop" data-modal-close></div>
+    <div class="modal-panel">
+      <header class="modal-header">
+        <h2>Reset account password</h2>
+        <button type="button" class="modal-close" data-modal-close aria-label="Close">&times;</button>
+      </header>
+      <form id="resetPasswordForm" class="modal-body form-grid" action="#" method="post" data-server-form="true">
+        <input type="hidden" name="action" value="reset_user_password">
+        <input type="hidden" name="csrf" value="c06e9f630ab8b7891cc4f5a6cc13f24666b5069fa38c36814ca7537bb17e1e79">
+        <input type="hidden" name="redirect" value="user-management">
+        <input type="hidden" name="id">
+        <p class="field-hint">Set a new temporary password for <strong data-reset-password-name>this account</strong>.</p>
+        <div class="field">
+          <label>New temporary password</label>
+          <input type="password" name="password" required minlength="8" autocomplete="new-password">
+        </div>
+      </form>
+      <footer class="modal-footer">
+        <button type="button" class="btn btn-outline" data-modal-close>Cancel</button>
+        <button type="submit" form="resetPasswordForm" class="btn btn-primary">Reset password</button>
+      </footer>
+    </div>
+  </div>
+
+  <!-- View Resident Modal -->
+  <div id="viewResidentModal" class="modal" aria-hidden="true" role="dialog">
+    <div class="modal-backdrop" data-modal-close></div>
+    <div class="modal-panel modal-panel--wide">
+      <header class="modal-header">
+        <h2>Resident ID Preview</h2>
+        <button type="button" class="modal-close" data-modal-close aria-label="Close">&times;</button>
+      </header>
+      <div class="modal-body">
+        <section class="resident-id-card resident-id-card--admin" data-resident-id-card>
+  <div class="resident-id-card__header">
+    <img src="branding-logo.php" alt="Barangay Luna seal" onerror="this.style.visibility='hidden';">
+    <div><span>Barangay Luna</span><strong>Resident Identification Profile</strong></div>
+    <span class="badge badge-pending" data-resident-card-status>Pending</span>
+  </div>
+  <div class="resident-id-card__body">
+    <div class="resident-id-card__photo" data-resident-card-photo>
+      ?    </div>
+    <div class="resident-id-card__info">
+      <span>Resident ID</span><strong data-resident-card-id>-</strong>
+      <h3 data-resident-card-name>No resident selected</h3>
+      <dl>
+                <div ><dt>Username</dt><dd data-resident-card-username>-</dd></div>
+                <div ><dt>Mobile</dt><dd data-resident-card-mobile>-</dd></div>
+                <div ><dt>Purok/Sitio</dt><dd data-resident-card-purok>-</dd></div>
+                <div ><dt>Household</dt><dd data-resident-card-household>-</dd></div>
+                <div ><dt>Birthdate / Age</dt><dd data-resident-card-birthdate>-</dd></div>
+                <div ><dt>Gender</dt><dd data-resident-card-gender>-</dd></div>
+                <div ><dt>Civil Status</dt><dd data-resident-card-civil-status>-</dd></div>
+                <div ><dt>Verification</dt><dd data-resident-card-verification>-</dd></div>
+                <div ><dt>Registered</dt><dd data-resident-card-registered>-</dd></div>
+                <div class="resident-id-card__address-row"><dt>Address</dt><dd data-resident-card-address>-</dd></div>
+              </dl>
+    </div>
+    <div class="resident-id-card__qr" data-resident-card-qr>
+      <div class="resident-id-card__qr-empty">QR</div>      <span data-resident-card-qr-code>No QR code yet</span>
+    </div>
+  </div>
+</section>
+      </div>
+      <footer class="modal-footer">
+        <button type="button" class="btn btn-outline" data-modal-close>Close</button>
+      </footer>
+    </div>
+  </div>
+
+  <!-- View Record Modal -->
+  <div id="viewRecordModal" class="modal" aria-hidden="true" role="dialog">
+    <div class="modal-backdrop" data-modal-close></div>
+    <div class="modal-panel">
+      <header class="modal-header">
+        <h2 data-record-title>Record details</h2>
+        <button type="button" class="modal-close" data-modal-close aria-label="Close">&times;</button>
+      </header>
+      <div class="modal-body auto-fill-grid resident-details-grid" data-record-view></div>
+      <footer class="modal-footer">
+        <button type="button" class="btn btn-outline" data-modal-close>Close</button>
+      </footer>
+    </div>
+  </div>
+
+  <script src="js/dashboard.js?v=1792826581"></script>
+  <script src="js/portal-design.js?v=1792815332"></script>
+  <script src="js/mobile-select.js?v=1792815333"></script>
+  <script src="js/location-disclosures.js?v=1792815332"></script>
+  </body>
+</html>

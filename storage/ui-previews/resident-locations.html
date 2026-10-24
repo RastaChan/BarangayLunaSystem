@@ -1,0 +1,322 @@
+<!doctype html><html><head><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="../../css/dashboard.css"><link rel="stylesheet" href="../../css/mobile-select.css"></head><body class="app-dashboard" style="display:block;overflow:auto;height:auto;padding:20px"><main style="max-width:850px;margin:auto"><!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<?xml encoding="utf-8" ?><html><body><section class="panel-card" id="residentLocations" style="margin-bottom:1.25rem">
+  <div class="panel-head"><h3>Districts and puroks</h3></div>
+  <div class="panel-body">
+        <form method="get" class="form-grid">
+      <input type="hidden" name="view" value="resident-account-registration">
+      <div class="field"><label>Search residents<input type="search" name="resident_search" value="" placeholder="Name, resident ID, username, mobile or address"></label></div>
+      <div class="form-grid-2">
+                <div class="field"><label>District<select name="district_filter"><option value="">All</option><option value="unassigned">Unassigned</option>
+          <option value="1">District 1</option><option value="2">District 2</option><option value="3">District 3</option><option value="4">District 4</option><option value="5">District 5</option><option value="6">District 6</option><option value="7">District 7</option>        </select></label></div>
+                <div class="field"><label>Purok<select name="purok_filter"><option value="">All</option><option value="unassigned">Unassigned</option>
+          <option value="1">Purok 1</option><option value="2">Purok 2</option><option value="3">Purok 3</option><option value="4">Purok 4</option><option value="5">Purok 5</option><option value="6">Purok 6</option><option value="7">Purok 7</option><option value="8">Purok 8</option><option value="9">Purok 9</option><option value="10">Purok 10</option><option value="11">Purok 11</option><option value="12">Purok 12</option><option value="13">Purok 13</option><option value="14">Purok 14</option><option value="15">Purok 15</option><option value="16">Purok 16</option><option value="17">Purok 17</option><option value="18">Purok 18</option><option value="19">Purok 19</option><option value="20">Purok 20</option><option value="21">Purok 21</option><option value="22">Purok 22</option><option value="23">Purok 23</option><option value="24">Purok 24</option><option value="25">Purok 25</option><option value="26">Purok 26</option><option value="27">Purok 27</option><option value="28">Purok 28</option><option value="29">Purok 29</option><option value="30">Purok 30</option><option value="31">Purok 31</option><option value="32">Purok 32</option><option value="33">Purok 33</option>        </select></label></div>
+              </div>
+      <div class="actions" style="display:flex;gap:8px;flex-wrap:wrap"><button type="submit" class="btn btn-primary">Apply filters</button><a class="btn btn-outline" href="?view=resident-account-registration">Clear filters</a></div>
+    </form>
+    <details style="margin-top:1rem"><summary>Assign an existing resident</summary>
+      <form method="post" action="#" class="form-grid" style="margin-top:1rem">
+        <input type="hidden" name="action" value="assign"><input type="hidden" name="csrf" value=""><input type="hidden" name="redirect" value="resident-account-registration">
+        <div class="field"><label>Resident<select name="resident_code" required></select></label></div>
+          <div class="form-grid-2" data-location-selects>
+    <div class="field"><label>District<select name="district_id" data-location-district required><option value="">Select district</option>
+      <option value="1">District 1</option><option value="2">District 2</option><option value="3">District 3</option><option value="4">District 4</option><option value="5">District 5</option><option value="6">District 6</option><option value="7">District 7</option>    </select></label></div>
+    <div class="field"><label>Purok<select name="purok_id" data-location-purok required><option value="">Select purok</option>
+      <option value="1" data-chairman="" data-district="0">Purok 1</option><option value="2" data-chairman="" data-district="0">Purok 2</option><option value="3" data-chairman="" data-district="0">Purok 3</option><option value="4" data-chairman="" data-district="0">Purok 4</option><option value="5" data-chairman="" data-district="0">Purok 5</option><option value="6" data-chairman="" data-district="0">Purok 6</option><option value="7" data-chairman="" data-district="0">Purok 7</option><option value="8" data-chairman="" data-district="0">Purok 8</option><option value="9" data-chairman="" data-district="0">Purok 9</option><option value="10" data-chairman="" data-district="0">Purok 10</option><option value="11" data-chairman="" data-district="0">Purok 11</option><option value="12" data-chairman="" data-district="0">Purok 12</option><option value="13" data-chairman="" data-district="0">Purok 13</option><option value="14" data-chairman="" data-district="0">Purok 14</option><option value="15" data-chairman="" data-district="0">Purok 15</option><option value="16" data-chairman="" data-district="0">Purok 16</option><option value="17" data-chairman="" data-district="0">Purok 17</option><option value="18" data-chairman="" data-district="0">Purok 18</option><option value="19" data-chairman="" data-district="0">Purok 19</option><option value="20" data-chairman="" data-district="0">Purok 20</option><option value="21" data-chairman="" data-district="0">Purok 21</option><option value="22" data-chairman="" data-district="0">Purok 22</option><option value="23" data-chairman="" data-district="0">Purok 23</option><option value="24" data-chairman="" data-district="0">Purok 24</option><option value="25" data-chairman="" data-district="0">Purok 25</option><option value="26" data-chairman="" data-district="0">Purok 26</option><option value="27" data-chairman="" data-district="0">Purok 27</option><option value="28" data-chairman="" data-district="0">Purok 28</option><option value="29" data-chairman="" data-district="0">Purok 29</option><option value="30" data-chairman="" data-district="0">Purok 30</option><option value="31" data-chairman="" data-district="0">Purok 31</option><option value="32" data-chairman="" data-district="0">Purok 32</option><option value="33" data-chairman="" data-district="0">Purok 33</option>    </select></label></div>
+    <div class="field-span-2 field-hint" data-location-chairman aria-live="polite">Purok chairman: Select a purok</div>
+  </div>
+          <button type="submit" class="btn btn-primary">Save resident location</button>
+      </form>
+    </details>
+            <details style="margin-top:1rem"><summary>Manage districts and puroks</summary>
+      <form method="post" action="#" class="form-grid" data-purok-manager style="margin-top:1rem">
+        <input type="hidden" name="action" value="save_location_manager"><input type="hidden" name="csrf" value="">
+          <div class="field"><label>District<select data-manager-district required><option value="">Select district</option><option value="unassigned">Unassigned puroks</option>
+            <option value="1">District 1</option><option value="2">District 2</option><option value="3">District 3</option><option value="4">District 4</option><option value="5">District 5</option><option value="6">District 6</option><option value="7">District 7</option>          </select></label></div>
+          <div class="field" data-manager-name="1" hidden><label>District name<input name="district_names[1]" value="District 1" maxlength="80" required></label></div><div class="field" data-manager-name="2" hidden><label>District name<input name="district_names[2]" value="District 2" maxlength="80" required></label></div><div class="field" data-manager-name="3" hidden><label>District name<input name="district_names[3]" value="District 3" maxlength="80" required></label></div><div class="field" data-manager-name="4" hidden><label>District name<input name="district_names[4]" value="District 4" maxlength="80" required></label></div><div class="field" data-manager-name="5" hidden><label>District name<input name="district_names[5]" value="District 5" maxlength="80" required></label></div><div class="field" data-manager-name="6" hidden><label>District name<input name="district_names[6]" value="District 6" maxlength="80" required></label></div><div class="field" data-manager-name="7" hidden><label>District name<input name="district_names[7]" value="District 7" maxlength="80" required></label></div>        <div class="actions"><button type="button" class="btn btn-outline" data-add-purok disabled>Add Purok</button></div>
+        <div data-manager-puroks>
+                <details style="margin-top:1rem" data-manager-purok hidden><summary>Purok 1 (Unassigned)</summary>
+        <div class="form-grid-2">
+          <div class="field"><label>Purok 1<input name="purok_names[1]" value="Purok 1" maxlength="80" required></label></div>
+          <div class="field"><label>District<select data-purok-district name="purok_districts[1]"><option value="">Not yet assigned</option>
+            <option value="1">District 1</option><option value="2">District 2</option><option value="3">District 3</option><option value="4">District 4</option><option value="5">District 5</option><option value="6">District 6</option><option value="7">District 7</option>          </select></label></div>
+          <div class="field field-span-2"><label>Purok chairman<input name="purok_chairmen[1]" maxlength="150" value="" placeholder="Not yet assigned"></label></div>
+        </div>
+        </details>
+                <details style="margin-top:1rem" data-manager-purok hidden><summary>Purok 2 (Unassigned)</summary>
+        <div class="form-grid-2">
+          <div class="field"><label>Purok 2<input name="purok_names[2]" value="Purok 2" maxlength="80" required></label></div>
+          <div class="field"><label>District<select data-purok-district name="purok_districts[2]"><option value="">Not yet assigned</option>
+            <option value="1">District 1</option><option value="2">District 2</option><option value="3">District 3</option><option value="4">District 4</option><option value="5">District 5</option><option value="6">District 6</option><option value="7">District 7</option>          </select></label></div>
+          <div class="field field-span-2"><label>Purok chairman<input name="purok_chairmen[2]" maxlength="150" value="" placeholder="Not yet assigned"></label></div>
+        </div>
+        </details>
+                <details style="margin-top:1rem" data-manager-purok hidden><summary>Purok 3 (Unassigned)</summary>
+        <div class="form-grid-2">
+          <div class="field"><label>Purok 3<input name="purok_names[3]" value="Purok 3" maxlength="80" required></label></div>
+          <div class="field"><label>District<select data-purok-district name="purok_districts[3]"><option value="">Not yet assigned</option>
+            <option value="1">District 1</option><option value="2">District 2</option><option value="3">District 3</option><option value="4">District 4</option><option value="5">District 5</option><option value="6">District 6</option><option value="7">District 7</option>          </select></label></div>
+          <div class="field field-span-2"><label>Purok chairman<input name="purok_chairmen[3]" maxlength="150" value="" placeholder="Not yet assigned"></label></div>
+        </div>
+        </details>
+                <details style="margin-top:1rem" data-manager-purok hidden><summary>Purok 4 (Unassigned)</summary>
+        <div class="form-grid-2">
+          <div class="field"><label>Purok 4<input name="purok_names[4]" value="Purok 4" maxlength="80" required></label></div>
+          <div class="field"><label>District<select data-purok-district name="purok_districts[4]"><option value="">Not yet assigned</option>
+            <option value="1">District 1</option><option value="2">District 2</option><option value="3">District 3</option><option value="4">District 4</option><option value="5">District 5</option><option value="6">District 6</option><option value="7">District 7</option>          </select></label></div>
+          <div class="field field-span-2"><label>Purok chairman<input name="purok_chairmen[4]" maxlength="150" value="" placeholder="Not yet assigned"></label></div>
+        </div>
+        </details>
+                <details style="margin-top:1rem" data-manager-purok hidden><summary>Purok 5 (Unassigned)</summary>
+        <div class="form-grid-2">
+          <div class="field"><label>Purok 5<input name="purok_names[5]" value="Purok 5" maxlength="80" required></label></div>
+          <div class="field"><label>District<select data-purok-district name="purok_districts[5]"><option value="">Not yet assigned</option>
+            <option value="1">District 1</option><option value="2">District 2</option><option value="3">District 3</option><option value="4">District 4</option><option value="5">District 5</option><option value="6">District 6</option><option value="7">District 7</option>          </select></label></div>
+          <div class="field field-span-2"><label>Purok chairman<input name="purok_chairmen[5]" maxlength="150" value="" placeholder="Not yet assigned"></label></div>
+        </div>
+        </details>
+                <details style="margin-top:1rem" data-manager-purok hidden><summary>Purok 6 (Unassigned)</summary>
+        <div class="form-grid-2">
+          <div class="field"><label>Purok 6<input name="purok_names[6]" value="Purok 6" maxlength="80" required></label></div>
+          <div class="field"><label>District<select data-purok-district name="purok_districts[6]"><option value="">Not yet assigned</option>
+            <option value="1">District 1</option><option value="2">District 2</option><option value="3">District 3</option><option value="4">District 4</option><option value="5">District 5</option><option value="6">District 6</option><option value="7">District 7</option>          </select></label></div>
+          <div class="field field-span-2"><label>Purok chairman<input name="purok_chairmen[6]" maxlength="150" value="" placeholder="Not yet assigned"></label></div>
+        </div>
+        </details>
+                <details style="margin-top:1rem" data-manager-purok hidden><summary>Purok 7 (Unassigned)</summary>
+        <div class="form-grid-2">
+          <div class="field"><label>Purok 7<input name="purok_names[7]" value="Purok 7" maxlength="80" required></label></div>
+          <div class="field"><label>District<select data-purok-district name="purok_districts[7]"><option value="">Not yet assigned</option>
+            <option value="1">District 1</option><option value="2">District 2</option><option value="3">District 3</option><option value="4">District 4</option><option value="5">District 5</option><option value="6">District 6</option><option value="7">District 7</option>          </select></label></div>
+          <div class="field field-span-2"><label>Purok chairman<input name="purok_chairmen[7]" maxlength="150" value="" placeholder="Not yet assigned"></label></div>
+        </div>
+        </details>
+                <details style="margin-top:1rem" data-manager-purok hidden><summary>Purok 8 (Unassigned)</summary>
+        <div class="form-grid-2">
+          <div class="field"><label>Purok 8<input name="purok_names[8]" value="Purok 8" maxlength="80" required></label></div>
+          <div class="field"><label>District<select data-purok-district name="purok_districts[8]"><option value="">Not yet assigned</option>
+            <option value="1">District 1</option><option value="2">District 2</option><option value="3">District 3</option><option value="4">District 4</option><option value="5">District 5</option><option value="6">District 6</option><option value="7">District 7</option>          </select></label></div>
+          <div class="field field-span-2"><label>Purok chairman<input name="purok_chairmen[8]" maxlength="150" value="" placeholder="Not yet assigned"></label></div>
+        </div>
+        </details>
+                <details style="margin-top:1rem" data-manager-purok hidden><summary>Purok 9 (Unassigned)</summary>
+        <div class="form-grid-2">
+          <div class="field"><label>Purok 9<input name="purok_names[9]" value="Purok 9" maxlength="80" required></label></div>
+          <div class="field"><label>District<select data-purok-district name="purok_districts[9]"><option value="">Not yet assigned</option>
+            <option value="1">District 1</option><option value="2">District 2</option><option value="3">District 3</option><option value="4">District 4</option><option value="5">District 5</option><option value="6">District 6</option><option value="7">District 7</option>          </select></label></div>
+          <div class="field field-span-2"><label>Purok chairman<input name="purok_chairmen[9]" maxlength="150" value="" placeholder="Not yet assigned"></label></div>
+        </div>
+        </details>
+                <details style="margin-top:1rem" data-manager-purok hidden><summary>Purok 10 (Unassigned)</summary>
+        <div class="form-grid-2">
+          <div class="field"><label>Purok 10<input name="purok_names[10]" value="Purok 10" maxlength="80" required></label></div>
+          <div class="field"><label>District<select data-purok-district name="purok_districts[10]"><option value="">Not yet assigned</option>
+            <option value="1">District 1</option><option value="2">District 2</option><option value="3">District 3</option><option value="4">District 4</option><option value="5">District 5</option><option value="6">District 6</option><option value="7">District 7</option>          </select></label></div>
+          <div class="field field-span-2"><label>Purok chairman<input name="purok_chairmen[10]" maxlength="150" value="" placeholder="Not yet assigned"></label></div>
+        </div>
+        </details>
+                <details style="margin-top:1rem" data-manager-purok hidden><summary>Purok 11 (Unassigned)</summary>
+        <div class="form-grid-2">
+          <div class="field"><label>Purok 11<input name="purok_names[11]" value="Purok 11" maxlength="80" required></label></div>
+          <div class="field"><label>District<select data-purok-district name="purok_districts[11]"><option value="">Not yet assigned</option>
+            <option value="1">District 1</option><option value="2">District 2</option><option value="3">District 3</option><option value="4">District 4</option><option value="5">District 5</option><option value="6">District 6</option><option value="7">District 7</option>          </select></label></div>
+          <div class="field field-span-2"><label>Purok chairman<input name="purok_chairmen[11]" maxlength="150" value="" placeholder="Not yet assigned"></label></div>
+        </div>
+        </details>
+                <details style="margin-top:1rem" data-manager-purok hidden><summary>Purok 12 (Unassigned)</summary>
+        <div class="form-grid-2">
+          <div class="field"><label>Purok 12<input name="purok_names[12]" value="Purok 12" maxlength="80" required></label></div>
+          <div class="field"><label>District<select data-purok-district name="purok_districts[12]"><option value="">Not yet assigned</option>
+            <option value="1">District 1</option><option value="2">District 2</option><option value="3">District 3</option><option value="4">District 4</option><option value="5">District 5</option><option value="6">District 6</option><option value="7">District 7</option>          </select></label></div>
+          <div class="field field-span-2"><label>Purok chairman<input name="purok_chairmen[12]" maxlength="150" value="" placeholder="Not yet assigned"></label></div>
+        </div>
+        </details>
+                <details style="margin-top:1rem" data-manager-purok hidden><summary>Purok 13 (Unassigned)</summary>
+        <div class="form-grid-2">
+          <div class="field"><label>Purok 13<input name="purok_names[13]" value="Purok 13" maxlength="80" required></label></div>
+          <div class="field"><label>District<select data-purok-district name="purok_districts[13]"><option value="">Not yet assigned</option>
+            <option value="1">District 1</option><option value="2">District 2</option><option value="3">District 3</option><option value="4">District 4</option><option value="5">District 5</option><option value="6">District 6</option><option value="7">District 7</option>          </select></label></div>
+          <div class="field field-span-2"><label>Purok chairman<input name="purok_chairmen[13]" maxlength="150" value="" placeholder="Not yet assigned"></label></div>
+        </div>
+        </details>
+                <details style="margin-top:1rem" data-manager-purok hidden><summary>Purok 14 (Unassigned)</summary>
+        <div class="form-grid-2">
+          <div class="field"><label>Purok 14<input name="purok_names[14]" value="Purok 14" maxlength="80" required></label></div>
+          <div class="field"><label>District<select data-purok-district name="purok_districts[14]"><option value="">Not yet assigned</option>
+            <option value="1">District 1</option><option value="2">District 2</option><option value="3">District 3</option><option value="4">District 4</option><option value="5">District 5</option><option value="6">District 6</option><option value="7">District 7</option>          </select></label></div>
+          <div class="field field-span-2"><label>Purok chairman<input name="purok_chairmen[14]" maxlength="150" value="" placeholder="Not yet assigned"></label></div>
+        </div>
+        </details>
+                <details style="margin-top:1rem" data-manager-purok hidden><summary>Purok 15 (Unassigned)</summary>
+        <div class="form-grid-2">
+          <div class="field"><label>Purok 15<input name="purok_names[15]" value="Purok 15" maxlength="80" required></label></div>
+          <div class="field"><label>District<select data-purok-district name="purok_districts[15]"><option value="">Not yet assigned</option>
+            <option value="1">District 1</option><option value="2">District 2</option><option value="3">District 3</option><option value="4">District 4</option><option value="5">District 5</option><option value="6">District 6</option><option value="7">District 7</option>          </select></label></div>
+          <div class="field field-span-2"><label>Purok chairman<input name="purok_chairmen[15]" maxlength="150" value="" placeholder="Not yet assigned"></label></div>
+        </div>
+        </details>
+                <details style="margin-top:1rem" data-manager-purok hidden><summary>Purok 16 (Unassigned)</summary>
+        <div class="form-grid-2">
+          <div class="field"><label>Purok 16<input name="purok_names[16]" value="Purok 16" maxlength="80" required></label></div>
+          <div class="field"><label>District<select data-purok-district name="purok_districts[16]"><option value="">Not yet assigned</option>
+            <option value="1">District 1</option><option value="2">District 2</option><option value="3">District 3</option><option value="4">District 4</option><option value="5">District 5</option><option value="6">District 6</option><option value="7">District 7</option>          </select></label></div>
+          <div class="field field-span-2"><label>Purok chairman<input name="purok_chairmen[16]" maxlength="150" value="" placeholder="Not yet assigned"></label></div>
+        </div>
+        </details>
+                <details style="margin-top:1rem" data-manager-purok hidden><summary>Purok 17 (Unassigned)</summary>
+        <div class="form-grid-2">
+          <div class="field"><label>Purok 17<input name="purok_names[17]" value="Purok 17" maxlength="80" required></label></div>
+          <div class="field"><label>District<select data-purok-district name="purok_districts[17]"><option value="">Not yet assigned</option>
+            <option value="1">District 1</option><option value="2">District 2</option><option value="3">District 3</option><option value="4">District 4</option><option value="5">District 5</option><option value="6">District 6</option><option value="7">District 7</option>          </select></label></div>
+          <div class="field field-span-2"><label>Purok chairman<input name="purok_chairmen[17]" maxlength="150" value="" placeholder="Not yet assigned"></label></div>
+        </div>
+        </details>
+                <details style="margin-top:1rem" data-manager-purok hidden><summary>Purok 18 (Unassigned)</summary>
+        <div class="form-grid-2">
+          <div class="field"><label>Purok 18<input name="purok_names[18]" value="Purok 18" maxlength="80" required></label></div>
+          <div class="field"><label>District<select data-purok-district name="purok_districts[18]"><option value="">Not yet assigned</option>
+            <option value="1">District 1</option><option value="2">District 2</option><option value="3">District 3</option><option value="4">District 4</option><option value="5">District 5</option><option value="6">District 6</option><option value="7">District 7</option>          </select></label></div>
+          <div class="field field-span-2"><label>Purok chairman<input name="purok_chairmen[18]" maxlength="150" value="" placeholder="Not yet assigned"></label></div>
+        </div>
+        </details>
+                <details style="margin-top:1rem" data-manager-purok hidden><summary>Purok 19 (Unassigned)</summary>
+        <div class="form-grid-2">
+          <div class="field"><label>Purok 19<input name="purok_names[19]" value="Purok 19" maxlength="80" required></label></div>
+          <div class="field"><label>District<select data-purok-district name="purok_districts[19]"><option value="">Not yet assigned</option>
+            <option value="1">District 1</option><option value="2">District 2</option><option value="3">District 3</option><option value="4">District 4</option><option value="5">District 5</option><option value="6">District 6</option><option value="7">District 7</option>          </select></label></div>
+          <div class="field field-span-2"><label>Purok chairman<input name="purok_chairmen[19]" maxlength="150" value="" placeholder="Not yet assigned"></label></div>
+        </div>
+        </details>
+                <details style="margin-top:1rem" data-manager-purok hidden><summary>Purok 20 (Unassigned)</summary>
+        <div class="form-grid-2">
+          <div class="field"><label>Purok 20<input name="purok_names[20]" value="Purok 20" maxlength="80" required></label></div>
+          <div class="field"><label>District<select data-purok-district name="purok_districts[20]"><option value="">Not yet assigned</option>
+            <option value="1">District 1</option><option value="2">District 2</option><option value="3">District 3</option><option value="4">District 4</option><option value="5">District 5</option><option value="6">District 6</option><option value="7">District 7</option>          </select></label></div>
+          <div class="field field-span-2"><label>Purok chairman<input name="purok_chairmen[20]" maxlength="150" value="" placeholder="Not yet assigned"></label></div>
+        </div>
+        </details>
+                <details style="margin-top:1rem" data-manager-purok hidden><summary>Purok 21 (Unassigned)</summary>
+        <div class="form-grid-2">
+          <div class="field"><label>Purok 21<input name="purok_names[21]" value="Purok 21" maxlength="80" required></label></div>
+          <div class="field"><label>District<select data-purok-district name="purok_districts[21]"><option value="">Not yet assigned</option>
+            <option value="1">District 1</option><option value="2">District 2</option><option value="3">District 3</option><option value="4">District 4</option><option value="5">District 5</option><option value="6">District 6</option><option value="7">District 7</option>          </select></label></div>
+          <div class="field field-span-2"><label>Purok chairman<input name="purok_chairmen[21]" maxlength="150" value="" placeholder="Not yet assigned"></label></div>
+        </div>
+        </details>
+                <details style="margin-top:1rem" data-manager-purok hidden><summary>Purok 22 (Unassigned)</summary>
+        <div class="form-grid-2">
+          <div class="field"><label>Purok 22<input name="purok_names[22]" value="Purok 22" maxlength="80" required></label></div>
+          <div class="field"><label>District<select data-purok-district name="purok_districts[22]"><option value="">Not yet assigned</option>
+            <option value="1">District 1</option><option value="2">District 2</option><option value="3">District 3</option><option value="4">District 4</option><option value="5">District 5</option><option value="6">District 6</option><option value="7">District 7</option>          </select></label></div>
+          <div class="field field-span-2"><label>Purok chairman<input name="purok_chairmen[22]" maxlength="150" value="" placeholder="Not yet assigned"></label></div>
+        </div>
+        </details>
+                <details style="margin-top:1rem" data-manager-purok hidden><summary>Purok 23 (Unassigned)</summary>
+        <div class="form-grid-2">
+          <div class="field"><label>Purok 23<input name="purok_names[23]" value="Purok 23" maxlength="80" required></label></div>
+          <div class="field"><label>District<select data-purok-district name="purok_districts[23]"><option value="">Not yet assigned</option>
+            <option value="1">District 1</option><option value="2">District 2</option><option value="3">District 3</option><option value="4">District 4</option><option value="5">District 5</option><option value="6">District 6</option><option value="7">District 7</option>          </select></label></div>
+          <div class="field field-span-2"><label>Purok chairman<input name="purok_chairmen[23]" maxlength="150" value="" placeholder="Not yet assigned"></label></div>
+        </div>
+        </details>
+                <details style="margin-top:1rem" data-manager-purok hidden><summary>Purok 24 (Unassigned)</summary>
+        <div class="form-grid-2">
+          <div class="field"><label>Purok 24<input name="purok_names[24]" value="Purok 24" maxlength="80" required></label></div>
+          <div class="field"><label>District<select data-purok-district name="purok_districts[24]"><option value="">Not yet assigned</option>
+            <option value="1">District 1</option><option value="2">District 2</option><option value="3">District 3</option><option value="4">District 4</option><option value="5">District 5</option><option value="6">District 6</option><option value="7">District 7</option>          </select></label></div>
+          <div class="field field-span-2"><label>Purok chairman<input name="purok_chairmen[24]" maxlength="150" value="" placeholder="Not yet assigned"></label></div>
+        </div>
+        </details>
+                <details style="margin-top:1rem" data-manager-purok hidden><summary>Purok 25 (Unassigned)</summary>
+        <div class="form-grid-2">
+          <div class="field"><label>Purok 25<input name="purok_names[25]" value="Purok 25" maxlength="80" required></label></div>
+          <div class="field"><label>District<select data-purok-district name="purok_districts[25]"><option value="">Not yet assigned</option>
+            <option value="1">District 1</option><option value="2">District 2</option><option value="3">District 3</option><option value="4">District 4</option><option value="5">District 5</option><option value="6">District 6</option><option value="7">District 7</option>          </select></label></div>
+          <div class="field field-span-2"><label>Purok chairman<input name="purok_chairmen[25]" maxlength="150" value="" placeholder="Not yet assigned"></label></div>
+        </div>
+        </details>
+                <details style="margin-top:1rem" data-manager-purok hidden><summary>Purok 26 (Unassigned)</summary>
+        <div class="form-grid-2">
+          <div class="field"><label>Purok 26<input name="purok_names[26]" value="Purok 26" maxlength="80" required></label></div>
+          <div class="field"><label>District<select data-purok-district name="purok_districts[26]"><option value="">Not yet assigned</option>
+            <option value="1">District 1</option><option value="2">District 2</option><option value="3">District 3</option><option value="4">District 4</option><option value="5">District 5</option><option value="6">District 6</option><option value="7">District 7</option>          </select></label></div>
+          <div class="field field-span-2"><label>Purok chairman<input name="purok_chairmen[26]" maxlength="150" value="" placeholder="Not yet assigned"></label></div>
+        </div>
+        </details>
+                <details style="margin-top:1rem" data-manager-purok hidden><summary>Purok 27 (Unassigned)</summary>
+        <div class="form-grid-2">
+          <div class="field"><label>Purok 27<input name="purok_names[27]" value="Purok 27" maxlength="80" required></label></div>
+          <div class="field"><label>District<select data-purok-district name="purok_districts[27]"><option value="">Not yet assigned</option>
+            <option value="1">District 1</option><option value="2">District 2</option><option value="3">District 3</option><option value="4">District 4</option><option value="5">District 5</option><option value="6">District 6</option><option value="7">District 7</option>          </select></label></div>
+          <div class="field field-span-2"><label>Purok chairman<input name="purok_chairmen[27]" maxlength="150" value="" placeholder="Not yet assigned"></label></div>
+        </div>
+        </details>
+                <details style="margin-top:1rem" data-manager-purok hidden><summary>Purok 28 (Unassigned)</summary>
+        <div class="form-grid-2">
+          <div class="field"><label>Purok 28<input name="purok_names[28]" value="Purok 28" maxlength="80" required></label></div>
+          <div class="field"><label>District<select data-purok-district name="purok_districts[28]"><option value="">Not yet assigned</option>
+            <option value="1">District 1</option><option value="2">District 2</option><option value="3">District 3</option><option value="4">District 4</option><option value="5">District 5</option><option value="6">District 6</option><option value="7">District 7</option>          </select></label></div>
+          <div class="field field-span-2"><label>Purok chairman<input name="purok_chairmen[28]" maxlength="150" value="" placeholder="Not yet assigned"></label></div>
+        </div>
+        </details>
+                <details style="margin-top:1rem" data-manager-purok hidden><summary>Purok 29 (Unassigned)</summary>
+        <div class="form-grid-2">
+          <div class="field"><label>Purok 29<input name="purok_names[29]" value="Purok 29" maxlength="80" required></label></div>
+          <div class="field"><label>District<select data-purok-district name="purok_districts[29]"><option value="">Not yet assigned</option>
+            <option value="1">District 1</option><option value="2">District 2</option><option value="3">District 3</option><option value="4">District 4</option><option value="5">District 5</option><option value="6">District 6</option><option value="7">District 7</option>          </select></label></div>
+          <div class="field field-span-2"><label>Purok chairman<input name="purok_chairmen[29]" maxlength="150" value="" placeholder="Not yet assigned"></label></div>
+        </div>
+        </details>
+                <details style="margin-top:1rem" data-manager-purok hidden><summary>Purok 30 (Unassigned)</summary>
+        <div class="form-grid-2">
+          <div class="field"><label>Purok 30<input name="purok_names[30]" value="Purok 30" maxlength="80" required></label></div>
+          <div class="field"><label>District<select data-purok-district name="purok_districts[30]"><option value="">Not yet assigned</option>
+            <option value="1">District 1</option><option value="2">District 2</option><option value="3">District 3</option><option value="4">District 4</option><option value="5">District 5</option><option value="6">District 6</option><option value="7">District 7</option>          </select></label></div>
+          <div class="field field-span-2"><label>Purok chairman<input name="purok_chairmen[30]" maxlength="150" value="" placeholder="Not yet assigned"></label></div>
+        </div>
+        </details>
+                <details style="margin-top:1rem" data-manager-purok hidden><summary>Purok 31 (Unassigned)</summary>
+        <div class="form-grid-2">
+          <div class="field"><label>Purok 31<input name="purok_names[31]" value="Purok 31" maxlength="80" required></label></div>
+          <div class="field"><label>District<select data-purok-district name="purok_districts[31]"><option value="">Not yet assigned</option>
+            <option value="1">District 1</option><option value="2">District 2</option><option value="3">District 3</option><option value="4">District 4</option><option value="5">District 5</option><option value="6">District 6</option><option value="7">District 7</option>          </select></label></div>
+          <div class="field field-span-2"><label>Purok chairman<input name="purok_chairmen[31]" maxlength="150" value="" placeholder="Not yet assigned"></label></div>
+        </div>
+        </details>
+                <details style="margin-top:1rem" data-manager-purok hidden><summary>Purok 32 (Unassigned)</summary>
+        <div class="form-grid-2">
+          <div class="field"><label>Purok 32<input name="purok_names[32]" value="Purok 32" maxlength="80" required></label></div>
+          <div class="field"><label>District<select data-purok-district name="purok_districts[32]"><option value="">Not yet assigned</option>
+            <option value="1">District 1</option><option value="2">District 2</option><option value="3">District 3</option><option value="4">District 4</option><option value="5">District 5</option><option value="6">District 6</option><option value="7">District 7</option>          </select></label></div>
+          <div class="field field-span-2"><label>Purok chairman<input name="purok_chairmen[32]" maxlength="150" value="" placeholder="Not yet assigned"></label></div>
+        </div>
+        </details>
+                <details style="margin-top:1rem" data-manager-purok hidden><summary>Purok 33 (Unassigned)</summary>
+        <div class="form-grid-2">
+          <div class="field"><label>Purok 33<input name="purok_names[33]" value="Purok 33" maxlength="80" required></label></div>
+          <div class="field"><label>District<select data-purok-district name="purok_districts[33]"><option value="">Not yet assigned</option>
+            <option value="1">District 1</option><option value="2">District 2</option><option value="3">District 3</option><option value="4">District 4</option><option value="5">District 5</option><option value="6">District 6</option><option value="7">District 7</option>          </select></label></div>
+          <div class="field field-span-2"><label>Purok chairman<input name="purok_chairmen[33]" maxlength="150" value="" placeholder="Not yet assigned"></label></div>
+        </div>
+        </details>
+                </div>
+        <template data-purok-template><details data-manager-purok style="margin-top:1rem" open><summary>New purok</summary><div class="form-grid-2">
+          <input type="hidden" data-purok-district data-new-field="district_id">
+          <div class="field"><label>Purok name<input data-new-field="name" maxlength="80" required></label></div>
+          <div class="field"><label>Purok chairman<input data-new-field="chairman" maxlength="150" placeholder="Not yet assigned"></label></div>
+        </div><button type="button" class="btn btn-outline" data-discard-purok>Cancel addition</button></details></template>
+        <div class="actions"><button type="submit" class="btn btn-primary">Save changes</button></div>
+      </form>
+    </details>
+      </div>
+</section>
+<script src="../../js/resident-locations.js?v=1790359953" defer></script>
+<script src="../../js/location-disclosures.js?v=1790362049" defer></script>
+<script src="../../js/purok-manager.js?v=1790361598" defer></script>  <div class="form-grid-2" data-location-selects>
+    <div class="field"><label>District<select name="district_id" data-location-district required><option value="">Select district</option>
+      <option value="1">District 1</option><option value="2">District 2</option><option value="3">District 3</option><option value="4">District 4</option><option value="5">District 5</option><option value="6">District 6</option><option value="7">District 7</option>    </select></label></div>
+    <div class="field"><label>Purok<select name="purok_id" data-location-purok required><option value="">Select purok</option>
+      <option value="1" data-chairman="" data-district="0">Purok 1</option><option value="2" data-chairman="" data-district="0">Purok 2</option><option value="3" data-chairman="" data-district="0">Purok 3</option><option value="4" data-chairman="" data-district="0">Purok 4</option><option value="5" data-chairman="" data-district="0">Purok 5</option><option value="6" data-chairman="" data-district="0">Purok 6</option><option value="7" data-chairman="" data-district="0">Purok 7</option><option value="8" data-chairman="" data-district="0">Purok 8</option><option value="9" data-chairman="" data-district="0">Purok 9</option><option value="10" data-chairman="" data-district="0">Purok 10</option><option value="11" data-chairman="" data-district="0">Purok 11</option><option value="12" data-chairman="" data-district="0">Purok 12</option><option value="13" data-chairman="" data-district="0">Purok 13</option><option value="14" data-chairman="" data-district="0">Purok 14</option><option value="15" data-chairman="" data-district="0">Purok 15</option><option value="16" data-chairman="" data-district="0">Purok 16</option><option value="17" data-chairman="" data-district="0">Purok 17</option><option value="18" data-chairman="" data-district="0">Purok 18</option><option value="19" data-chairman="" data-district="0">Purok 19</option><option value="20" data-chairman="" data-district="0">Purok 20</option><option value="21" data-chairman="" data-district="0">Purok 21</option><option value="22" data-chairman="" data-district="0">Purok 22</option><option value="23" data-chairman="" data-district="0">Purok 23</option><option value="24" data-chairman="" data-district="0">Purok 24</option><option value="25" data-chairman="" data-district="0">Purok 25</option><option value="26" data-chairman="" data-district="0">Purok 26</option><option value="27" data-chairman="" data-district="0">Purok 27</option><option value="28" data-chairman="" data-district="0">Purok 28</option><option value="29" data-chairman="" data-district="0">Purok 29</option><option value="30" data-chairman="" data-district="0">Purok 30</option><option value="31" data-chairman="" data-district="0">Purok 31</option><option value="32" data-chairman="" data-district="0">Purok 32</option><option value="33" data-chairman="" data-district="0">Purok 33</option>    </select></label></div>
+    <div class="field-span-2 field-hint" data-location-chairman aria-live="polite">Purok chairman: Select a purok</div>
+  </div>
+  </body></html>
+</main><script src="../../js/mobile-select.js"></script></body></html>
