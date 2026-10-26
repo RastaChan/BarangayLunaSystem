@@ -23,7 +23,8 @@ try {
   service_check(count(barangay_issue_resident_search('alex')['residents'])===2,'Partial resident names return matching people without auto-selecting');
   service_check(count(barangay_issue_resident_search('res-te')['residents'])===1,'Resident IDs can be searched without loading a full directory');
   service_check(barangay_issue_resident_search('%%')['residents']===[],'Search wildcard characters are treated as literal text');
-  service_reject(fn()=>barangay_issue_resident_search('a'),'Very short searches are rejected');
+  service_check(count(barangay_issue_resident_search('A')['residents'])===2,'A single letter returns partial matches');
+  service_reject(fn()=>barangay_issue_resident_search(''),'Empty searches are rejected');
   for ($index=1;$index<=25;$index++) $user->execute(['SEARCH-'.$index,'Many Matches '.$index,'search-'.$index,'2005-01-01','LUNA|SEARCH-'.$index.'|current']);
   $many=barangay_issue_resident_search('Many');
   service_check(count($many['residents'])===20 && $many['more'] && !isset($many['residents'][0]['address']),'Large searches are capped at 20 and return only name and ID');

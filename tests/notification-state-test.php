@@ -23,7 +23,12 @@ try {
   $state = barangay_notification_state(-987654);
   state_check(in_array($id, $state['read'], true) && in_array($id, $state['dismissed'], true), 'read and removal state persist independently');
   barangay_save_notification_state(-987654, 'seen', ['admin-doc-test']);
-  state_check(!in_array('admin-doc-test', barangay_notification_state(-987654)['seen'], true), 'only resident notification keys accepted');
+  state_check(in_array('admin-doc-test', barangay_notification_state(-987654)['seen'], true), 'Admin notification state is supported');
+  barangay_save_notification_state(-987654, 'unread', [$id]);
+  $state = barangay_notification_state(-987654);
+  state_check(in_array($id, $state['unread'], true) && !in_array($id, $state['read'], true), 'Mark unread replaces read state inside the caller transaction');
+  barangay_save_notification_state(-987654, 'seen', ['unknown-test']);
+  state_check(!in_array('unknown-test', barangay_notification_state(-987654)['seen'], true), 'Unknown notification keys are ignored');
 } finally {
   $db->rollBack();
 }

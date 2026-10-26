@@ -6,7 +6,7 @@ let handler, opened=0, submissions=0;
 const submitButton={disabled:false};
 const fields={copies:{value:'20'},purpose:{value:'School'},document_type:{value:'Barangay Certification'},reviewed_copies:{value:''},review_confirmed:{value:'0'},'#requestTotal':{value:'PHP 3000.00'}};
 Object.values(fields).forEach(field=>field.closest=()=>null);
-const form={dataset:{residentReview:'document',reviewResidentName:'Test Resident'},matches:()=>true,reportValidity:()=>true,querySelector(s){return s==='#requestTotal'?fields[s]:fields[s.match(/name="([^"]+)"/)?.[1]];},querySelectorAll:()=>[submitButton],requestSubmit(){let prevented=false;handler({target:form,preventDefault(){prevented=true;}});if(!prevented)submissions++;}};
+const form={dataset:{residentReview:'document',reviewResidentName:'Test Resident'},matches:()=>true,reportValidity:()=>true,querySelector(s){return s==='#requestTotal'?fields[s]:fields[s.match(/name="([^"]+)"/)?.[1]];},querySelectorAll:selector=>selector==='[data-custom-key]'?[]:[submitButton],requestSubmit(){let prevented=false;handler({target:form,preventDefault(){prevented=true;}});if(!prevented)submissions++;}};
 const context={document:{getElementById:()=>modal,addEventListener(n,f){handler=f;},createElement(){return {children:[],append(...children){this.children.push(...children);}};}},window:{barangayOpenModal(){opened++;}}};
 vm.runInNewContext(fs.readFileSync('js/resident-submission-confirmation.js','utf8'),context);
 handler({target:form,preventDefault(){}});

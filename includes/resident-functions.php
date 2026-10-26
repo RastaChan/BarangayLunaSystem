@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/document-custom-fields.php';
 require_once __DIR__ . '/database.php';
 require_once __DIR__ . '/resident-submission-helpers.php';
 require_once __DIR__ . '/qr-sms-helpers.php';
@@ -328,7 +329,7 @@ function resident_load_dashboard_data(array $user): array {
     'upcomingEvents' => array_map(
       fn($item) => [
         'title' => $item['title'],
-        'date' => date('Y-m-d H:i', strtotime($item['event_at'])),
+        'date' => date('M j, Y g:i A', strtotime($item['event_at'])),
         'location' => $item['event_location'],
         'photo_path' => $item['photo_path'],
         'description' => $item['body'],

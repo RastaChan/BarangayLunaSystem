@@ -53,7 +53,7 @@
       const visible = new Set(matching.filter(row => mode === 'list' || row.date === selected).map(row => row.element));
       all.forEach(row => { row.element.hidden = !visible.has(row.element); });
       const empty = root.querySelector('[data-husay-no-match]');
-      empty.textContent = mode === 'calendar' ? 'No sessions on this date match your filters.' : 'No Husay sessions match your filters.';
+      empty.textContent = mode === 'calendar' ? 'No sessions on this date match your filters.' : 'No Mediation sessions match your filters.';
       empty.hidden = visible.size > 0;
       const baseEmpty = list.querySelector('.empty-state'); if (baseEmpty) baseEmpty.hidden = true;
       find('date-range').hidden = controls.period.value !== 'custom';

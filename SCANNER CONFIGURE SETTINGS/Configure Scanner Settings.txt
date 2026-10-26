@@ -1,0 +1,5 @@
+Step 1: search this in browser "chrome://flags/#unsafely-treat-insecure-origin-as-secure"
+
+Step 2: search this in the search bar "Insecure origins treated as secure"
+
+Step 3: Put the IPv4 in the box like "http://192.168.1.19" and set it to Enabled. The IPv4 is random so you might want to check the IPv4 in the cmd and type ipconfig

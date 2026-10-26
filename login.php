@@ -1,6 +1,8 @@
 <?php
 require_once __DIR__ . '/includes/auth.php';
 require_once __DIR__ . '/includes/announcement-helpers.php';
+require_once __DIR__ . '/includes/public-office-details.php';
+$publicOfficeDetails = barangay_public_office_details();
 
 $currentUser = barangay_current_user();
 if ($currentUser) {
@@ -103,7 +105,7 @@ $registrationRequirements = [
       <div class="portal-feature-grid" id="portalFeatures" aria-label="Portal features">
         <article class="portal-feature-card">
           <span class="feature-icon">
-            <svg viewBox="0 0 24 24" fill="none"><path d="M4 5h16v14H4V5Zm4 4h8M8 13h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <svg  viewBox="0 0 256 256" fill="currentColor" stroke="none" aria-hidden="true" data-system-icon="layout-dashboard" class="system-icon"><path d="M112,56v48a8,8,0,0,1-8,8H56a8,8,0,0,1-8-8V56a8,8,0,0,1,8-8h48A8,8,0,0,1,112,56Zm88-8H152a8,8,0,0,0-8,8v48a8,8,0,0,0,8,8h48a8,8,0,0,0,8-8V56A8,8,0,0,0,200,48Zm-96,96H56a8,8,0,0,0-8,8v48a8,8,0,0,0,8,8h48a8,8,0,0,0,8-8V152A8,8,0,0,0,104,144Zm96,0H152a8,8,0,0,0-8,8v48a8,8,0,0,0,8,8h48a8,8,0,0,0,8-8V152A8,8,0,0,0,200,144Z" opacity="0.2"/><path d="M200,136H152a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V152A16,16,0,0,0,200,136Zm0,64H152V152h48v48ZM104,40H56A16,16,0,0,0,40,56v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V56A16,16,0,0,0,104,40Zm0,64H56V56h48v48Zm96-64H152a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V56A16,16,0,0,0,200,40Zm0,64H152V56h48v48Zm-96,32H56a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V152A16,16,0,0,0,104,136Zm0,64H56V152h48v48Z"/></svg>
           </span>
           <div>
             <h2>Online Services</h2>
@@ -112,7 +114,7 @@ $registrationRequirements = [
         </article>
         <article class="portal-feature-card">
           <span class="feature-icon">
-            <svg viewBox="0 0 24 24" fill="none"><path d="M8 4h8l2 4v12H6V4h2Zm1 8h6M9 16h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <svg  viewBox="0 0 256 256" fill="currentColor" stroke="none" aria-hidden="true" data-system-icon="file-text" class="system-icon"><path d="M208,88H152V32Z" opacity="0.2"/><path d="M213.66,82.34l-56-56A8,8,0,0,0,152,24H56A16,16,0,0,0,40,40V216a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V88A8,8,0,0,0,213.66,82.34ZM160,51.31,188.69,80H160ZM200,216H56V40h88V88a8,8,0,0,0,8,8h48V216Zm-32-80a8,8,0,0,1-8,8H96a8,8,0,0,1,0-16h64A8,8,0,0,1,168,136Zm0,32a8,8,0,0,1-8,8H96a8,8,0,0,1,0-16h64A8,8,0,0,1,168,168Z"/></svg>
           </span>
           <div>
             <h2>Request Documents</h2>
@@ -121,7 +123,7 @@ $registrationRequirements = [
         </article>
         <article class="portal-feature-card">
           <span class="feature-icon">
-            <svg viewBox="0 0 24 24" fill="none"><path d="M3 3h7v7H3V3Zm11 0h7v7h-7V3ZM3 14h7v7H3v-7Zm14 1h4m-4 4h4m-4-4v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <svg  viewBox="0 0 256 256" fill="currentColor" stroke="none" aria-hidden="true" data-system-icon="qr-code" class="system-icon"><path d="M112,56v48a8,8,0,0,1-8,8H56a8,8,0,0,1-8-8V56a8,8,0,0,1,8-8h48A8,8,0,0,1,112,56Zm-8,88H56a8,8,0,0,0-8,8v48a8,8,0,0,0,8,8h48a8,8,0,0,0,8-8V152A8,8,0,0,0,104,144Zm96-96H152a8,8,0,0,0-8,8v48a8,8,0,0,0,8,8h48a8,8,0,0,0,8-8V56A8,8,0,0,0,200,48Z" opacity="0.2"/><path d="M104,40H56A16,16,0,0,0,40,56v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V56A16,16,0,0,0,104,40Zm0,64H56V56h48v48Zm0,32H56a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V152A16,16,0,0,0,104,136Zm0,64H56V152h48v48ZM200,40H152a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V56A16,16,0,0,0,200,40Zm0,64H152V56h48v48Zm-64,72V144a8,8,0,0,1,16,0v32a8,8,0,0,1-16,0Zm80-16a8,8,0,0,1-8,8H184v40a8,8,0,0,1-8,8H144a8,8,0,0,1,0-16h24V144a8,8,0,0,1,16,0v8h24A8,8,0,0,1,216,160Zm0,32v16a8,8,0,0,1-16,0V192a8,8,0,0,1,16,0Z"/></svg>
           </span>
           <div>
             <h2>QR Verification</h2>
@@ -130,7 +132,7 @@ $registrationRequirements = [
         </article>
         <article class="portal-feature-card">
           <span class="feature-icon">
-            <svg viewBox="0 0 24 24" fill="none"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8ZM9 10h6M9 14h3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <svg  viewBox="0 0 256 256" fill="currentColor" stroke="none" aria-hidden="true" data-system-icon="message-square-text" class="system-icon"><path d="M224,64V192a8,8,0,0,1-8,8H80L45.15,230.11A8,8,0,0,1,32,224V64a8,8,0,0,1,8-8H216A8,8,0,0,1,224,64Z" opacity="0.2"/><path d="M216,48H40A16,16,0,0,0,24,64V224a15.85,15.85,0,0,0,9.24,14.5A16.13,16.13,0,0,0,40,240a15.89,15.89,0,0,0,10.25-3.78l.09-.07L83,208H216a16,16,0,0,0,16-16V64A16,16,0,0,0,216,48ZM40,224h0ZM216,192H80a8,8,0,0,0-5.23,1.95L40,224V64H216ZM88,112a8,8,0,0,1,8-8h64a8,8,0,0,1,0,16H96A8,8,0,0,1,88,112Zm0,32a8,8,0,0,1,8-8h64a8,8,0,1,1,0,16H96A8,8,0,0,1,88,144Z"/></svg>
           </span>
           <div>
             <h2>SMS Alerts</h2>
@@ -177,10 +179,7 @@ $registrationRequirements = [
           <div class="input-group">
             <label for="loginRole">Account type</label>
             <div class="input-wrap input-wrap-select">
-              <svg class="input-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" stroke="currentColor" stroke-width="1.5"/>
-                <path d="M4 21a8 8 0 0 1 16 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-              </svg>
+              <svg data-original-class="input-icon" viewBox="0 0 256 256" fill="currentColor" stroke="none" aria-hidden="true" data-system-icon="users" class="system-icon input-icon"><path d="M136,108A52,52,0,1,1,84,56,52,52,0,0,1,136,108Z" opacity="0.2"/><path d="M117.25,157.92a60,60,0,1,0-66.5,0A95.83,95.83,0,0,0,3.53,195.63a8,8,0,1,0,13.4,8.74,80,80,0,0,1,134.14,0,8,8,0,0,0,13.4-8.74A95.83,95.83,0,0,0,117.25,157.92ZM40,108a44,44,0,1,1,44,44A44.05,44.05,0,0,1,40,108Zm210.14,98.7a8,8,0,0,1-11.07-2.33A79.83,79.83,0,0,0,172,168a8,8,0,0,1,0-16,44,44,0,1,0-16.34-84.87,8,8,0,1,1-5.94-14.85,60,60,0,0,1,55.53,105.64,95.83,95.83,0,0,1,47.22,37.71A8,8,0,0,1,250.14,206.7Z"/></svg>
               <select id="loginRole" name="role" required>
                 <option value="admin" <?= $selectedRole === 'admin' ? 'selected' : '' ?>>Admin</option>
                 <option value="staff" <?= $selectedRole === 'staff' ? 'selected' : '' ?>>Barangay Staff</option>
@@ -192,10 +191,7 @@ $registrationRequirements = [
           <div class="input-group">
             <label for="loginUsername">Username</label>
             <div class="input-wrap">
-              <svg class="input-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M4 6h16v12H4V6Z" stroke="currentColor" stroke-width="1.5"/>
-                <path d="M4 7l8 6 8-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-              </svg>
+              <svg data-original-class="input-icon" viewBox="0 0 256 256" fill="currentColor" stroke="none" aria-hidden="true" data-system-icon="user" class="system-icon input-icon"><path d="M192,96a64,64,0,1,1-64-64A64,64,0,0,1,192,96Z" opacity="0.2"/><path d="M230.92,212c-15.23-26.33-38.7-45.21-66.09-54.16a72,72,0,1,0-73.66,0C63.78,166.78,40.31,185.66,25.08,212a8,8,0,1,0,13.85,8c18.84-32.56,52.14-52,89.07-52s70.23,19.44,89.07,52a8,8,0,1,0,13.85-8ZM72,96a56,56,0,1,1,56,56A56.06,56.06,0,0,1,72,96Z"/></svg>
               <input type="text" id="loginUsername" name="username" value="<?= htmlspecialchars($enteredUsername) ?>" placeholder="username@luna.gov" autocomplete="username" required>
             </div>
           </div>
@@ -203,17 +199,10 @@ $registrationRequirements = [
           <div class="input-group">
             <label for="loginPassword">Password</label>
             <div class="input-wrap">
-              <svg class="input-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <rect x="5" y="11" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/>
-                <path d="M8 11V8a4 4 0 1 1 8 0v3" stroke="currentColor" stroke-width="1.5"/>
-              </svg>
+              <svg data-original-class="input-icon" viewBox="0 0 256 256" fill="currentColor" stroke="none" aria-hidden="true" data-system-icon="lock-keyhole" class="system-icon input-icon"><path d="M208,88H48a8,8,0,0,0-8,8V208a8,8,0,0,0,8,8H208a8,8,0,0,0,8-8V96A8,8,0,0,0,208,88Zm-80,72a20,20,0,1,1,20-20A20,20,0,0,1,128,160Z" opacity="0.2"/><path d="M208,80H176V56a48,48,0,0,0-96,0V80H48A16,16,0,0,0,32,96V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V96A16,16,0,0,0,208,80ZM96,56a32,32,0,0,1,64,0V80H96ZM208,208H48V96H208V208Zm-80-96a28,28,0,0,0-8,54.83V184a8,8,0,0,0,16,0V166.83A28,28,0,0,0,128,112Zm0,40a12,12,0,1,1,12-12A12,12,0,0,1,128,152Z"/></svg>
               <input type="password" id="loginPassword" name="password" placeholder="Enter password" autocomplete="current-password" required>
               <button type="button" class="toggle-pw" id="togglePassword" aria-label="Show password">
-                <svg viewBox="0 0 24 24" fill="none" width="20" height="20" aria-hidden="true">
-                  <path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12Z" stroke="currentColor" stroke-width="1.5"/>
-                  <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/>
-                  <line class="toggle-pw-slash" data-password-eye-slash x1="4" y1="4" x2="20" y2="20" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
-                </svg>
+                <svg width="20" height="20" viewBox="0 0 256 256" fill="currentColor" stroke="none" aria-hidden="true" data-system-icon="eye" class="system-icon"><path d="M128,56C48,56,16,128,16,128s32,72,112,72,112-72,112-72S208,56,128,56Zm0,112a40,40,0,1,1,40-40A40,40,0,0,1,128,168Z" opacity="0.2"/><path d="M247.31,124.76c-.35-.79-8.82-19.58-27.65-38.41C194.57,61.26,162.88,48,128,48S61.43,61.26,36.34,86.35C17.51,105.18,9,124,8.69,124.76a8,8,0,0,0,0,6.5c.35.79,8.82,19.57,27.65,38.4C61.43,194.74,93.12,208,128,208s66.57-13.26,91.66-38.34c18.83-18.83,27.3-37.61,27.65-38.4A8,8,0,0,0,247.31,124.76ZM128,192c-30.78,0-57.67-11.19-79.93-33.25A133.47,133.47,0,0,1,25,128,133.33,133.33,0,0,1,48.07,97.25C70.33,75.19,97.22,64,128,64s57.67,11.19,79.93,33.25A133.46,133.46,0,0,1,231.05,128C223.84,141.46,192.43,192,128,192Zm0-112a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160Z"/><line class="toggle-pw-slash" data-password-eye-slash x1="4" y1="4" x2="20" y2="20" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" transform="scale(10.6666667)"/></svg>
               </button>
             </div>
           </div>
@@ -228,9 +217,7 @@ $registrationRequirements = [
 
           <button type="submit" class="btn btn-primary btn-block">
             <span>Sign in</span>
-            <svg viewBox="0 0 24 24" fill="none" width="18" height="18" aria-hidden="true">
-              <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
+            <svg width="18" height="18" viewBox="0 0 256 256" fill="currentColor" stroke="none" aria-hidden="true" data-system-icon="arrow-right" class="system-icon"><path d="M216,128l-72,72V56Z" opacity="0.2"/><path d="M221.66,122.34l-72-72A8,8,0,0,0,136,56v64H40a8,8,0,0,0,0,16h96v64a8,8,0,0,0,13.66,5.66l72-72A8,8,0,0,0,221.66,122.34ZM152,180.69V75.31L204.69,128Z"/></svg>
           </button>
         </form>
 
@@ -265,11 +252,11 @@ $registrationRequirements = [
       <div class="quick-info-grid">
         <section class="quick-info-card">
           <h2>Office Hours</h2>
-          <p>Monday to Friday<br>8:00 AM - 5:00 PM</p>
+          <p><?= nl2br(htmlspecialchars($publicOfficeDetails['office_hours'] ?? 'Please contact the barangay office for office hours.', ENT_QUOTES)) ?></p>
         </section>
         <section class="quick-info-card">
           <h2>Contact</h2>
-          <p>(000) 000-0000<br>mis@barangayluna.gov.ph</p>
+          <p><?= htmlspecialchars(barangay_public_contact_text($publicOfficeDetails), ENT_QUOTES) ?></p>
         </section>
       </div>
 
@@ -290,7 +277,7 @@ $registrationRequirements = [
             <h2 id="requirementsTitle">Registration requirements</h2>
           </div>
           <button type="button" class="modal-close" data-modal-close aria-label="Close">
-            <svg viewBox="0 0 24 24" width="20" height="20"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <svg width="20" height="20" viewBox="0 0 256 256" fill="currentColor" stroke="none" aria-hidden="true" data-system-icon="phone" class="system-icon"><path d="M223.94,174.08A48.33,48.33,0,0,1,176,216,136,136,0,0,1,40,80,48.33,48.33,0,0,1,81.92,32.06a8,8,0,0,1,8.3,4.8l21.13,47.2a8,8,0,0,1-.66,7.53L89.32,117a7.93,7.93,0,0,0-.54,7.81c8.27,16.93,25.77,34.22,42.75,42.41a7.92,7.92,0,0,0,7.83-.59l25-21.3a8,8,0,0,1,7.59-.69l47.16,21.13A8,8,0,0,1,223.94,174.08Z" opacity="0.2"/><path d="M222.37,158.46l-47.11-21.11-.13-.06a16,16,0,0,0-15.17,1.4,8.12,8.12,0,0,0-.75.56L134.87,160c-15.42-7.49-31.34-23.29-38.83-38.51l20.78-24.71c.2-.25.39-.5.57-.77a16,16,0,0,0,1.32-15.06l0-.12L97.54,33.64a16,16,0,0,0-16.62-9.52A56.26,56.26,0,0,0,32,80c0,79.4,64.6,144,144,144a56.26,56.26,0,0,0,55.88-48.92A16,16,0,0,0,222.37,158.46ZM176,208A128.14,128.14,0,0,1,48,80,40.2,40.2,0,0,1,82.87,40a.61.61,0,0,0,0,.12l21,47L83.2,111.86a6.13,6.13,0,0,0-.57.77,16,16,0,0,0-1,15.7c9.06,18.53,27.73,37.06,46.46,46.11a16,16,0,0,0,15.75-1.14,8.44,8.44,0,0,0,.74-.56L168.89,152l47,21.05h0s.08,0,.11,0A40.21,40.21,0,0,1,176,208Z"/></svg>
           </button>
         </header>
         <?php include __DIR__ . '/includes/requirements-modal-body.php'; ?>
@@ -309,7 +296,7 @@ $registrationRequirements = [
             <h2 id="passwordHelpTitle">Reset your password</h2>
           </div>
           <button type="button" class="modal-close" data-modal-close aria-label="Close">
-            <svg viewBox="0 0 24 24" width="20" height="20"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <svg width="20" height="20" viewBox="0 0 256 256" fill="currentColor" stroke="none" aria-hidden="true" data-system-icon="building-2" class="system-icon"><path d="M136,32V216H40V85.35a8,8,0,0,1,3.56-6.66l80-53.33A8,8,0,0,1,136,32Z" opacity="0.2"/><path d="M240,208H224V96a16,16,0,0,0-16-16H144V32a16,16,0,0,0-24.88-13.32L39.12,72A16,16,0,0,0,32,85.34V208H16a8,8,0,0,0,0,16H240a8,8,0,0,0,0-16ZM208,96V208H144V96ZM48,85.34,128,32V208H48ZM112,112v16a8,8,0,0,1-16,0V112a8,8,0,1,1,16,0Zm-32,0v16a8,8,0,0,1-16,0V112a8,8,0,1,1,16,0Zm0,56v16a8,8,0,0,1-16,0V168a8,8,0,0,1,16,0Zm32,0v16a8,8,0,0,1-16,0V168a8,8,0,0,1,16,0Z"/></svg>
           </button>
         </header>
         <div class="modal-form">
@@ -324,5 +311,6 @@ $registrationRequirements = [
   <script src="js/main.js?v=<?= filemtime(__DIR__ . '/js/main.js') ?>"></script>
   <script src="js/mobile-select.js?v=<?= filemtime(__DIR__ . '/js/mobile-select.js') ?>"></script>
   <script src="js/location-disclosures.js?v=<?= filemtime(__DIR__ . '/js/location-disclosures.js') ?>"></script>
+<?php require __DIR__ . '/includes/system-icons.php'; ?>
 </body>
 </html>

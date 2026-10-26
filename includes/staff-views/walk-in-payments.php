@@ -1,4 +1,4 @@
-<?php
+<?php require_once __DIR__ . '/../ui-icons.php';
 $payments = $walkInPayments ?? [];
 $pendingPaymentCount = count(array_filter($payments, static fn(array $payment): bool => ($payment['status'] ?? '') === 'Pending'));
 $paidPaymentCount = count(array_filter($payments, static fn(array $payment): bool => ($payment['status'] ?? '') === 'Paid'));
@@ -14,7 +14,7 @@ $paymentIcon = static function (string $kind): string {
     'search'=>'<circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/>',
     'eye'=>'<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/>',
   ];
-  return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' . $paths[$kind] . '</svg>';
+  return barangay_ui_icon($kind);
 };
 ?>
 <div class="page-intro"><h2>Walk-in Payments</h2><p>Review payments for walk-in documents and resident requests. Payments recorded during issuance appear here automatically.</p></div>
@@ -65,7 +65,7 @@ $paymentIcon = static function (string $kind): string {
 <?php foreach ($payments as $payment): $id=(int)$payment['id']; ?>
 <div id="paymentDetails<?= $id ?>" class="modal" aria-hidden="true" role="dialog" aria-labelledby="paymentTitle<?= $id ?>">
   <div class="modal-backdrop" data-modal-close></div><div class="modal-panel">
-    <header class="modal-header"><h2 id="paymentTitle<?= $id ?>">Payment details</h2><button type="button" class="modal-close" data-modal-close aria-label="Close">&times;</button></header>
+    <header class="modal-header"><h2 id="paymentTitle<?= $id ?>">Payment details</h2><button type="button" class="modal-close" data-modal-close aria-label="Close"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor" stroke="none" aria-hidden="true" class="system-icon" data-system-icon="x"><path d="M216,56V200a16,16,0,0,1-16,16H56a16,16,0,0,1-16-16V56A16,16,0,0,1,56,40H200A16,16,0,0,1,216,56Z" opacity="0.2"/><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></svg></button></header>
     <div class="modal-body">
       <dl class="payment-detail-grid">
         <?php foreach (['Payment ID'=>$payment['payment_code'],'Resident'=>$payment['resident_name'],'Document / request'=>$payment['document_number'] ?: $payment['request_code'],'Document type'=>$payment['document_type'],'Amount due'=>'PHP '.number_format((float)$payment['amount_due'],2),'Amount received'=>$payment['amount_paid']===null ? '-' : 'PHP '.number_format((float)$payment['amount_paid'],2),'Receipt number'=>$payment['receipt_number'] ?: '-','Status'=>$payment['status']==='Pending' ? 'Unpaid' : $payment['status'],'Payment method'=>$payment['payment_method'] ?? 'Walk-in Cash','Received by'=>$payment['received_by'] ?: '-','Date'=>date('M/j/Y g:i A',strtotime($payment['received_at'] ?: $payment['created_at']))] as $label=>$value): ?>

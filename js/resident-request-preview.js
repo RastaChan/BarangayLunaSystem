@@ -13,6 +13,7 @@
     status.textContent = 'Preparing your document preview…';
     const payload = new FormData();
     for (const name of ['preview_csrf','document_type','purpose','residency_years','beneficiary_name','beneficiary_relationship','partner_name','cohabitation_start_date']) payload.set(name, form.elements[name]?.value || '');
+    form.querySelectorAll('[data-custom-key]').forEach(input => payload.set(input.name,input.value));
     try {
       const response = await fetch('resident-document-preview.php', {method:'POST',body:payload,credentials:'same-origin',headers:{Accept:'application/json'},signal:AbortSignal.timeout(45000)});
       const result = await response.json();

@@ -65,8 +65,8 @@ try {
   }
   if (!is_dir($outputDir)) mkdir($outputDir,0775,true);
   $views = [
-    'admin'=>['dashboard','residents','qr-verification','user-management','complaints','feedbacks','sms-alerts','reports-analytics','audit-logs','backup-restore','system-settings','template-placeholders','document-fees','issue-documents','resident-account-registration','service-reports','walk-in-payments'],
-    'staff'=>['staff-dashboard','resident-management','staff-qr-verification','issue-documents','resident-account-registration','walk-in-payments','staff-complaints','staff-feedbacks','staff-sms-alerts','service-reports','my-profile','my-activity-logs'],
+    'admin'=>['dashboard','husay-schedule','residents','qr-verification','user-management','complaints','feedbacks','sms-alerts','reports-analytics','audit-logs','backup-restore','system-settings','template-placeholders','document-fees','issue-documents','resident-account-registration','service-reports','walk-in-payments'],
+    'staff'=>['staff-dashboard','husay-schedule','resident-management','staff-qr-verification','issue-documents','resident-account-registration','walk-in-payments','staff-complaints','staff-feedbacks','staff-sms-alerts','service-reports','my-profile','my-activity-logs'],
     'resident'=>['resident-dashboard','request-document','my-document-requests','submit-complaint','my-complaints','send-feedback','sms-updates','my-profile','change-password','my-activity-logs'],
   ];
   foreach ($views as $role=>$pages) foreach ($pages as $view) {

@@ -14,7 +14,7 @@ try {
   if ($hearingId) {
     $hearing = null;
     foreach ($husayRows as $candidate) if ((int) $candidate['id'] === $hearingId) { $hearing = $candidate; break; }
-    if (!$hearing) { ob_end_clean(); http_response_code(404); echo json_encode(['ok' => false, 'message' => 'Husay session unavailable.']); exit; }
+    if (!$hearing) { ob_end_clean(); http_response_code(404); echo json_encode(['ok' => false, 'message' => 'Mediation session unavailable.']); exit; }
     require __DIR__ . '/includes/husay-detail-content.php';
   } else require __DIR__ . '/includes/husay-list.php';
   $html = ob_get_clean();
@@ -24,4 +24,4 @@ try {
   echo json_encode(['ok' => true, 'owner' => $user['role'] . ':' . $user['id'], 'html' => $html,
     'complaintsHtml' => $complaintsHtml,
     'hasActive' => (bool)$activeSessions, 'activeId' => $code && $activeSessions ? (int)$activeSessions[0]['id'] : null]);
-} catch (Throwable $error) { if (ob_get_level()) ob_end_clean(); http_response_code(500); echo json_encode(['ok' => false, 'message' => 'Husay schedules could not be loaded.']); }
+} catch (Throwable $error) { if (ob_get_level()) ob_end_clean(); http_response_code(500); echo json_encode(['ok' => false, 'message' => 'Mediation schedules could not be loaded.']); }

@@ -46,7 +46,7 @@ function husay_schema(): void {
 }
 
 function husay_require_staff(array $user): void {
-  if (!in_array($user['role'] ?? '', ['admin', 'staff'], true) || (int) ($user['id'] ?? 0) < 1) throw new InvalidArgumentException('Only Admin and Staff can manage Husay schedules.');
+  if (!in_array($user['role'] ?? '', ['admin', 'staff'], true) || (int) ($user['id'] ?? 0) < 1) throw new InvalidArgumentException('Only Admin and Staff can manage Mediation schedules.');
 }
 
 function husay_text(array $input, string $key, int $max, bool $required = false): string {
@@ -55,9 +55,9 @@ function husay_text(array $input, string $key, int $max, bool $required = false)
   return $value;
 }
 
-function husay_mobile(array $input, string $key): string {
-  $value = husay_text($input, $key, 30);
-  if ($value !== '' && !preg_match('/^(?:09\d{9}|\+639\d{9})$/D', $value)) throw new InvalidArgumentException('Enter a valid mobile number, or leave it blank.');
+function husay_mobile(array $input, string $key, bool $required = false): string {
+  $value = husay_text($input, $key, 30, $required);
+  if ($value !== '' && !preg_match('/^(?:09\d{9}|\+639\d{9})$/D', $value)) throw new InvalidArgumentException('Enter a valid ' . str_replace('_', ' ', $key) . ': 09xxxxxxxxx or +639xxxxxxxxx.');
   return $value;
 }
 
@@ -70,7 +70,7 @@ function husay_times(array $input): array {
   $b = DateTimeImmutable::createFromFormat('!Y-m-d H:i', $end, $zone);
   if (!$a || !$b || $a->format('Y-m-d H:i') !== $start || $b->format('Y-m-d H:i') !== $end || $b <= $a) throw new InvalidArgumentException('Choose a valid date and an end time after the start time.');
   $now = new DateTimeImmutable('now', $zone);
-  if ($a < $now->setTime((int) $now->format('H'), (int) $now->format('i'))) throw new InvalidArgumentException('Choose a current or future Husay schedule.');
+  if ($a < $now->setTime((int) $now->format('H'), (int) $now->format('i'))) throw new InvalidArgumentException('Choose a current or future Mediation schedule.');
   return [$a->format('Y-m-d H:i:s'), $b->format('Y-m-d H:i:s')];
 }
 
@@ -89,12 +89,12 @@ function husay_schedule(array $input, array $user): array {
   $officer = (int) ($input['assigned_user_id'] ?? 0);
   $respondent = husay_text($input, 'respondent_name', 150, true);
   $respondentMobile = husay_mobile($input, 'respondent_mobile');
-  $complainantMobile = husay_mobile($input, 'complainant_mobile');
+  $complainantMobile = husay_mobile($input, 'complainant_mobile', true);
   $address = husay_text($input, 'respondent_address', 255);
   $instructions = husay_text($input, 'instructions', 2000);
   $requestKey = husay_text($input, 'request_key', 32) ?: bin2hex(random_bytes(16));
   if (!preg_match('/^[a-f0-9]{32}$/D', $requestKey)) throw new InvalidArgumentException('Refresh the scheduling form and try again.');
-  if (($input['review_confirmed'] ?? '') !== '1') throw new InvalidArgumentException('Confirm that the authorized barangay official reviewed this complaint for Husay.');
+  if (($input['review_confirmed'] ?? '') !== '1') throw new InvalidArgumentException('Confirm that the authorized barangay official reviewed this complaint for Mediation.');
   $db = barangay_db(); $db->beginTransaction();
   try {
     $db->query('SELECT id FROM husay_calendar_guard WHERE id=1 FOR UPDATE')->fetchColumn();
@@ -130,12 +130,13 @@ function husay_schedule(array $input, array $user): array {
       $read = $db->prepare('SELECT * FROM complaints WHERE complaint_code=? AND archived_at IS NULL FOR UPDATE'); $read->execute([husay_text($input, 'complaint_code', 30, true)]);
     }
     $complaint = $read->fetch();
-    if (!$complaint || !in_array($complaint['status'], ['Open', 'In Progress'], true)) throw new InvalidArgumentException('Schedule Husay for an open complaint that has not been resolved or closed.');
+    if (!$complaint || !in_array($complaint['status'], ['Open', 'In Progress'], true)) throw new InvalidArgumentException('Schedule Mediation for an open complaint that has not been resolved or closed.');
     $read = $db->prepare("SELECT id FROM husay_schedules WHERE complaint_id=? AND status IN ('Scheduled','In Progress') AND id<>?"); $read->execute([$complaint['id'], $oldId]);
-    if ($read->fetchColumn()) throw new InvalidArgumentException('This complaint already has an active Husay session. Reschedule that session instead.');
-    $read = $db->prepare("SELECT id FROM husay_schedules WHERE status IN ('Scheduled','In Progress') AND id<>? AND starts_at<? AND ends_at>? AND (assigned_user_id=? OR LOWER(venue)=LOWER(?)) LIMIT 1");
-    $read->execute([$oldId, $end, $start, $officer, $venue]);
-    if ($read->fetchColumn()) throw new InvalidArgumentException('The assigned official or venue already has a Husay session during that time. Choose another slot.');
+    if ($read->fetchColumn()) throw new InvalidArgumentException('This complaint already has an active Mediation session. Reschedule that session instead.');
+    $read = $db->prepare("SELECT starts_at,ends_at FROM husay_schedules WHERE status IN ('Scheduled','In Progress') AND id<>? AND starts_at<? AND ends_at>? ORDER BY starts_at LIMIT 1");
+    $read->execute([$oldId, $end, $start]);
+    $conflict = $read->fetch();
+    if ($conflict) throw new InvalidArgumentException('This time overlaps an existing Mediation schedule on ' . date('M j, Y', strtotime($conflict['starts_at'])) . ', ' . date('g:i A', strtotime($conflict['starts_at'])) . '–' . date('g:i A', strtotime($conflict['ends_at'])) . '. Choose another time.');
     if ($old) {
       $db->prepare("UPDATE husay_schedules SET status='Rescheduled',change_reason=?,version=version+1,updated_by=?,updated_at=NOW() WHERE id=?")->execute([$reason, $user['id'], $oldId]);
       husay_event($oldId, 'Rescheduled', $reason, (int) $user['id']);
@@ -194,10 +195,10 @@ function husay_update_complaint(array $input, array $user): void {
     $read = $db->prepare('SELECT id FROM complaints WHERE complaint_code=? AND archived_at IS NULL FOR UPDATE'); $read->execute([$code]); $id = $read->fetchColumn();
     if (!$id) throw new InvalidArgumentException('Complaint unavailable.');
     $active = $db->prepare("SELECT id FROM husay_schedules WHERE complaint_id=? AND status IN ('Scheduled','In Progress') LIMIT 1"); $active->execute([$id]); $hasActiveSession = (bool)$active->fetchColumn();
-    if ($status === 'Open' && $hasActiveSession) throw new InvalidArgumentException('A complaint with an active Husay session must remain In Progress.');
+    if ($status === 'Open' && $hasActiveSession) throw new InvalidArgumentException('A complaint with an active Mediation session must remain In Progress.');
     if (in_array($status, ['Resolved','Closed'], true)) {
       if ($remarks === '') throw new InvalidArgumentException('Record a resolution or closure summary in remarks.');
-      if ($hasActiveSession) throw new InvalidArgumentException('Complete or cancel the active Husay session before closing this complaint.');
+      if ($hasActiveSession) throw new InvalidArgumentException('Complete or cancel the active Mediation session before closing this complaint.');
     }
     $db->prepare('UPDATE complaints SET status=?,remarks=? WHERE id=?')->execute([$status, $remarks, $id]);
     $db->commit();
@@ -227,7 +228,7 @@ function husay_resident_notifications(int $residentId): array {
   $items = [];
   foreach (husay_public_rows($residentId) as $row) {
     if ($row['status'] === 'Rescheduled') continue;
-    $items[] = ['id' => 'resident-husay-' . $row['id'] . '-' . $row['version'], 'title' => 'Husay: ' . $row['status'],
+    $items[] = ['id' => 'resident-husay-' . $row['id'] . '-' . $row['version'], 'title' => 'Mediation: ' . $row['status'],
       'message' => $row['complaint_code'] . ' · ' . date('M j, Y g:i A', strtotime($row['starts_at'])) . ' at ' . $row['venue'],
       'date' => $row['updated_at'], 'status' => 'Unread', 'href' => 'resident-dashboard.php?view=my-complaints#complaint-' . rawurlencode($row['complaint_code']), 'view' => 'my-complaints'];
   }

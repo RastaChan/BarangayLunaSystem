@@ -1,0 +1,212 @@
+[
+  {
+    "test": "admin-password-reset-ui-test.cjs",
+    "ok": true,
+    "output": "PASS: both reset controls select the correct account and return route, and clear stale password values.\n"
+  },
+  {
+    "test": "complaint-photo-test.cjs",
+    "ok": true,
+    "output": "PASS: complaint photos in View, PDF viewing links, safe text, failed-image recovery and empty attachments.\n"
+  },
+  {
+    "test": "complaint-search-test.cjs",
+    "ok": true,
+    "output": "PASS: complaint ID/name/subject/status searches, case and whitespace, dropdown exclusion, no matches, clearing, and updated rows.\n"
+  },
+  {
+    "test": "document-copies-ui-test.cjs",
+    "ok": true,
+    "output": "PASS: resident copy totals, type changes, free/unset fees and invalid counts.\n"
+  },
+  {
+    "test": "document-fee-selection-test.cjs",
+    "ok": true,
+    "output": "PASS: multi-selection, select all, empty validation, and typed fee preservation.\n"
+  },
+  {
+    "test": "document-page-viewer-test.cjs",
+    "ok": true,
+    "output": "PASS: all document pages render, bounded canvas size, local-only URLs, error recovery and viewer cleanup\n"
+  },
+  {
+    "test": "document-print-test.cjs",
+    "ok": true,
+    "output": "PASS: Preview is displayed; printing requires an explicit click.\nPASS: Failed conversion shows Retry and recovers after a successful retry.\nPASS: Cached previews skip conversion requests.\nPASS: Unexpected external preview URLs are rejected.\nPASS: Expired sessions show a recovery message.\n"
+  },
+  {
+    "test": "document-request-details-test.cjs",
+    "ok": true,
+    "output": "PASS: readable request labels, formatted fees including free documents, safe remarks, hidden internal fields, and return to list.\n"
+  },
+  {
+    "test": "document-request-live-test.cjs",
+    "ok": true,
+    "output": "PASS: new rows refresh during editing, statuses update safely, unchanged rows stay usable, removals refresh, account isolation and network recovery work.\n"
+  },
+  {
+    "test": "feedback-view-test.cjs",
+    "ok": true,
+    "output": "PASS: repeated feedback views and delayed responses preserve the popup.\n"
+  },
+  {
+    "test": "functional-audit-ui-test.cjs",
+    "ok": true,
+    "output": "PASS: real password submission, searchable residents, multipart uploads, complaint views/remarks and protected downloads are wired.\n"
+  },
+  {
+    "test": "husay-calendar-test.cjs",
+    "ok": true,
+    "output": "PASS: calendar/list views, Manila dates, active/history filters, official and search filters, custom ranges, leap-year month navigation, live additions, counts and reset.\n"
+  },
+  {
+    "test": "husay-modal-test.cjs",
+    "ok": true,
+    "output": "PASS: loaded content opens once, errors preserve the current view, and closing cancels delayed opening.\n"
+  },
+  {
+    "test": "husay-ui-test.cjs",
+    "ok": true,
+    "output": "PASS: manual walk-in intake, linked complaint fields, required/disabled field switching, unique save keys, rescheduling reasons, and date/time prefilling.\nPASS: follow-up carries parties, venue and official while requiring a new date and keeping the completed session.\nPASS: complaint menu opens a prefilled linked schedule, opens existing appointments for rescheduling, and recovers from connection errors.\n"
+  },
+  {
+    "test": "issuance-popup-state-test.cjs",
+    "ok": true,
+    "output": "PASS: prepared popup reopens without duplicate generation, keeps applicant details and distinguishes confirmed release.\n"
+  },
+  {
+    "test": "issue-qr-capture-test.cjs",
+    "ok": true,
+    "output": "PASS: camera decode, duplicate taps, late permissions, navigation cleanup, denial recovery, no-camera alternative, photo decoding, invalid images, and busy lookup guards\n"
+  },
+  {
+    "test": "live-document-preview-test.cjs",
+    "ok": true,
+    "output": "PASS: preview conversions are serialized, intermediate edits are coalesced, stale previews ignored and busy conversion retried.\n"
+  },
+  {
+    "test": "location-disclosures-test.cjs",
+    "ok": true,
+    "output": "PASS: opening, closing, rapid reversal, style cleanup and reduced motion.\n"
+  },
+  {
+    "test": "mobile-functions-test.cjs",
+    "ok": true,
+    "output": "PASS: modal dropdown fallback, duplicate camera taps, hidden-page cancellation, pagehide cleanup and crop resize hook.\n"
+  },
+  {
+    "test": "mobile-navigation-test.cjs",
+    "ok": true,
+    "output": "PASS: mobile section navigation and cached-page restore clear menus and popovers.\nPASS: header menu controls desktop collapse without an arrow button, retains preferences, and restores the full menu on phones.\n"
+  },
+  {
+    "test": "modal-layering-test.cjs",
+    "ok": true,
+    "output": "PASS: automatic dialogs move above page layers, retain draft fields, and receive modal focus\n"
+  },
+  {
+    "test": "notification-badge-render-test.cjs",
+    "ok": true,
+    "output": "PASS: all sidebar badges start hidden; reconciled new counts show and seen/zero counts stay hidden.\n"
+  },
+  {
+    "test": "notification-menu-test.cjs",
+    "ok": true,
+    "output": "PASS: feedback visibility, stable polling, focus and scroll retention, phone/desktop bell anchoring, and unread badge counts.\nPASS: marking unread clears read state; opening the item reverses it.\n"
+  },
+  {
+    "test": "notification-refresh-test.cjs",
+    "ok": true,
+    "output": "PASS: 2-second polling, overlap protection, hidden-tab pause, recovery, badge aliases and centered settings icon rule.\n"
+  },
+  {
+    "test": "overview-sync-test.cjs",
+    "ok": true,
+    "output": "PASS: overview updates, no-op refresh, modal/hidden pauses, account isolation, connection recovery.\n"
+  },
+  {
+    "test": "payment-ledger-test.cjs",
+    "ok": true,
+    "output": "PASS: pagination, search, date range, reset and invalid-date recovery\n"
+  },
+  {
+    "test": "portal-design-test.cjs",
+    "ok": true,
+    "output": "PASS: shared dialog theme, action icons, changing statuses and dynamic cards; Resident ID previews excluded.\n"
+  },
+  {
+    "test": "post-options-test.cjs",
+    "ok": true,
+    "output": "PASS: repeated three-dot clicks, outside dismissal, one menu at a time, Edit/Delete dialogs, keyboard operation, focus changes and navigation cleanup.\n"
+  },
+  {
+    "test": "prepared-removal-ui-test.cjs",
+    "ok": true,
+    "output": "PASS: removal confirmation identifies applicant, failed removal retains entry, successful removal updates count and clears stale print state.\n"
+  },
+  {
+    "test": "registration-record-filters-test.cjs",
+    "ok": true,
+    "output": "PASS: in-place filtering, clear, stable count, stale-response protection and failure recovery.\n"
+  },
+  {
+    "test": "resident-locations-ui-test.cjs",
+    "ok": true,
+    "output": "PASS: district-dependent options, stale selection reset, unassigned options, independent forms and mobile change notification.\n"
+  },
+  {
+    "test": "resident-rejection-remarks-test.cjs",
+    "ok": true,
+    "output": "PASS: rejection popup uses current request, safe plain text, multiline remarks, empty fallback and delegated clicks after refresh.\n"
+  },
+  {
+    "test": "resident-request-list-test.cjs",
+    "ok": true,
+    "output": "PASS: request search, status filtering, clear search, no matches and live updates\n"
+  },
+  {
+    "test": "resident-request-preview-test.cjs",
+    "ok": true,
+    "output": "PASS: resident preview opens without submitting, preserves form values, handles errors and ignores responses after close\n"
+  },
+  {
+    "test": "resident-service-tools-ui-test.cjs",
+    "ok": true,
+    "output": "PASS: optional name search, manual walk-in fallback, clear selection, edit invalidation, QR selection, late responses, duplicate review and failure recovery\n"
+  },
+  {
+    "test": "resident-submission-review-test.cjs",
+    "ok": true,
+    "output": "PASS: 20-copy requests show a warning, cannot submit without acknowledgement, and submit the exact reviewed quantity once.\n"
+  },
+  {
+    "test": "shared-ui-test.cjs",
+    "ok": true,
+    "output": "PASS: full-width forms, shrinkable grids, uncropped branding, wide dialogs, preserved profile size and scoped page styles.\n"
+  },
+  {
+    "test": "staff-directory-test.cjs",
+    "ok": true,
+    "output": "PASS: staff sorting by latest, oldest and name preserves account cards.\n"
+  },
+  {
+    "test": "staff-qr-local-test.cjs",
+    "ok": true,
+    "output": "PASS: local camera and photo decoding, stream cleanup, file validation, unreadable photos and hidden-page cancellation.\n"
+  },
+  {
+    "test": "system-icons-test.cjs",
+    "ok": true,
+    "output": "PASS: stable two-tone icon library, mediation navigation, dynamic records, unchanged chart data, and password control references.\n"
+  },
+  {
+    "test": "template-auto-fields-test.cjs",
+    "ok": true,
+    "output": "PASS: names follow document selection and custom types; current-year uploads and historical-year edits stay consistent.\n"
+  },
+  {
+    "test": "workflow-sync-test.cjs",
+    "ok": true,
+    "output": "PASS: legacy recovery, password, SMS handoff, saved templates and archived-request guards.\n"
+  }
+]

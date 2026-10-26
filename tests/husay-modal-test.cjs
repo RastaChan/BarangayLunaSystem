@@ -4,7 +4,7 @@ const vm = require('node:vm');
 const source = fs.readFileSync('js/husay.js', 'utf8');
 let resolve, reject, opens = 0, errorMessage, sourceOpen = true;
 const details = {innerHTML: 'old content'};
-const trigger = {textContent: 'View Husay session', disabled: false, closest: () => ({classList: {contains: () => sourceOpen}}), setAttribute() {}, removeAttribute() {}};
+const trigger = {textContent: 'View Mediation session', disabled: false, closest: () => ({classList: {contains: () => sourceOpen}}), setAttribute() {}, removeAttribute() {}};
 const context = {details, getFeed: () => new Promise((yes,no) => {resolve=yes;reject=no;}), showModal: () => {assert.equal(details.innerHTML,'loaded details');opens++;}, toast: message => errorMessage=message};
 vm.createContext(context);
 vm.runInContext('let detailVersion = 0;\n' + source.slice(source.indexOf('  async function openDetails('),source.indexOf('  async function scheduleFromMenu(')),context);
@@ -14,7 +14,7 @@ vm.runInContext('let detailVersion = 0;\n' + source.slice(source.indexOf('  asyn
   assert.equal(details.innerHTML,'old content');
   assert.equal(trigger.disabled,true);
   resolve({html:'loaded details'}); await pending;
-  assert.equal(opens,1);assert.equal(trigger.disabled,false);assert.equal(trigger.textContent,'View Husay session');
+  assert.equal(opens,1);assert.equal(trigger.disabled,false);assert.equal(trigger.textContent,'View Mediation session');
   pending=context.openDetails(1,trigger);reject(new Error('Connection failed'));await pending;
   assert.equal(opens,1);assert.equal(errorMessage,'Connection failed');assert.equal(trigger.disabled,false);
   pending=context.openDetails(1,trigger);sourceOpen=false;resolve({html:'late response'});await pending;

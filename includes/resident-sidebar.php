@@ -1,4 +1,4 @@
-<?php
+<?php require_once __DIR__ . '/ui-icons.php';
 /** Resident/User sidebar */
 $activeView = $activeView ?? 'resident-dashboard';
 $sidebarName = $loggedInUser['name'] ?? $residentName ?? 'Resident';
@@ -8,7 +8,7 @@ $residentAnnouncementBadgeCount = count(array_filter($residentNotifications ?? [
 function resident_nav_link(string $view, string $label, string $iconPath, string $activeView, int $count = 0): void {
   $active = $activeView === $view ? 'is-active' : '';
   echo '<a href="resident-dashboard.php?view=' . htmlspecialchars($view) . '" class="nav-link ' . $active . '" data-nav-view="' . htmlspecialchars($view) . '">';
-  echo '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="' . htmlspecialchars($iconPath) . '" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  echo barangay_ui_icon($view);
   echo '<span class="nav-link-label">' . htmlspecialchars($label) . '</span>';
   if ($count > 0) {
     echo '<span class="nav-count" data-notification-side-count hidden>' . htmlspecialchars($count > 99 ? '99+' : (string) $count) . '</span>';

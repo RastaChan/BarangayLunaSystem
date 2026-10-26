@@ -1,0 +1,4 @@
+PASS: document-custom-fields-test.php
+PASS: template-auto-metadata-test.php
+PASS: template-replacement-test.php
+0 failed tests. All audit databases removed; no live data or SMS used.

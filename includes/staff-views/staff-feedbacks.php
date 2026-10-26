@@ -42,7 +42,7 @@
 <div id="feedbackViewModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="feedbackViewTitle" data-read-token="<?= htmlspecialchars($_SESSION['feedback_csrf'], ENT_QUOTES) ?>">
   <div class="modal-backdrop" data-modal-close></div>
   <div class="modal-panel modal-panel--wide">
-    <header class="modal-header"><h2 id="feedbackViewTitle">Feedback details</h2><button type="button" class="modal-close" data-modal-close aria-label="Close">&times;</button></header>
+    <header class="modal-header"><h2 id="feedbackViewTitle">Feedback details</h2><button type="button" class="modal-close" data-modal-close aria-label="Close"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor" stroke="none" aria-hidden="true" class="system-icon" data-system-icon="x"><path d="M216,56V200a16,16,0,0,1-16,16H56a16,16,0,0,1-16-16V56A16,16,0,0,1,56,40H200A16,16,0,0,1,216,56Z" opacity="0.2"/><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></svg></button></header>
     <div class="modal-body">
       <section class="feedback-detail-card">
         <div class="feedback-detail-card__head"><div><span data-feedback-id>-</span><h3 data-feedback-resident>No feedback selected</h3></div><span class="badge badge-pending" data-feedback-status>Unread</span></div>
@@ -59,7 +59,7 @@
 <div id="deleteFeedbackModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="deleteFeedbackTitle">
   <div class="modal-backdrop" data-modal-close></div>
   <div class="modal-panel">
-    <header class="modal-header"><h2 id="deleteFeedbackTitle">Delete feedback</h2><button type="button" class="modal-close" data-modal-close aria-label="Close">&times;</button></header>
+    <header class="modal-header"><h2 id="deleteFeedbackTitle">Delete feedback</h2><button type="button" class="modal-close" data-modal-close aria-label="Close"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor" stroke="none" aria-hidden="true" class="system-icon" data-system-icon="x"><path d="M216,56V200a16,16,0,0,1-16,16H56a16,16,0,0,1-16-16V56A16,16,0,0,1,56,40H200A16,16,0,0,1,216,56Z" opacity="0.2"/><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></svg></button></header>
     <div class="modal-body"><p>Delete feedback <strong data-delete-feedback-label></strong>? This will also remove its attached image.</p></div>
     <form id="deleteFeedbackForm" action="staff-actions.php" method="post" data-server-form="true"><input type="hidden" name="action" value="delete_feedback"><input type="hidden" name="redirect" value="staff-feedbacks"><input type="hidden" name="id"></form>
     <footer class="modal-footer"><button type="button" class="btn btn-outline" data-modal-close>Cancel</button><button type="submit" form="deleteFeedbackForm" class="btn btn-danger">Delete</button></footer>

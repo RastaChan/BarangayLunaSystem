@@ -51,7 +51,7 @@ function barangay_issue_resident_lookup(string $code): ?array {
 
 function barangay_issue_resident_search(string $search): array {
   $search = trim($search);
-  if (mb_strlen($search) < 2 || mb_strlen($search) > 150) throw new InvalidArgumentException('Enter at least 2 letters of the name or Resident ID.');
+  if (mb_strlen($search) < 1 || mb_strlen($search) > 150) throw new InvalidArgumentException('Enter 1 to 150 characters of the name or Resident ID.');
   $literal = str_replace(['=', '%', '_'], ['==', '=%', '=_'], $search);
   $query = barangay_db()->prepare("SELECT user_code, full_name FROM users WHERE role = 'resident' AND status = 'Active'
     AND (full_name LIKE ? ESCAPE '=' OR user_code LIKE ? ESCAPE '=') ORDER BY full_name, user_code LIMIT 21");

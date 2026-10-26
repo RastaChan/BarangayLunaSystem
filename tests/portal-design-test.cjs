@@ -30,5 +30,5 @@ assert.equal(nestedOnly.classes.size,0,'Nested session content is not treated as
 value.textContent='Inactive';observe();assert.equal(value.dataset.detailStatus,'negative');
 const replacement=node(); replacement.querySelector=s=>s===':scope > span'?node('Address'):node('Text <script> remains text');
 root.children.push(replacement);observe();assert.equal(replacement.classes.has('portal-detail-card'),true);
-assert.match(replacement.styles['--detail-icon'],/data:image\/svg\+xml/);
+assert.match(replacement.styles['--detail-icon'],/icons\/system\/house\.svg/);
 console.log('PASS: shared dialog theme, action icons, changing statuses and dynamic cards; Resident ID previews excluded.');

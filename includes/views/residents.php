@@ -1,4 +1,4 @@
-<?php include __DIR__ . '/../resident-management-nav.php'; ?>
+<?php require_once __DIR__ . '/../ui-icons.php'; include __DIR__ . '/../resident-management-nav.php'; ?>
 <?php
 $locationView = $locationView ?? 'residents';
 require __DIR__ . '/../resident-location-controls.php';
@@ -19,10 +19,10 @@ $residentCardIcons = [
   'date' => 'M4 5h16v16H4zM8 3v4M16 3v4M4 10h16M8 14h2M14 14h2',
 ];
 $residentCardIcon = static function (string $kind) use ($residentCardIcons): string {
-  return '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="' . $residentCardIcons[$kind] . '" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  return barangay_ui_icon($kind);
 };
 ?>
-<section class="staff-directory resident-directory" aria-label="Registered residents">
+<section class="staff-directory resident-directory" aria-label="Registered residents" data-live-search-results="residents">
   <header class="staff-directory-head">
     <div><h3>Registered residents (<?= number_format($residentCount) ?>)</h3><p>Here are the resident accounts matching your selected filters.</p></div>
     <?php if ($residentCount > 0): ?><span class="resident-directory-count">Showing <?= ($residentPage - 1) * 20 + 1 ?>–<?= min($residentPage * 20, $residentCount) ?> of <?= number_format($residentCount) ?></span><?php endif; ?>
@@ -49,7 +49,7 @@ $residentCardIcon = static function (string $kind) use ($residentCardIcons): str
         </div>
         <div class="resident-card-actions">
           <button type="button" class="btn btn-primary staff-account-view" data-view-resident data-json='<?= htmlspecialchars(json_encode($r), ENT_QUOTES) ?>' aria-label="View <?= htmlspecialchars($r['name'], ENT_QUOTES) ?>">
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7Z" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.7"/></svg> View
+            <svg viewBox="0 0 256 256" fill="currentColor" stroke="none" aria-hidden="true" data-system-icon="eye" class="system-icon"><path d="M128,56C48,56,16,128,16,128s32,72,112,72,112-72,112-72S208,56,128,56Zm0,112a40,40,0,1,1,40-40A40,40,0,0,1,128,168Z" opacity="0.2"/><path d="M247.31,124.76c-.35-.79-8.82-19.58-27.65-38.41C194.57,61.26,162.88,48,128,48S61.43,61.26,36.34,86.35C17.51,105.18,9,124,8.69,124.76a8,8,0,0,0,0,6.5c.35.79,8.82,19.57,27.65,38.4C61.43,194.74,93.12,208,128,208s66.57-13.26,91.66-38.34c18.83-18.83,27.3-37.61,27.65-38.4A8,8,0,0,0,247.31,124.76ZM128,192c-30.78,0-57.67-11.19-79.93-33.25A133.47,133.47,0,0,1,25,128,133.33,133.33,0,0,1,48.07,97.25C70.33,75.19,97.22,64,128,64s57.67,11.19,79.93,33.25A133.46,133.46,0,0,1,231.05,128C223.84,141.46,192.43,192,128,192Zm0-112a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160Z"/></svg> View
           </button>
           <?php if (empty($residentManagementStaff)): ?>
           <button type="button" class="btn btn-outline" data-reset-password data-id="<?= htmlspecialchars($r['id'], ENT_QUOTES) ?>" data-name="<?= htmlspecialchars($r['name'], ENT_QUOTES) ?>" data-redirect="residents">Reset password</button>
@@ -79,9 +79,9 @@ $residentCardIcon = static function (string $kind) use ($residentCardIcons): str
   </div>
   <?php if ($residentPageCount > 1): ?>
   <nav class="resident-directory-pages" aria-label="Resident list pages">
-    <?php if ($residentPage > 1): ?><a class="btn btn-outline" href="<?= htmlspecialchars($residentPageLink($residentPage - 1), ENT_QUOTES) ?>">Previous</a><?php endif; ?>
+    <?php if ($residentPage > 1): ?><a class="btn btn-outline" data-live-search-page href="<?= htmlspecialchars($residentPageLink($residentPage - 1), ENT_QUOTES) ?>">Previous</a><?php endif; ?>
     <span>Page <?= $residentPage ?> of <?= $residentPageCount ?></span>
-    <?php if ($residentPage < $residentPageCount): ?><a class="btn btn-outline" href="<?= htmlspecialchars($residentPageLink($residentPage + 1), ENT_QUOTES) ?>">Next</a><?php endif; ?>
+    <?php if ($residentPage < $residentPageCount): ?><a class="btn btn-outline" data-live-search-page href="<?= htmlspecialchars($residentPageLink($residentPage + 1), ENT_QUOTES) ?>">Next</a><?php endif; ?>
   </nav>
   <?php endif; ?>
 </section>

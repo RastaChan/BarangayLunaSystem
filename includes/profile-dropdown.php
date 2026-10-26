@@ -48,9 +48,7 @@ $_SESSION['account_security_csrf'] ??= bin2hex(random_bytes(32));
       <strong class="user-name"><?= htmlspecialchars($profileName) ?></strong>
       <span><?= htmlspecialchars($profileRole) ?></span>
     </div>
-    <svg class="profile-caret" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path d="M7 10l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
+    <svg data-original-class="profile-caret" viewBox="0 0 256 256" fill="currentColor" stroke="none" aria-hidden="true" data-system-icon="chevron-down" class="system-icon profile-caret"><path d="M208,96l-80,80L48,96Z" opacity="0.2"/><path d="M215.39,92.94A8,8,0,0,0,208,88H48a8,8,0,0,0-5.66,13.66l80,80a8,8,0,0,0,11.32,0l80-80A8,8,0,0,0,215.39,92.94ZM128,164.69,67.31,104H188.69Z"/></svg>
   </button>
 
   <div class="profile-dropdown" data-profile-dropdown>
@@ -71,7 +69,7 @@ $_SESSION['account_security_csrf'] ??= bin2hex(random_bytes(32));
   <div class="modal-panel <?= $showResidentIdCard ? 'modal-panel--wide resident-profile-panel' : '' ?>">
     <header class="modal-header">
       <h2 id="profileSettingsTitle">Profile Settings</h2>
-      <button type="button" class="modal-close" data-modal-close aria-label="Close">&times;</button>
+      <button type="button" class="modal-close" data-modal-close aria-label="Close"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor" stroke="none" aria-hidden="true" class="system-icon" data-system-icon="x"><path d="M216,56V200a16,16,0,0,1-16,16H56a16,16,0,0,1-16-16V56A16,16,0,0,1,56,40H200A16,16,0,0,1,216,56Z" opacity="0.2"/><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></svg></button>
     </header>
     <form id="profileSettingsForm" class="modal-body form-grid" action="<?= htmlspecialchars($profileFormAction) ?>" method="post" enctype="multipart/form-data" data-profile-settings-form>
       <input type="hidden" name="action" value="update_account_profile">
@@ -79,12 +77,12 @@ $_SESSION['account_security_csrf'] ??= bin2hex(random_bytes(32));
       <input type="hidden" name="profile_photo_cropped" id="profilePhotoCropped">
 
       <?php if ($showResidentIdCard): ?>
-      <?php $residentPreview = $residentIdCard; include __DIR__ . '/resident-id-preview-card.php'; ?>
+      <?php $residentPreview = $residentIdCard; $editableResidentPhoto = true; include __DIR__ . '/resident-id-preview-card.php'; $editableResidentPhoto = false; ?>
       <?php endif; ?>
 
-      <div class="profile-photo-tools">
+      <div class="profile-photo-tools" <?= $showResidentIdCard ? 'hidden' : '' ?>>
       <div class="profile-photo-upload">
-        <span class="profile-photo-preview" id="profilePhotoPreview">
+        <span class="profile-photo-preview" <?= $showResidentIdCard ? '' : 'id="profilePhotoPreview"' ?>>
           <?php if ($profilePhotoPath !== ''): ?>
           <img src="<?= htmlspecialchars($profilePhotoPath) ?>" alt="<?= htmlspecialchars($profileName) ?>">
           <?php else: ?>
@@ -151,7 +149,7 @@ $_SESSION['account_security_csrf'] ??= bin2hex(random_bytes(32));
   <div class="modal-panel">
     <header class="modal-header">
       <h2 id="securitySettingsTitle">Security Settings</h2>
-      <button type="button" class="modal-close" data-modal-close aria-label="Close">&times;</button>
+      <button type="button" class="modal-close" data-modal-close aria-label="Close"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor" stroke="none" aria-hidden="true" class="system-icon" data-system-icon="x"><path d="M216,56V200a16,16,0,0,1-16,16H56a16,16,0,0,1-16-16V56A16,16,0,0,1,56,40H200A16,16,0,0,1,216,56Z" opacity="0.2"/><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></svg></button>
     </header>
     <form id="securitySettingsForm" class="modal-body form-grid" action="account-security-actions.php" method="post" data-security-form>
       <input type="hidden" name="csrf" value="<?= htmlspecialchars($_SESSION['account_security_csrf'], ENT_QUOTES) ?>">
@@ -175,3 +173,5 @@ $_SESSION['account_security_csrf'] ??= bin2hex(random_bytes(32));
     </footer>
   </div>
 </div>
+
+<script src="js/resident-id-actions.js?v=<?= filemtime(__DIR__ . '/../js/resident-id-actions.js') ?>" defer></script>

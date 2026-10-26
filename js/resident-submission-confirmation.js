@@ -58,6 +58,7 @@
         const input = form.querySelector(`[name="${field}"]`);
         if (input && !input.closest('[hidden]')) add(label, value(field));
       }
+      form.querySelectorAll('[data-custom-key]').forEach(input => add(input.dataset.customLabel, input.value));
       const copies = Number(value('copies'));
       reviewedLabel.textContent = `I checked these details and need exactly ${copies} ${copies === 1 ? 'copy' : 'copies'}.`;
       if (copies >= 5) {

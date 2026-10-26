@@ -81,6 +81,7 @@ try {
         resident_redirect($redirect, 'invalid');
       }
 
+      $customValues = barangay_custom_validate_values(barangay_custom_fields_for_type($documentType), $_POST['custom_fields'] ?? []);
       $recordCode = resident_next_code('document_requests', 'request_code', 'REQ');
       barangay_db()->beginTransaction();
       $stmt = barangay_db()->prepare(
@@ -111,6 +112,8 @@ try {
         ':cohabitation_start_date' => $cohabitationStartDate,
         ':resident_gender_override' => $residentGenderOverride,
       ]);
+      $saveCustom = barangay_db()->prepare('UPDATE document_requests SET custom_values_json=? WHERE request_code=?');
+      $saveCustom->execute([json_encode($customValues, JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR), $recordCode]);
       barangay_save_attachment('document', $recordCode, $user['id'], $attachment);
       resident_log($user, 'Submitted document request: ' . $documentType, 'Document Requests');
       barangay_db()->commit();

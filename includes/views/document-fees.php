@@ -17,7 +17,7 @@ $_SESSION['document_fee_csrf'] = $_SESSION['document_fee_csrf'] ?? bin2hex(rando
     <div class="field">
       <label id="feeDocumentTypesLabel">Document types</label>
       <details class="fee-type-picker" data-fee-picker>
-        <summary aria-labelledby="feeDocumentTypesLabel feeSelectionLabel"><span id="feeSelectionLabel" data-fee-selection-label>Select document types</span><span aria-hidden="true">&#9662;</span></summary>
+        <summary aria-labelledby="feeDocumentTypesLabel feeSelectionLabel"><span id="feeSelectionLabel" data-fee-selection-label>Select document types</span><span aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor" stroke="none" aria-hidden="true" class="system-icon" data-system-icon="chevron-down"><path d="M208,96l-80,80L48,96Z" opacity="0.2"/><path d="M215.39,92.94A8,8,0,0,0,208,88H48a8,8,0,0,0-5.66,13.66l80,80a8,8,0,0,0,11.32,0l80-80A8,8,0,0,0,215.39,92.94ZM128,164.69,67.31,104H188.69Z"/></svg></span></summary>
         <div class="fee-type-menu">
           <label class="fee-type-option fee-type-all"><input type="checkbox" data-fee-select-all><span>Select all document types</span></label>
           <div class="fee-type-options">

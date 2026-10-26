@@ -119,7 +119,7 @@ unset($_SESSION['sms_flash']);
   $query = barangay_db()->prepare('SELECT s.*, u.full_name AS sender, child.id AS retry_id, TIMESTAMPDIFF(SECOND, s.created_at, NOW()) AS age_seconds FROM sms_logs s LEFT JOIN users u ON u.id = s.sent_by LEFT JOIN sms_logs child ON child.delivery_key = CONCAT("retry:", s.id)' . $condition . ' ORDER BY s.id DESC LIMIT 25 OFFSET ' . (($pageNumber - 1) * 25));
   $query->execute($params); $logs = $query->fetchAll();
 ?>
-<form method="get" class="sms-filters">
+<form method="get" class="sms-filters" data-live-search-form="sms-history">
   <input type="hidden" name="view" value="<?= $smsAdmin ? 'sms-alerts' : 'staff-sms-alerts' ?>"><input type="hidden" name="sms_tab" value="history">
   <div class="field"><label for="smsSearch">Recipient or reference</label><input type="search" id="smsSearch" name="sms_search" value="<?= $smsEscape($search) ?>"></div>
   <div class="field"><label for="smsSource">Source</label><select id="smsSource" name="sms_source"><option value="">All sources</option><?php foreach (['Manual', 'Automatic', 'Broadcast', 'Legacy'] as $source): ?><option <?= $filter === $source ? 'selected' : '' ?>><?= $source ?></option><?php endforeach; ?></select></div>
@@ -127,13 +127,14 @@ unset($_SESSION['sms_flash']);
   <button type="submit" class="btn btn-outline">Filter</button>
 </form>
 <p class="field-hint">Accepted: delivery not confirmed. Unknown or stalled Submitting: check httpSMS before resending. Legacy: older, unverified delivery record.</p>
+<div data-live-search-results="sms-history">
 <div class="table-wrap"><table class="data-table sms-history"><thead><tr><th>Recipient</th><th>Category / Source</th><th>Message</th><th>Status</th><th>Sent by / Date</th><th>Action</th></tr></thead><tbody>
   <?php foreach ($logs as $log): ?>
   <tr><td data-label="Recipient"><?= $smsEscape($log['recipient_name']) ?><small><?= $smsEscape($log['recipient_mobile']) ?></small></td>
     <td data-label="Category / source"><?= $smsEscape($log['message_type']) ?><small><?= $smsEscape($log['source']) ?><?= $log['retry_of'] ? ' (retry of #' . (int) $log['retry_of'] . ')' : '' ?></small></td>
     <td data-label="Message"><details><summary>View message #<?= (int) $log['id'] ?></summary><p class="sms-message-text"><?= $smsEscape($log['message']) ?></p><?php if ($log['provider_id']): ?><small>Provider reference: <?= $smsEscape($log['provider_id']) ?></small><?php endif; ?></details></td>
     <td data-label="Status"><span class="badge <?= $log['delivery_state'] === 'Failed' ? 'badge-rejected' : 'badge-pending' ?>"><?= $smsEscape($log['delivery_state'] ?: ('Legacy ' . $log['status'])) ?></span><?php if ($log['failure_reason']): ?><small><?= $smsEscape($log['failure_reason']) ?></small><?php endif; ?></td>
-    <td data-label="Sent by / date"><?= $smsEscape($log['sender'] ?: 'Former account') ?><small><?= $smsEscape($log['created_at']) ?></small></td>
+    <td data-label="Sent by / date"><?= $smsEscape($log['sender'] ?: 'Former account') ?><small><?= $smsEscape(barangay_display_datetime($log['created_at'])) ?></small></td>
     <td data-label="Action"><?php if ($log['delivery_state'] === 'Failed' && !$log['retry_id']): ?>
       <details><summary>Retry</summary><form action="sms-actions.php" method="post" class="sms-retry">
         <input type="hidden" name="action" value="retry"><input type="hidden" name="id" value="<?= (int) $log['id'] ?>"><input type="hidden" name="csrf" value="<?= $smsEscape($smsToken) ?>">
@@ -145,5 +146,6 @@ unset($_SESSION['sms_flash']);
   </tr><?php endforeach; ?>
   <?php if (!$logs): ?><tr><td colspan="6">No SMS records match these filters.</td></tr><?php endif; ?>
 </tbody></table></div>
-<nav class="sms-actions" aria-label="History pages"><span><?= $total ?> records | Page <?= $pageNumber ?> of <?= $pages ?></span><?php foreach (['Previous' => $pageNumber - 1, 'Next' => $pageNumber + 1] as $label => $number): if ($number < 1 || $number > $pages) continue; ?><a class="btn btn-outline" href="<?= $smsEscape($smsPage . '&' . http_build_query(['sms_tab' => 'history', 'sms_page' => $number, 'sms_source' => $filter, 'sms_state' => $state, 'sms_search' => $search])) ?>"><?= $label ?></a><?php endforeach; ?></nav>
+<nav class="sms-actions" aria-label="History pages"><span><?= $total ?> records | Page <?= $pageNumber ?> of <?= $pages ?></span><?php foreach (['Previous' => $pageNumber - 1, 'Next' => $pageNumber + 1] as $label => $number): if ($number < 1 || $number > $pages) continue; ?><a class="btn btn-outline" data-live-search-page href="<?= $smsEscape($smsPage . '&' . http_build_query(['sms_tab' => 'history', 'sms_page' => $number, 'sms_source' => $filter, 'sms_state' => $state, 'sms_search' => $search])) ?>"><?= $label ?></a><?php endforeach; ?></nav>
+</div>
 <?php endif; ?>

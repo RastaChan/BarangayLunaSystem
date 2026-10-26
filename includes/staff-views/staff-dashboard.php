@@ -66,7 +66,7 @@
       <tbody data-live-overview="activities">
         <?php foreach (array_slice($activityLogs, 0, 3) as $log): ?>
         <tr>
-          <td data-label="Date and time"><?= htmlspecialchars($log['date']) ?></td>
+          <td data-label="Date and time"><?= htmlspecialchars(barangay_display_datetime($log['date'])) ?></td>
           <td data-label="Action performed"><?= htmlspecialchars($log['action']) ?></td>
           <td data-label="Module"><?= htmlspecialchars($log['module']) ?></td>
           <td data-label="Status"><span class="badge badge-active"><?= htmlspecialchars($log['status']) ?></span></td>

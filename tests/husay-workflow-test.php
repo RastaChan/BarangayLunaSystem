@@ -43,16 +43,24 @@ try {
   $activeFeed=json_decode(husay_test_endpoint($name,'staff','feed',['complaint'=>$parent['complaint_code']]),true);
   hc($activeFeed['ok'] && $activeFeed['hasActive'] && $activeFeed['activeId']===$one['id'],'The complaint shortcut can find the existing appointment instead of scheduling a duplicate');
   $fresh=array_replace($base,['request_key'=>bin2hex(random_bytes(16))]);
-  hr(fn()=>husay_schedule($fresh,$resident),'Residents cannot create or change Husay schedules');
+  hr(fn()=>husay_schedule($fresh,$resident),'Residents cannot create or change Mediation schedules');
   hr(fn()=>husay_schedule(array_replace($fresh,['review_confirmed'=>'0']),$staff),'Scheduling requires review confirmation');
+  hr(fn()=>husay_schedule(array_replace($fresh,['complainant_mobile'=>'']),$staff),'A complainant phone number is required before saving');
+  hr(fn()=>husay_schedule(array_replace($fresh,['complainant_mobile'=>'12345']),$staff),'An invalid complainant phone number is rejected');
   hr(fn()=>husay_schedule(array_replace($fresh,['end_time'=>'08:00']),$staff),'An end time before the start is rejected');
   hr(fn()=>husay_schedule(array_replace($fresh,['hearing_date'=>'2026-02-30']),$staff),'Invalid calendar dates are rejected');
   hr(fn()=>husay_schedule(array_replace($fresh,['assigned_user_id'=>$ids['resident']]),$staff),'Assigned official must be active Admin or Staff');
   $complaintCount=(int)$db->query('SELECT COUNT(*) FROM complaints')->fetchColumn();
   hr(fn()=>husay_schedule(array_replace($fresh,['assigned_user_id'=>$ids['admin'],'venue'=>'  barangay   hall ']),$admin),'Overlapping venues are rejected even with another official and different capitalization');
   hr(fn()=>husay_schedule(array_replace($fresh,['venue'=>'Another room']),$staff),'One official cannot be double-booked across venues');
+  hr(fn()=>husay_schedule(array_replace($fresh,['assigned_user_id'=>$ids['admin'],'venue'=>'Different room']),$admin),'An identical time is blocked even for a different official and venue');
+  foreach ([['08:30','09:30'],['09:30','10:30'],['09:15','09:45'],['08:30','10:30']] as [$from,$to]) {
+    hr(fn()=>husay_schedule(array_replace($fresh,['assigned_user_id'=>$ids['admin'],'venue'=>'Different room','start_time'=>$from,'end_time'=>$to]),$admin),'Partial or contained overlaps cannot save: '.$from.'–'.$to);
+  }
   hc((int)$db->query('SELECT COUNT(*) FROM complaints')->fetchColumn()===$complaintCount,'A conflicting walk-in appointment rolls back its complaint intake');
   $two=husay_schedule(array_replace($fresh,['request_key'=>bin2hex(random_bytes(16)),'resident_code'=>'TEST-resident','start_time'=>'10:00','end_time'=>'11:00']),$staff);
+  hr(fn()=>husay_schedule(array_replace($fresh,['request_key'=>bin2hex(random_bytes(16)),'reschedule_id'=>$one['id'],'version'=>1,'start_time'=>'10:30','end_time'=>'11:30','change_reason'=>'Conflicting change']),$staff),'Rescheduling also rejects an overlapping appointment');
+  hc($db->query('SELECT status FROM husay_schedules WHERE id='.$one['id'])->fetchColumn()==='Scheduled','A rejected reschedule keeps the original appointment');
   $linked=$db->query('SELECT c.* FROM complaints c JOIN husay_schedules h ON h.complaint_id=c.id WHERE h.id='.$two['id'])->fetch();
   hc((int)$linked['resident_user_id']===$ids['resident'] && $linked['resident_name']==='Linked Resident','Adjacent time slots work, and walk-in intake can link an existing Resident ID');
   hc(count(husay_public_rows($ids['resident']))===1 && husay_public_rows($ids['resident']+100)===[],'Residents see only appointments explicitly linked to their own account');
@@ -64,7 +72,7 @@ try {
   $earlyRow=$db->query('SELECT * FROM husay_schedules WHERE id='.$early['id'])->fetch();
   hc($earlyRow['status']==='Completed' && $earlyRow['outcome']==='Settled' && $earlyRow['respondent_attendance']==='Not applicable','Future hearing can be settled without inventing attendance');
   hr(fn()=>husay_update_complaint(['id'=>$linked['complaint_code'],'status'=>'Resolved','remarks'=>'Done'],$staff),'An active session prevents premature complaint resolution');
-  hr(fn()=>husay_update_complaint(['id'=>$linked['complaint_code'],'status'=>'Open','remarks'=>'Reopen'],$staff),'An active Husay complaint cannot be reset to Open');
+  hr(fn()=>husay_update_complaint(['id'=>$linked['complaint_code'],'status'=>'Open','remarks'=>'Reopen'],$staff),'An active Mediation complaint cannot be reset to Open');
   require_once __DIR__.'/../includes/resident-submission-helpers.php';
   $db->exec("UPDATE complaints SET status='Open' WHERE id=".$linked['id']);
   hr(fn()=>resident_delete_own_submission('complaint',$linked['complaint_code'],$ids['resident']),'An active session prevents resident deletion even if a complaint status is stale');
@@ -80,27 +88,27 @@ try {
   husay_record_session($session,$staff);
   hr(fn()=>husay_record_session(array_replace($session,['version'=>2,'outcome'=>'For follow-up','public_summary'=>'']),$staff),'Completing a session requires an outcome summary');
   husay_record_session(array_replace($session,['version'=>2,'outcome'=>'For follow-up']),$staff);
-  hc($db->query('SELECT status FROM complaints WHERE id='.$linked['id'])->fetchColumn()==='In Progress','Completing Husay does not automatically close or resolve the complaint');
+  hc($db->query('SELECT status FROM complaints WHERE id='.$linked['id'])->fetchColumn()==='In Progress','Completing Mediation does not automatically close or resolve the complaint');
   hc(!str_contains(json_encode(husay_public_rows($ids['resident'])),'STAFF-ONLY') && !str_contains(json_encode(husay_resident_notifications($ids['resident'])),'STAFF-ONLY'),'Private notes never appear in resident schedule data or notifications');
   $notice=husay_test_endpoint($name,'staff','notice',['id'=>$two['id']]);
-  hc(str_contains($notice,'Husay Schedule Notice') && !str_contains($notice,'STAFF-ONLY'),'Printable appointment notices exclude private session notes');
+  hc(str_contains($notice,'Mediation Schedule Notice') && !str_contains($notice,'STAFF-ONLY'),'Printable appointment notices exclude private session notes');
   $denied=json_decode(husay_test_endpoint($name,'resident','feed',[]),true);
   hc(!$denied['ok'],'Residents cannot retrieve the staff scheduling feed');
   $denied=json_decode(husay_test_endpoint($name,'staff','actions',['action'=>'cancel_husay','hearing_id'=>$two['id'],'version'=>3,'csrf'=>'wrong']),true);
-  hc(!$denied['ok'],'Invalid form tokens cannot change a Husay session');
+  hc(!$denied['ok'],'Invalid form tokens cannot change a Mediation session');
   hr(fn()=>husay_update_complaint(['id'=>$linked['complaint_code'],'status'=>'Closed','remarks'=>''],$staff),'Closing a complaint requires a written resolution summary');
   husay_update_complaint(['id'=>$linked['complaint_code'],'status'=>'Resolved','remarks'=>'Concern resolved after follow-up'],$staff);
   hc($db->query('SELECT status FROM complaints WHERE id='.$linked['id'])->fetchColumn()==='Resolved','Staff can explicitly resolve a complaint with a summary after sessions end');
   $loggedInUser=$resident;
   $myComplaints=[['id'=>$linked['complaint_code'],'resident_user_id'=>$ids['resident'],'subject'=>'Neighbor dispute','category'=>'Test','date'=>$date,'status'=>'Resolved','remarks'=>'Concern resolved after follow-up']];
   ob_start();require __DIR__.'/../includes/resident-views/my-complaints.php';$residentHtml=ob_get_clean();
-  hc(str_contains($residentHtml,'Husay appointments') && str_contains($residentHtml,'Follow-up needed') && !str_contains($residentHtml,'STAFF-ONLY') && !str_contains($residentHtml,'data-husay-form'),'The resident complaint page shows appointments and public updates without private notes or editing controls');
+  hc(str_contains($residentHtml,'Mediation appointments') && str_contains($residentHtml,'Follow-up needed') && !str_contains($residentHtml,'STAFF-ONLY') && !str_contains($residentHtml,'data-husay-form'),'The resident complaint page shows appointments and public updates without private notes or editing controls');
   foreach(['RACE-1','RACE-2'] as $code)$db->prepare("INSERT INTO complaints(complaint_code,resident_name,subject,status) VALUES (?,'Test','Concurrent schedule','Open')")->execute([$code]);
   $raceBase=array_replace($fresh,['intake_mode'=>'linked','venue'=>'Concurrency test room','start_time'=>'14:00','end_time'=>'15:00']);
   $a=husay_test_process(['--race',$name,(string)$ids['staff'],json_encode(array_replace($raceBase,['complaint_code'=>'RACE-1','assigned_user_id'=>$ids['staff'],'request_key'=>bin2hex(random_bytes(16))]))]);
-  $b=husay_test_process(['--race',$name,(string)$ids['admin'],json_encode(array_replace($raceBase,['complaint_code'=>'RACE-2','assigned_user_id'=>$ids['admin'],'request_key'=>bin2hex(random_bytes(16))]))]);
+  $b=husay_test_process(['--race',$name,(string)$ids['admin'],json_encode(array_replace($raceBase,['complaint_code'=>'RACE-2','assigned_user_id'=>$ids['admin'],'venue'=>'Another concurrency room','request_key'=>bin2hex(random_bytes(16))]))]);
   $results=[json_decode(husay_test_output($a),true),json_decode(husay_test_output($b),true)];
-  hc(count(array_filter($results,fn($r)=>$r['ok']))===1,'Concurrent requests cannot reserve the same venue and time twice');
+  hc(count(array_filter($results,fn($r)=>$r['ok']))===1,'Concurrent requests cannot reserve overlapping times even across different venues and officials');
   hc((int)$db->query('SELECT COUNT(*) FROM sms_logs')->fetchColumn()===0,'Tests schedule and record sessions without sending SMS');
   $db->exec("INSERT INTO system_settings(setting_key,setting_value) VALUES ('sms_enabled','0') ON DUPLICATE KEY UPDATE setting_value='0'");
   $smsInput=array_replace($base,['request_key'=>bin2hex(random_bytes(16)),'start_time'=>'18:00','end_time'=>'19:00','action'=>'schedule_husay','csrf'=>'test-token','send_sms'=>'1']);
@@ -110,21 +118,21 @@ try {
   hc($smsRetry['ok'] && $smsRetry['id']===$smsResult['id'] && (int)$db->query('SELECT COUNT(*) FROM sms_logs')->fetchColumn()===1,'Retrying a saved form does not create another appointment or duplicate SMS attempt');
   $db->exec("INSERT INTO complaints(complaint_code,resident_name,subject,status) VALUES ('CMP-WAITING','Visitor <script>','Waiting concern','Open'),('CMP-CLOSED','Visitor','Closed concern','Closed')");
   $available = array_column(husay_available_complaints(),'complaint_code');
-  hc(in_array('CMP-WAITING',$available,true) && !in_array('CMP-CLOSED',$available,true) && !in_array($smsResult['complaint_code'],$available,true),'The schedule picker lists open complaints without an active Husay session');
+  hc(in_array('CMP-WAITING',$available,true) && !in_array('CMP-CLOSED',$available,true) && !in_array($smsResult['complaint_code'],$available,true),'The schedule picker lists open complaints without an active Mediation session');
   $feed=json_decode(husay_test_endpoint($name,'staff','feed',[]),true);
   hc($feed['ok'] && str_contains($feed['complaintsHtml'],'CMP-WAITING') && str_contains($feed['complaintsHtml'],'&lt;script&gt;') && !str_contains($feed['complaintsHtml'],'<script>'),'The live schedule feed refreshes eligible complaints and escapes resident-provided text');
   foreach (['admin','staff'] as $role) {
     $page=husay_test_endpoint($name,$role,'page',[]);
     $dom=new DOMDocument();@$dom->loadHTML($page);$xpath=new DOMXPath($dom);
     hc($xpath->query('//*[@data-husay-workspace]')->length===1 && $xpath->query('//a[@data-nav-view="husay-schedule" and contains(@class,"is-active")]')->length===1,"$role can open the dedicated schedule page with the correct active sidebar link");
-    if ($role === 'admin') hc($xpath->query('//*[@data-record-view]/parent::div[contains(@class,"modal-body") and not(contains(@class,"auto-fill-grid"))]')->length===1,'Admin complaint details keep attachment and Husay sections outside the narrow detail grid');
-    hc($xpath->query('//div[contains(@class,"husay-toolbar")]/button[@data-husay-existing]')->length===1 && $xpath->query('//div[contains(@class,"husay-toolbar")]/button[@data-husay-walkin]')->length===1 && $xpath->query('//div[contains(@class,"husay-toolbar")]/following-sibling::section[1][@data-husay-workspace]')->length===1,"$role scheduling buttons sit together immediately above Husay schedules");
+    if ($role === 'admin') hc($xpath->query('//*[@data-record-view]/parent::div[contains(@class,"modal-body") and not(contains(@class,"auto-fill-grid"))]')->length===1,'Admin complaint details keep attachment and Mediation sections outside the narrow detail grid');
+    hc($xpath->query('//div[contains(@class,"husay-toolbar")]/button[@data-husay-existing]')->length===1 && $xpath->query('//div[contains(@class,"husay-toolbar")]/button[@data-husay-walkin]')->length===1 && $xpath->query('//div[contains(@class,"husay-toolbar")]/following-sibling::section[1][@data-husay-workspace]')->length===1,"$role scheduling buttons sit together immediately above Mediation schedules");
     hc($xpath->query('//button[@data-husay-mode]')->length===2 && $xpath->query('//*[@data-husay-calendar-grid]')->length===1 && $xpath->query('//select[@name="existing_complaint_code"]')->length===1,"$role schedule page includes calendar/list controls and existing-complaint intake");
   }
   $db->prepare('UPDATE husay_schedules SET starts_at=?,ends_at=? WHERE id=?')->execute([(new DateTimeImmutable('today',new DateTimeZone('Asia/Manila')))->format('Y-m-d').' 09:00:00',(new DateTimeImmutable('today',new DateTimeZone('Asia/Manila')))->format('Y-m-d').' 10:00:00',$smsResult['id']]);
   foreach (['admin','staff'] as $role) {
     $loggedInUser=['id'=>$ids[$role],'role'=>$role];ob_start();require __DIR__.'/../includes/husay-today.php';$summary=ob_get_clean();
-    hc(str_contains($summary,"Today's Husay") && str_contains($summary,'&amp;husay='.$smsResult['id']) && !str_contains($summary,'STAFF-ONLY'),"$role dashboard summary links directly to today's session without exposing private notes");
+    hc(str_contains($summary,"Today's Mediation") && str_contains($summary,'&amp;husay='.$smsResult['id']) && !str_contains($summary,'STAFF-ONLY'),"$role dashboard summary links directly to today's session without exposing private notes");
   }
 } finally {$server->exec("DROP DATABASE `$name`");}
 echo "Isolated database removed. No production complaints or appointments changed.\n";

@@ -39,10 +39,16 @@ try {
     $resident = (int) $db->lastInsertId();
     $withFile = $requirements;
     $withFile['government_id']['file'] = ['filename'=>'id.pdf', 'mime'=>'application/pdf', 'content'=>base64_encode('%PDF-test-only')];
+    $withFile['government_id']['status'] = 'Not Submitted';
     registration_save_initial_requirements($resident, $withFile, $actor);
     $db->commit();
     registration_check((int) $db->query("SELECT COUNT(*) FROM resident_requirements WHERE resident_id = {$resident}")->fetchColumn() === 4, $role . ' saves account requirements together');
     registration_check((int) $db->query("SELECT COUNT(*) FROM record_attachments WHERE owner_id = {$resident}")->fetchColumn() === 1, 'Requirement attachment belongs to the new resident');
+    registration_check($db->query("SELECT status FROM resident_requirements WHERE resident_id = {$resident} AND requirement_key = 'government_id'")->fetchColumn() === 'Submitted', 'An attached requirement is saved as Submitted even if the posted status was Not Submitted');
+    $db->beginTransaction();
+    registration_requirement_save($resident, 'government_id', 'Not Applicable', 'Replacement attachment test', $actor, $withFile['government_id']['file'], false);
+    $db->commit();
+    registration_check($db->query("SELECT status FROM resident_requirements WHERE resident_id = {$resident} AND requirement_key = 'government_id'")->fetchColumn() === 'Submitted', 'Replacing an existing requirement attachment also saves Submitted');
     $result = resident_account_notification($code, $actor, null, $transport);
     registration_check(!empty($result['success']), 'Creation sends automatic account SMS');
     $count = count($sent);

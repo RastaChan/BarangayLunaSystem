@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/document-custom-fields.php';
 require_once __DIR__ . '/database.php';
 
 function barangay_document_requests(): array {
@@ -7,7 +8,7 @@ function barangay_document_requests(): array {
               document_requests.resident_name AS resident,
               document_requests.document_type AS type,
               document_requests.fee_amount,
-              document_requests.copies, document_requests.unit_fee,
+              document_requests.copies, document_requests.unit_fee, document_requests.custom_values_json,
               COALESCE(document_requests.contact_mobile, "") AS contact_mobile,
               COALESCE(document_requests.remarks, "") AS remarks,
               COALESCE(document_requests.purpose, "") AS purpose,
@@ -29,6 +30,7 @@ function barangay_document_requests(): array {
 
 
 function barangay_ensure_document_request_detail_columns(): void {
+  barangay_custom_document_schema();
   $columns = [
     'ready_at' => "ALTER TABLE document_requests ADD COLUMN ready_at DATETIME DEFAULT NULL",
     'beneficiary_name' => "ALTER TABLE document_requests ADD COLUMN beneficiary_name VARCHAR(150) DEFAULT NULL AFTER remarks",
@@ -72,6 +74,7 @@ function barangay_request_issue_input(array $input, array $request): array {
     'cohabitation_start_date', 'resident_gender_override', 'copies'] as $field) {
     $input[$field] = $request[$field] ?? ($field === 'copies' ? 1 : '');
   }
+  if (!array_key_exists('custom_fields', $input)) $input['custom_fields'] = barangay_custom_json($request['custom_values_json'] ?? null);
   return $input;
 }
 

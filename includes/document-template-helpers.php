@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/document-custom-fields.php';
 require_once __DIR__ . '/database.php';
 require_once __DIR__ . '/document-pdf.php';
 
@@ -22,6 +23,8 @@ function staff_saved_uploaded_templates(array $templates): array {
 }
 
 function staff_save_template_replacement(PDO $db, array $values): int {
+  barangay_custom_document_schema($db);
+  $customFields = array_key_exists('custom_fields', $values) ? barangay_custom_field_definitions($values['custom_fields']) : null;
   // Serialize uploads, including simultaneous saves of a previously unseen type.
   $lockName = 'template-save-' . hash('sha256', (string) $db->query('SELECT DATABASE()')->fetchColumn());
   $lockName = substr($lockName, 0, 64);
@@ -30,7 +33,7 @@ function staff_save_template_replacement(PDO $db, array $values): int {
   if ((int) $lock->fetchColumn() !== 1) throw new RuntimeException('Template save is busy. Please try again.');
   try {
     $db->beginTransaction();
-    $rows = $db->query("SELECT id, document_type, effective_year, template_file_name, template_file_path FROM document_templates ORDER BY FIELD(status, 'Active', 'Draft', 'Archived'), updated_at DESC, id DESC FOR UPDATE")->fetchAll();
+    $rows = $db->query("SELECT id, document_type, effective_year, template_file_name, template_file_path, custom_fields_json FROM document_templates ORDER BY FIELD(status, 'Active', 'Draft', 'Archived'), updated_at DESC, id DESC FOR UPDATE")->fetchAll();
     $matching = array_values(array_filter($rows, static fn($row) => staff_document_type_key($row['document_type']) === staff_document_type_key($values['type']) && (int) $row['effective_year'] === (int) $values['year']));
     $existing = $matching[0] ?? null;
     if ($values['status'] === 'Active') {
@@ -40,15 +43,16 @@ function staff_save_template_replacement(PDO $db, array $values): int {
       }
     }
     $params = [$values['name'], $values['type'], $values['year'], $values['content'], $values['file_name'] ?? ($existing['template_file_name'] ?? null), $values['file_path'] ?? ($existing['template_file_path'] ?? null), $values['status'], $values['user_id']];
+    $params[] = json_encode($customFields ?? barangay_custom_json($existing['custom_fields_json'] ?? null), JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR);
     if ($existing) {
       $id = (int) $existing['id'];
-      $stmt = $db->prepare('UPDATE document_templates SET name=?, document_type=?, effective_year=?, content=?, template_file_name=?, template_file_path=?, status=?, updated_by=?, updated_at=NOW() WHERE id=?');
+      $stmt = $db->prepare('UPDATE document_templates SET name=?, document_type=?, effective_year=?, content=?, template_file_name=?, template_file_path=?, status=?, updated_by=?, custom_fields_json=?, updated_at=NOW() WHERE id=?');
       $stmt->execute(array_merge($params, [$id]));
       // Preserve old duplicate records/files as history, but retire them from use.
       $archive = $db->prepare("UPDATE document_templates SET status='Archived' WHERE id=?");
       foreach (array_slice($matching, 1) as $duplicate) $archive->execute([$duplicate['id']]);
     } else {
-      $stmt = $db->prepare('INSERT INTO document_templates (name,document_type,effective_year,content,template_file_name,template_file_path,status,updated_by,created_at,updated_at) VALUES (?,?,?,?,?,?,?,?,NOW(),NOW())');
+      $stmt = $db->prepare('INSERT INTO document_templates (name,document_type,effective_year,content,template_file_name,template_file_path,status,updated_by,custom_fields_json,created_at,updated_at) VALUES (?,?,?,?,?,?,?,?,?,NOW(),NOW())');
       $stmt->execute($params);
       $id = (int) $db->lastInsertId();
     }
@@ -702,6 +706,36 @@ function staff_extract_docx_text_from_template(string $templateRelativePath): st
   }
 
   return implode("\n", $textParts);
+}
+
+/** Explain unmatched tags before a template is published or replaced. */
+function staff_template_tag_problems(string $text, array $fields): array {
+  $problems=[]; $used=[]; $unknown=[]; $spacing=[];
+  $known=array_fill_keys(array_merge(BARANGAY_STANDARD_DOCUMENT_KEYS,array_column($fields,'key')),true);
+  preg_match_all('/\{\{([^{}]*)\}\}/u',$text,$matches,PREG_SET_ORDER);
+  foreach ($matches as $match) {
+    $key=trim($match[1]);$used[$key]=true;
+    if (!isset($known[$key])) $unknown[]='{{'.$key.'}}';
+    elseif ($match[0] !== '{{'.$key.'}}') $spacing[]='{{'.$key.'}}';
+  }
+  $unmatched=preg_replace('/\{\{[^{}]*\}\}/u','',$text);
+  if (str_contains($unmatched,'{{') || str_contains($unmatched,'}}')) $problems[]='A Word tag is incomplete. Copy the complete tag, including both pairs of braces, into Word.';
+  if (!$matches) $problems[]='No fill-in tags were found in the Word file. Choose Analyze uploaded DOCX to prepare it automatically, or add a tag such as {{resident_name}} in Word and upload the DOCX again.';
+  if ($unknown) $problems[]='These Word tags have no matching field: '.implode(', ',array_unique($unknown)).'. Add a field for each one or replace it with a listed tag.';
+  if ($spacing) $problems[]='Remove the extra spaces inside these Word tags. Copy them exactly as shown: '.implode(', ',array_unique($spacing)).'.';
+  $missing=[];
+  foreach ($fields as $field) if (!isset($used[$field['key']])) $missing[]=$field['label'].' ({{'.$field['key'].'}})';
+  if ($missing) $problems[]='Add these field tags to the Word document where their answers should appear: '.implode(', ',$missing).'. You can also remove fields you do not need.';
+  return $problems;
+}
+function staff_check_template_custom_tags(string $path, array $fields): void {
+  if ($path==='') {
+    if ($fields) throw new InvalidArgumentException('Upload a DOCX template and paste each field tag into it before saving these additional fields.');
+    return;
+  }
+  if (!is_file(staff_docx_absolute_path($path))) throw new InvalidArgumentException('The saved Word file is unavailable. Upload the DOCX again.');
+  $problems=staff_template_tag_problems(staff_extract_docx_text_from_template($path),$fields);
+  if ($problems) throw new InvalidArgumentException(implode("\n",$problems));
 }
 
 function staff_xml_contains_supported_placeholder(string $xml, array $placeholders): bool {

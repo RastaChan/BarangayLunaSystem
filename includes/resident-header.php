@@ -33,7 +33,7 @@ $notificationCount = count(array_filter($notificationItems, static fn(array $ite
 ?>
 <header class="top-header header">
   <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Open menu">
-    <svg viewBox="0 0 24 24" width="22" height="22" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    <svg width="22" height="22" viewBox="0 0 256 256" fill="currentColor" stroke="none" aria-hidden="true" data-system-icon="menu" class="system-icon"><path d="M216,64V192H40V64Z" opacity="0.2"/><path d="M224,128a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16H216A8,8,0,0,1,224,128ZM40,72H216a8,8,0,0,0,0-16H40a8,8,0,0,0,0,16ZM216,184H40a8,8,0,0,0,0,16H216a8,8,0,0,0,0-16Z"/></svg>
   </button>
 
   <div class="header-title">

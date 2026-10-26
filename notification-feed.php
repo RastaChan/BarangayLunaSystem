@@ -255,9 +255,9 @@ echo json_encode([
   'owner' => $role . ':' . (int) $user['id'],
   'items' => $items,
   'sideCounts' => $sideCounts,
-  'state' => $role === 'resident' ? (function () use ($user) {
+  'state' => (function () use ($user) {
     require_once __DIR__ . '/includes/notification-state.php';
     return barangay_notification_state((int) $user['id']);
-  })() : null,
+  })(),
 ]);
 ?>

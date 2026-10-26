@@ -33,7 +33,7 @@ check_document_settings(!str_contains($issue, 'Issued document records') && str_
 check_document_settings(str_contains(file_get_contents(__DIR__ . '/../includes/staff-views/service-reports.php'), "'/issued-document-records.php'"), 'Issued records are available in Service Reports');
 check_document_settings(str_contains($issue, 'name="after_issue" value="print"') && str_contains($issue, '/issuance-review-controls.php') && str_contains(file_get_contents(__DIR__ . '/../includes/issuance-review-controls.php'), 'data-issuance-generate>Prepare printable document'), 'Issuance form submits the preparation workflow');
 check_document_settings(substr_count($issue, 'data-scroll-document-preview>Preview document</button>') === 1, 'Only the top preview button remains');
-check_document_settings(str_contains($issue, 'data-modal-close data-modal-open="editTemplateModal') && str_contains($issue, 'data-modal-close data-modal-open="deleteTemplateModal'), 'Saved template actions switch out of management dialog');
+check_document_settings(str_contains($issue, 'Save / replace template') && str_contains($issue, 'data-template-current-year=') && str_contains($issue, 'name="action" value="save_template"'), 'Template management replaces the current-year template through its saved form');
 $db = barangay_db();
 barangay_ensure_document_fee_schema();
 $db->beginTransaction();

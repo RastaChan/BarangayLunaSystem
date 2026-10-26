@@ -79,6 +79,7 @@ CREATE TABLE IF NOT EXISTS announcements (
 );
 
 CREATE TABLE IF NOT EXISTS document_requests (
+  custom_values_json MEDIUMTEXT NULL,
   id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   request_code VARCHAR(30) NOT NULL UNIQUE,
   resident_user_id INT UNSIGNED DEFAULT NULL,
@@ -108,6 +109,7 @@ CREATE TABLE IF NOT EXISTS document_requests (
 );
 
 CREATE TABLE IF NOT EXISTS document_templates (
+  custom_fields_json MEDIUMTEXT NULL,
   id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(180) NOT NULL,
   document_type VARCHAR(100) NOT NULL,
@@ -134,6 +136,7 @@ CREATE TABLE IF NOT EXISTS document_fees (
 );
 
 CREATE TABLE IF NOT EXISTS issued_documents (
+  custom_values_json MEDIUMTEXT NULL,
   id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   document_number VARCHAR(60) NOT NULL UNIQUE,
   resident_user_id INT UNSIGNED DEFAULT NULL,

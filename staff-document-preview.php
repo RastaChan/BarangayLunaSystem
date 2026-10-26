@@ -101,6 +101,13 @@ $values = staff_document_template_values($resident, $purpose, $dateIssued, 'Hon.
   'cohabitation_start_date' => $cohabitationStartDate,
 ]);
 
+try {
+  $customValues = barangay_custom_validate_values(barangay_custom_fields_for_type($documentType), $_POST['custom_fields'] ?? [], true);
+  $values = array_merge($values, barangay_custom_template_values($customValues));
+} catch (InvalidArgumentException $error) {
+  http_response_code(422); echo json_encode(['success'=>false,'message'=>$error->getMessage()]); exit;
+}
+
 if ($residentCode === '__walkin__' && ($resident['age'] ?? '') === '') {
   $values['{{age}}'] = '';
 }

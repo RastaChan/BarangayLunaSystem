@@ -151,7 +151,7 @@
   }
 
   function enhance(select) {
-    if (entries.has(select) || select.multiple || select.size > 1) return;
+    if (entries.has(select) || select.multiple || select.size > 1 || select.dataset.nativeSelect === 'true') return;
     const button = document.createElement('button');
     button.type = 'button';
     button.className = 'mobile-select-trigger';

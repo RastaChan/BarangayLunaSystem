@@ -69,3 +69,39 @@ assert.equal(sidebar.classList.contains('is-collapsed'),false);
 assert.equal(sidebarToggle.attributes['aria-expanded'],'true');
 for (const file of ['sidebar.php','staff-sidebar.php','resident-sidebar.php']) assert.equal(fs.readFileSync('includes/'+file,'utf8').includes('id="sidebarCollapseBtn"'),false,'The extra arrow button is removed from '+file);
 console.log('PASS: header menu controls desktop collapse without an arrow button, retains preferences, and restores the full menu on phones.');
+
+const initialStateSource = fs.readFileSync('includes/sidebar-state.php', 'utf8').replace(/<\/?script>/g, '');
+function restoreSidebar({mobile = false, blockedStorage = false, activeTop = 130} = {}) {
+  const stored = new Map([['barangaySidebarScroll:/staff-dashboard.php', JSON.stringify({top: 240, left: 0})]]);
+  const listeners = {};
+  const initialSidebar = {style: {}, classList: classSet(), getBoundingClientRect: () => ({})};
+  const initialBody = {classList: classSet()};
+  const nav = {scrollTop: 0, scrollLeft: 0,
+    getBoundingClientRect: () => ({top: 100, bottom: 500, left: 0, right: 232}),
+    querySelector: () => ({getBoundingClientRect: () => ({top: activeTop, bottom: activeTop + 44, left: 10, right: 220})}),
+    addEventListener: (name, handler) => {listeners[name] = handler;}};
+  const access = value => {if (blockedStorage) throw Error('Storage disabled'); return value;};
+  vm.runInNewContext(initialStateSource, {
+    document: {body: initialBody, getElementById: id => id === 'appSidebar' ? initialSidebar : nav},
+    window: {matchMedia: () => ({matches: !mobile}), location: {pathname: '/staff-dashboard.php'}, addEventListener() {}},
+    localStorage: {getItem: () => access('1')},
+    sessionStorage: {getItem: key => access(stored.get(key)), setItem: (key, value) => stored.set(key, access(value))},
+  });
+  return {initialSidebar, initialBody, nav, stored, listeners};
+}
+let restored = restoreSidebar();
+assert.equal(restored.initialSidebar.classList.contains('is-collapsed'), true);
+assert.equal(restored.initialBody.classList.contains('sidebar-is-collapsed'), true);
+assert.equal(restored.nav.scrollTop, 240, 'A visible selected link does not recenter the sidebar');
+restored.nav.scrollTop = 310;
+restored.listeners.click();
+assert.equal(JSON.parse(restored.stored.get('barangaySidebarScroll:/staff-dashboard.php')).top, 310);
+restored = restoreSidebar({activeTop: 490});
+assert.equal(restored.nav.scrollTop, 274, 'An offscreen link moves only enough to become visible');
+assert.equal(restoreSidebar({mobile: true}).initialSidebar.classList.contains('is-collapsed'), false);
+assert.equal(restoreSidebar({blockedStorage: true}).initialSidebar.classList.contains('is-collapsed'), false);
+for (const page of ['dashboard.php', 'staff-dashboard.php', 'resident-dashboard.php']) {
+  const markup = fs.readFileSync(page, 'utf8');
+  assert.ok(markup.indexOf("'/includes/sidebar-state.php'") < markup.indexOf('<div class="main-area">'), 'Restore state before main content in ' + page);
+}
+console.log('PASS: sidebar restores width before content, preserves menu position, reveals offscreen links and supports mobile or blocked storage.');

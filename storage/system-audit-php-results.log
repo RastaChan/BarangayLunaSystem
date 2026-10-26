@@ -1,0 +1,75 @@
+PASS: admin-password-reset-test.php
+PASS: attachment-display-test.php
+PASS: audit-log-filters-test.php
+PASS: beneficiary-gender-test.php
+PASS: community-post-management-test.php
+PASS: community-posts-test.php
+PASS: complaint-display-test.php
+PASS: create-staff-default-role-test.php
+PASS: document-copies-test.php
+PASS: document-pdf-test.php
+PASS: document-request-feed-test.php
+PASS: document-request-parity-test.php
+PASS: document-request-workflow-test.php
+FAIL: document-settings-test.php
+PASS: Document settings render as separate pages
+PASS: All 38 placeholder tags retained
+PASS: Fee save returns to Document Fees
+PASS: No old fee redirect remains
+PASS: Settings sidebar dropdown stays expanded on system-settings
+PASS: Active settings page is indicated
+PASS: Settings sidebar dropdown stays expanded on template-placeholders
+PASS: Active settings page is indicated
+PASS: Settings sidebar dropdown stays expanded on document-fees
+PASS: Active settings page is indicated
+PASS: General Settings no longer embeds document dropdown sections
+PASS: One editable fee amount for the selected group
+PASS: Every document type is selectable in the dropdown
+PASS: One Save fees button
+PASS: Old Issue Documents sections removed
+PASS: Issued records removed from issuance; Template Management retained
+PASS: Issued records are available in Service Reports
+PASS: Issuance form submits the preparation workflow
+PASS: Only the top preview button remains
+
+Fatal error: Uncaught RuntimeException: Saved template actions switch out of management dialog in C:\laragon\www\BARANGAY LUNA SYSTEM\tests\document-settings-test.php:5
+Stack trace:
+#0 C:\laragon\www\BARANGAY LUNA SYSTEM\tests\document-settings-test.php(36): check_document_settings(false, 'Saved template ...')
+#1 {main}
+  thrown in C:\laragon\www\BARANGAY LUNA SYSTEM\tests\document-settings-test.php on line 5
+PASS: functional-audit-test.php
+PASS: husay-workflow-test.php
+PASS: issued-report-test.php
+PASS: notification-feed-test.php
+FAIL: notification-state-test.php
+
+Fatal error: Uncaught PDOException: There is already an active transaction in C:\laragon\www\BARANGAY LUNA SYSTEM\includes\notification-state.php:34
+Stack trace:
+#0 C:\laragon\www\BARANGAY LUNA SYSTEM\includes\notification-state.php(34): PDO->beginTransaction()
+#1 C:\laragon\www\BARANGAY LUNA SYSTEM\tests\notification-state-test.php(13): barangay_save_notification_state(-987654, 'seen', Array)
+#2 {main}
+  thrown in C:\laragon\www\BARANGAY LUNA SYSTEM\includes\notification-state.php on line 34
+PASS: pending-functions-test.php
+PASS: print-unavailable-test.php
+PASS: registration-record-cards-test.php
+PASS: research-features-test.php
+PASS: resident-activity-test.php
+PASS: resident-directory-pagination-test.php
+PASS: resident-immediate-access-test.php
+PASS: resident-inactivity-test.php
+PASS: resident-locations-test.php
+PASS: resident-preview-access-test.php
+PASS: resident-registration-workflow-test.php
+PASS: resident-request-tracking-test.php
+PASS: resident-service-endpoint-test.php
+PASS: resident-service-tools-test.php
+PASS: resident-submission-safety-test.php
+PASS: revenue-export-test.php
+PASS: short-issuance-workflow-test.php
+PASS: sms-automatic-template-test.php
+PASS: sms-broadcast-test.php
+PASS: sms-workspace-test.php
+PASS: template-auto-metadata-test.php
+PASS: template-replacement-test.php
+PASS: walkin-resident-test.php
+2 failed tests. All audit databases removed; no live data or SMS used.

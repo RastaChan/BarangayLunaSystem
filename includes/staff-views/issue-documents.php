@@ -185,7 +185,7 @@ if (!function_exists('staff_issue_preview_lines')) {
 <div id="documentRequestsModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="documentRequestsTitle">
   <div class="modal-backdrop" data-modal-close></div>
   <div class="modal-panel document-requests-panel">
-    <header class="modal-header"><h2 id="documentRequestsTitle">Document Requests</h2><button type="button" class="modal-close" data-modal-close aria-label="Close">&times;</button></header>
+    <header class="modal-header"><h2 id="documentRequestsTitle">Document Requests</h2><button type="button" class="modal-close" data-modal-close aria-label="Close"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor" stroke="none" aria-hidden="true" class="system-icon" data-system-icon="x"><path d="M216,56V200a16,16,0,0,1-16,16H56a16,16,0,0,1-16-16V56A16,16,0,0,1,56,40H200A16,16,0,0,1,216,56Z" opacity="0.2"/><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></svg></button></header>
     <div class="modal-body">
       <?php $requestsEmbedded = true; require __DIR__ . '/staff-document-requests.php'; unset($requestsEmbedded); ?>
     </div>
@@ -363,10 +363,11 @@ if (!function_exists('staff_issue_preview_lines')) {
             <label for="issueCohabitationStart">Living together since</label>
             <div class="calendar-date-field">
               <input id="issueCohabitationStart" type="date" name="cohabitation_start_date" value="<?= htmlspecialchars((string) $requestCohabitationStartDate) ?>" data-autofill-cohabitation-start>
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5h16v16H4V5Zm4-3v6m8-6v6M4 11h16m-12 4h2m4 0h2m-8 3h2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg  viewBox="0 0 256 256" fill="currentColor" stroke="none" aria-hidden="true" data-system-icon="calendar-days" class="system-icon"><path d="M216,48V88H40V48a8,8,0,0,1,8-8H208A8,8,0,0,1,216,48Z" opacity="0.2"/><path d="M208,32H184V24a8,8,0,0,0-16,0v8H88V24a8,8,0,0,0-16,0v8H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM72,48v8a8,8,0,0,0,16,0V48h80v8a8,8,0,0,0,16,0V48h24V80H48V48ZM208,208H48V96H208V208Z"/></svg>
             </div>
           </div>
         </div>
+        <?php $customInitialValues = barangay_custom_json($selectedRequest['custom_values_json'] ?? null); include __DIR__ . '/../document-custom-inputs.php'; ?>
         <div class="auto-fill-grid issuance-resident-summary" role="group" aria-label="Selected resident details" data-resident-summary <?= $issueMode === 'walkin' ? 'hidden style="display:none"' : '' ?>>
           <div class="resident-detail-wide"><span>Resident full name</span><strong data-autofill-name><?= htmlspecialchars($selectedResident['name']) ?></strong></div>
           <div class="resident-detail-wide"><span>Address</span><strong data-autofill-address><?= htmlspecialchars($selectedResident['address']) ?></strong></div>
@@ -650,6 +651,7 @@ if (!function_exists('staff_issue_preview_lines')) {
       '{{barangay_captain}}': barangayCaptain,
       '{{document_number}}': number || '',
     };
+    form.querySelectorAll('[data-custom-key]').forEach(input => { replacements['{{'+input.dataset.customKey+'}}'] = input.value || ''; });
     let rendered = String(template || '');
     Object.entries(replacements).forEach(([placeholder, value]) => {
       rendered = rendered.split(placeholder).join(clean(value));
@@ -836,6 +838,9 @@ if (!function_exists('staff_issue_preview_lines')) {
     });
   });
 
+  ['input','change'].forEach(name => form.addEventListener(name, event => { if (event.target.matches('[data-custom-key]')) updateAutofill(); }));
+  form.addEventListener('custom-document-fields-changed', updateAutofill);
+
   preview.addEventListener('pointerdown', function (event) {
     if (!preview.classList.contains('is-word-preview')) return;
     previewDragging = true;
@@ -947,7 +952,7 @@ if (!function_exists('staff_issue_preview_lines')) {
   <div class="modal-panel modal-panel--wide">
     <header class="modal-header">
       <h2>Template Management</h2>
-      <button type="button" class="modal-close" data-modal-close aria-label="Close">&times;</button>
+      <button type="button" class="modal-close" data-modal-close aria-label="Close"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor" stroke="none" aria-hidden="true" class="system-icon" data-system-icon="x"><path d="M216,56V200a16,16,0,0,1-16,16H56a16,16,0,0,1-16-16V56A16,16,0,0,1,56,40H200A16,16,0,0,1,216,56Z" opacity="0.2"/><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></svg></button>
     </header>
     <details class="template-management-records">
       <summary>Saved templates (<?= count($savedDocumentTemplates) ?>)</summary>
@@ -1018,6 +1023,8 @@ if (!function_exists('staff_issue_preview_lines')) {
         </div>
         <p class="field-hint">Upload a new Word document each year when the barangay format changes. For Indigency certificates requested for a child or dependent, use: This certification is issued upon the request of the above-mentioned person as requirement for the {{purpose}} for {{pronoun_possessive}} {{beneficiary_relationship}} {{beneficiary_name}}.</p>
       </div>
+      <?php include __DIR__ . '/../template-preparation-tool.php'; ?>
+      <?php include __DIR__ . '/../document-custom-builder.php'; ?>
       <div class="field">
         <label>Edit template content</label>
         <textarea name="content" rows="8">This is to certify that {{resident_name}}, {{age}} years old, {{civil_status}}, residing at {{resident_address}}, {{barangay_name}}, is issued this document for {{purpose}} on {{date_issued}}. Document No. {{document_number}}.</textarea>
@@ -1055,7 +1062,7 @@ document.addEventListener('DOMContentLoaded', () => {
   <div class="modal-panel">
     <header class="modal-header">
       <h2>Remove Document Type</h2>
-      <button type="button" class="modal-close" data-modal-close aria-label="Close">&times;</button>
+      <button type="button" class="modal-close" data-modal-close aria-label="Close"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor" stroke="none" aria-hidden="true" class="system-icon" data-system-icon="x"><path d="M216,56V200a16,16,0,0,1-16,16H56a16,16,0,0,1-16-16V56A16,16,0,0,1,56,40H200A16,16,0,0,1,216,56Z" opacity="0.2"/><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></svg></button>
     </header>
     <div class="modal-body">
       <p>Remove <strong data-document-type-remove-label>this document type</strong>?</p>

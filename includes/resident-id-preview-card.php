@@ -27,7 +27,7 @@ $previewFields = [
     <span class="badge <?= $previewStatus === 'Active' ? 'badge-active' : ($previewStatus === 'Inactive' ? 'badge-inactive' : 'badge-pending') ?>" data-resident-card-status><?= htmlspecialchars($previewStatus) ?></span>
   </div>
   <div class="resident-id-card__body">
-    <div class="resident-id-card__photo" data-resident-card-photo>
+    <div class="resident-id-card__photo" data-resident-card-photo <?= !empty($editableResidentPhoto) ? 'id="profilePhotoPreview" role="button" tabindex="0" aria-label="Change profile photo" title="Change profile photo"' : '' ?>>
       <?php if ($previewPhoto): ?><img src="<?= htmlspecialchars($previewPhoto) ?>" alt="<?= htmlspecialchars($previewName) ?> profile photo"><?php else: ?><?= htmlspecialchars($residentPreview ? mb_strtoupper($previewInitials) : '?') ?><?php endif; ?>
     </div>
     <div class="resident-id-card__info">

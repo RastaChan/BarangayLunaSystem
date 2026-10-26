@@ -51,6 +51,7 @@ function registration_requirement_save(int $resident, string $key, string $statu
     throw new InvalidArgumentException('Choose a valid requirement and status; remarks must be under 4,000 bytes.');
   }
   if ($file && $remove) throw new InvalidArgumentException('Choose either a replacement file or removal, not both.');
+  if ($file) $status = 'Submitted';
   $db = barangay_db();
   $check = $db->prepare("SELECT id FROM users WHERE id = ? AND role = 'resident' FOR UPDATE");
   $check->execute([$resident]);

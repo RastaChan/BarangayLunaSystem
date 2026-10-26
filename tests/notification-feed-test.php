@@ -55,6 +55,18 @@ try {
   notification_check(!$read['ok'] && $db->query("SELECT status FROM feedbacks WHERE feedback_code='FDB-ARCHIVED'")->fetchColumn() === 'Unread', 'Archived feedback cannot be marked read through a stale notification');
   $feed = notification_read($name, 'resident');
   notification_check(!array_filter($feed['items'], static fn(array $item): bool => $item['view'] === 'my-document-requests' || str_contains($item['view'], 'feedback')), 'Residents cannot see other residents’ requests or staff feedback alerts');
+  putenv('BARANGAY_DB_NAME=' . $name);
+  require_once __DIR__ . '/../includes/notification-state.php';
+  foreach (['admin', 'staff', 'resident'] as $role) {
+    $id = (int) $db->query("SELECT id FROM users WHERE role = '$role'")->fetchColumn();
+    $key = $role . '-test-read';
+    barangay_save_notification_state($id, 'read', [$key]);
+    $fresh = notification_read($name, $role);
+    notification_check(in_array($key, $fresh['state']['read'], true), "$role read state survives a fresh login session");
+    barangay_save_notification_state($id, 'unread', [$key]);
+    $fresh = notification_read($name, $role);
+    notification_check(in_array($key, $fresh['state']['unread'], true) && !in_array($key, $fresh['state']['read'], true), "$role mark unread replaces saved read state");
+  }
   $feed = notification_read($name, 'anonymous');
   notification_check($feed['items'] === [] && $feed['sideCounts'] === [], 'Signed-out sessions cannot retrieve notifications');
 } finally { $db->exec("DROP DATABASE `$name`"); }

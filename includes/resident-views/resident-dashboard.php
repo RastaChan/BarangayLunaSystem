@@ -68,7 +68,7 @@
         <tr>
           <td data-label="Title"><?= htmlspecialchars($notification['title']) ?></td>
           <td data-label="Message"><?= htmlspecialchars($notification['message']) ?></td>
-          <td data-label="Date"><?= htmlspecialchars($notification['date']) ?></td>
+          <td data-label="Date"><?= htmlspecialchars(barangay_display_datetime($notification['date'])) ?></td>
           <td data-label="Status"><span class="badge <?= $notification['status'] === 'Unread' ? 'badge-pending' : 'badge-active' ?>"><?= htmlspecialchars($notification['status']) ?></span></td>
         </tr>
         <?php endforeach; ?>

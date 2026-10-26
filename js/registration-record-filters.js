@@ -7,7 +7,7 @@
   const heading = section.querySelector('[data-registration-heading]');
   const message = section.querySelector('[data-registration-message]');
   const apply = form.querySelector('[type="submit"]');
-  let controller, sequence = 0;
+  let controller, sequence = 0, searchTimer;
   function filterUrl() {
     const url = new URL(window.location.href);
     url.search = new URLSearchParams(new FormData(form)).toString();
@@ -15,6 +15,7 @@
     return url;
   }
   async function update(url) {
+    clearTimeout(searchTimer);
     controller?.abort();
     const current = ++sequence;
     controller = new AbortController();
@@ -52,6 +53,18 @@
     }
   }
   form.addEventListener('submit', event => {event.preventDefault(); update(filterUrl());});
+  function schedule(event) {
+    clearTimeout(searchTimer);
+    sequence++;
+    controller?.abort();
+    if (event.isComposing) return;
+    searchTimer = setTimeout(() => update(filterUrl()), 220);
+  }
+  form.querySelectorAll('input[type="search"]').forEach(input => {
+    input.addEventListener('input', schedule);
+    input.addEventListener('compositionend', schedule);
+  });
+  form.querySelectorAll('select').forEach(select => select.addEventListener('change', schedule));
   section.addEventListener('click', event => {
     const clear = event.target.closest('[data-registration-clear]');
     const page = event.target.closest('[data-registration-page]');
@@ -67,6 +80,7 @@
     } else update(new URL(page.href, window.location.href));
   });
   window.addEventListener('pagehide', () => {
+    clearTimeout(searchTimer);
     sequence++;
     controller?.abort();
     apply.disabled = false;

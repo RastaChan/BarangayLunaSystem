@@ -1,0 +1,6 @@
+/* Consistent Phosphor sizing; existing icon holders retain their layout. */
+svg.system-icon { flex-shrink: 0; vertical-align: middle; }
+.modal-close > svg, .notification-more > svg,
+[data-notification-options-toggle] > svg, [data-complaint-options-toggle] > svg { width: 20px; height: 20px; pointer-events: none; }
+.modal-close, .notification-more { display: inline-flex; align-items: center; justify-content: center; }
+.portal-icon-action:has(svg)::before { display: none; }

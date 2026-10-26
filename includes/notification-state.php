@@ -29,18 +29,19 @@ function barangay_save_notification_state(int $userId, string $kind, array $ids)
   barangay_notification_state_schema();
   $stmt = barangay_db()->prepare('INSERT IGNORE INTO notification_seen_state (user_id, state_kind, notification_key) VALUES (?, ?, ?)');
   foreach ($ids as $id) {
-    if (!is_string($id) || strlen($id) > 190 || !str_starts_with($id, 'resident-')) continue;
+    if (!is_string($id) || strlen($id) > 190 || !preg_match('/^(resident|admin|staff)-/', $id)) continue;
     $db = barangay_db();
-    $db->beginTransaction();
+    $ownsTransaction = !$db->inTransaction();
+    if ($ownsTransaction) $db->beginTransaction();
     try {
       if (in_array($kind, ['read', 'unread'], true)) {
         $delete = $db->prepare('DELETE FROM notification_seen_state WHERE user_id = ? AND state_kind = ? AND notification_key = ?');
         $delete->execute([$userId, $kind === 'read' ? 'unread' : 'read', $id]);
       }
       $stmt->execute([$userId, $kind, $id]);
-      $db->commit();
+      if ($ownsTransaction) $db->commit();
     } catch (Throwable $error) {
-      $db->rollBack();
+      if ($ownsTransaction && $db->inTransaction()) $db->rollBack();
       throw $error;
     }
   }

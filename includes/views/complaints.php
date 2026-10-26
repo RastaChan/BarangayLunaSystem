@@ -5,7 +5,7 @@
       </div>
 
       <section class="panel-card" data-complaint-list data-overview-owner="admin-complaints-<?= (int)($loggedInUser['id'] ?? 0) ?>">
-        <div class="panel-head"><h3>Complaint records</h3><button type="button" class="btn btn-primary" data-husay-walkin>Add walk-in Husay</button></div>
+        <div class="panel-head"><h3>Complaint records</h3><button type="button" class="btn btn-primary" data-husay-walkin>Add walk-in Mediation</button></div>
         <?php require __DIR__ . '/../complaint-search.php'; ?>
         <div class="table-wrap">
           <table class="data-table complaint-list-table">

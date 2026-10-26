@@ -13,7 +13,7 @@ $_SESSION['community_post_csrf'] ??= bin2hex(random_bytes(32));
             <article class="ann-card recent-post-card">
               <div class="recent-post-options" data-post-options>
                 <button type="button" class="recent-post-toggle" data-post-toggle aria-controls="postActions<?= (int) $a['id'] ?>" aria-expanded="false" aria-label="Post options for <?= htmlspecialchars($a['title'], ENT_QUOTES) ?>" title="Post options">
-                  <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg>
+                  <svg width="22" height="22" viewBox="0 0 256 256" fill="currentColor" stroke="none" aria-hidden="true" data-system-icon="ellipsis-vertical" class="system-icon"><path d="M176,32V224a16,16,0,0,1-16,16H96a16,16,0,0,1-16-16V32A16,16,0,0,1,96,16h64A16,16,0,0,1,176,32Z" opacity="0.2"/><path d="M140,128a12,12,0,1,1-12-12A12,12,0,0,1,140,128ZM128,72a12,12,0,1,0-12-12A12,12,0,0,0,128,72Zm0,112a12,12,0,1,0,12,12A12,12,0,0,0,128,184Z"/></svg>
                 </button>
               <div id="postActions<?= (int) $a['id'] ?>" class="recent-post-actions" data-post-actions hidden>
                 <?php if (empty($a['archived_at'])): ?>
@@ -27,7 +27,7 @@ $_SESSION['community_post_csrf'] ??= bin2hex(random_bytes(32));
             <div id="deleteAnnouncementModal<?= (int) $a['id'] ?>" class="modal" aria-hidden="true" role="dialog">
               <div class="modal-backdrop" data-modal-close></div>
               <div class="modal-panel">
-                <header class="modal-header"><h2>Delete post</h2><button type="button" class="modal-close" data-modal-close aria-label="Close">&times;</button></header>
+                <header class="modal-header"><h2>Delete post</h2><button type="button" class="modal-close" data-modal-close aria-label="Close"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor" stroke="none" aria-hidden="true" class="system-icon" data-system-icon="x"><path d="M216,56V200a16,16,0,0,1-16,16H56a16,16,0,0,1-16-16V56A16,16,0,0,1,56,40H200A16,16,0,0,1,216,56Z" opacity="0.2"/><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></svg></button></header>
                 <div class="modal-body">
                   <p>Are you sure you want to delete <strong><?= htmlspecialchars($a['title']) ?></strong>?</p>
                   <p class="field-hint">This will permanently remove this post and its uploaded photo.</p>
@@ -47,7 +47,7 @@ $_SESSION['community_post_csrf'] ??= bin2hex(random_bytes(32));
             <div id="editAnnouncementModal<?= (int) $a['id'] ?>" class="modal" aria-hidden="true" role="dialog">
               <div class="modal-backdrop" data-modal-close></div>
               <div class="modal-panel">
-                <header class="modal-header"><h2>Edit post</h2><button type="button" class="modal-close" data-modal-close aria-label="Close">&times;</button></header>
+                <header class="modal-header"><h2>Edit post</h2><button type="button" class="modal-close" data-modal-close aria-label="Close"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor" stroke="none" aria-hidden="true" class="system-icon" data-system-icon="x"><path d="M216,56V200a16,16,0,0,1-16,16H56a16,16,0,0,1-16-16V56A16,16,0,0,1,56,40H200A16,16,0,0,1,216,56Z" opacity="0.2"/><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></svg></button></header>
                 <form action="<?= $communityPostActionUrl ?>" method="post" enctype="multipart/form-data" class="modal-body form-grid" data-server-form="true">
                   <input type="hidden" name="action" value="update_announcement">
                   <input type="hidden" name="redirect" value="<?= $communityPostRedirect ?>">

@@ -57,7 +57,7 @@ function barangay_report_date_field(string $name, string $value): string {
   $display = htmlspecialchars(barangay_report_date_display($value), ENT_QUOTES);
   $name = htmlspecialchars($name, ENT_QUOTES);
   $value = htmlspecialchars($value, ENT_QUOTES);
-  return '<span class="report-date-field"><span data-report-date-text>'.$display.'</span><span class="report-date-calendar" aria-hidden="true">▦</span><input type="date" name="'.$name.'" value="'.$value.'" required data-report-date-picker></span>';
+  return '<span class="report-date-field"><span data-report-date-text>'.$display.'</span><span class="report-date-calendar" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor" stroke="none" aria-hidden="true" class="system-icon" data-system-icon="calendar-days"><path d="M216,48V88H40V48a8,8,0,0,1,8-8H208A8,8,0,0,1,216,48Z" opacity="0.2"/><path d="M208,32H184V24a8,8,0,0,0-16,0v8H88V24a8,8,0,0,0-16,0v8H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM72,48v8a8,8,0,0,0,16,0V48h80v8a8,8,0,0,0,16,0V48h24V80H48V48ZM208,208H48V96H208V208Z"/></svg></span><input type="date" name="'.$name.'" value="'.$value.'" required data-report-date-picker></span>';
 }
 
 function barangay_revenue_metrics(string $start, string $end): array {

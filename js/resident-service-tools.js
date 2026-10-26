@@ -83,7 +83,7 @@
         return;
       }
       invalidate();
-      if (query.length < 2) { message.textContent = 'Enter at least 2 letters of the name or Resident ID.'; return; }
+      if (!query) { message.textContent = 'Enter a name or Resident ID.'; return; }
       unsetResident();
       if (/^LUNA\|/i.test(query)) { choose(query); return; }
       const version = epoch;
@@ -113,8 +113,8 @@
       if (selectionMatchesInput()) return;
       invalidate(); unsetResident();
       container.dispatchEvent(new CustomEvent('resident-search-reset'));
-      message.textContent = input.value.trim().length === 1 ? 'Enter at least 2 letters of the name or Resident ID.' : '';
-      if (input.value.trim().length >= 2) timer = setTimeout(search,300);
+      message.textContent = '';
+      if (input.value.trim().length >= 1) timer = setTimeout(search,220);
     });
     input.addEventListener('keydown',event => {
       if (event.key === 'ArrowDown' && !results.hidden) { event.preventDefault(); results.firstElementChild?.focus(); }

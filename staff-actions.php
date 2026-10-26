@@ -296,19 +296,25 @@ try {
 
     case 'issue_document':
       barangay_issuance_schema();
+      barangay_custom_document_schema();
       if (empty($_SESSION['document_request_csrf']) || !hash_equals($_SESSION['document_request_csrf'], (string) ($_POST['csrf'] ?? ''))) throw new InvalidArgumentException('Please reopen the issuance page and try again.');
       if (($_POST['requirements_checked'] ?? '') !== '1') throw new InvalidArgumentException('Confirm the requirements before issuing the document.');
       staff_ensure_issued_document_file_columns();
       barangay_ensure_document_fee_schema();
       barangay_ensure_document_payment_schema();
       $requestBeforeRelease = null;
+      $customValues = [];
       try {
         if (trim($_POST['request_code'] ?? '') !== '') {
           $requestBeforeRelease = barangay_locked_document_request(trim($_POST['request_code']));
           $_POST = barangay_request_issue_input($_POST, $requestBeforeRelease);
+  $customValues = barangay_custom_validate_values(barangay_custom_fields_for_type(staff_canonical_document_type(trim($_POST['document_type'] ?? ''))), $_POST['custom_fields'] ?? []);
           if (barangay_document_request_event(trim($_POST['request_code']), 'prepare')) {
             staff_log($user, 'Started preparing document request: ' . $_POST['request_code'], 'Document Requests');
           }
+        }
+        if (!$requestBeforeRelease) {
+  $customValues = barangay_custom_validate_values(barangay_custom_fields_for_type(staff_canonical_document_type(trim($_POST['document_type'] ?? ''))), $_POST['custom_fields'] ?? []);
         }
         $copies = barangay_document_copies($_POST['copies'] ?? 1);
         $unitFee = $requestBeforeRelease
@@ -384,6 +390,7 @@ try {
           'partner_name' => $partnerName,
           'cohabitation_start_date' => $cohabitationStartDate,
         ]);
+        $values = array_merge($values, barangay_custom_template_values($customValues));
         if (staff_docx_contains_placeholders($templatePath, array_keys($values))) {
           $generatedFile = staff_generate_docx_from_template($templatePath, $values, $documentNumber);
         } else {
@@ -424,6 +431,8 @@ try {
         ':issued_at' => $dateIssued . ' ' . date('H:i:s'),
       ]);
       $issuedDocumentId = (int) barangay_db()->lastInsertId();
+      $customSave = barangay_db()->prepare('UPDATE issued_documents SET custom_values_json=? WHERE id=?');
+      $customSave->execute([json_encode($customValues, JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR), $issuedDocumentId]);
       barangay_document_attach_verification($issuedDocumentId, staff_docx_absolute_path($generatedFile['path']));
       $details = barangay_db()->prepare("UPDATE issued_documents SET request_code = ?, issuance_status = 'Ready for Pickup', applicant_details = ?, contact_mobile = ?, requirements_checked = 1 WHERE id = ?");
       $details->execute([$requestCode ?: null, json_encode($resident, JSON_UNESCAPED_UNICODE), $resident['mobile'] ?: ($requestBeforeRelease['contact_mobile'] ?? ''), $issuedDocumentId]);
@@ -493,6 +502,8 @@ try {
       exit;
 
     case 'save_template':
+      if (empty($_SESSION['template_fields_csrf']) || !is_string($_POST['template_fields_csrf'] ?? null) || !hash_equals($_SESSION['template_fields_csrf'], $_POST['template_fields_csrf'])) throw new InvalidArgumentException('Reopen Template Management before saving.');
+      $customDefinitions = barangay_custom_field_definitions($_POST['custom_field_definitions'] ?? '[]');
       staff_ensure_document_template_file_columns();
       $selectedType = trim($_POST['document_type'] ?? '');
       $customType = trim($_POST['document_type_custom'] ?? '');
@@ -529,11 +540,27 @@ try {
 
         $templateFileName = basename((string) $upload['name']);
         $templateFilePath = 'storage/document-templates/' . $storedFile;
-        $templateMissingPlaceholders = !staff_docx_contains_placeholders($templateFilePath, staff_document_placeholder_keys());
+        $templateMissingPlaceholders = !staff_docx_contains_placeholders($templateFilePath, array_merge(staff_document_placeholder_keys(), array_map(static fn($field) => '{{'.$field['key'].'}}', $customDefinitions)));
+      }
+
+      $checkPath = $templateFilePath;
+      if ($checkPath === null) {
+        $currentFiles = barangay_db()->query("SELECT document_type,effective_year,template_file_path FROM document_templates ORDER BY FIELD(status,'Active','Draft','Archived'),updated_at DESC,id DESC")->fetchAll();
+        foreach ($currentFiles as $currentFile) {
+          if ((int)$currentFile['effective_year']===$year && staff_document_type_key($currentFile['document_type'])===staff_document_type_key($type)) {
+            $checkPath=(string)($currentFile['template_file_path'] ?? '');break;
+          }
+        }
+      }
+      try {
+        staff_check_template_custom_tags((string)$checkPath,$customDefinitions);
+      } catch (InvalidArgumentException $error) {
+        if ($templateFilePath !== null && isset($targetPath) && is_file($targetPath)) unlink($targetPath);
+        throw $error;
       }
 
       staff_save_template_replacement(barangay_db(), [
-        'name' => $name, 'type' => $type, 'year' => $year,
+        'name' => $name, 'type' => $type, 'year' => $year, 'custom_fields' => $customDefinitions,
         'content' => trim($_POST['content'] ?? ''),
         'file_name' => $templateFileName, 'file_path' => $templateFilePath,
         'status' => in_array($status, ['Active', 'Draft', 'Archived'], true) ? $status : 'Draft',

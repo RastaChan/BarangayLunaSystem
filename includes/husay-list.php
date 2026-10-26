@@ -9,8 +9,8 @@
     <?php if (in_array($session['status'], ['Scheduled','In Progress'], true)): ?>
     <p class="field-hint">Open this session to record attendance or an outcome anytime, including a settlement reported before the hearing.</p>
     <?php endif; ?>
-    <button type="button" class="btn btn-outline btn-sm" data-husay-view="<?= (int) $session['id'] ?>">View Husay session</button>
+    <button type="button" class="btn btn-outline btn-sm" data-husay-view="<?= (int) $session['id'] ?>">View Mediation session</button>
   </article>
 <?php endforeach; ?>
-<?php if (!$husayRows): ?><p class="empty-state">No Husay sessions scheduled yet.</p><?php endif; ?>
+<?php if (!$husayRows): ?><p class="empty-state">No Mediation sessions scheduled yet.</p><?php endif; ?>
 </div>

@@ -101,12 +101,29 @@ Object.assign(context, {
 document.querySelectorAll = selector => selector === '[data-nav-view]' ? [nav] : [];
 document.querySelector = () => null;
 vm.runInContext(source.slice(source.indexOf('  function syncNotificationMenu('), source.indexOf('  function markNotificationsSeen(')), context);
-context.syncNotificationMenu({querySelectorAll: () => [], querySelector: () => null});
+context.syncNotificationMenu({dataset: {}, querySelectorAll: () => [], querySelector: () => null});
 assert.equal(badgeCounts.at(-1), 1, 'Feedback badge reflects unread feedback even after the bell was seen');
 context.notificationServerCounts.feedbacks = 0;
-context.syncNotificationMenu({querySelectorAll: () => [], querySelector: () => null});
+context.syncNotificationMenu({dataset: {}, querySelectorAll: () => [], querySelector: () => null});
 assert.equal(badgeCounts.at(-1), 0, 'Reading feedback clears its badge');
 console.log('PASS: feedback visibility, stable polling, focus and scroll retention, phone/desktop bell anchoring, and unread badge counts.');
+
+const bellBadge = {};
+const bellItem = new Element();
+bellItem.setAttribute('data-notification-id', 'admin-doc-test');
+bellItem.setAttribute('data-notification-new', 'true');
+context.ensureNotificationBadge = () => bellBadge;
+context.notificationRowFor = item => item;
+context.readNotificationSet = key => new Set(key === 'read' ? ['admin-doc-test'] : []);
+const bellMenu = {dataset: {}, querySelectorAll: () => [bellItem], querySelector: () => null};
+context.syncNotificationMenu(bellMenu);
+assert.equal(bellBadge.hidden, true, 'Saved read status clears the red badge even without a seen marker');
+context.readNotificationSet = key => new Set(key === 'seen' ? ['admin-doc-test'] : []);
+context.syncNotificationMenu(bellMenu);
+assert.equal(bellBadge.hidden, true, 'Opening the bell clears its number without marking notifications read');
+context.readNotificationSet = () => new Set();
+context.syncNotificationMenu(bellMenu);
+assert.equal(bellBadge.textContent, '1', 'A newly arriving unseen notification restores the badge');
 
 const stateStore = {read: ['doc-0'], unread: []};
 const stateContext = {

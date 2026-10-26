@@ -15,7 +15,7 @@ vm.runInContext(source.slice(source.indexOf("  field('existing_complaint_code').
 context.openSchedule();
 assert.equal(opened, 'husayScheduleModal'); assert.equal(group.hidden, false); assert.equal(fields.subject.required, true); assert.equal(fields.details.required, true);
 assert.equal(fields.complainant_name.readOnly, false); assert.equal(fields.intake_mode.value, 'walkin');
-assert.equal(title.textContent, 'Add walk-in Husay'); assert.match(description.textContent, /saves a new complaint/); assert.equal(submit.textContent, 'Save walk-in complaint and schedule');
+assert.equal(title.textContent, 'Add walk-in Mediation'); assert.match(description.textContent, /saves a new complaint/); assert.equal(submit.textContent, 'Save walk-in complaint and schedule');
 const firstKey = fields.request_key.value; assert.match(firstKey, /^[a-f0-9]{32}$/);
 context.openSchedule({choose: true});
 assert.equal(title.textContent, 'Schedule existing complaint'); assert.match(description.textContent, /already filed/); assert.equal(submit.textContent, 'Save appointment for existing complaint');
@@ -31,7 +31,7 @@ assert.equal(fields.complainant_mobile.value, '09123456789'); assert.notEqual(fi
 context.openSchedule(null, {id: 42, version: 3, complaint_code: 'CMP-1', complainant_name: 'Linked Resident', respondent_name: 'Other Party', venue: 'Room A', assigned_user_id: 9, starts_at: '2099-12-25 09:00:00', ends_at: '2099-12-25 10:00:00'});
 assert.equal(fields.reschedule_id.value, 42); assert.equal(fields.version.value, 3); assert.equal(reason.hidden, false); assert.equal(fields.change_reason.required, true);
 assert.equal(fields.hearing_date.value, '2099-12-25'); assert.equal(fields.start_time.value, '09:00'); assert.equal(fields.end_time.value, '10:00'); assert.equal(fields.assigned_user_id.value, 9);
-assert.equal(title.textContent, 'Reschedule Husay');
+assert.equal(title.textContent, 'Reschedule Mediation');
 assert.equal(submit.textContent, 'Save rescheduled appointment');
 console.log('PASS: manual walk-in intake, linked complaint fields, required/disabled field switching, unique save keys, rescheduling reasons, and date/time prefilling.');
 (async () => {

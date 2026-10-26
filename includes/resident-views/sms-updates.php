@@ -1,4 +1,4 @@
-<?php
+<?php require_once __DIR__ . '/../ui-icons.php';
 $smsEscape = static fn($value) => htmlspecialchars((string) $value, ENT_QUOTES, 'UTF-8');
 $smsIcon = static function (string $kind): string {
     $paths = [
@@ -10,7 +10,7 @@ $smsIcon = static function (string $kind): string {
         'eye' => '<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/>',
         'calendar' => '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/>',
     ];
-    return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' . ($paths[$kind] ?? $paths['message']) . '</svg>';
+    return barangay_ui_icon($kind);
 };
 ?>
 <section class="panel-card resident-sms-history" data-sms-history>
@@ -47,7 +47,7 @@ $smsIcon = static function (string $kind): string {
 <div id="residentSmsViewModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="residentSmsViewTitle">
   <div class="modal-backdrop" data-modal-close></div>
   <div class="modal-panel">
-    <header class="modal-header"><h2 id="residentSmsViewTitle">SMS Update</h2><button type="button" class="modal-close" data-modal-close aria-label="Close">&times;</button></header>
+    <header class="modal-header"><h2 id="residentSmsViewTitle">SMS Update</h2><button type="button" class="modal-close" data-modal-close aria-label="Close"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor" stroke="none" aria-hidden="true" class="system-icon" data-system-icon="x"><path d="M216,56V200a16,16,0,0,1-16,16H56a16,16,0,0,1-16-16V56A16,16,0,0,1,56,40H200A16,16,0,0,1,216,56Z" opacity="0.2"/><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></svg></button></header>
     <div class="modal-body"><p class="field-hint" data-sms-view-meta></p><p class="resident-sms-full-message" data-sms-view-message></p></div>
     <footer class="modal-footer"><button type="button" class="btn btn-outline" data-modal-close>Close</button></footer>
   </div>

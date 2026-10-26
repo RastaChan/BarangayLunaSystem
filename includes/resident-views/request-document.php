@@ -107,12 +107,13 @@
           <label for="residentCohabitationStart">Living together since</label>
           <div class="calendar-date-field">
             <input id="residentCohabitationStart" type="date" name="cohabitation_start_date">
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5h16v16H4V5Zm4-3v6m8-6v6M4 11h16m-12 4h2m4 0h2m-8 3h2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg  viewBox="0 0 256 256" fill="currentColor" stroke="none" aria-hidden="true" data-system-icon="phone" class="system-icon"><path d="M223.94,174.08A48.33,48.33,0,0,1,176,216,136,136,0,0,1,40,80,48.33,48.33,0,0,1,81.92,32.06a8,8,0,0,1,8.3,4.8l21.13,47.2a8,8,0,0,1-.66,7.53L89.32,117a7.93,7.93,0,0,0-.54,7.81c8.27,16.93,25.77,34.22,42.75,42.41a7.92,7.92,0,0,0,7.83-.59l25-21.3a8,8,0,0,1,7.59-.69l47.16,21.13A8,8,0,0,1,223.94,174.08Z" opacity="0.2"/><path d="M222.37,158.46l-47.11-21.11-.13-.06a16,16,0,0,0-15.17,1.4,8.12,8.12,0,0,0-.75.56L134.87,160c-15.42-7.49-31.34-23.29-38.83-38.51l20.78-24.71c.2-.25.39-.5.57-.77a16,16,0,0,0,1.32-15.06l0-.12L97.54,33.64a16,16,0,0,0-16.62-9.52A56.26,56.26,0,0,0,32,80c0,79.4,64.6,144,144,144a56.26,56.26,0,0,0,55.88-48.92A16,16,0,0,0,222.37,158.46ZM176,208A128.14,128.14,0,0,1,48,80,40.2,40.2,0,0,1,82.87,40a.61.61,0,0,0,0,.12l21,47L83.2,111.86a6.13,6.13,0,0,0-.57.77,16,16,0,0,0-1,15.7c9.06,18.53,27.73,37.06,46.46,46.11a16,16,0,0,0,15.75-1.14,8.44,8.44,0,0,0,.74-.56L168.89,152l47,21.05h0s.08,0,.11,0A40.21,40.21,0,0,1,176,208Z"/></svg>
           </div>
         </div>
       </div>
       <div class="field"><label>Contact Number</label><input type="tel" name="contact_mobile" value="<?= htmlspecialchars($residentProfile['contact']) ?>"></div>
       <div class="field"><label>Supporting Document Upload (JPG, PNG, PDF; maximum 5 MB)</label><input type="file" name="supporting_document" accept=".pdf,.jpg,.jpeg,.png"></div>
+      <?php $customInitialValues = []; include __DIR__ . '/../document-custom-inputs.php'; ?>
       <div class="field"><label>Remarks</label><textarea name="remarks" rows="4" placeholder="Optional notes/message for barangay staff"></textarea></div>
       <div class="info-banner"><div><strong>Request confirmation</strong>Your request will be added to My Document Requests with Pending status. SMS updates may be sent when the status changes.</div></div>
       <div class="resident-request-actions">
@@ -126,7 +127,7 @@
 <div id="residentRequestPreviewModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="residentRequestPreviewTitle">
   <div class="modal-backdrop" data-modal-close></div>
   <div class="modal-panel modal-panel--wide">
-    <header class="modal-header"><h2 id="residentRequestPreviewTitle">Generated document preview</h2><button type="button" class="modal-close" data-modal-close aria-label="Close">&times;</button></header>
+    <header class="modal-header"><h2 id="residentRequestPreviewTitle">Generated document preview</h2><button type="button" class="modal-close" data-modal-close aria-label="Close"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor" stroke="none" aria-hidden="true" class="system-icon" data-system-icon="x"><path d="M216,56V200a16,16,0,0,1-16,16H56a16,16,0,0,1-16-16V56A16,16,0,0,1,56,40H200A16,16,0,0,1,216,56Z" opacity="0.2"/><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></svg></button></header>
     <div class="modal-body"><p class="field-hint">Preview only. The barangay will review your request before issuing the final document.</p><p role="status" data-resident-preview-status></p><iframe title="Resident document preview" data-resident-preview-frame hidden></iframe></div>
     <footer class="modal-footer"><button type="button" class="btn btn-outline" data-modal-close>Close</button></footer>
   </div>

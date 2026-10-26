@@ -39,6 +39,8 @@ try {
   }
   $extras['residency_years'] = max(0, min(150, (int)($_POST['residency_years'] ?? 0)));
   $values = staff_document_template_values($resident, $purpose, date('Y-m-d'), 'Hon. Barangay Captain', 'PREVIEW ONLY', $extras);
+  $customValues = barangay_custom_validate_values(barangay_custom_fields_for_type($type), $_POST['custom_fields'] ?? []);
+  $values = array_merge($values, barangay_custom_template_values($customValues));
   $fingerprint = hash('sha256', json_encode([$template,$values]));
   foreach ($_SESSION['resident_document_previews'] ?? [] as $token=>$record) {
     if ($record['expires'] > time() && $record['user'] === (int)$user['id'] && $record['fingerprint'] === $fingerprint && is_file(staff_docx_absolute_path($record['path']))) {

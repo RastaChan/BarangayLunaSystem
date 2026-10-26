@@ -29,11 +29,11 @@
             <div class="form-grid-2">
               <div class="form-group">
                 <label for="contactNumber">Contact Number</label>
-                <input type="tel" id="contactNumber" name="settings[contact_number]" value="<?= htmlspecialchars($systemSettings['contact_number'] ?? '(02) 1234-5678') ?>" required>
+                <input type="tel" id="contactNumber" name="settings[contact_number]" value="<?= htmlspecialchars($systemSettings['contact_number'] ?? '') ?>" required>
               </div>
               <div class="form-group">
                 <label for="hotlineNumber">Hotline Number</label>
-                <input type="tel" id="hotlineNumber" name="settings[hotline_number]" value="<?= htmlspecialchars($systemSettings['hotline_number'] ?? '09506972820') ?>" required>
+                <input type="tel" id="hotlineNumber" name="settings[hotline_number]" value="<?= htmlspecialchars($systemSettings['hotline_number'] ?? '') ?>" required>
               </div>
             </div>
             <div class="form-grid-2">
@@ -65,7 +65,7 @@
                 <input type="file" name="logo" accept="image/png,image/jpeg" id="logoUpload">
                 <p class="field-hint">PNG or JPG, up to 2 MB. Save Changes to apply.</p>
                 <button type="button" class="btn btn-outline btn-sm" onclick="document.getElementById('logoUpload').click()">
-                  <svg viewBox="0 0 24 24" fill="none" width="16" height="16"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                  <svg width="16" height="16" viewBox="0 0 256 256" fill="currentColor" stroke="none" aria-hidden="true" data-system-icon="upload" class="system-icon"><path d="M216,48V208H40V48A16,16,0,0,1,56,32H200A16,16,0,0,1,216,48Z" opacity="0.2"/><path d="M224,144v64a8,8,0,0,1-8,8H40a8,8,0,0,1-8-8V144a8,8,0,0,1,16,0v56H208V144a8,8,0,0,1,16,0ZM93.66,77.66,120,51.31V144a8,8,0,0,0,16,0V51.31l26.34,26.35a8,8,0,0,0,11.32-11.32l-40-40a8,8,0,0,0-11.32,0l-40,40A8,8,0,0,0,93.66,77.66Z"/></svg>
                   Upload New Logo
                 </button>
                 <label class="checkbox-label"><input type="checkbox" name="remove_logo" value="1"> Remove uploaded logo and restore the default on save</label>
@@ -150,11 +150,11 @@
         <!-- Actions -->
         <div class="settings-actions">
           <button type="submit" class="btn btn-primary">
-            <svg viewBox="0 0 24 24" fill="none" width="16" height="16"><path d="M9 12l2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <svg width="16" height="16" viewBox="0 0 256 256" fill="currentColor" stroke="none" aria-hidden="true" data-system-icon="save" class="system-icon"><path d="M216,83.31V208a8,8,0,0,1-8,8H176V152a8,8,0,0,0-8-8H88a8,8,0,0,0-8,8v64H48a8,8,0,0,1-8-8V48a8,8,0,0,1,8-8H172.69a8,8,0,0,1,5.65,2.34l35.32,35.32A8,8,0,0,1,216,83.31Z" opacity="0.2"/><path d="M219.31,72,184,36.69A15.86,15.86,0,0,0,172.69,32H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V83.31A15.86,15.86,0,0,0,219.31,72ZM168,208H88V152h80Zm40,0H184V152a16,16,0,0,0-16-16H88a16,16,0,0,0-16,16v56H48V48H172.69L208,83.31ZM160,72a8,8,0,0,1-8,8H96a8,8,0,0,1,0-16h56A8,8,0,0,1,160,72Z"/></svg>
             Save Changes
           </button>
           <button type="reset" class="btn btn-outline">
-            <svg viewBox="0 0 24 24" fill="none" width="16" height="16"><path d="M4 12a8 8 0 0 1 14.6-3.6M19.2 4v5h-5M4.8 20v-5h5a8 8 0 0 1-14.6 3.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <svg width="16" height="16" viewBox="0 0 256 256" fill="currentColor" stroke="none" aria-hidden="true" data-system-icon="refresh-cw" class="system-icon"><path d="M216,128a88,88,0,1,1-88-88A88,88,0,0,1,216,128Z" opacity="0.2"/><path d="M224,48V96a8,8,0,0,1-8,8H168a8,8,0,0,1,0-16h28.69L182.06,73.37a79.56,79.56,0,0,0-56.13-23.43h-.45A79.52,79.52,0,0,0,69.59,72.71,8,8,0,0,1,58.41,61.27a96,96,0,0,1,135,.79L208,76.69V48a8,8,0,0,1,16,0ZM186.41,183.29a80,80,0,0,1-112.47-.66L59.31,168H88a8,8,0,0,0,0-16H40a8,8,0,0,0-8,8v48a8,8,0,0,0,16,0V179.31l14.63,14.63A95.43,95.43,0,0,0,130,222.06h.53a95.36,95.36,0,0,0,67.07-27.33,8,8,0,0,0-11.18-11.44Z"/></svg>
             Reset
           </button>
         </div>

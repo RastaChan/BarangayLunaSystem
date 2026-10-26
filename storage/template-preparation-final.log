@@ -1,0 +1,5 @@
+PASS: custom-document-flow-test.php
+PASS: document-custom-fields-test.php
+PASS: template-preparation-test.php
+PASS: template-setup-test.php
+0 failed tests. All audit databases removed; no live data or SMS used.

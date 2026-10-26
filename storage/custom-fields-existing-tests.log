@@ -1,0 +1,11 @@
+PASS: document-settings-test.php
+PASS: resident-request-tracking-test.php
+FAIL: template-auto-metadata-test.php
+
+Fatal error: Uncaught InvalidArgumentException: Reopen Template Management before saving. in C:\laragon\www\BARANGAY LUNA SYSTEM\tests\template-auto-metadata-test.php(14) : eval()'d code:2
+Stack trace:
+#0 C:\laragon\www\BARANGAY LUNA SYSTEM\tests\template-auto-metadata-test.php(14): eval()
+#1 {main}
+  thrown in C:\laragon\www\BARANGAY LUNA SYSTEM\tests\template-auto-metadata-test.php(14) : eval()'d code on line 2
+PASS: template-replacement-test.php
+1 failed tests. All audit databases removed; no live data or SMS used.

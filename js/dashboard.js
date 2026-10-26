@@ -437,14 +437,7 @@
     if (window.innerWidth > 900) closeSidebar();
   });
 
-  const sidebarNav = document.getElementById('sidebarNav');
-  const activeNavLink = sidebarNav ? sidebarNav.querySelector('.nav-link.is-active') : null;
-  if (sidebarNav && activeNavLink) {
-    const targetTop = activeNavLink.offsetTop - (sidebarNav.clientHeight / 2) + (activeNavLink.clientHeight / 2);
-    sidebarNav.scrollTop = Math.max(0, targetTop);
-    const targetLeft = activeNavLink.offsetLeft - (sidebarNav.clientWidth / 2) + (activeNavLink.clientWidth / 2);
-    sidebarNav.scrollLeft = Math.max(0, targetLeft);
-  }
+  // Width and menu scroll are restored by sidebar-state.php before first paint.
 
   /* Header profile dropdown */
   const profileMenus = document.querySelectorAll('[data-profile-menu]');
@@ -604,6 +597,7 @@
       seen.add(id);
       saveNotificationSet(notificationSeenKey, seen);
       item.classList.remove('is-new');
+      notificationMenus.forEach(syncNotificationMenu);
     });
   }
 
@@ -709,7 +703,7 @@
         readAction.textContent = isUnread ? 'Mark as read' : 'Mark as unread';
         readAction.setAttribute('data-mark-unread', String(!isUnread));
       }
-      if (isServerNew && !seen.has(id)) {
+      if (isUnread && !seen.has(id)) {
         const view = item.getAttribute('data-notification-view') || notificationViewFromHref(item.getAttribute('href') || '');
         unseenCount += 1;
         if (view) unseenByView[view] = (unseenByView[view] || 0) + 1;
@@ -743,11 +737,12 @@
     if (announcementShell) announcementShell.hidden = !(unseenByView['resident-announcements'] || 0);
 
     ensureNotificationEmptyState(menu);
+    menu.dataset.notificationReady = 'true';
   }
 
   function markNotificationsSeen(menu) {
     const seen = readNotificationSet(notificationSeenKey);
-    menu.querySelectorAll('[data-notification-id][data-notification-new="true"]').forEach((item) => {
+    menu.querySelectorAll('[data-notification-id]').forEach((item) => {
       seen.add(item.getAttribute('data-notification-id'));
     });
     saveNotificationSet(notificationSeenKey, seen);
@@ -814,7 +809,10 @@
       const message = document.createElement('span');
       message.textContent = notification.message || '';
       const date = document.createElement('small');
-      date.textContent = notification.date || notification.status || '';
+      const rawDate = notification.date || notification.status || '';
+      const timestamp = /^\d{4}-\d{2}-\d{2}[ T]\d{2}:\d{2}(?::\d{2})?$/.test(rawDate) ? new Date(rawDate.replace(' ', 'T')) : null;
+      date.textContent = timestamp && !Number.isNaN(timestamp.getTime())
+        ? timestamp.toLocaleString('en-US', {month:'short', day:'numeric', year:'numeric', hour:'numeric', minute:'2-digit', hour12:true}) : rawDate;
 
       item.append(title, message, date);
       bindNotificationItem(item);
@@ -1327,7 +1325,7 @@
     button.className = 'password-toggle';
     button.setAttribute('aria-label', 'Show password');
     button.setAttribute('aria-pressed', 'false');
-    button.innerHTML = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="2.8" stroke="currentColor" stroke-width="1.7"/><line class="password-toggle-slash" data-password-eye-slash x1="4" y1="4" x2="20" y2="20" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>';
+    button.innerHTML = '<svg viewBox="0 0 256 256" fill="currentColor" stroke="none" data-system-icon="eye" aria-hidden="true"><path d="M128,56C48,56,16,128,16,128s32,72,112,72,112-72,112-72S208,56,128,56Zm0,112a40,40,0,1,1,40-40A40,40,0,0,1,128,168Z" opacity="0.2"/><path d="M247.31,124.76c-.35-.79-8.82-19.58-27.65-38.41C194.57,61.26,162.88,48,128,48S61.43,61.26,36.34,86.35C17.51,105.18,9,124,8.69,124.76a8,8,0,0,0,0,6.5c.35.79,8.82,19.57,27.65,38.4C61.43,194.74,93.12,208,128,208s66.57-13.26,91.66-38.34c18.83-18.83,27.3-37.61,27.65-38.4A8,8,0,0,0,247.31,124.76ZM128,192c-30.78,0-57.67-11.19-79.93-33.25A133.47,133.47,0,0,1,25,128,133.33,133.33,0,0,1,48.07,97.25C70.33,75.19,97.22,64,128,64s57.67,11.19,79.93,33.25A133.46,133.46,0,0,1,231.05,128C223.84,141.46,192.43,192,128,192Zm0-112a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160Z"/><line class="password-toggle-slash" data-password-eye-slash x1="4" y1="4" x2="20" y2="20" transform="scale(10.6666667)" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>';
     wrapper.appendChild(button);
 
     button.addEventListener('click', () => {
@@ -1557,15 +1555,16 @@
     });
   });
 
-  document.querySelectorAll('[data-view-resident]').forEach((btn) => {
-    btn.addEventListener('click', () => {
+  document.addEventListener('click', event => {
+      const btn = event.target.closest('[data-view-resident]');
+      if (!btn) return;
       renderResidentIdCard(JSON.parse(btn.getAttribute('data-json') || '{}'));
       openModal('viewResidentModal');
-    });
   });
 
-  document.querySelectorAll('[data-reset-password]').forEach((btn) => {
-    btn.addEventListener('click', () => {
+  document.addEventListener('click', event => {
+      const btn = event.target.closest('[data-reset-password]');
+      if (!btn) return;
       const form = document.getElementById('resetPasswordForm');
       if (!form) return;
       const idInput = form.querySelector('[name="id"]');
@@ -1584,7 +1583,6 @@
         document.getElementById('resetPasswordModal').dataset.returnStaff = 'true';
       }
       openModal('resetPasswordModal');
-    });
   });
 
   document.addEventListener('click', event => {
@@ -1606,7 +1604,15 @@
         residency_years: 'Years of residency', partner_name: 'Partner name',
         cohabitation_start_date: 'Living together since', resident_gender_override: 'Applicant gender',
       } : null;
-      let keys = requestFields ? Object.keys(requestFields).filter(key => data[key] !== undefined) : Object.keys(data);
+      let extraDetails = {};
+      try { extraDetails = JSON.parse(data.custom_values_json || '{}'); } catch (_) {}
+      Object.entries(extraDetails).forEach(([key,value]) => {
+        if (typeof value !== 'string') return;
+        const field = 'custom_' + key;
+        data[field] = value;
+        if (requestFields) requestFields[field] = key.replace(/_/g,' ').replace(/\b\w/g, letter => letter.toUpperCase());
+      });
+      let keys = requestFields ? Object.keys(requestFields).filter(key => data[key] !== undefined) : Object.keys(data).filter(key => key !== 'custom_values_json');
       const demographics = ['age', 'gender', 'civil_status'];
       const compactDemographics = demographics.every(key => data[key] !== undefined && data[key] !== null && data[key] !== '');
       if (compactDemographics) {
@@ -1615,7 +1621,11 @@
         keys.splice(first, 0, ...demographics);
       }
       keys.forEach((key) => {
-        const value = data[key];
+        let value = data[key];
+        if (typeof value === 'string' && /^\d{4}-\d{2}-\d{2}[ T]\d{2}:\d{2}(?::\d{2})?$/.test(value)) {
+          const time = new Date(value.replace(' ', 'T'));
+          if (!Number.isNaN(time.getTime())) value = time.toLocaleString('en-US', {month:'short', day:'numeric', year:'numeric', hour:'numeric', minute:'2-digit', hour12:true});
+        }
         if (value === null || value === '') return;
         const row = document.createElement('div');
         if (compactDemographics && demographics.includes(key)) row.className = 'resident-detail-' + (key === 'civil_status' ? 'civil' : key);
@@ -1955,4 +1965,50 @@
     });
   });
 
+})();
+
+// Scale the landscape ID as one unit; reserve its scaled height in the modal.
+(() => {
+  const selector = '.resident-id-card, .qr-id-preview';
+  const initialized = new WeakSet();
+  function initialize(card) {
+    if (initialized.has(card)) return;
+    initialized.add(card);
+    if (card.classList.contains('resident-id-card')) card.classList.add('resident-id-card--admin');
+    const wrapper = document.createElement('div');
+    wrapper.className = 'resident-id-fit';
+    card.before(wrapper); wrapper.append(card);
+    let frame;
+    const fit = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        const width = wrapper.clientWidth;
+        if (!width) return;
+        const compact = window.innerWidth <= 1024;
+        card.classList.toggle('id-landscape', compact);
+        if (compact) {
+          const scale = width / 840;
+          card.style.transform = `scale(${scale})`;
+          wrapper.style.height = `${Math.ceil(card.offsetHeight * scale)}px`;
+        } else {
+          card.style.removeProperty('transform'); wrapper.style.removeProperty('height');
+        }
+      });
+    };
+    const observer = new ResizeObserver(fit);
+    observer.observe(wrapper); observer.observe(card);
+    window.addEventListener('resize', fit);
+    const modal = card.closest('.modal');
+    if (modal) new MutationObserver(fit).observe(modal, {attributes: true, attributeFilter: ['aria-hidden', 'class']});
+    card.addEventListener('load', fit, true);
+    fit();
+  }
+  document.querySelectorAll(selector).forEach(initialize);
+  new MutationObserver(records => {
+    records.forEach(record => record.addedNodes.forEach(node => {
+      if (node.nodeType !== 1) return;
+      if (node.matches(selector)) initialize(node);
+      node.querySelectorAll(selector).forEach(initialize);
+    }));
+  }).observe(document.body, {childList: true, subtree: true});
 })();

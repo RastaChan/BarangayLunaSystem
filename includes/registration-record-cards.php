@@ -1,4 +1,4 @@
-<?php
+<?php require_once __DIR__ . '/ui-icons.php';
 $registrationSearch = trim((string) ($_GET['registration_search'] ?? ''));
 $registrationStatus = (string) ($_GET['registration_status'] ?? '');
 $registrationPurok = trim((string) ($_GET['registration_purok'] ?? ''));
@@ -55,7 +55,7 @@ $registrationIcons = [
       </header>
       <dl class="staff-account-info registration-account-info">
         <?php foreach ([['id','Resident ID',$resident['id']],['phone','Contact number',$resident['contact'] ?: '—'],['qr','QR status',$resident['qr_status']],['date','Registered',$resident['date']],['user','Registered by',$resident['registered_by']],['home','Address',$resident['address'] ?: '—']] as [$kind,$label,$value]): ?>
-        <div><span class="staff-account-info-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="<?= $registrationIcons[$kind] ?>" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><dt><?= $label ?></dt><dd>
+        <div><span class="staff-account-info-icon"><?= barangay_ui_icon($kind) ?></span><div><dt><?= $label ?></dt><dd>
           <?php if ($kind === 'qr'): ?><span class="badge <?= $value === 'Active' ? 'badge-active' : 'badge-inactive' ?>"><?= $registrationEscape($value) ?></span>
           <?php if (!empty($resident['qr_code'])): ?><small class="field-hint registration-qr-code"><?= $registrationEscape($resident['qr_code']) ?></small><?php endif; ?>
           <?php else: ?><?= $registrationEscape($value) ?><?php endif; ?>

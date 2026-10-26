@@ -98,6 +98,10 @@ $canManageTemplates = true;
 <body class="app-dashboard role-admin">
 
   <?php include __DIR__ . '/includes/sidebar.php'; ?>
+  <?php include __DIR__ . '/includes/sidebar-state.php'; ?>
+  <script src="js/live-search.js?v=<?= filemtime(__DIR__ . '/js/live-search.js') ?>" defer></script>
+  <script src="js/time-controls.js?v=<?= filemtime(__DIR__ . '/js/time-controls.js') ?>" defer></script>
+  <script src="js/registration-requirements.js?v=<?= filemtime(__DIR__ . '/js/registration-requirements.js') ?>" defer></script>
 
   <div class="main-area">
     <?php include __DIR__ . '/includes/header.php'; ?>
@@ -124,7 +128,7 @@ $canManageTemplates = true;
     <div class="modal-panel">
       <header class="modal-header">
         <h2>Add staff account</h2>
-        <button type="button" class="modal-close" data-modal-close aria-label="Close">&times;</button>
+        <button type="button" class="modal-close" data-modal-close aria-label="Close"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor" stroke="none" aria-hidden="true" class="system-icon" data-system-icon="x"><path d="M216,56V200a16,16,0,0,1-16,16H56a16,16,0,0,1-16-16V56A16,16,0,0,1,56,40H200A16,16,0,0,1,216,56Z" opacity="0.2"/><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></svg></button>
       </header>
       <form id="createStaffForm" class="modal-body form-grid" action="admin-actions.php" method="post" data-server-form="true">
         <input type="hidden" name="action" value="create_staff">
@@ -172,7 +176,7 @@ $canManageTemplates = true;
     <div class="modal-panel">
       <header class="modal-header">
         <h2>Staff account details</h2>
-        <button type="button" class="modal-close" data-modal-close aria-label="Close">&times;</button>
+        <button type="button" class="modal-close" data-modal-close aria-label="Close"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor" stroke="none" aria-hidden="true" class="system-icon" data-system-icon="x"><path d="M216,56V200a16,16,0,0,1-16,16H56a16,16,0,0,1-16-16V56A16,16,0,0,1,56,40H200A16,16,0,0,1,216,56Z" opacity="0.2"/><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></svg></button>
       </header>
       <div class="modal-body auto-fill-grid resident-details-grid" data-staff-view>
         <div><span>Staff ID</span><strong data-field="id">-</strong></div>
@@ -204,7 +208,7 @@ $canManageTemplates = true;
     <div class="modal-panel">
       <header class="modal-header">
         <h2>Edit staff account</h2>
-        <button type="button" class="modal-close" data-modal-close aria-label="Close">&times;</button>
+        <button type="button" class="modal-close" data-modal-close aria-label="Close"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor" stroke="none" aria-hidden="true" class="system-icon" data-system-icon="x"><path d="M216,56V200a16,16,0,0,1-16,16H56a16,16,0,0,1-16-16V56A16,16,0,0,1,56,40H200A16,16,0,0,1,216,56Z" opacity="0.2"/><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></svg></button>
       </header>
       <form id="editStaffForm" class="modal-body form-grid" action="admin-actions.php" method="post" data-server-form="true">
         <input type="hidden" name="action" value="update_staff">
@@ -238,7 +242,7 @@ $canManageTemplates = true;
     <div class="modal-panel">
       <header class="modal-header">
         <h2>Reset account password</h2>
-        <button type="button" class="modal-close" data-modal-close aria-label="Close">&times;</button>
+        <button type="button" class="modal-close" data-modal-close aria-label="Close"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor" stroke="none" aria-hidden="true" class="system-icon" data-system-icon="x"><path d="M216,56V200a16,16,0,0,1-16,16H56a16,16,0,0,1-16-16V56A16,16,0,0,1,56,40H200A16,16,0,0,1,216,56Z" opacity="0.2"/><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></svg></button>
       </header>
       <form id="resetPasswordForm" class="modal-body form-grid" action="admin-actions.php" method="post" data-server-form="true">
         <input type="hidden" name="action" value="reset_user_password">
@@ -264,7 +268,7 @@ $canManageTemplates = true;
     <div class="modal-panel modal-panel--wide">
       <header class="modal-header">
         <h2>Resident ID Preview</h2>
-        <button type="button" class="modal-close" data-modal-close aria-label="Close">&times;</button>
+        <button type="button" class="modal-close" data-modal-close aria-label="Close"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor" stroke="none" aria-hidden="true" class="system-icon" data-system-icon="x"><path d="M216,56V200a16,16,0,0,1-16,16H56a16,16,0,0,1-16-16V56A16,16,0,0,1,56,40H200A16,16,0,0,1,216,56Z" opacity="0.2"/><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></svg></button>
       </header>
       <div class="modal-body">
         <?php $residentPreview = []; include __DIR__ . '/includes/resident-id-preview-card.php'; ?>
@@ -281,13 +285,16 @@ $canManageTemplates = true;
     <div class="modal-panel">
       <header class="modal-header">
         <h2 data-record-title>Record details</h2>
-        <button type="button" class="modal-close" data-modal-close aria-label="Close">&times;</button>
+        <button type="button" class="modal-close" data-modal-close aria-label="Close"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor" stroke="none" aria-hidden="true" class="system-icon" data-system-icon="x"><path d="M216,56V200a16,16,0,0,1-16,16H56a16,16,0,0,1-16-16V56A16,16,0,0,1,56,40H200A16,16,0,0,1,216,56Z" opacity="0.2"/><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></svg></button>
       </header>
       <div class="modal-body"><div class="auto-fill-grid resident-details-grid" data-record-view></div></div>
     </div>
   </div>
 
   <script src="js/dashboard.js?v=<?= filemtime(__DIR__ . '/js/dashboard.js') ?>"></script>
+  <script src="js/document-custom-fields.js?v=<?= filemtime(__DIR__ . '/js/document-custom-fields.js') ?>"></script>
+  <script src="js/template-preparation.js?v=<?= filemtime(__DIR__ . '/js/template-preparation.js') ?>"></script>
+  <?php require __DIR__ . '/includes/system-icons.php'; ?>
   <script src="js/portal-design.js?v=<?= filemtime(__DIR__ . '/js/portal-design.js') ?>"></script>
   <script src="js/mobile-select.js?v=<?= filemtime(__DIR__ . '/js/mobile-select.js') ?>"></script>
   <script src="js/location-disclosures.js?v=<?= filemtime(__DIR__ . '/js/location-disclosures.js') ?>"></script>

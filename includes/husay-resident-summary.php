@@ -4,7 +4,7 @@ $residentHusayRows = husay_public_rows((int)$loggedInUser['id'], $complaint['id'
 $he = static fn($value) => htmlspecialchars((string)$value, ENT_QUOTES);
 ?>
 <?php if ($residentHusayRows): ?>
-<td class="complaint-list-remarks" data-label="Husay appointments">
+<td class="complaint-list-remarks" data-label="Mediation appointments">
   <?php foreach ($residentHusayRows as $session): ?>
   <article class="husay-resident-session">
     <strong><?= $he($session['status']) ?><?= $session['outcome'] ? ' · ' . $he($session['outcome']) : '' ?></strong>

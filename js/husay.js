@@ -21,7 +21,7 @@
   async function getFeed(query = '') {
     const response = await fetch('husay-feed.php' + query, {credentials: 'same-origin', cache: 'no-store', headers: {Accept: 'application/json'}, signal: AbortSignal.timeout(15000)});
     const data = await response.json();
-    if (!response.ok || !data.ok) throw new Error(data.message || 'Husay details could not be loaded. Please sign in again if your session expired.');
+    if (!response.ok || !data.ok) throw new Error(data.message || 'Mediation details could not be loaded. Please sign in again if your session expired.');
     if (data.owner !== owner) throw new Error('The signed-in account changed. Refresh this page.');
     return data;
   }
@@ -76,12 +76,12 @@
       field('hearing_date').value = previous.starts_at.slice(0, 10);
       field('start_time').value = previous.starts_at.slice(11, 16); field('end_time').value = previous.ends_at.slice(11, 16);
     }
-    document.getElementById('husayScheduleTitle').textContent = previous ? 'Reschedule Husay' : walkin ? 'Add walk-in Husay' : 'Schedule existing complaint';
+    document.getElementById('husayScheduleTitle').textContent = previous ? 'Reschedule Mediation' : walkin ? 'Add walk-in Mediation' : 'Schedule existing complaint';
     form.querySelector('[data-husay-mode-description]').textContent = previous
       ? 'Choose a new appointment time for this complaint. The previous session stays in its history.'
-      : walkin ? 'For a person reporting a new complaint at the barangay office. This saves a new complaint and its Husay appointment together. No resident account is required.'
-      : choosing ? 'For a complaint already filed in the system. Select the complaint and its complainant details will fill automatically, then set the Husay appointment.'
-      : 'This appointment is linked to the complaint shown below. The complainant details come from that record. Set the Husay appointment without creating another complaint.';
+      : walkin ? 'For a person reporting a new complaint at the barangay office. This saves a new complaint and its Mediation appointment together. No resident account is required.'
+      : choosing ? 'For a complaint already filed in the system. Select the complaint and its complainant details will fill automatically, then set the Mediation appointment.'
+      : 'This appointment is linked to the complaint shown below. The complainant details come from that record. Set the Mediation appointment without creating another complaint.';
     form.querySelector('[type="submit"]').textContent = previous ? 'Save rescheduled appointment' : walkin ? 'Save walk-in complaint and schedule' : 'Save appointment for existing complaint';
     form.querySelector('[data-husay-complaint-label]').textContent = walkin ? 'New complaint · Walk-in intake' : 'Complaint: ' + field('complaint_code').value;
     showModal('husayScheduleModal');
@@ -123,7 +123,7 @@
       const data = await getFeed('?complaint=' + encodeURIComponent(complaint.id));
       if (data.activeId) {
         await openDetails(data.activeId);
-        toast('This complaint already has a Husay appointment. Use Reschedule to change it.', 'info');
+        toast('This complaint already has a Mediation appointment. Use Reschedule to change it.', 'info');
       } else openSchedule(complaint);
     } catch (error) { toast(error.message, 'error'); }
     finally { button.disabled = false; }
@@ -134,7 +134,7 @@
     body?.querySelector('[data-complaint-husay]')?.remove();
     if (!body || !complaint) return;
     const section = document.createElement('section'); section.className = 'husay-complaint-section'; section.setAttribute('data-complaint-husay', '');
-    const heading = document.createElement('h3'); heading.textContent = 'Husay sessions'; section.appendChild(heading);
+    const heading = document.createElement('h3'); heading.textContent = 'Mediation sessions'; section.appendChild(heading);
     let scheduleButton = null;
     if (['Open','In Progress'].includes(complaint.status)) {
       scheduleButton = document.createElement('button'); scheduleButton.type = 'button'; scheduleButton.className = 'btn btn-primary'; scheduleButton.textContent = 'Checking schedule…'; scheduleButton.disabled = true; scheduleButton.setAttribute('data-husay-for-complaint', ''); section.appendChild(scheduleButton);
@@ -146,7 +146,7 @@
         content.innerHTML = data.html;
         if (scheduleButton) {
           if (data.hasActive) scheduleButton.remove();
-          else { scheduleButton.textContent = 'Schedule Husay'; scheduleButton.disabled = false; }
+          else { scheduleButton.textContent = 'Schedule Mediation'; scheduleButton.disabled = false; }
         }
       }
     } catch (error) { if (section.isConnected) content.textContent = error.message; }
@@ -184,15 +184,15 @@
     submitted.dataset.saving = 'true'; submit.disabled = true;
     try {
       const response = await fetch('husay-actions.php', {method: 'POST', credentials: 'same-origin', headers: {Accept: 'application/json'}, body: payload, signal: AbortSignal.timeout(60000)});
-      if (!(response.headers.get('Content-Type') || '').includes('application/json')) throw new Error('The server could not confirm the save. Check the Husay list before trying again.');
+      if (!(response.headers.get('Content-Type') || '').includes('application/json')) throw new Error('The server could not confirm the save. Check the Mediation list before trying again.');
       const result = await response.json();
-      if (!response.ok || !result.ok) throw new Error(result.message || 'Husay changes could not be saved.');
+      if (!response.ok || !result.ok) throw new Error(result.message || 'Mediation changes could not be saved.');
       toast(result.message); await refresh();
       if (payload.get('action') === 'record_husay' && payload.get('outcome') === 'For follow-up' && submitted.dataset.husayFollowupDetails) {
         openFollowup(JSON.parse(submitted.dataset.husayFollowupDetails));
       } else await openDetails(result.id);
       document.dispatchEvent(new CustomEvent('husay-updated'));
-    } catch (error) { errorBox.textContent = ['TimeoutError','AbortError'].includes(error.name) ? 'Confirmation took too long. Check the Husay list before trying again.' : error.message; errorBox.hidden = false; }
+    } catch (error) { errorBox.textContent = ['TimeoutError','AbortError'].includes(error.name) ? 'Confirmation took too long. Check the Mediation list before trying again.' : error.message; errorBox.hidden = false; }
     finally { delete submitted.dataset.saving; submit.disabled = false; }
   });
   search.addEventListener('input', filter); filter(); refresh();

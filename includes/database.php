@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/time-format.php';
 /**
  * MySQL connection for Barangay Luna MIS.
  *

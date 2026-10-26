@@ -1,0 +1,6 @@
+PASS: document-custom-fields-test.php
+PASS: document-request-parity-test.php
+PASS: document-request-workflow-test.php
+PASS: resident-submission-safety-test.php
+PASS: short-issuance-workflow-test.php
+0 failed tests. All audit databases removed; no live data or SMS used.

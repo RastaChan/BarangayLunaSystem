@@ -54,6 +54,9 @@ $statusMessage = resident_status_message();
 <body class="app-dashboard role-resident">
 
   <?php include __DIR__ . '/includes/resident-sidebar.php'; ?>
+  <?php include __DIR__ . '/includes/sidebar-state.php'; ?>
+  <script src="js/live-search.js?v=<?= filemtime(__DIR__ . '/js/live-search.js') ?>" defer></script>
+  <script src="js/time-controls.js?v=<?= filemtime(__DIR__ . '/js/time-controls.js') ?>" defer></script>
 
   <div class="main-area">
     <?php include __DIR__ . '/includes/resident-header.php'; ?>
@@ -71,6 +74,8 @@ $statusMessage = resident_status_message();
   <?php require __DIR__ . '/includes/resident-submission-confirmation.php'; ?>
   <script src="js/dashboard.js?v=<?= filemtime(__DIR__ . '/js/dashboard.js') ?>"></script>
   <script src="js/resident-submission-confirmation.js?v=<?= filemtime(__DIR__ . '/js/resident-submission-confirmation.js') ?>" defer></script>
+  <script src="js/document-custom-fields.js?v=<?= filemtime(__DIR__ . '/js/document-custom-fields.js') ?>"></script>
+  <?php require __DIR__ . '/includes/system-icons.php'; ?>
   <script src="js/portal-design.js?v=<?= filemtime(__DIR__ . '/js/portal-design.js') ?>"></script>
   <script src="js/mobile-select.js?v=<?= filemtime(__DIR__ . '/js/mobile-select.js') ?>"></script>
   <script src="js/location-disclosures.js?v=<?= filemtime(__DIR__ . '/js/location-disclosures.js') ?>"></script>

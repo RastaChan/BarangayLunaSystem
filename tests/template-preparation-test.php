@@ -1,0 +1,50 @@
+<?php
+if(PHP_SAPI!=='cli'){http_response_code(404);exit;}
+ob_start();
+require_once __DIR__.'/../includes/auth.php';
+require_once __DIR__.'/../includes/template-preparation.php';
+function prep_check(bool $ok,string $message):void{if(!$ok)throw new RuntimeException($message);echo "PASS: $message\n";}
+function prep_reject(callable $callback,string $message):void{try{$callback();}catch(InvalidArgumentException $error){prep_check(true,$message);return;}throw new RuntimeException($message);}
+$base=tempnam(sys_get_temp_dir(),'luna-prep-test-');$source=$base.'.docx';$target=$base.'-prepared.docx';$unchanged=$base.'-unchanged.docx';$files=[$base,$source,$target,$unchanged];$workFiles=[];$server=null;$sessionFiles=[];
+$xml='<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:background w:color="E4F0E8"/><w:body><w:p><w:r><w:t>CERTIFICATE OF RESIDENCY</w:t></w:r></w:p><w:p><w:r><w:t xml:space="preserve">This is to certify that </w:t></w:r><w:r><w:rPr><w:b/></w:rPr><w:t xml:space="preserve">Ana María </w:t></w:r><w:r><w:rPr><w:b/></w:rPr><w:t>Deloy</w:t></w:r><w:r><w:t>, 21 years old, single, residing at Purok 2, Barangay Luna.</w:t></w:r></w:p><w:p><w:r><w:t>Business name: Luna Store</w:t></w:r></w:p><w:p><w:r><w:t>Given this 25th day of OCTOBER, 2026.</w:t></w:r></w:p><w:p><w:r><w:t>{{resident_name}} / {{permit_number}}</w:t></w:r></w:p><w:p><w:r><w:t>This certificate is valid until 2027. Ordinance No. 123.</w:t></w:r></w:p><w:p><w:r><w:t>Name:</w:t><w:tab/><w:t>JUAN DELA CRUZ</w:t></w:r></w:p><w:p><w:r><w:drawing><w:txbxContent><w:p><w:r><w:t>Purpose: Employment</w:t></w:r></w:p></w:txbxContent></w:drawing></w:r></w:p><w:sectPr><w:pgSz w:w="12240" w:h="15840"/></w:sectPr></w:body></w:document>';
+$styles='<w:styles xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:style w:styleId="OriginalStyle"/></w:styles>';$header='<w:hdr xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:p><w:r><w:t>BARANGAY LUNA {{date_year}}</w:t></w:r></w:p></w:hdr>';$image="\x89PNG\r\n\x1a\nOriginal test logo bytes";
+try{
+ $zip=new ZipArchive();$zip->open($source,ZipArchive::CREATE|ZipArchive::OVERWRITE);$zip->addFromString('[Content_Types].xml','<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"/>');$zip->addFromString('word/document.xml',$xml);$zip->addFromString('word/styles.xml',$styles);$zip->addFromString('word/header1.xml',$header);$zip->addFromString('word/media/logo.png',$image);$zip->close();
+ $plan=barangay_template_analyze($source);$keys=array_column($plan['suggestions'],'key');
+ foreach(['resident_name_proper','age','civil_status','resident_address','business_name','date_day_ordinal','date_month_upper','date_year','resident_name','purpose']as$key)prep_check(in_array($key,$keys,true),'Untagged Word text suggests '.$key);
+ prep_check(count(array_filter($plan['paragraphs'],static fn($p)=>$p['text']==='Purpose: Employment'))===1,'Text boxes are read once without duplicating nested paragraphs');
+ prep_check(in_array('permit_number',$plan['existing_tags'],true)&&isset($plan['catalog']['permit_number']),'Existing additional tags are recognized without rewriting them');
+ $business=array_values(array_filter($plan['suggestions'],static fn($item)=>$item['source']==='Luna Store'));prep_check(count($business)===1&&$business[0]['key']==='business_name','Business names are not mislabelled as resident names');
+ $result=barangay_template_prepare($source,$target,$plan['suggestions']);$zip=new ZipArchive();$zip->open($target);$output=$zip->getFromName('word/document.xml');
+ prep_check($zip->getFromName('word/styles.xml')===$styles&&$zip->getFromName('word/header1.xml')===$header&&$zip->getFromName('word/media/logo.png')===$image,'Untouched styles, header and logo bytes are preserved');$zip->close();
+ prep_check(str_contains($output,'w:background w:color="E4F0E8"')&&str_contains($output,'<w:b/>')&&str_contains($output,'w:pgSz'),'Background, bold text and page settings survive preparation');
+ prep_check(str_contains($output,'{{resident_name_proper}}')&&!str_contains($output,'Ana María')&&str_contains($output,'{{resident_name}} / {{permit_number}}'),'A name split across Word runs is replaced while existing tags stay unchanged');
+ prep_check(str_contains($output,'valid until 2027. Ordinance No. 123.'),'Unselected wording, years and ordinance numbers are retained');
+ prep_check(in_array('business_name',array_column($result['fields'],'key'),true)&&in_array('permit_number',array_column($result['fields'],'key'),true),'Prepared templates provide the additional field definitions for the form builder');
+ barangay_template_prepare($source,$unchanged,[]);prep_check(hash_file('sha256',$source)===hash_file('sha256',$unchanged),'Already tagged yearly templates can be downloaded unchanged');
+ $p=array_values(array_filter($plan['paragraphs'],static fn($p)=>str_contains($p['text'],'{{permit_number}}')))[0];$sourceTag='{{permit_number}}';$start=mb_strpos($p['text'],$sourceTag);
+ prep_reject(fn()=>barangay_template_prepare($source,$target,[['paragraph'=>$p['id'],'start'=>$start,'length'=>mb_strlen($sourceTag),'source'=>$sourceTag,'key'=>'age']]),'Existing tags cannot be overwritten by a selected replacement');
+ prep_reject(fn()=>barangay_template_prepare($source,$target,[$plan['suggestions'][0],$plan['suggestions'][0]]),'Overlapping text replacements are rejected');
+ $bad=$plan['suggestions'][0];$bad['source']='Different text';prep_reject(fn()=>barangay_template_prepare($source,$target,[$bad]),'Tampered source text cannot be inserted into the Word file');
+ $bad=$plan['suggestions'][0];$bad['key']='unlisted_field';prep_reject(fn()=>barangay_template_prepare($source,$target,[$bad]),'Unlisted field tags are rejected');
+ prep_reject(fn()=>barangay_template_work_path('../outside','source'),'Temporary file references cannot escape private storage');
+ // Exercise the actual multipart endpoint against the isolated database on loopback only.
+ $socket=stream_socket_server('tcp://127.0.0.1:0',$errno,$error);$address=stream_socket_get_name($socket,false);fclose($socket);$port=(int)substr(strrchr($address,':'),1);
+ $log=$base.'-server.log';$files[]=$log;$pipes=[];$server=proc_open([PHP_BINARY,'-d','session.save_path='.sys_get_temp_dir(),'-S','127.0.0.1:'.$port,'-t',dirname(__DIR__)],[0=>['pipe','r'],1=>['file',$log,'a'],2=>['file',$log,'a']],$pipes,dirname(__DIR__));if(!is_resource($server))throw new RuntimeException('Test server did not start');fclose($pipes[0]);
+ $url='http://127.0.0.1:'.$port.'/template-preparation.php';
+ for($attempt=0;$attempt<30;$attempt++){ $probe=@fsockopen('127.0.0.1',$port,$errno,$error,.1);if($probe){fclose($probe);break;}usleep(50000);}
+ $user=barangay_db()->query("SELECT * FROM users WHERE role='staff' LIMIT 1")->fetch();$sid='preptest'.bin2hex(random_bytes(10));session_save_path(sys_get_temp_dir());session_id($sid);barangay_start_session();$_SESSION['barangay_user']=barangay_format_user($user)+['auth_version'=>2];$_SESSION['last_activity']=time();$_SESSION['template_fields_csrf']='preparation-test-token';session_write_close();$sessionFiles[]=sys_get_temp_dir().'/sess_'.$sid;
+ $send=static function(string $requestUrl,?array $post=null,?string $session=null):array{ $curl=curl_init($requestUrl);curl_setopt_array($curl,[CURLOPT_RETURNTRANSFER=>true,CURLOPT_TIMEOUT=>15]);if($session)curl_setopt($curl,CURLOPT_COOKIE,'PHPSESSID='.$session);if($post!==null)curl_setopt($curl,CURLOPT_POSTFIELDS,$post);$body=curl_exec($curl);$status=curl_getinfo($curl,CURLINFO_HTTP_CODE);$type=curl_getinfo($curl,CURLINFO_CONTENT_TYPE);$error=curl_error($curl);curl_close($curl);if($body===false)throw new RuntimeException($error);return ['status'=>$status,'body'=>$body,'type'=>$type];};
+ $response=$send($url);prep_check($response['status']===403,'Signed-out visitors cannot analyze or download Word templates');
+ $post=['action'=>'analyze','csrf'=>'wrong','definitions'=>'[]','template_docx'=>new CURLFile($source,'application/vnd.openxmlformats-officedocument.wordprocessingml.document','certificate.docx')];$response=$send($url,$post,$sid);prep_check($response['status']===403,'Analysis requires the template CSRF token');
+ $post['csrf']='preparation-test-token';$response=$send($url,$post,$sid);$analyzed=json_decode($response['body'],true,512,JSON_THROW_ON_ERROR);prep_check($response['status']===200&&!empty($analyzed['token']),'Real multipart upload is analyzed for the authenticated staff account');$workFiles[]=barangay_template_work_path($analyzed['token'],'source');
+ $post=['action'=>'prepare','csrf'=>'preparation-test-token','token'=>$analyzed['token'],'mappings'=>json_encode($analyzed['suggestions']),'new_fields'=>'[]','reviewed'=>'0'];$response=$send($url,$post,$sid);prep_check($response['status']===422,'Preparation requires an explicit review confirmation');
+ $post['reviewed']='1';$response=$send($url,$post,$sid);$prepared=json_decode($response['body'],true,512,JSON_THROW_ON_ERROR);prep_check($response['status']===200&&!empty($prepared['url']),'Reviewed replacements create a real prepared DOCX download');parse_str(parse_url($prepared['url'],PHP_URL_QUERY),$query);$workFiles[]=barangay_template_work_path($query['token'],'prepared');
+ $downloadUrl='http://127.0.0.1:'.$port.'/'.$prepared['url'];$response=$send($downloadUrl,null,$sid);prep_check($response['status']===200&&str_starts_with($response['body'],'PK')&&str_contains($response['type'],'wordprocessingml'),'Only the owner session receives the prepared Word file');
+ $response=$send($downloadUrl);prep_check($response['status']===403,'Private download links cannot be opened while signed out');
+ $response=$send($url.'?token='.str_repeat('f',48),null,$sid);prep_check($response['status']===422&&!str_starts_with($response['body'],'PK'),'Unknown tokens cannot expose temporary files');
+}finally{
+ if(is_resource($server)){proc_terminate($server);proc_close($server);}
+ foreach(array_merge($files,$workFiles,$sessionFiles)as$file)if(is_file($file))@unlink($file);
+}
+echo "Private test files removed. Isolated database only; no live templates or SMS changed.\n";

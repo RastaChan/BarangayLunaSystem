@@ -3,7 +3,7 @@
 function barangay_revenue_export_rows(string $from, string $to, array $metrics, array $payments): array {
   $display = static fn(string $date) => (new DateTimeImmutable($date))->format('M/j/Y');
   foreach ($payments as &$payment) {
-    if (!empty($payment[6])) $payment[6] = (new DateTimeImmutable($payment[6]))->format('M/j/Y H:i');
+    if (!empty($payment[6])) $payment[6] = (new DateTimeImmutable($payment[6]))->format('M/j/Y g:i A');
   }
   unset($payment);
   return array_merge([

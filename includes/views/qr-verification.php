@@ -39,11 +39,11 @@
   <div class="modal-panel modal-panel--wide qr-id-modal-panel">
     <header class="modal-header">
       <h2 id="staffQrIdTitle">Scanned Resident ID</h2>
-      <button type="button" class="modal-close" data-modal-close aria-label="Close">&times;</button>
+      <button type="button" class="modal-close" data-modal-close aria-label="Close"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor" stroke="none" aria-hidden="true" class="system-icon" data-system-icon="x"><path d="M216,56V200a16,16,0,0,1-16,16H56a16,16,0,0,1-16-16V56A16,16,0,0,1,56,40H200A16,16,0,0,1,216,56Z" opacity="0.2"/><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></svg></button>
     </header>
     <div class="modal-body">
-      <section class="qr-id-preview" id="staffQrIdPreview" aria-live="polite">
-        <div class="qr-id-preview__top">
+      <section class="qr-id-preview resident-id-card resident-id-card--admin" id="staffQrIdPreview" aria-live="polite">
+        <div class="qr-id-preview__top resident-id-card__header">
           <img src="branding-logo.php" alt="Barangay Luna seal" onerror="this.style.visibility='hidden';">
           <div>
             <span>Barangay Luna</span>
@@ -51,9 +51,9 @@
           </div>
           <span class="badge badge-pending" id="staffQrIdResult">Waiting</span>
         </div>
-        <div class="qr-id-preview__body">
-          <div class="qr-id-preview__photo" id="staffQrIdPhoto">?</div>
-          <div class="qr-id-preview__info">
+        <div class="qr-id-preview__body resident-id-card__body">
+          <div class="qr-id-preview__photo resident-id-card__photo" id="staffQrIdPhoto">?</div>
+          <div class="qr-id-preview__info resident-id-card__info">
             <span>Resident ID</span>
             <strong id="staffQrIdCode">-</strong>
             <h3 id="staffQrIdName">No resident selected</h3>
@@ -66,16 +66,13 @@
               <div><dt>Civil Status</dt><dd id="staffQrIdCivilStatus">-</dd></div>
               <div><dt>Account</dt><dd id="staffQrIdAccount">-</dd></div>
               <div><dt>Verification</dt><dd id="staffQrIdVerification">-</dd></div>
+              <div class="resident-id-card__address-row"><dt>Address</dt><dd id="staffQrIdAddress">-</dd></div>
             </dl>
           </div>
-          <div class="qr-id-preview__qr" id="staffQrIdQr">
+          <div class="qr-id-preview__qr resident-id-card__qr" id="staffQrIdQr">
             <div class="resident-id-card__qr-empty">QR</div>
             <span id="staffQrIdQrCode">-</span>
           </div>
-        </div>
-        <div class="qr-id-preview__address">
-          <span>Address</span>
-          <strong id="staffQrIdAddress">-</strong>
         </div>
         <p class="qr-id-preview__message" id="staffQrIdMessage">Scan a resident QR code to preview their ID.</p>
       </section>
@@ -124,24 +121,4 @@
   </div>
 </section>
 
-<section class="panel-card" style="margin-top:1.25rem">
-  <div class="panel-head"><h3>Scan logs</h3></div>
-  <div class="table-wrap">
-    <table class="data-table qr-mobile-table">
-      <thead><tr><th>Date and time</th><th>Resident</th><th>Result</th><th>Scanner</th></tr></thead>
-      <tbody id="staffQrScanLogBody">
-        <?php foreach ($adminQrScanLogs as $scan): ?>
-        <tr>
-          <td data-label="Date and time"><?= htmlspecialchars($scan['scanned_at']) ?></td>
-          <td data-label="Resident"><?= htmlspecialchars($scan['resident_name']) ?></td>
-          <td data-label="Result"><span class="badge <?= $scan['result'] === 'Verified' ? 'badge-active' : 'badge-open' ?>"><?= htmlspecialchars($scan['result']) ?></span></td>
-          <td data-label="Scanner"><?= htmlspecialchars($scan['staff']) ?></td>
-        </tr>
-        <?php endforeach; ?>
-        <?php if (!$adminQrScanLogs): ?>
-        <tr><td colspan="4">No QR scan logs yet.</td></tr>
-        <?php endif; ?>
-      </tbody>
-    </table>
-  </div>
-</section>
+

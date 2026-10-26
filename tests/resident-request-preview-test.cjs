@@ -3,7 +3,7 @@ let click,observer,resolveFetch,requests=[];
 const frame={hidden:true,src:'',removeAttribute(){this.src='';}};
 const status={textContent:''};let ariaHidden='false';
 const modal={querySelector:s=>s.includes('frame')?frame:status,getAttribute:()=>ariaHidden};
-const form={elements:{document_type:{value:'Barangay Certification'},purpose:{value:'School'},preview_csrf:{value:'test-token'}}};
+const form={querySelectorAll:()=>[],elements:{document_type:{value:'Barangay Certification'},purpose:{value:'School'},preview_csrf:{value:'test-token'}}};
 class Payload{constructor(){this.values={};}set(k,v){this.values[k]=v;}}
 vm.runInNewContext(fs.readFileSync('js/resident-request-preview.js','utf8'),{
   document:{querySelector:s=>s.includes('form')?form:{addEventListener:(name,fn)=>click=fn},getElementById:()=>modal},

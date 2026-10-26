@@ -4,7 +4,7 @@ require_once __DIR__ . '/includes/notification-state.php';
 header('Content-Type: application/json; charset=utf-8');
 header('Cache-Control: no-store');
 $user = barangay_current_user();
-if (!$user || ($user['role'] ?? '') !== 'resident') {
+if (!$user) {
   http_response_code(403); echo json_encode(['ok' => false]); exit;
 }
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {

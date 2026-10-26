@@ -196,7 +196,7 @@ class QRCodeGenerator {
         <p style="font-family: monospace; font-size: 12px; word-break: break-all;">${qrText}</p>
         <div class="footer">
           <p>Barangay Luna MIS - QR Resident Verification</p>
-          <p>Generated: ${new Date().toLocaleString()}</p>
+          <p>Generated: ${new Date().toLocaleString('en-US', {hour12:true})}</p>
         </div>
       </body>
       </html>

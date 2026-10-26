@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/document-custom-fields.php';
 require_once __DIR__ . '/database.php';
 require_once __DIR__ . '/document-issuance-workflow.php';
 require_once __DIR__ . '/resident-inactivity.php';
@@ -21,6 +22,21 @@ function staff_view_url(string $view, array $params = []): string {
 }
 
 function staff_redirect(string $view, string $status = 'saved', string $anchor = ''): void {
+  if (($_POST['action'] ?? '') === 'save_template' && ($_SERVER['HTTP_X_REQUESTED_WITH'] ?? '') === 'TemplateSetup') {
+    $ok = $status === 'saved';
+    header('Content-Type: application/json; charset=UTF-8');
+    header('Cache-Control: no-store');
+    http_response_code($ok ? 200 : 422);
+    $message = $_SESSION['configuration_error'] ?? match ($status) {
+      'missing' => 'Choose a document type before saving.',
+      'duplicate' => 'This template was changed by another save. Reopen Saved templates and try again.',
+      'saved' => 'Template saved.',
+      default => 'Check the document details and upload a valid DOCX file, then try again.',
+    };
+    unset($_SESSION['configuration_error']);
+    echo json_encode(['ok'=>$ok, 'message'=>$message, 'redirect'=>staff_view_url($view, ['status'=>$status]) . ($anchor !== '' ? '#'.rawurlencode($anchor) : '')]);
+    exit;
+  }
   if (($_POST['action'] ?? '') === 'remove_prepared_document' && ($_SERVER['HTTP_X_REQUESTED_WITH'] ?? '') === 'PreparedRemoval') {
     header('Content-Type: application/json; charset=UTF-8');
     http_response_code(422);
@@ -282,6 +298,7 @@ function staff_seed_document_templates(int $userId): void {
 }
 
 function staff_ensure_document_template_file_columns(): void {
+  barangay_custom_document_schema();
   $columns = staff_fetch_all(
     "SELECT COLUMN_NAME
      FROM INFORMATION_SCHEMA.COLUMNS
