@@ -4,7 +4,7 @@ husay_require_staff($loggedInUser);
 $husayWorkspace = true;
 ?>
 <div class="page-intro">
-  <h2>Barangay Mediation</h2><p>Plan appointments, check availability, and keep track of each session. All times are Philippine time.</p>
+  <h2>Barangay Mediation</h2><p>Review complaints, propose appointments, and track approved sessions. Staff proposals need the Barangay Captain's approval. All times are Philippine time.</p>
 </div>
-<div class="husay-toolbar" role="group" aria-label="Add a Mediation appointment"><button type="button" class="btn btn-outline" data-husay-existing>Schedule existing complaint</button><button type="button" class="btn btn-primary" data-husay-walkin>Add walk-in Mediation</button></div>
+<div class="husay-toolbar" role="group" aria-label="Add a Mediation appointment"><button type="button" class="btn btn-outline" data-husay-existing><?= $loggedInUser['role'] === 'admin' ? 'Schedule existing complaint' : 'Propose schedule for complaint' ?></button><button type="button" class="btn btn-primary" data-husay-walkin><?= $loggedInUser['role'] === 'admin' ? 'Add walk-in Mediation' : 'Record walk-in and propose schedule' ?></button></div>
 <?php require __DIR__ . '/husay-panel.php'; ?>

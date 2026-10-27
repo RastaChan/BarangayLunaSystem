@@ -8,9 +8,12 @@ if (!$user || !in_array($user['role'], ['admin', 'staff'], true)) { http_respons
 try {
   if ($_SERVER['REQUEST_METHOD'] !== 'POST') { http_response_code(405); throw new InvalidArgumentException('Use the lookup form.'); }
   $kind = $_POST['kind'] ?? '';
-  $key = $kind === 'duplicates' ? 'locations_csrf' : 'document_request_csrf';
+  $key = $kind === 'duplicates' ? 'locations_csrf' : ($kind === 'sms-resident-search' ? 'sms_csrf' : 'document_request_csrf');
   if (empty($_SESSION[$key]) || !hash_equals($_SESSION[$key], (string) ($_POST['csrf'] ?? ''))) { http_response_code(403); throw new InvalidArgumentException('Refresh the page before trying again.'); }
-  if ($kind === 'duplicates') {
+  if ($kind === 'sms-resident-search') {
+    require_once __DIR__ . '/includes/sms-workspace.php';
+    echo json_encode(['ok'=>true, 'residents'=>sms_find_residents((string) ($_POST['search'] ?? ''))]);
+  } elseif ($kind === 'duplicates') {
     $name = barangay_resident_name($_POST); $date = (string) ($_POST['birthdate'] ?? '');
     $matches = barangay_resident_matches($name, $date);
     echo json_encode(['ok'=>true,'matches'=>array_map(static fn($r)=>['code'=>$r['user_code'],'name'=>$r['full_name'],'birthdate'=>$r['birthdate'],'status'=>$r['status']], $matches), 'token'=>$matches ? barangay_duplicate_token($name,$date,$matches) : '']);

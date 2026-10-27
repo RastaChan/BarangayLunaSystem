@@ -49,7 +49,7 @@ function staff_nav_link(string $view, string $label, string $iconPath, string $a
     <?php staff_nav_link('staff-feedbacks', 'Feedbacks', 'M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8Z', $activeView, $staffFeedbackBadgeCount); ?>
 
     <p class="nav-section">Communication</p>
-    <?php staff_nav_link('staff-sms-alerts', 'SMS Notifications', 'M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8ZM9 10h6M9 14h3', $activeView); ?>
+    <?php staff_nav_link('staff-sms-alerts', 'SMS Alerts', 'M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8ZM9 10h6M9 14h3', $activeView); ?>
 
     <p class="nav-section">Reports</p>
     <?php staff_nav_link('my-activity-logs', 'My Activity Logs', 'M9 11l3 3L22 4M11 20H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v11', $activeView); ?>

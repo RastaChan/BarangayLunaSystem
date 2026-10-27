@@ -1,0 +1,1417 @@
+{
+    "created_at": "2026-10-27T15:21:02+00:00",
+    "created_by": "John Calang",
+    "tables": {
+        "users": [
+            {
+                "id": 106,
+                "user_code": "ADM-001",
+                "role": "admin",
+                "full_name": "John Calang",
+                "position_title": "Administrator",
+                "username": "johncalang@luna.gov",
+                "mobile": null,
+                "address": null,
+                "purok": null,
+                "household": null,
+                "birthdate": null,
+                "gender": null,
+                "civil_status": null,
+                "verification_status": "Verified",
+                "qr_status": "Inactive",
+                "qr_code": null,
+                "qr_generated_at": null,
+                "profile_photo_path": null,
+                "registered_by": null,
+                "password_hash": "$2y$10$aXPWK98pM\/jw1XsAQ9qS\/eoizBeSqepoNUcR6k.Nw.R\/HoP2GPiHi",
+                "status": "Active",
+                "last_login_at": "2026-10-27 22:20:30",
+                "created_at": "2026-10-27 22:16:23",
+                "updated_at": "2026-10-27 22:20:30",
+                "district_id": null,
+                "purok_id": null,
+                "last_active_at": null,
+                "inactive_reason": null,
+                "inactivated_at": null,
+                "reactivated_at": null
+            },
+            {
+                "id": 107,
+                "user_code": "STF-001",
+                "role": "staff",
+                "full_name": "Lorlie Deloy",
+                "position_title": "Barangay Staff",
+                "username": "lorliedeloy@luna.gov",
+                "mobile": "09853558753",
+                "address": null,
+                "purok": null,
+                "household": null,
+                "birthdate": null,
+                "gender": null,
+                "civil_status": null,
+                "verification_status": "Pending",
+                "qr_status": "Inactive",
+                "qr_code": null,
+                "qr_generated_at": null,
+                "profile_photo_path": null,
+                "registered_by": null,
+                "password_hash": "$2y$10$QvhnSre1\/jzXFLPa8lhRpuBjUnYDuBzXGXsvTF8DYmJH8G72kT2Ti",
+                "status": "Active",
+                "last_login_at": null,
+                "created_at": "2026-10-27 22:24:42",
+                "updated_at": "2026-10-27 22:24:42",
+                "district_id": null,
+                "purok_id": null,
+                "last_active_at": null,
+                "inactive_reason": null,
+                "inactivated_at": null,
+                "reactivated_at": null
+            },
+            {
+                "id": 108,
+                "user_code": "STF-002",
+                "role": "staff",
+                "full_name": "Christian Deloy",
+                "position_title": "Barangay Staff",
+                "username": "christiandeloy@luna.gov",
+                "mobile": "09097653483",
+                "address": null,
+                "purok": null,
+                "household": null,
+                "birthdate": null,
+                "gender": null,
+                "civil_status": null,
+                "verification_status": "Pending",
+                "qr_status": "Inactive",
+                "qr_code": null,
+                "qr_generated_at": null,
+                "profile_photo_path": null,
+                "registered_by": null,
+                "password_hash": "$2y$10$5Qnx2VyAIWvCzyB9GJ7KrOw0C35NSGPEHSgMcjfyXuirAL9INNqjK",
+                "status": "Active",
+                "last_login_at": null,
+                "created_at": "2026-10-27 22:25:16",
+                "updated_at": "2026-10-27 22:25:16",
+                "district_id": null,
+                "purok_id": null,
+                "last_active_at": null,
+                "inactive_reason": null,
+                "inactivated_at": null,
+                "reactivated_at": null
+            },
+            {
+                "id": 109,
+                "user_code": "RES-001",
+                "role": "resident",
+                "full_name": "France Sulapas Bonono",
+                "position_title": "Resident",
+                "username": "res-001@luna.gov",
+                "mobile": "09060312740",
+                "address": "Brgy,Luna",
+                "purok": "Purok Baybay Alliance Boulevard",
+                "household": "",
+                "birthdate": "2002-04-27",
+                "gender": "Male",
+                "civil_status": "Separated",
+                "verification_status": "Verified",
+                "qr_status": "Active",
+                "qr_code": "LUNA|RES-001|20261027143828",
+                "qr_generated_at": "2026-10-27 14:38:28",
+                "profile_photo_path": null,
+                "registered_by": 106,
+                "password_hash": "$2y$10$xFwpdsMVv8qGUuIYOKcjs.eqULT4yPMSJTO8z9Cpvd9NdH5NPI6\/m",
+                "status": "Active",
+                "last_login_at": "2026-10-27 22:55:56",
+                "created_at": "2026-10-27 22:38:28",
+                "updated_at": "2026-10-27 23:14:06",
+                "district_id": 1,
+                "purok_id": 1,
+                "last_active_at": "2026-10-27 23:14:06",
+                "inactive_reason": null,
+                "inactivated_at": null,
+                "reactivated_at": null
+            }
+        ],
+        "announcements": [],
+        "document_requests": [
+            {
+                "id": 1,
+                "request_code": "REQ-001",
+                "resident_user_id": 109,
+                "resident_name": "France Sulapas Bonono",
+                "contact_mobile": "09060312740",
+                "document_type": "Barangay Certification",
+                "fee_amount": "150.00",
+                "purpose": "Employment",
+                "pickup_preference": null,
+                "remarks": "",
+                "beneficiary_name": "",
+                "beneficiary_relationship": "",
+                "residency_years": 2,
+                "partner_name": "",
+                "cohabitation_start_date": null,
+                "resident_gender_override": null,
+                "status": "Released",
+                "released_sms_sent_at": null,
+                "requested_at": "2026-10-27 22:40:42",
+                "archived_at": null,
+                "copies": 1,
+                "unit_fee": "150.00",
+                "ready_at": "2026-10-27 22:42:28",
+                "custom_values_json": "[]"
+            },
+            {
+                "id": 2,
+                "request_code": "REQ-002",
+                "resident_user_id": 109,
+                "resident_name": "France Sulapas Bonono",
+                "contact_mobile": "09060312740",
+                "document_type": "Good Moral Certificate",
+                "fee_amount": "300.00",
+                "purpose": "School",
+                "pickup_preference": null,
+                "remarks": "",
+                "beneficiary_name": "",
+                "beneficiary_relationship": "",
+                "residency_years": null,
+                "partner_name": "",
+                "cohabitation_start_date": null,
+                "resident_gender_override": null,
+                "status": "Released",
+                "released_sms_sent_at": null,
+                "requested_at": "2026-10-27 22:56:27",
+                "archived_at": null,
+                "copies": 2,
+                "unit_fee": "150.00",
+                "ready_at": "2026-10-27 22:58:25",
+                "custom_values_json": "[]"
+            }
+        ],
+        "document_templates": [
+            {
+                "id": 10,
+                "name": "Certificate of Residency 2026 Official Format",
+                "document_type": "Certificate of Residency",
+                "effective_year": "2026",
+                "content": "This is to certify that {{resident_name}}, {{age}} years old, {{civil_status}}, residing at {{resident_address}}, {{barangay_name}}, is issued this document for {{purpose}} on {{date_issued}}. Document No. {{document_number}}.",
+                "template_file_name": "CERTIFICATE-OF-RESIDENCY (edited).docx",
+                "template_file_path": "storage\/document-templates\/certificate-of-residency-2026-20261024042014-d502232bf109.docx",
+                "status": "Active",
+                "updated_by": null,
+                "created_at": "2026-10-04 09:10:36",
+                "updated_at": "2026-10-24 12:20:14",
+                "custom_fields_json": null
+            },
+            {
+                "id": 11,
+                "name": "Certificate of Cohabitation 2026 Official Format",
+                "document_type": "Certificate of Cohabitation",
+                "effective_year": "2026",
+                "content": "This is to certify that {{resident_name}}, {{age}} years old, {{civil_status}}, residing at {{resident_address}}, {{barangay_name}}, is issued this document for {{purpose}} on {{date_issued}}. Document No. {{document_number}}.",
+                "template_file_name": "CERTIFICATION-OF-COHABITATION (edited).docx",
+                "template_file_path": "storage\/document-templates\/certificate-of-cohabitation-2026-20261024041934-c650a694acca.docx",
+                "status": "Active",
+                "updated_by": null,
+                "created_at": "2026-10-04 09:10:50",
+                "updated_at": "2026-10-24 12:19:34",
+                "custom_fields_json": null
+            },
+            {
+                "id": 12,
+                "name": "Certificate of Indigency 2026 Official Format",
+                "document_type": "Certificate of Indigency",
+                "effective_year": "2026",
+                "content": "This is to certify that {{resident_name}}, {{age}} years old, {{civil_status}}, residing at {{resident_address}}, {{barangay_name}}, is issued this document for {{purpose}} on {{date_issued}}. Document No. {{document_number}}.",
+                "template_file_name": "CERTIFICATE-OF-INDIGENCY (edited).docx",
+                "template_file_path": "storage\/document-templates\/certificate-of-indigency-2026-20261024042000-634323f445fa.docx",
+                "status": "Active",
+                "updated_by": null,
+                "created_at": "2026-10-04 09:11:03",
+                "updated_at": "2026-10-24 12:20:00",
+                "custom_fields_json": null
+            },
+            {
+                "id": 13,
+                "name": "Barangay Certification 2026 Official Format",
+                "document_type": "Barangay Certification",
+                "effective_year": "2026",
+                "content": "This is to certify that {{resident_name}}, {{age}} years old, {{civil_status}}, residing at {{resident_address}}, {{barangay_name}}, is issued this document for {{purpose}} on {{date_issued}}. Document No. {{document_number}}.",
+                "template_file_name": "BARANGAY-CERTIFICATION (edited).docx",
+                "template_file_path": "storage\/document-templates\/barangay-certification-2026-20261024041851-b6e1eeaeaf9d.docx",
+                "status": "Active",
+                "updated_by": null,
+                "created_at": "2026-10-04 09:11:56",
+                "updated_at": "2026-10-24 12:18:51",
+                "custom_fields_json": null
+            },
+            {
+                "id": 14,
+                "name": "Clearance Certificate 2026 Official Format",
+                "document_type": "Clearance Certificate",
+                "effective_year": "2026",
+                "content": "This is to certify that {{resident_name}}, {{age}} years old, {{civil_status}}, residing at {{resident_address}}, {{barangay_name}}, is issued this document for {{purpose}} on {{date_issued}}. Document No. {{document_number}}.",
+                "template_file_name": "CLEARANCE-CERTIFICATE (edited).docx",
+                "template_file_path": "storage\/document-templates\/clearance-certificate-2026-20261024042106-f43aca6bbb68.docx",
+                "status": "Active",
+                "updated_by": null,
+                "created_at": "2026-10-24 12:21:06",
+                "updated_at": "2026-10-24 12:21:06",
+                "custom_fields_json": null
+            },
+            {
+                "id": 15,
+                "name": "Good Moral Certificate 2026 Official Format",
+                "document_type": "Good Moral Certificate",
+                "effective_year": "2026",
+                "content": "This is to certify that {{resident_name}}, {{age}} years old, {{civil_status}}, residing at {{resident_address}}, {{barangay_name}}, is issued this document for {{purpose}} on {{date_issued}}. Document No. {{document_number}}.",
+                "template_file_name": "GOOD-MORAL-CERTIFICATE (edited).docx",
+                "template_file_path": "storage\/document-templates\/good-moral-certificate-2026-20261024042141-8b5aadde30e9.docx",
+                "status": "Active",
+                "updated_by": null,
+                "created_at": "2026-10-24 12:21:41",
+                "updated_at": "2026-10-24 12:21:41",
+                "custom_fields_json": null
+            }
+        ],
+        "issued_documents": [
+            {
+                "id": 1,
+                "document_number": "BL-20261027-144119-E6BE18",
+                "resident_user_id": 109,
+                "resident_name": "France Sulapas Bonono",
+                "document_type": "Barangay Certification",
+                "purpose": "Employment",
+                "fee_amount": "150.00",
+                "generated_file_name": "issued-bl-20261027-144119-e6be18-20261027144228.docx",
+                "generated_file_path": "storage\/generated-documents\/issued-bl-20261027-144119-e6be18-20261027144228.docx",
+                "issued_by": 106,
+                "issued_at": "2026-10-27 22:54:26",
+                "copies": 1,
+                "unit_fee": "150.00",
+                "verification_token": "034c935cfea04ffe288e04a36d248cb706f23082d662b6a46535455890368f16",
+                "verification_url": "http:\/\/192.168.1.19\/BARANGAY%20LUNA%20SYSTEM\/verify-document.php?token=034c935cfea04ffe288e04a36d248cb706f23082d662b6a46535455890368f16",
+                "request_code": "REQ-001",
+                "issuance_status": "Released",
+                "applicant_details": "{\"id\":109,\"user_code\":\"RES-001\",\"full_name\":\"France Sulapas Bonono\",\"mobile\":\"09060312740\",\"address\":\"Brgy,Luna\",\"age\":24,\"gender\":\"Male\",\"civil_status\":\"Separated\"}",
+                "contact_mobile": "09060312740",
+                "requirements_checked": 1,
+                "released_by": 106,
+                "released_at": "2026-10-27 22:54:26",
+                "prepared_at": "2026-10-27 22:42:28",
+                "custom_values_json": "[]"
+            },
+            {
+                "id": 2,
+                "document_number": "BL-20261027-145648-B0D2FA",
+                "resident_user_id": 109,
+                "resident_name": "France Sulapas Bonono",
+                "document_type": "Good Moral Certificate",
+                "purpose": "School",
+                "fee_amount": "300.00",
+                "generated_file_name": "issued-bl-20261027-145648-b0d2fa-20261027145824.docx",
+                "generated_file_path": "storage\/generated-documents\/issued-bl-20261027-145648-b0d2fa-20261027145824.docx",
+                "issued_by": 106,
+                "issued_at": "2026-10-27 22:59:25",
+                "copies": 2,
+                "unit_fee": "150.00",
+                "verification_token": "c53d44bc14f02002adf10d45bf5efda3a47ea830c70c511fa4057cd681b0b999",
+                "verification_url": "http:\/\/192.168.1.19\/BARANGAY%20LUNA%20SYSTEM\/verify-document.php?token=c53d44bc14f02002adf10d45bf5efda3a47ea830c70c511fa4057cd681b0b999",
+                "request_code": "REQ-002",
+                "issuance_status": "Released",
+                "applicant_details": "{\"id\":109,\"user_code\":\"RES-001\",\"full_name\":\"France Sulapas Bonono\",\"mobile\":\"09060312740\",\"address\":\"Brgy,Luna\",\"age\":24,\"gender\":\"Male\",\"civil_status\":\"Separated\"}",
+                "contact_mobile": "09060312740",
+                "requirements_checked": 1,
+                "released_by": 106,
+                "released_at": "2026-10-27 22:59:25",
+                "prepared_at": "2026-10-27 22:58:25",
+                "custom_values_json": "[]"
+            }
+        ],
+        "complaints": [
+            {
+                "id": 1,
+                "complaint_code": "CMP-W-20261027-81F4733E",
+                "resident_user_id": null,
+                "resident_name": "Lorlie Deloy",
+                "subject": "lupa",
+                "category": "Walk-in concern",
+                "details": "Jaoy mga tawo na sige panguha nan bayabas saamo bayabasan",
+                "location": "canlanipa",
+                "remarks": null,
+                "status": "In Progress",
+                "filed_at": "2026-10-27 23:11:08",
+                "archived_at": null,
+                "intake_source": "Walk-in",
+                "contact_mobile": "09853558753"
+            },
+            {
+                "id": 2,
+                "complaint_code": "CMP-001",
+                "resident_user_id": 109,
+                "resident_name": "France Sulapas Bonono",
+                "subject": "Saba si maria",
+                "category": "Other concern",
+                "details": "Saba sila maria bsan alas 12 na sa gabie",
+                "location": "P-Reyes",
+                "remarks": null,
+                "status": "In Progress",
+                "filed_at": "2026-10-27 23:15:50",
+                "archived_at": null,
+                "intake_source": "Online",
+                "contact_mobile": null
+            }
+        ],
+        "husay_schedules": [
+            {
+                "id": 1,
+                "complaint_id": 1,
+                "starts_at": "2026-10-28 11:30:00",
+                "ends_at": "2026-10-28 12:00:00",
+                "venue": "Barangay Hall",
+                "assigned_user_id": 108,
+                "complainant_name": "Lorlie Deloy",
+                "complainant_mobile": "09853558753",
+                "respondent_name": "Christian Deloy",
+                "respondent_mobile": null,
+                "respondent_address": null,
+                "instructions": null,
+                "status": "Completed",
+                "outcome": "Settled",
+                "complainant_attendance": "Present",
+                "respondent_attendance": "Absent",
+                "public_summary": "way nangari kay nagkasinabot ra",
+                "private_notes": null,
+                "rescheduled_from": null,
+                "change_reason": null,
+                "reviewed_by": 106,
+                "created_by": 106,
+                "updated_by": 106,
+                "version": 2,
+                "request_key": "c3f71646b294f55e74d55c3b414c0531",
+                "created_at": "2026-10-27 23:11:08",
+                "updated_at": "2026-10-27 23:13:21"
+            },
+            {
+                "id": 2,
+                "complaint_id": 2,
+                "starts_at": "2026-10-28 11:00:00",
+                "ends_at": "2026-10-28 12:00:00",
+                "venue": "Barangay Hall",
+                "assigned_user_id": 106,
+                "complainant_name": "France Sulapas Bonono",
+                "complainant_mobile": "09060312740",
+                "respondent_name": "maria",
+                "respondent_mobile": null,
+                "respondent_address": null,
+                "instructions": null,
+                "status": "Completed",
+                "outcome": "For follow-up",
+                "complainant_attendance": "Present",
+                "respondent_attendance": "Absent",
+                "public_summary": "dugayan",
+                "private_notes": null,
+                "rescheduled_from": null,
+                "change_reason": null,
+                "reviewed_by": 106,
+                "created_by": 106,
+                "updated_by": 106,
+                "version": 4,
+                "request_key": "9b33643be83b846ed6b7ac6acd058ae5",
+                "created_at": "2026-10-27 23:17:07",
+                "updated_at": "2026-10-27 23:18:27"
+            },
+            {
+                "id": 3,
+                "complaint_id": 2,
+                "starts_at": "2026-10-29 10:00:00",
+                "ends_at": "2026-10-29 12:00:00",
+                "venue": "Barangay Hall",
+                "assigned_user_id": 106,
+                "complainant_name": "France Sulapas Bonono",
+                "complainant_mobile": "09060312740",
+                "respondent_name": "maria",
+                "respondent_mobile": null,
+                "respondent_address": null,
+                "instructions": null,
+                "status": "In Progress",
+                "outcome": null,
+                "complainant_attendance": "Not recorded",
+                "respondent_attendance": "Not recorded",
+                "public_summary": "paigo",
+                "private_notes": null,
+                "rescheduled_from": null,
+                "change_reason": null,
+                "reviewed_by": 106,
+                "created_by": 106,
+                "updated_by": 106,
+                "version": 2,
+                "request_key": "e6baf178fdd6cf92c01ae027364685a4",
+                "created_at": "2026-10-27 23:19:17",
+                "updated_at": "2026-10-27 23:19:34"
+            }
+        ],
+        "husay_history": [
+            {
+                "id": 1,
+                "hearing_id": 1,
+                "action": "Scheduled",
+                "description": "2026-10-28 11:30:00 to 2026-10-28 12:00:00 at Barangay Hall",
+                "actor_id": 106,
+                "created_at": "2026-10-27 23:11:08"
+            },
+            {
+                "id": 2,
+                "hearing_id": 1,
+                "action": "Session completed",
+                "description": "Settled: way nangari kay nagkasinabot ra",
+                "actor_id": 106,
+                "created_at": "2026-10-27 23:13:21"
+            },
+            {
+                "id": 3,
+                "hearing_id": 2,
+                "action": "Scheduled",
+                "description": "2026-10-28 11:00:00 to 2026-10-28 12:00:00 at Barangay Hall",
+                "actor_id": 106,
+                "created_at": "2026-10-27 23:17:07"
+            },
+            {
+                "id": 4,
+                "hearing_id": 2,
+                "action": "Attendance updated",
+                "description": "Session is in progress.",
+                "actor_id": 106,
+                "created_at": "2026-10-27 23:17:40"
+            },
+            {
+                "id": 5,
+                "hearing_id": 2,
+                "action": "Attendance updated",
+                "description": "Session is in progress.",
+                "actor_id": 106,
+                "created_at": "2026-10-27 23:17:47"
+            },
+            {
+                "id": 6,
+                "hearing_id": 2,
+                "action": "Session completed",
+                "description": "For follow-up: dugayan",
+                "actor_id": 106,
+                "created_at": "2026-10-27 23:18:27"
+            },
+            {
+                "id": 7,
+                "hearing_id": 3,
+                "action": "Scheduled",
+                "description": "2026-10-29 10:00:00 to 2026-10-29 12:00:00 at Barangay Hall",
+                "actor_id": 106,
+                "created_at": "2026-10-27 23:19:17"
+            },
+            {
+                "id": 8,
+                "hearing_id": 3,
+                "action": "Attendance updated",
+                "description": "Session is in progress.",
+                "actor_id": 106,
+                "created_at": "2026-10-27 23:19:34"
+            }
+        ],
+        "husay_calendar_guard": [
+            {
+                "id": 1
+            }
+        ],
+        "feedbacks": [],
+        "sms_logs": [
+            {
+                "id": 1,
+                "recipient_name": "France Sulapas Bonono",
+                "recipient_mobile": "09060312740",
+                "message_type": "Resident Account SMS",
+                "message": "Your Barangay Luna Smart Portal account has been created or updated. Please keep your login details private",
+                "status": "Pending",
+                "sent_by": 106,
+                "created_at": "2026-10-27 22:38:28",
+                "source": "Automatic",
+                "delivery_state": "Accepted",
+                "failure_reason": null,
+                "provider_id": "0a939ad5-69e0-4ca8-8d8b-00d4caf9197a",
+                "delivery_key": "resident-account-created:109",
+                "retry_of": null,
+                "request_code": null
+            },
+            {
+                "id": 2,
+                "recipient_name": "France Sulapas Bonono",
+                "recipient_mobile": "09060312740",
+                "message_type": "Request received",
+                "message": "BRGY LUNA: We received your Barangay Certification request (REQ-001). You can track its status in My Document Requests.",
+                "status": "Pending",
+                "sent_by": 109,
+                "created_at": "2026-10-27 22:40:42",
+                "source": "Automatic",
+                "delivery_state": "Accepted",
+                "failure_reason": null,
+                "provider_id": "3e7afcd0-526b-40b6-a441-d1874424ba7f",
+                "delivery_key": "auto:received:1fd15aa788c0fd79a584cd7533a83afe61d6b00f8e097e9d1b353456a216c728",
+                "retry_of": null,
+                "request_code": "REQ-001"
+            },
+            {
+                "id": 3,
+                "recipient_name": "France Sulapas Bonono",
+                "recipient_mobile": "09060312740",
+                "message_type": "Document ready for pickup",
+                "message": "BRGY LUNA: Your Barangay Certification (REQ-001) is ready for pickup at the Barangay Luna office. Document fee: PHP 150.00. Please bring your resident ID or QR code.",
+                "status": "Pending",
+                "sent_by": 106,
+                "created_at": "2026-10-27 22:42:28",
+                "source": "Automatic",
+                "delivery_state": "Accepted",
+                "failure_reason": null,
+                "provider_id": "84425d8c-0e06-4544-88a5-f2f3444b0952",
+                "delivery_key": "auto:ready:1fd15aa788c0fd79a584cd7533a83afe61d6b00f8e097e9d1b353456a216c728",
+                "retry_of": null,
+                "request_code": "REQ-001"
+            },
+            {
+                "id": 4,
+                "recipient_name": "france",
+                "recipient_mobile": "09060312740",
+                "message_type": "Custom message",
+                "message": "BRGY LUNA: OK",
+                "status": "Pending",
+                "sent_by": 106,
+                "created_at": "2026-10-27 22:46:14",
+                "source": "Manual",
+                "delivery_state": "Accepted",
+                "failure_reason": null,
+                "provider_id": "d184785f-287c-4af6-8660-e93a16fd7c04",
+                "delivery_key": "manual:106:13b47b33bc19ab5440f88b396150a4aa",
+                "retry_of": null,
+                "request_code": null
+            },
+            {
+                "id": 5,
+                "recipient_name": "France Sulapas Bonono",
+                "recipient_mobile": "09060312740",
+                "message_type": "Document released",
+                "message": "BRGY LUNA: Your Barangay Certification (REQ-001) has been released. Document fee: PHP 150.00. Thank you.",
+                "status": "Pending",
+                "sent_by": 106,
+                "created_at": "2026-10-27 22:54:26",
+                "source": "Automatic",
+                "delivery_state": "Accepted",
+                "failure_reason": null,
+                "provider_id": "d4cf9884-f4af-4017-8ab2-54788fe8a880",
+                "delivery_key": "auto:released:1fd15aa788c0fd79a584cd7533a83afe61d6b00f8e097e9d1b353456a216c728",
+                "retry_of": null,
+                "request_code": "REQ-001"
+            },
+            {
+                "id": 6,
+                "recipient_name": "France Sulapas Bonono",
+                "recipient_mobile": "09060312740",
+                "message_type": "Request received",
+                "message": "BRGY LUNA: We received your Good Moral Certificate request (REQ-002). You can track its status in My Document Requests.",
+                "status": "Pending",
+                "sent_by": 109,
+                "created_at": "2026-10-27 22:56:27",
+                "source": "Automatic",
+                "delivery_state": "Accepted",
+                "failure_reason": null,
+                "provider_id": "d59f3b92-d695-4fdf-abe7-0c3771649ff1",
+                "delivery_key": "auto:received:2b412dfd9e93c40b71badc5f2967594995f73151d56ce7c1856147225b8bfc3f",
+                "retry_of": null,
+                "request_code": "REQ-002"
+            },
+            {
+                "id": 7,
+                "recipient_name": "France Sulapas Bonono",
+                "recipient_mobile": "09060312740",
+                "message_type": "Document ready for pickup",
+                "message": "BRGY LUNA: Your Good Moral Certificate (REQ-002) is ready for pickup at the Barangay Luna office. Document fee: PHP 300.00. Please bring your resident ID or QR code.",
+                "status": "Pending",
+                "sent_by": 106,
+                "created_at": "2026-10-27 22:58:25",
+                "source": "Automatic",
+                "delivery_state": "Accepted",
+                "failure_reason": null,
+                "provider_id": "cd567329-8401-4d25-8287-6a5de07eed46",
+                "delivery_key": "auto:ready:2b412dfd9e93c40b71badc5f2967594995f73151d56ce7c1856147225b8bfc3f",
+                "retry_of": null,
+                "request_code": "REQ-002"
+            },
+            {
+                "id": 8,
+                "recipient_name": "France Sulapas Bonono",
+                "recipient_mobile": "09060312740",
+                "message_type": "Document released",
+                "message": "BRGY LUNA: Your Good Moral Certificate (REQ-002) has been released. Document fee: PHP 300.00. Thank you.",
+                "status": "Pending",
+                "sent_by": 106,
+                "created_at": "2026-10-27 22:59:25",
+                "source": "Automatic",
+                "delivery_state": "Accepted",
+                "failure_reason": null,
+                "provider_id": "9129667e-e0b9-4e9a-963e-f432d5ee4b9a",
+                "delivery_key": "auto:released:2b412dfd9e93c40b71badc5f2967594995f73151d56ce7c1856147225b8bfc3f",
+                "retry_of": null,
+                "request_code": "REQ-002"
+            },
+            {
+                "id": 9,
+                "recipient_name": "Lorlie Deloy",
+                "recipient_mobile": "09853558753",
+                "message_type": "Emergency alert",
+                "message": "BRGY LUNA: tagtabang",
+                "status": "Pending",
+                "sent_by": 106,
+                "created_at": "2026-10-27 23:03:27",
+                "source": "Manual",
+                "delivery_state": "Accepted",
+                "failure_reason": null,
+                "provider_id": "e5f7fa08-437f-4ab8-871c-d64c7e77e587",
+                "delivery_key": "manual:106:a055e9fd19fa7ddab71b69e3d99f12dd",
+                "retry_of": null,
+                "request_code": null
+            },
+            {
+                "id": 10,
+                "recipient_name": "Lorlie Deloy",
+                "recipient_mobile": "+639853558753",
+                "message_type": "Disaster alert",
+                "message": "BRGY LUNA: Pag andam kkamo kay jaon nasab si oddette",
+                "status": "Pending",
+                "sent_by": 106,
+                "created_at": "2026-10-27 23:05:17",
+                "source": "Broadcast",
+                "delivery_state": "Accepted",
+                "failure_reason": null,
+                "provider_id": "4f4d330d-c959-4b8f-a00d-f5d5bd98899b",
+                "delivery_key": "broadcast:72ec91076db5b64a28d173091ed88e10:0",
+                "retry_of": null,
+                "request_code": null
+            },
+            {
+                "id": 11,
+                "recipient_name": "Christian Deloy",
+                "recipient_mobile": "+639097653483",
+                "message_type": "Disaster alert",
+                "message": "BRGY LUNA: Pag andam kkamo kay jaon nasab si oddette",
+                "status": "Pending",
+                "sent_by": 106,
+                "created_at": "2026-10-27 23:05:19",
+                "source": "Broadcast",
+                "delivery_state": "Accepted",
+                "failure_reason": null,
+                "provider_id": "50f05a51-af7b-416b-881b-2a5b2d8c9b6a",
+                "delivery_key": "broadcast:72ec91076db5b64a28d173091ed88e10:1",
+                "retry_of": null,
+                "request_code": null
+            },
+            {
+                "id": 12,
+                "recipient_name": "France Sulapas Bonono",
+                "recipient_mobile": "+639060312740",
+                "message_type": "Disaster alert",
+                "message": "BRGY LUNA: Pag andam kkamo kay jaon nasab si oddette",
+                "status": "Pending",
+                "sent_by": 106,
+                "created_at": "2026-10-27 23:05:20",
+                "source": "Broadcast",
+                "delivery_state": "Accepted",
+                "failure_reason": null,
+                "provider_id": "69cd6596-8d78-4aaf-abcd-d5082e045d05",
+                "delivery_key": "broadcast:72ec91076db5b64a28d173091ed88e10:2",
+                "retry_of": null,
+                "request_code": null
+            },
+            {
+                "id": 13,
+                "recipient_name": "Lorlie Deloy",
+                "recipient_mobile": "09853558753",
+                "message_type": "Mediation schedule",
+                "message": "BRGY LUNA: Mediation appointment: Oct 28, 2026 11:30 AM at Barangay Hall. Please contact the barangay office for your notice and details.",
+                "status": "Pending",
+                "sent_by": 106,
+                "created_at": "2026-10-27 23:11:08",
+                "source": "Manual",
+                "delivery_state": "Accepted",
+                "failure_reason": null,
+                "provider_id": "769bf200-1f33-4e54-88d1-3342f100b515",
+                "delivery_key": "husay:1:complainant",
+                "retry_of": null,
+                "request_code": null
+            },
+            {
+                "id": 14,
+                "recipient_name": "France Sulapas Bonono",
+                "recipient_mobile": "09060312740",
+                "message_type": "Mediation schedule",
+                "message": "BRGY LUNA: Mediation appointment: Oct 28, 2026 11:00 AM at Barangay Hall. Please contact the barangay office for your notice and details.",
+                "status": "Pending",
+                "sent_by": 106,
+                "created_at": "2026-10-27 23:17:07",
+                "source": "Manual",
+                "delivery_state": "Accepted",
+                "failure_reason": null,
+                "provider_id": "2cf4a610-bc26-49e2-9629-f39dbc8571c9",
+                "delivery_key": "husay:2:complainant",
+                "retry_of": null,
+                "request_code": null
+            },
+            {
+                "id": 15,
+                "recipient_name": "France Sulapas Bonono",
+                "recipient_mobile": "09060312740",
+                "message_type": "Mediation schedule",
+                "message": "BRGY LUNA: Mediation appointment: Oct 29, 2026 10:00 AM at Barangay Hall. Please contact the barangay office for your notice and details.",
+                "status": "Pending",
+                "sent_by": 106,
+                "created_at": "2026-10-27 23:19:17",
+                "source": "Manual",
+                "delivery_state": "Accepted",
+                "failure_reason": null,
+                "provider_id": "35301db8-6609-4346-bfe7-789d4181f035",
+                "delivery_key": "husay:3:complainant",
+                "retry_of": null,
+                "request_code": null
+            }
+        ],
+        "qr_scan_logs": [
+            {
+                "id": 1,
+                "resident_user_id": 109,
+                "resident_code": "RES-001",
+                "resident_name": "France Sulapas Bonono",
+                "result": "Verified",
+                "scanned_by": 106,
+                "scanned_at": "2026-10-27 23:00:50"
+            }
+        ],
+        "roles": [
+            {
+                "id": 1,
+                "name": "Barangay Secretary",
+                "description": "Main administrative officer",
+                "permissions": "Dashboard, Resident Management, Document Requests, Reports",
+                "created_at": "2026-07-08 10:34:40"
+            },
+            {
+                "id": 2,
+                "name": "Barangay Treasurer",
+                "description": "Financial management",
+                "permissions": "Dashboard, Reports, System Settings",
+                "created_at": "2026-07-08 10:34:40"
+            },
+            {
+                "id": 3,
+                "name": "Barangay Health Worker",
+                "description": "Health services coordination",
+                "permissions": "Dashboard, Resident Management, SMS Alerts",
+                "created_at": "2026-07-08 10:34:40"
+            },
+            {
+                "id": 4,
+                "name": "Barangay Tanod",
+                "description": "Security and QR verification",
+                "permissions": "Dashboard, QR Resident Verification, Complaints",
+                "created_at": "2026-07-08 10:34:40"
+            },
+            {
+                "id": 5,
+                "name": "Staff Encoder",
+                "description": "Data entry operations",
+                "permissions": "Dashboard, Resident Management, Document Requests, Complaints",
+                "created_at": "2026-07-08 10:34:40"
+            },
+            {
+                "id": 6,
+                "name": "Document Processor",
+                "description": "Document request handling",
+                "permissions": "Dashboard, Document Requests",
+                "created_at": "2026-07-08 10:34:40"
+            }
+        ],
+        "audit_logs": [
+            {
+                "id": 1,
+                "user_id": 106,
+                "user_name": "John Calang",
+                "user_role": "Administrator",
+                "action": "Created staff account: Lorlie Deloy",
+                "module": "User Management",
+                "status": "Success",
+                "created_at": "2026-10-27 22:24:42"
+            },
+            {
+                "id": 2,
+                "user_id": 106,
+                "user_name": "John Calang",
+                "user_role": "Administrator",
+                "action": "Created staff account: Christian Deloy",
+                "module": "User Management",
+                "status": "Success",
+                "created_at": "2026-10-27 22:25:17"
+            },
+            {
+                "id": 3,
+                "user_id": 106,
+                "user_name": "John Calang",
+                "user_role": "Administrator",
+                "action": "Updated district and purok names and assignments",
+                "module": "Resident Locations",
+                "status": "Success",
+                "created_at": "2026-10-27 22:34:59"
+            },
+            {
+                "id": 4,
+                "user_id": 106,
+                "user_name": "John Calang",
+                "user_role": "Administrator",
+                "action": "Updated district and purok names and assignments",
+                "module": "Resident Locations",
+                "status": "Success",
+                "created_at": "2026-10-27 22:35:41"
+            },
+            {
+                "id": 5,
+                "user_id": 106,
+                "user_name": "John Calang",
+                "user_role": "Administrator",
+                "action": "Created resident account and saved requirements: France Sulapas Bonono",
+                "module": "Resident Account Registration",
+                "status": "Success",
+                "created_at": "2026-10-27 22:38:28"
+            },
+            {
+                "id": 6,
+                "user_id": 109,
+                "user_name": "France Sulapas Bonono",
+                "user_role": "Resident",
+                "action": "Submitted document request: Barangay Certification",
+                "module": "Document Requests",
+                "status": "Success",
+                "created_at": "2026-10-27 22:40:42"
+            },
+            {
+                "id": 7,
+                "user_id": 106,
+                "user_name": "John Calang",
+                "user_role": "Administrator",
+                "action": "Document request REQ-001: prepare",
+                "module": "Document Requests",
+                "status": "Success",
+                "created_at": "2026-10-27 22:41:18"
+            },
+            {
+                "id": 8,
+                "user_id": 106,
+                "user_name": "John Calang",
+                "user_role": "Administrator",
+                "action": "Prepared Barangay Certification for France Sulapas Bonono (awaiting release)",
+                "module": "Issue Documents",
+                "status": "Success",
+                "created_at": "2026-10-27 22:42:29"
+            },
+            {
+                "id": 9,
+                "user_id": 106,
+                "user_name": "John Calang",
+                "user_role": "Administrator",
+                "action": "Opened print view for issued document: BL-20261027-144119-E6BE18",
+                "module": "Issue Documents",
+                "status": "Success",
+                "created_at": "2026-10-27 22:42:30"
+            },
+            {
+                "id": 10,
+                "user_id": 106,
+                "user_name": "John Calang",
+                "user_role": "Administrator",
+                "action": "SMS attempt 4: Accepted",
+                "module": "SMS Alerts",
+                "status": "Success",
+                "created_at": "2026-10-27 22:46:15"
+            },
+            {
+                "id": 11,
+                "user_id": 106,
+                "user_name": "John Calang",
+                "user_role": "Administrator",
+                "action": "Updated system settings",
+                "module": "System Settings",
+                "status": "Success",
+                "created_at": "2026-10-27 22:53:27"
+            },
+            {
+                "id": 12,
+                "user_id": 106,
+                "user_name": "John Calang",
+                "user_role": "Administrator",
+                "action": "Opened print view for issued document: BL-20261027-144119-E6BE18",
+                "module": "Issue Documents",
+                "status": "Success",
+                "created_at": "2026-10-27 22:54:13"
+            },
+            {
+                "id": 13,
+                "user_id": 106,
+                "user_name": "John Calang",
+                "user_role": "Administrator",
+                "action": "Released issued document ID 1",
+                "module": "Issue Documents",
+                "status": "Success",
+                "created_at": "2026-10-27 22:54:26"
+            },
+            {
+                "id": 14,
+                "user_id": 106,
+                "user_name": "John Calang",
+                "user_role": "Administrator",
+                "action": "Opened print view for issued document: BL-20261027-144119-E6BE18",
+                "module": "Issue Documents",
+                "status": "Success",
+                "created_at": "2026-10-27 22:54:27"
+            },
+            {
+                "id": 15,
+                "user_id": 109,
+                "user_name": "France Sulapas Bonono",
+                "user_role": "Resident",
+                "action": "Submitted document request: Good Moral Certificate",
+                "module": "Document Requests",
+                "status": "Success",
+                "created_at": "2026-10-27 22:56:27"
+            },
+            {
+                "id": 16,
+                "user_id": 106,
+                "user_name": "John Calang",
+                "user_role": "Administrator",
+                "action": "Document request REQ-002: prepare",
+                "module": "Document Requests",
+                "status": "Success",
+                "created_at": "2026-10-27 22:56:48"
+            },
+            {
+                "id": 17,
+                "user_id": 106,
+                "user_name": "John Calang",
+                "user_role": "Administrator",
+                "action": "Prepared Good Moral Certificate for France Sulapas Bonono (awaiting release)",
+                "module": "Issue Documents",
+                "status": "Success",
+                "created_at": "2026-10-27 22:58:26"
+            },
+            {
+                "id": 18,
+                "user_id": 106,
+                "user_name": "John Calang",
+                "user_role": "Administrator",
+                "action": "Opened print view for issued document: BL-20261027-145648-B0D2FA",
+                "module": "Issue Documents",
+                "status": "Success",
+                "created_at": "2026-10-27 22:58:26"
+            },
+            {
+                "id": 19,
+                "user_id": 106,
+                "user_name": "John Calang",
+                "user_role": "Administrator",
+                "action": "Opened print view for issued document: BL-20261027-145648-B0D2FA",
+                "module": "Issue Documents",
+                "status": "Success",
+                "created_at": "2026-10-27 22:59:11"
+            },
+            {
+                "id": 20,
+                "user_id": 106,
+                "user_name": "John Calang",
+                "user_role": "Administrator",
+                "action": "Released issued document ID 2",
+                "module": "Issue Documents",
+                "status": "Success",
+                "created_at": "2026-10-27 22:59:25"
+            },
+            {
+                "id": 21,
+                "user_id": 106,
+                "user_name": "John Calang",
+                "user_role": "Administrator",
+                "action": "Opened print view for issued document: BL-20261027-145648-B0D2FA",
+                "module": "Issue Documents",
+                "status": "Success",
+                "created_at": "2026-10-27 22:59:26"
+            },
+            {
+                "id": 22,
+                "user_id": 106,
+                "user_name": "John Calang",
+                "user_role": "Administrator",
+                "action": "QR scanned: LUNA|RES-001|20261027143828 result Verified",
+                "module": "QR Resident Verification",
+                "status": "Success",
+                "created_at": "2026-10-27 23:00:50"
+            },
+            {
+                "id": 23,
+                "user_id": 106,
+                "user_name": "John Calang",
+                "user_role": "Administrator",
+                "action": "SMS attempt 9: Accepted",
+                "module": "SMS Alerts",
+                "status": "Success",
+                "created_at": "2026-10-27 23:03:28"
+            },
+            {
+                "id": 24,
+                "user_id": 106,
+                "user_name": "John Calang",
+                "user_role": "Administrator",
+                "action": "Confirmed broadcast 72ec91076db5b64a28d173091ed88e10 to 3 mobile numbers",
+                "module": "SMS Alerts",
+                "status": "Success",
+                "created_at": "2026-10-27 23:05:17"
+            },
+            {
+                "id": 25,
+                "user_id": 109,
+                "user_name": "France Sulapas Bonono",
+                "user_role": "Resident",
+                "action": "Submitted complaint: Saba si maria",
+                "module": "Complaints",
+                "status": "Success",
+                "created_at": "2026-10-27 23:15:50"
+            }
+        ],
+        "system_settings": [
+            {
+                "setting_key": "barangay_address",
+                "setting_value": "Barangay Luna, Surigao City, Surigao del Norte, Philippines",
+                "updated_by": 106,
+                "updated_at": "2026-10-27 22:53:27"
+            },
+            {
+                "setting_key": "barangay_code",
+                "setting_value": "BL-001",
+                "updated_by": 106,
+                "updated_at": "2026-10-27 22:53:27"
+            },
+            {
+                "setting_key": "barangay_name",
+                "setting_value": "Barangay Luna",
+                "updated_by": 106,
+                "updated_at": "2026-10-27 22:53:27"
+            },
+            {
+                "setting_key": "contact_number",
+                "setting_value": "(02) 1234-5678",
+                "updated_by": 106,
+                "updated_at": "2026-10-27 22:53:27"
+            },
+            {
+                "setting_key": "holiday_schedule",
+                "setting_value": "Philippine National Holidays",
+                "updated_by": 106,
+                "updated_at": "2026-10-27 22:53:27"
+            },
+            {
+                "setting_key": "hotline_number",
+                "setting_value": "09506972820",
+                "updated_by": 106,
+                "updated_at": "2026-10-27 22:53:27"
+            },
+            {
+                "setting_key": "mobile_verification",
+                "setting_value": "0",
+                "updated_by": 106,
+                "updated_at": "2026-10-27 22:53:27"
+            },
+            {
+                "setting_key": "office_hours",
+                "setting_value": "Monday - Friday, 8:00 AM - 5:00 PM",
+                "updated_by": 106,
+                "updated_at": "2026-10-27 22:53:27"
+            },
+            {
+                "setting_key": "password_numbers",
+                "setting_value": "0",
+                "updated_by": 106,
+                "updated_at": "2026-10-27 22:53:27"
+            },
+            {
+                "setting_key": "password_special",
+                "setting_value": "0",
+                "updated_by": 106,
+                "updated_at": "2026-10-27 22:53:27"
+            },
+            {
+                "setting_key": "password_uppercase",
+                "setting_value": "0",
+                "updated_by": 106,
+                "updated_at": "2026-10-27 22:53:27"
+            },
+            {
+                "setting_key": "portal_public_url",
+                "setting_value": "http:\/\/192.168.1.19\/BARANGAY%20LUNA%20SYSTEM",
+                "updated_by": 106,
+                "updated_at": "2026-10-27 22:53:27"
+            },
+            {
+                "setting_key": "session_timeout",
+                "setting_value": "30",
+                "updated_by": 106,
+                "updated_at": "2026-10-27 22:53:27"
+            },
+            {
+                "setting_key": "sms_2fa",
+                "setting_value": "0",
+                "updated_by": 106,
+                "updated_at": "2026-10-27 22:53:27"
+            },
+            {
+                "setting_key": "sms_api_key",
+                "setting_value": "uk_P9g5LTbLtXNGaBLRrUQXYJz618Is6GnxvDjhJRLCDFhEjWfqtORqgGX065Sa-yi4",
+                "updated_by": 106,
+                "updated_at": "2026-10-27 22:53:27"
+            },
+            {
+                "setting_key": "sms_enabled",
+                "setting_value": "1",
+                "updated_by": 106,
+                "updated_at": "2026-10-27 22:53:27"
+            },
+            {
+                "setting_key": "sms_provider",
+                "setting_value": "httpSMS",
+                "updated_by": 106,
+                "updated_at": "2026-10-27 22:53:27"
+            },
+            {
+                "setting_key": "sms_sender_name",
+                "setting_value": "BRGY LUNA",
+                "updated_by": 106,
+                "updated_at": "2026-10-27 22:53:27"
+            },
+            {
+                "setting_key": "sms_sender_number",
+                "setting_value": "09506972820",
+                "updated_by": 106,
+                "updated_at": "2026-10-27 22:53:27"
+            }
+        ],
+        "document_fees": [
+            {
+                "id": 1,
+                "document_type": "Barangay Certification",
+                "fee_amount": "150.00",
+                "updated_by": null,
+                "updated_at": "2026-09-06 14:52:25"
+            },
+            {
+                "id": 2,
+                "document_type": "Certificate of Cohabitation",
+                "fee_amount": "150.00",
+                "updated_by": null,
+                "updated_at": "2026-09-06 14:52:42"
+            },
+            {
+                "id": 3,
+                "document_type": "Certificate of Indigency",
+                "fee_amount": "150.00",
+                "updated_by": null,
+                "updated_at": "2026-09-06 14:52:49"
+            },
+            {
+                "id": 4,
+                "document_type": "Certificate of Residency",
+                "fee_amount": "150.00",
+                "updated_by": null,
+                "updated_at": "2026-09-06 14:52:53"
+            },
+            {
+                "id": 5,
+                "document_type": "Clearance Certificate",
+                "fee_amount": "150.00",
+                "updated_by": null,
+                "updated_at": "2026-09-06 14:53:00"
+            },
+            {
+                "id": 6,
+                "document_type": "Good Moral",
+                "fee_amount": "150.00",
+                "updated_by": null,
+                "updated_at": "2026-09-06 14:53:06"
+            },
+            {
+                "id": 7,
+                "document_type": "Other Barangay Certificate",
+                "fee_amount": "150.00",
+                "updated_by": null,
+                "updated_at": "2026-09-06 14:53:13"
+            },
+            {
+                "id": 8,
+                "document_type": "Good Moral Certificate",
+                "fee_amount": "150.00",
+                "updated_by": null,
+                "updated_at": "2026-10-24 16:08:28"
+            }
+        ],
+        "document_payments": [
+            {
+                "id": 1,
+                "payment_code": "PAY-20261027-001",
+                "request_code": "REQ-001",
+                "document_number": "BL-20261027-144119-E6BE18",
+                "resident_user_id": 109,
+                "resident_name": "France Sulapas Bonono",
+                "document_type": "Barangay Certification",
+                "amount_due": "150.00",
+                "amount_paid": "150.00",
+                "payment_method": "Walk-in Cash",
+                "receipt_number": null,
+                "status": "Paid",
+                "received_by": 106,
+                "received_at": "2026-10-27 22:54:26",
+                "notes": "Payment receipt confirmed at release",
+                "created_at": "2026-10-27 22:42:28"
+            },
+            {
+                "id": 2,
+                "payment_code": "PAY-20261027-002",
+                "request_code": "REQ-002",
+                "document_number": "BL-20261027-145648-B0D2FA",
+                "resident_user_id": 109,
+                "resident_name": "France Sulapas Bonono",
+                "document_type": "Good Moral Certificate",
+                "amount_due": "300.00",
+                "amount_paid": "300.00",
+                "payment_method": "Walk-in Cash",
+                "receipt_number": null,
+                "status": "Paid",
+                "received_by": 106,
+                "received_at": "2026-10-27 22:59:25",
+                "notes": "Payment receipt confirmed at release",
+                "created_at": "2026-10-27 22:58:25"
+            }
+        ],
+        "notification_seen_state": [
+            {
+                "user_id": 106,
+                "state_kind": "seen",
+                "notification_key": "admin-complaint-CMP-001-In Progress"
+            },
+            {
+                "user_id": 106,
+                "state_kind": "seen",
+                "notification_key": "admin-complaint-CMP-W-20261027-81F4733E-In Progress"
+            },
+            {
+                "user_id": 106,
+                "state_kind": "seen",
+                "notification_key": "admin-doc-REQ-001-Pending"
+            },
+            {
+                "user_id": 106,
+                "state_kind": "seen",
+                "notification_key": "admin-doc-REQ-002-Pending"
+            },
+            {
+                "user_id": 109,
+                "state_kind": "seen",
+                "notification_key": "resident-doc-REQ-001-Ready for Pickup"
+            },
+            {
+                "user_id": 109,
+                "state_kind": "seen",
+                "notification_key": "resident-doc-REQ-001-Released"
+            },
+            {
+                "user_id": 109,
+                "state_kind": "seen",
+                "notification_key": "resident-doc-REQ-002-Processing"
+            },
+            {
+                "user_id": 109,
+                "state_kind": "seen",
+                "notification_key": "resident-doc-REQ-002-Released"
+            }
+        ],
+        "record_attachments": [],
+        "resident_requirements": [
+            {
+                "resident_id": 109,
+                "requirement_key": "birth_certificate",
+                "status": "Submitted",
+                "remarks": "",
+                "updated_by": 106,
+                "updated_at": "2026-10-27 22:38:28"
+            },
+            {
+                "resident_id": 109,
+                "requirement_key": "government_id",
+                "status": "Submitted",
+                "remarks": "",
+                "updated_by": 106,
+                "updated_at": "2026-10-27 22:38:28"
+            },
+            {
+                "resident_id": 109,
+                "requirement_key": "photo",
+                "status": "Submitted",
+                "remarks": "",
+                "updated_by": 106,
+                "updated_at": "2026-10-27 22:38:28"
+            },
+            {
+                "resident_id": 109,
+                "requirement_key": "residence",
+                "status": "Submitted",
+                "remarks": "",
+                "updated_by": 106,
+                "updated_at": "2026-10-27 22:38:28"
+            }
+        ],
+        "resident_districts": [
+            {
+                "id": 1,
+                "name": "District 1"
+            },
+            {
+                "id": 2,
+                "name": "District 2"
+            },
+            {
+                "id": 3,
+                "name": "District 3"
+            },
+            {
+                "id": 4,
+                "name": "District 4"
+            },
+            {
+                "id": 5,
+                "name": "District 5"
+            },
+            {
+                "id": 6,
+                "name": "District 6"
+            },
+            {
+                "id": 7,
+                "name": "District 7"
+            }
+        ],
+        "resident_puroks": [
+            {
+                "id": 1,
+                "name": "Purok Baybay Alliance Boulevard",
+                "district_id": 1,
+                "chairman": "John Wick"
+            }
+        ]
+    }
+}

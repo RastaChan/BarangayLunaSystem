@@ -84,6 +84,11 @@
       : 'This appointment is linked to the complaint shown below. The complainant details come from that record. Set the Mediation appointment without creating another complaint.';
     form.querySelector('[type="submit"]').textContent = previous ? 'Save rescheduled appointment' : walkin ? 'Save walk-in complaint and schedule' : 'Save appointment for existing complaint';
     form.querySelector('[data-husay-complaint-label]').textContent = walkin ? 'New complaint · Walk-in intake' : 'Complaint: ' + field('complaint_code').value;
+    if (form.dataset?.husayApproval === 'required') {
+      document.getElementById('husayScheduleTitle').textContent = previous ? 'Request rescheduling' : 'Propose Mediation schedule';
+      form.querySelector('[data-husay-mode-description]').textContent += ' This is a proposal only. The Barangay Captain must approve it before any appointment is confirmed.';
+      form.querySelector('[type="submit"]').textContent = 'Submit for Captain approval';
+    }
     showModal('husayScheduleModal');
     field('existing_complaint_code').dispatchEvent(new Event('change', {bubbles: true}));
     field('assigned_user_id').dispatchEvent(new Event('change', {bubbles: true}));
@@ -95,6 +100,11 @@
     document.getElementById('husayScheduleTitle').textContent = 'Schedule follow-up hearing';
     form.querySelector('[data-husay-mode-description]').textContent = 'The previous session is completed. Choose the next date and time, review the details, and save to book the follow-up. Closing this form leaves the follow-up unscheduled.';
     form.querySelector('[type="submit"]').textContent = 'Confirm follow-up appointment';
+    if (form.dataset?.husayApproval === 'required') {
+      document.getElementById('husayScheduleTitle').textContent = 'Propose follow-up hearing';
+      form.querySelector('[data-husay-mode-description]').textContent = 'Choose the proposed follow-up date and time. The Barangay Captain must approve it before the parties are notified.';
+      form.querySelector('[type="submit"]').textContent = 'Submit for Captain approval';
+    }
     field('assigned_user_id').dispatchEvent(new Event('change', {bubbles: true}));
   }
   async function openDetails(id, trigger = null) {
@@ -123,7 +133,7 @@
       const data = await getFeed('?complaint=' + encodeURIComponent(complaint.id));
       if (data.activeId) {
         await openDetails(data.activeId);
-        toast('This complaint already has a Mediation appointment. Use Reschedule to change it.', 'info');
+        toast('This complaint already has an appointment or a proposal awaiting review. Open its details to see the next action.', 'info');
       } else openSchedule(complaint);
     } catch (error) { toast(error.message, 'error'); }
     finally { button.disabled = false; }
@@ -146,7 +156,7 @@
         content.innerHTML = data.html;
         if (scheduleButton) {
           if (data.hasActive) scheduleButton.remove();
-          else { scheduleButton.textContent = 'Schedule Mediation'; scheduleButton.disabled = false; }
+          else { scheduleButton.textContent = form.dataset?.husayApproval === 'required' ? 'Propose Mediation schedule' : 'Schedule Mediation'; scheduleButton.disabled = false; }
         }
       }
     } catch (error) { if (section.isConnected) content.textContent = error.message; }

@@ -20,7 +20,7 @@ try {
   $html = ob_get_clean();
   $complaintsHtml = null;
   if (!$code && !$hearingId) { ob_start(); require __DIR__ . '/includes/husay-complaint-options.php'; $complaintsHtml = ob_get_clean(); }
-  $activeSessions = array_values(array_filter($husayRows, static fn(array $row): bool => in_array($row['status'], ['Scheduled','In Progress'], true)));
+  $activeSessions = array_values(array_filter($husayRows, static fn(array $row): bool => in_array($row['status'], ['Pending Approval','Scheduled','In Progress'], true)));
   echo json_encode(['ok' => true, 'owner' => $user['role'] . ':' . $user['id'], 'html' => $html,
     'complaintsHtml' => $complaintsHtml,
     'hasActive' => (bool)$activeSessions, 'activeId' => $code && $activeSessions ? (int)$activeSessions[0]['id'] : null]);

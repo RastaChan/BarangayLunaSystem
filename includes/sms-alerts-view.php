@@ -56,10 +56,13 @@ unset($_SESSION['sms_flash']);
       </select></div>
     </div>
     <div id="smsResidentFields" class="form-grid">
-      <div class="field"><label for="smsResidentSearch">Find resident</label><input id="smsResidentSearch" type="search" placeholder="Name or resident ID"></div>
-      <div class="field"><label for="smsResident">Recipient</label><select id="smsResident" name="resident_code"><option value="">Enter recipient manually</option>
+      <div class="field"><label for="smsRecipientMode">Recipient type</label><select id="smsRecipientMode" name="recipient_mode"><option value="registered" <?= ($smsDraft['recipient_mode'] ?? 'registered') === 'registered' ? 'selected' : '' ?>>Registered resident</option><option value="manual" <?= ($smsDraft['recipient_mode'] ?? '') === 'manual' ? 'selected' : '' ?>>Unregistered recipient — enter details</option></select></div>
+      <div id="smsRegisteredFields" class="form-grid">
+      <div class="field"><label for="smsResidentSearch">Find resident</label><input id="smsResidentSearch" type="search" placeholder="Name, resident ID, or mobile number" autocomplete="off" aria-controls="smsResidentResults" aria-describedby="smsResidentSearchStatus"><small id="smsResidentSearchStatus" role="status" aria-live="polite"></small><div id="smsResidentResults" class="sms-resident-results" hidden aria-label="Matching residents"></div></div>
+      <div class="field"><label for="smsResident">Recipient</label><select id="smsResident" name="resident_code"><option value="">Select a registered resident</option>
         <?php foreach ($smsResidents as $resident): ?><option value="<?= $smsEscape($resident['user_code']) ?>" <?= ($smsDraft['resident_code'] ?? '') === $resident['user_code'] ? 'selected' : '' ?>><?= $smsEscape($resident['full_name'] . ' - ' . $resident['user_code']) ?></option><?php endforeach; ?>
       </select></div>
+      </div>
     </div>
     <div class="form-grid-2">
       <div class="field"><label for="smsName">Recipient name</label><input id="smsName" name="recipient_name" maxlength="150" required value="<?= $smsEscape($smsDraft['recipient_name'] ?? '') ?>"></div>

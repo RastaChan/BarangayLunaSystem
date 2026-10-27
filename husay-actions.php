@@ -15,11 +15,12 @@ try {
   }
   $action = $_POST['action'] ?? '';
   if ($action === 'schedule_husay') $result = husay_schedule($_POST, $user);
+  elseif (in_array($action, ['approve_husay','decline_husay'], true)) $result = husay_decide_schedule($_POST, $user);
   elseif (in_array($action, ['record_husay','cancel_husay'], true)) $result = ['id' => husay_record_session($_POST, $user)];
   else throw new InvalidArgumentException('Unknown Mediation action.');
-  $message = 'Mediation changes saved.';
+  $message = ($result['status'] ?? '') === 'Pending Approval' ? 'Proposal submitted to the Barangay Captain. No appointment is confirmed and no SMS has been sent.' : 'Mediation changes saved.';
   session_write_close();
-  if ($action === 'schedule_husay' && ($_POST['send_sms'] ?? '') === '1') {
+  if (in_array($action, ['schedule_husay','approve_husay'], true) && $user['role'] === 'admin' && ($result['status'] ?? '') === 'Scheduled' && ($_POST['send_sms'] ?? '') === '1') {
     try {
       require_once __DIR__ . '/includes/sms-workspace.php';
       $read = barangay_db()->prepare('SELECT * FROM husay_schedules WHERE id=?'); $read->execute([$result['id']]); $row = $read->fetch();

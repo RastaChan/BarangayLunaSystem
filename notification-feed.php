@@ -250,6 +250,12 @@ if ($role === 'resident') {
   ];
 }
 
+if (in_array($role, ['admin','staff'], true)) {
+  require_once __DIR__ . '/includes/husay-helpers.php';
+  husay_schema();
+  $pending = notification_feed_all("SELECT h.id,h.status,h.version,h.updated_at,c.complaint_code FROM husay_schedules h JOIN complaints c ON c.id=h.complaint_id WHERE c.archived_at IS NULL AND " . ($role === 'admin' ? "h.status='Pending Approval'" : "h.created_by=:actor AND h.status IN ('Pending Approval','Scheduled','Declined')") . " ORDER BY h.updated_at DESC LIMIT 30", $role === 'admin' ? [] : [':actor'=>$user['id']]);
+  foreach ($pending as $proposal) $items[] = notification_feed_item($role.'-mediation-'.$proposal['id'].'-'.$proposal['version'], $proposal['status'] === 'Pending Approval' ? 'Mediation awaiting Captain approval' : 'Mediation proposal: '.$proposal['status'], $proposal['complaint_code'], $proposal['updated_at'], ($role === 'admin' ? 'dashboard.php' : 'staff-dashboard.php').'?view=husay-schedule&husay='.$proposal['id'], 'husay-schedule');
+}
 usort($items, static fn(array $a, array $b): int => strcmp($b['date'], $a['date']));
 echo json_encode([
   'owner' => $role . ':' . (int) $user['id'],

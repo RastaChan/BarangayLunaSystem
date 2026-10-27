@@ -9,14 +9,18 @@ $husayWorkspace = $husayWorkspace ?? false;
 $husayEscape = static fn($value) => htmlspecialchars((string) $value, ENT_QUOTES);
 ?>
 <section class="panel-card husay-panel <?= $husayWorkspace ? 'husay-workspace' : '' ?>" data-husay-root <?= $husayWorkspace ? 'data-husay-workspace' : '' ?> data-husay-owner="<?= $husayEscape(($husayActor['role'] ?? '') . ':' . (int)($husayActor['id'] ?? 0)) ?>">
-  <div class="panel-head"><div><h3>Mediation schedules</h3><p class="field-hint">Appointments and session history · Philippine time</p></div></div>
+  <div class="panel-head husay-panel-heading">
+    <div class="husay-heading-text"><h3>Mediation schedules</h3><p class="field-hint">Appointments and session history · Philippine time</p></div>
+    <?php if ($husayWorkspace): ?><button type="button" class="btn btn-outline husay-pending-button" data-husay-pending><span>Pending approval</span><strong class="husay-pending-count" data-husay-count="pending"><?= count(array_filter($husayRows, static fn($row) => $row['status'] === 'Pending Approval')) ?></strong></button><?php endif; ?>
+  </div>
+  <div class="husay-approval-note"><p class="field-hint">Staff proposals require the Barangay Captain's approval. Only approved appointments are shown to residents.</p></div>
   <div class="complaint-search"><label>Search Mediation schedules<input type="search" data-husay-search placeholder="Search complaint, person, date or venue…"></label></div>
   <?php if ($husayWorkspace): ?>
   <div class="husay-workspace-stats" aria-label="Schedule overview">
     <?php foreach (['today'=>"Today's sessions",'upcoming'=>'Upcoming sessions','completed'=>'Completed sessions'] as $key=>$label): ?><div><strong data-husay-count="<?= $key ?>">0</strong><span><?= $label ?></span></div><?php endforeach; ?>
   </div>
   <div class="husay-filters">
-    <label class="field">Session status<select data-husay-status><option value="active">Active sessions</option><option value="all">All statuses</option><?php foreach (['Scheduled','In Progress','Completed','Cancelled','Rescheduled'] as $status): ?><option><?= $status ?></option><?php endforeach; ?></select></label>
+    <label class="field">Session status<select data-husay-status><option value="active">Active sessions</option><option value="all">All statuses</option><?php foreach (['Pending Approval','Scheduled','In Progress','Completed','Cancelled','Rescheduled','Declined'] as $status): ?><option><?= $status ?></option><?php endforeach; ?></select></label>
     <label class="field">Assigned official<select data-husay-officer><option value="">All officials</option><?php foreach ($husayOfficers as $official): ?><option value="<?= (int)$official['id'] ?>"><?= $husayEscape($official['full_name']) ?></option><?php endforeach; ?></select></label>
     <label class="field">Dates<select data-husay-period><option value="upcoming">Today and upcoming</option><option value="today">Today</option><option value="all">All dates</option><option value="custom">Custom dates</option></select></label>
     <div class="husay-date-range" data-husay-date-range hidden><label class="field">From<input type="date" data-husay-from></label><label class="field">To<input type="date" data-husay-to></label></div>
@@ -37,7 +41,7 @@ $husayEscape = static fn($value) => htmlspecialchars((string) $value, ENT_QUOTES
 <div id="husayScheduleModal" class="modal" role="dialog" aria-hidden="true" aria-labelledby="husayScheduleTitle">
   <div class="modal-backdrop" data-modal-close></div><div class="modal-panel modal-panel--wide">
     <header class="modal-header"><h2 id="husayScheduleTitle">Schedule Mediation</h2><button type="button" class="modal-close" data-modal-close aria-label="Close"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor" stroke="none" aria-hidden="true" class="system-icon" data-system-icon="x"><path d="M216,56V200a16,16,0,0,1-16,16H56a16,16,0,0,1-16-16V56A16,16,0,0,1,56,40H200A16,16,0,0,1,216,56Z" opacity="0.2"/><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></svg></button></header>
-    <form action="husay-actions.php" method="post" class="modal-body form-grid" id="husayScheduleForm" data-husay-form>
+    <form action="husay-actions.php" method="post" class="modal-body form-grid" id="husayScheduleForm" data-husay-form data-husay-approval="<?= ($husayActor['role'] ?? '') === 'admin' ? 'captain' : 'required' ?>">
       <input type="hidden" name="action" value="schedule_husay"><input type="hidden" name="csrf" value="<?= $husayEscape($husayToken) ?>"><input type="hidden" name="intake_mode" value="linked"><input type="hidden" name="complaint_code"><input type="hidden" name="reschedule_id"><input type="hidden" name="version">
       <input type="hidden" name="request_key" value="<?= bin2hex(random_bytes(16)) ?>">
       <p class="husay-intake-note" data-husay-mode-description></p>
@@ -59,8 +63,8 @@ $husayEscape = static fn($value) => htmlspecialchars((string) $value, ENT_QUOTES
       <div class="form-grid-2"><label class="field">Venue<input name="venue" value="Barangay Hall" maxlength="180" required></label><label class="field">Assigned official<select name="assigned_user_id" required><option value="">Select an official</option><?php foreach ($husayOfficers as $official): ?><option value="<?= (int)$official['id'] ?>"><?= $husayEscape($official['full_name'] . ($official['position_title'] ? ' · ' . $official['position_title'] : '')) ?></option><?php endforeach; ?></select></label></div>
       <label class="field">Instructions (visible to the resident)<textarea name="instructions" rows="2" maxlength="2000" placeholder="What the parties should bring or prepare"></textarea></label>
       <label class="field" data-husay-reschedule-reason hidden>Reason for rescheduling (visible to the resident)<textarea name="change_reason" maxlength="1000" rows="2"></textarea></label>
-      <label class="check check-left"><input type="checkbox" name="review_confirmed" value="1" required><span>The authorized barangay official reviewed this complaint and approved scheduling it for Mediation.</span></label>
-      <label class="check check-left"><input type="checkbox" name="send_sms" value="1"><span>Send an SMS appointment update now to the supplied mobile numbers. Printed notices are handled separately.</span></label>
+      <?php if (($husayActor['role'] ?? '') === 'admin'): ?><label class="check check-left"><input type="checkbox" name="review_confirmed" value="1" required><span>As Barangay Captain, I reviewed this complaint and approve scheduling it for Mediation.</span></label>
+      <label class="check check-left"><input type="checkbox" name="send_sms" value="1"><span>Send an SMS appointment update now to the supplied mobile numbers. Printed notices are handled separately.</span></label><?php else: ?><p class="field-hint">This is a proposal for the Barangay Captain's review. It will not notify the parties or replace an existing appointment until approved.</p><?php endif; ?>
       <p class="husay-error" data-husay-error role="alert" hidden></p>
       <footer class="modal-footer"><button type="button" class="btn btn-outline" data-modal-close>Cancel</button><button type="submit" class="btn btn-primary">Save Mediation schedule</button></footer>
     </form>

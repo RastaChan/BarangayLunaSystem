@@ -102,8 +102,8 @@ function barangay_document_request_event(string $code, string $event, string $re
 }
 
 function barangay_walkin_resident(array $input, bool $preview = false): array {
-  $name = trim((string) ($input['walkin_name'] ?? ''));
-  $address = trim((string) ($input['walkin_address'] ?? ''));
+  $name = barangay_formal_text(trim((string) ($input['walkin_name'] ?? '')));
+  $address = barangay_formal_text(trim((string) ($input['walkin_address'] ?? '')));
   $age = filter_var($input['walkin_age'] ?? '', FILTER_VALIDATE_INT, ['options' => ['min_range' => 0, 'max_range' => 130]]);
   $gender = (string) ($input['walkin_gender'] ?? '');
   $civil = (string) ($input['walkin_civil_status'] ?? '');

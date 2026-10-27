@@ -38,8 +38,8 @@ function resident_puroks_add(int $district, int $count, array $entries = []): vo
   $number = 1;
   for ($i = 0; $i < $count; $i++) {
     while (isset($names['purok ' . $number])) $number++;
-    $name = $entries ? trim((string) ($entries[$i]['name'] ?? '')) : 'Purok ' . $number++;
-    $chairman = trim((string) ($entries[$i]['chairman'] ?? ''));
+    $name = $entries ? barangay_formal_text(trim((string) ($entries[$i]['name'] ?? ''))) : 'Purok ' . $number++;
+    $chairman = barangay_formal_text(trim((string) ($entries[$i]['chairman'] ?? '')));
     if ($name === '' || mb_strlen($name) > 80 || isset($names[mb_strtolower($name)])) throw new InvalidArgumentException('Each purok needs a unique name of 1 to 80 characters.');
     if (mb_strlen($chairman) > 150) throw new InvalidArgumentException('Chairman names must be at most 150 characters.');
     $insert->execute([++$id, $name, $district]);
@@ -91,13 +91,13 @@ function resident_locations_save(array $districtNames, array $purokNames, array 
   }
   $db = barangay_db();
   $stmt = $db->prepare('UPDATE resident_districts SET name = ? WHERE id = ?');
-  foreach ($lists['districts'] as $id => $row) $stmt->execute([trim($districtNames[$id]), $id]);
+  foreach ($lists['districts'] as $id => $row) $stmt->execute([barangay_formal_text(trim($districtNames[$id])), $id]);
   $stmt = $db->prepare('UPDATE resident_puroks SET name = ?, district_id = ?, chairman = ? WHERE id = ?');
   $sync = $db->prepare("UPDATE users SET purok = ?, district_id = COALESCE(?, district_id) WHERE purok_id = ? AND role = 'resident'");
   foreach ($lists['puroks'] as $id => $row) {
-    $name = trim($purokNames[$id]);
+    $name = barangay_formal_text(trim($purokNames[$id]));
     $district = (int) ($mapping[$id] ?? 0) ?: null;
-    $chairman = $chairmen === null ? $row['chairman'] : trim((string) ($chairmen[$id] ?? ''));
+    $chairman = $chairmen === null ? $row['chairman'] : barangay_formal_text(trim((string) ($chairmen[$id] ?? '')));
     $stmt->execute([$name, $district, $chairman, $id]);
     $sync->execute([$name, $district, $id]);
   }

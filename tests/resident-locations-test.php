@@ -20,8 +20,8 @@ try {
   check_location(count(resident_locations()['puroks']) === $before + 3, 'Invalid additions must not change the catalog');
   $named = 'Named test ' . bin2hex(random_bytes(4));
   resident_puroks_add(2, 1, [['name' => $named, 'chairman' => 'Test chairman']]);
-  $saved = array_values(array_filter(resident_locations()['puroks'], static fn($row) => $row['name'] === $named));
-  check_location(count($saved) === 1 && $saved[0]['chairman'] === 'Test chairman' && (int) $saved[0]['district_id'] === 2, 'Named purok and chairman must save together');
+  $saved = array_values(array_filter(resident_locations()['puroks'], static fn($row) => $row['name'] === barangay_formal_text($named)));
+  check_location(count($saved) === 1 && $saved[0]['chairman'] === 'Test Chairman' && (int) $saved[0]['district_id'] === 2, 'Named purok and chairman must save together');
   try { resident_puroks_add(2, 1, [['name' => $named]]); throw new RuntimeException('Duplicate new purok accepted'); } catch (InvalidArgumentException $expected) {}
   $lists = resident_locations();
   $code = 'TEST-LOC-' . bin2hex(random_bytes(4));
@@ -35,7 +35,7 @@ try {
   $mapping[1] = 1;
   $chairmen = [1 => 'Test chairman'];
   resident_locations_save($districts, $puroks, $mapping, $chairmen);
-  check_location(resident_locations()['puroks'][1]['chairman'] === 'Test chairman', 'Chairman name must be saved');
+  check_location(resident_locations()['puroks'][1]['chairman'] === 'Test Chairman', 'Chairman name must be saved');
   $query = $db->prepare('SELECT district_id, purok_id, purok FROM users WHERE user_code = ?');
   $query->execute([$code]);
   $row = $query->fetch();
@@ -43,7 +43,7 @@ try {
   resident_location_assign($code, 1, 1);
   $query->execute([$code]);
   $row = $query->fetch();
-  check_location((int) $row['district_id'] === 1 && $row['purok'] === $puroks[1], 'Assignment should save IDs and display name');
+  check_location((int) $row['district_id'] === 1 && $row['purok'] === barangay_formal_text($puroks[1]), 'Assignment should save IDs and display name');
   try { resident_location_validate(2, 1); throw new RuntimeException('District mismatch accepted'); } catch (InvalidArgumentException $expected) {}
   try { resident_location_validate(1, 4294967295); throw new RuntimeException('Unknown purok accepted'); } catch (InvalidArgumentException $expected) {}
   $puroks[1] .= ' renamed';
@@ -51,7 +51,7 @@ try {
   resident_locations_save($districts, $puroks, $mapping);
   $query->execute([$code]);
   $row = $query->fetch();
-  check_location($row['purok'] === $puroks[1] && (int) $row['district_id'] === 2, 'Renaming and reassignment must synchronize');
+  check_location($row['purok'] === barangay_formal_text($puroks[1]) && (int) $row['district_id'] === 2, 'Renaming and reassignment must synchronize');
   $rows = [['id' => $code], ['id' => 'legacy']];
   $assignments = [$code => $row];
   check_location(count(resident_location_filter($rows, $assignments, '2', '1')) === 1, 'Combined filter failed');

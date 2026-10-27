@@ -45,7 +45,7 @@ console.log('PASS: manual walk-in intake, linked complaint fields, required/disa
   assert.equal(fields.complaint_code.value,'CMP-MENU'); assert.equal(fields.complainant_name.value,'Menu Resident'); assert.equal(fields.complainant_mobile.value,'09123456789');
   assert.equal(fields.intake_mode.value,'linked'); assert.equal(group.hidden,true); assert.equal(picker.hidden,true); assert.equal(button.disabled,false);
   context.getFeed = async () => ({activeId:77});
-  await context.scheduleFromMenu(button); assert.equal(existingId,77); assert.equal(notifications.at(-1).kind,'info'); assert.match(notifications.at(-1).message,/Reschedule/);
+  await context.scheduleFromMenu(button); assert.equal(existingId,77); assert.equal(notifications.at(-1).kind,'info'); assert.match(notifications.at(-1).message,/proposal awaiting review/);
   context.getFeed = async () => {throw new Error('Connection unavailable');};
   await context.scheduleFromMenu(button); assert.equal(notifications.at(-1).kind,'error'); assert.equal(button.disabled,false);
   console.log('PASS: complaint menu opens a prefilled linked schedule, opens existing appointments for rescheduling, and recovers from connection errors.');
@@ -61,3 +61,15 @@ for (const name of ['hearing_date','start_time','end_time']) assert.equal(fields
 assert.equal(title.textContent, 'Schedule follow-up hearing');
 assert.equal(submit.textContent, 'Confirm follow-up appointment');
 console.log('PASS: follow-up carries parties, venue and official while requiring a new date and keeping the completed session.');
+
+form.dataset = {husayApproval:'required'};
+context.openSchedule({choose:true});
+assert.equal(title.textContent,'Propose Mediation schedule');
+assert.equal(submit.textContent,'Submit for Captain approval');
+assert.match(description.textContent,/proposal only/);
+context.openSchedule(null,{id:42,version:3,complaint_code:'CMP-1',starts_at:'2099-12-25 09:00:00',ends_at:'2099-12-25 10:00:00'});
+assert.equal(title.textContent,'Request rescheduling');
+context.openFollowup({complaint_code:'CMP-1'});
+assert.equal(title.textContent,'Propose follow-up hearing');
+assert.equal(submit.textContent,'Submit for Captain approval');
+console.log('PASS: Staff schedule, reschedule and follow-up forms explicitly request Captain approval.');

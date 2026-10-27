@@ -52,7 +52,8 @@ try {
         'message' => $row['message'], 'source' => $row['source'], 'key' => 'retry:' . $row['id'],
         'retry_of' => $row['id'], 'request_code' => $row['request_code']];
     } else {
-      $_SESSION['sms_draft'] = array_intersect_key($_POST, array_flip(['template', 'request_code', 'request_status', 'request_fee', 'resident_code', 'recipient_name', 'recipient_mobile', 'message']));
+      if (empty($_POST['resident_code']) && !in_array($_POST['template'] ?? '', ['ready','reminder','status'], true) && is_string($_POST['recipient_name'] ?? null)) $_POST['recipient_name'] = barangay_formal_text($_POST['recipient_name']);
+      $_SESSION['sms_draft'] = array_intersect_key($_POST, array_flip(['template', 'request_code', 'request_status', 'request_fee', 'resident_code', 'recipient_mode', 'recipient_name', 'recipient_mobile', 'message']));
       $template = (string) ($_POST['template'] ?? '');
       if (!isset(sms_templates()[$template])) throw new RuntimeException('Choose a message template.');
       $nonce = (string) ($_POST['nonce'] ?? '');
@@ -60,6 +61,12 @@ try {
       $name = trim((string) ($_POST['recipient_name'] ?? ''));
       $mobile = trim((string) ($_POST['recipient_mobile'] ?? ''));
       $residentCode = trim((string) ($_POST['resident_code'] ?? ''));
+      if (!in_array($template, ['ready', 'reminder', 'status'], true)) {
+        $recipientMode = (string) ($_POST['recipient_mode'] ?? ($residentCode !== '' ? 'registered' : 'manual'));
+        if (!in_array($recipientMode, ['registered', 'manual'], true)) throw new RuntimeException('Choose a recipient type.');
+        if ($recipientMode === 'registered' && $residentCode === '') throw new RuntimeException('Select a registered resident, or choose Unregistered recipient to enter a name and mobile number.');
+        if ($recipientMode === 'manual' && $residentCode !== '') throw new RuntimeException('The recipient type changed. Refresh the form and enter the unregistered recipient again.');
+      }
       $requestCode = '';
       if (in_array($template, ['ready', 'reminder', 'status'], true)) {
         $requestCode = trim((string) ($_POST['request_code'] ?? ''));

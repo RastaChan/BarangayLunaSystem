@@ -14,6 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
   resident_redirect('resident-dashboard', 'invalid');
 }
 
+$_POST = barangay_formal_inputs($_POST);
 $action = $_POST['action'] ?? '';
 $redirect = $_POST['redirect'] ?? 'resident-dashboard';
 

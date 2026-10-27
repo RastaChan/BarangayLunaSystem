@@ -15,6 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
   admin_redirect('dashboard', 'invalid');
 }
 
+$_POST = barangay_formal_inputs($_POST);
 $action = $_POST['action'] ?? '';
 $redirect = $_POST['redirect'] ?? 'dashboard';
 
@@ -76,7 +77,7 @@ try {
 
     case 'update_staff':
       $id = trim($_POST['id'] ?? '');
-      $name = trim($_POST['name'] ?? '');
+      $name = barangay_formal_text(trim($_POST['name'] ?? ''));
       $position = trim($_POST['position'] ?? '');
       $username = trim($_POST['username'] ?? '');
       $mobile = trim($_POST['mobile'] ?? '');

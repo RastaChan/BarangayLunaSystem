@@ -1660,7 +1660,7 @@
           statusLabel.textContent = 'Status';
           const select = document.createElement('select');
           select.name = 'status';
-          ['Open', 'In Progress', 'Resolved', 'Closed'].forEach(value => {
+          (updateUrl === 'admin-actions.php' ? ['Open', 'In Progress', 'Resolved', 'Closed'] : ['Open', 'In Progress']).forEach(value => {
             const option = document.createElement('option');
             option.value = value; option.textContent = value; option.selected = value === data.status;
             select.appendChild(option);
@@ -1674,7 +1674,7 @@
           const save = document.createElement('button');
           save.type = 'submit'; save.className = 'btn btn-primary'; save.textContent = 'Save changes';
           editor.append(statusLabel, remarksLabel, save);
-          recordBody.appendChild(editor);
+          if (updateUrl === 'admin-actions.php' || !['Resolved','Closed'].includes(data.status)) recordBody.appendChild(editor);
         }
         const evidence = document.createElement('section');
         evidence.className = 'complaint-evidence';

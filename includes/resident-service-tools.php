@@ -2,6 +2,7 @@
 require_once __DIR__ . '/database.php';
 
 function barangay_resident_name(array $input): string {
+  $input = barangay_formal_inputs($input);
   return trim(trim((string) ($input['first_name'] ?? '')) . ' '
     . (isset($input['no_middle_name']) ? '' : trim((string) ($input['middle_name'] ?? '')) . ' ')
     . trim((string) ($input['last_name'] ?? '')) . ' ' . trim((string) ($input['suffix'] ?? '')));

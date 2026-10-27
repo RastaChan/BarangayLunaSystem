@@ -16,7 +16,7 @@ function resident_delete_own_submission(string $kind, string $code, int $userId)
   } else {
     husay_schema();
     $sql = "UPDATE complaints SET archived_at = NOW() WHERE complaint_code = ? AND resident_user_id = ? AND archived_at IS NULL AND status = 'Open'
-      AND NOT EXISTS (SELECT 1 FROM husay_schedules WHERE husay_schedules.complaint_id=complaints.id AND husay_schedules.status IN ('Scheduled','In Progress'))";
+      AND NOT EXISTS (SELECT 1 FROM husay_schedules WHERE husay_schedules.complaint_id=complaints.id AND husay_schedules.status IN ('Pending Approval','Scheduled','In Progress'))";
   }
   $stmt = barangay_db()->prepare($sql);
   $stmt->execute([$code, $userId]);

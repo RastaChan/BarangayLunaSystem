@@ -13,7 +13,7 @@ foreach ([[], ['walkin_name' => 'Preview Resident'], array_replace($input, ['wal
 }
 walkin_check(barangay_walkin_resident([], true)['age'] === '', 'Missing preview age stays blank, not zero');
 walkin_check(barangay_walkin_resident(['walkin_age' => '0'], true)['age'] === 0, 'Infant age zero is preserved in preview');
-walkin_check($resident['id'] === null && $resident['full_name'] === 'Test Walk-in', 'Unregistered resident has no account association');
+walkin_check($resident['id'] === null && $resident['full_name'] === 'Test Walk-In', 'Unregistered resident has no account association');
 walkin_check($resident['mobile'] === '' && $resident['gender'] === 'Female', 'Optional mobile and entered gender retained');
 foreach (['walkin_name' => '', 'walkin_age' => '-1', 'walkin_gender' => 'invalid', 'walkin_mobile' => 'invalid'] as $key => $value) {
   $rejected = false;

@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/husay-helpers.php';
 $todayHusayDate = (new DateTimeImmutable('now', new DateTimeZone('Asia/Manila')))->format('Y-m-d');
-$todayHusayRows = array_values(array_filter(husay_rows(), static fn(array $row): bool => substr($row['starts_at'],0,10) === $todayHusayDate && !in_array($row['status'],['Cancelled','Rescheduled'],true)));
+$todayHusayRows = array_values(array_filter(husay_rows(), static fn(array $row): bool => substr($row['starts_at'],0,10) === $todayHusayDate && !in_array($row['status'],['Pending Approval','Declined','Cancelled','Rescheduled'],true)));
 usort($todayHusayRows, static fn(array $a,array $b): int => strcmp($a['starts_at'],$b['starts_at']));
 $todayHusayPage = ($loggedInUser['role'] ?? '') === 'admin' ? 'dashboard.php' : 'staff-dashboard.php';
 $todayHusayUrl = $todayHusayPage . '?view=husay-schedule';

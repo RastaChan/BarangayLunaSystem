@@ -3,6 +3,18 @@ require_once __DIR__ . '/database.php';
 require_once __DIR__ . '/qr-sms-helpers.php';
 require_once __DIR__ . '/sms-automatic-templates.php';
 
+function sms_find_residents(string $search): array {
+  $search = trim($search);
+  if ($search === '') return [];
+  if (mb_strlen($search, 'UTF-8') > 150) throw new InvalidArgumentException('Search by name, resident ID, or mobile number.');
+  $query = barangay_db()->prepare("SELECT user_code, full_name, mobile FROM users
+    WHERE role='resident' AND status='Active'
+      AND (LOCATE(?, full_name)>0 OR LOCATE(?, user_code)>0 OR LOCATE(?, COALESCE(mobile,''))>0)
+    ORDER BY full_name, user_code LIMIT 20");
+  $query->execute([$search, $search, $search]);
+  return $query->fetchAll();
+}
+
 function sms_workspace_schema(): void {
   static $ready = false;
   if ($ready) return;

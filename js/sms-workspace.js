@@ -7,6 +7,7 @@
   const template = get('smsTemplate');
   const request = get('smsRequest');
   const resident = get('smsResident');
+  const recipientMode = get('smsRecipientMode');
   const name = get('smsName');
   const mobile = get('smsMobile');
   const message = get('smsMessage');
@@ -47,7 +48,7 @@
         message.value = `${template.value === 'reminder' ? 'Reminder: ' : ''}${row.ready_message}`;
       }
     } else {
-      message.value = ({complaint: 'There is an update to your complaint. Please sign in to your Barangay Luna account and open My Complaints for details.', announcement: 'Barangay Luna announcement: ', emergency: 'Barangay Luna emergency advisory: ', custom: ''})[template.value] || '';
+      message.value = ({complaint: recipientMode.value === 'manual' ? 'There is an update to your complaint. Please contact the Barangay Luna office for details.' : 'There is an update to your complaint. Please sign in to your Barangay Luna account and open My Complaints for details.', announcement: 'Barangay Luna announcement: ', emergency: 'Barangay Luna emergency advisory: ', custom: ''})[template.value] || '';
     }
   }
   function filterRequests() {
@@ -67,8 +68,13 @@
     get('smsResidentFields').hidden = documentMode;
     request.disabled = !documentMode;
     request.required = documentMode;
-    resident.disabled = documentMode;
-    const row = documentMode ? requests.get(request.value) : residents.get(resident.value);
+    const manualMode = recipientMode.value === 'manual';
+    recipientMode.disabled = documentMode;
+    get('smsRegisteredFields').hidden = manualMode;
+    get('smsResidentSearch').disabled = documentMode || manualMode;
+    resident.disabled = documentMode || manualMode;
+    resident.required = !documentMode && !manualMode;
+    const row = documentMode ? requests.get(request.value) : (manualMode ? null : residents.get(resident.value));
     name.readOnly = mobile.readOnly = documentMode || Boolean(row);
     if (row) {
       name.value = row.resident_name || row.full_name;
@@ -78,14 +84,81 @@
     }
     get('smsComposeError').textContent = row && !row.mobile ? 'No mobile number is recorded for this recipient. Update their resident profile first.' : '';
   }
-  template.addEventListener('change', () => { filterRequests(); updateRecipient(); populateMessage(); refreshPreview(); });
+  template.addEventListener('change', () => { filterRequests(); updateRecipient(true); populateMessage(); refreshPreview(); });
+  recipientMode.addEventListener('change', () => {
+    clearTimeout(searchTimer); searchController?.abort(); ++searchVersion;
+    resident.value = '';
+    get('smsResidentSearch').value = '';
+    get('smsResidentResults').hidden = true;
+    get('smsResidentSearchStatus').textContent = '';
+    updateRecipient();
+    if (template.value === 'complaint') populateMessage();
+    refreshPreview();
+  });
   request.addEventListener('change', () => { updateRecipient(); populateMessage(); refreshPreview(); });
   resident.addEventListener('change', () => { updateRecipient(); refreshPreview(); });
   [name, mobile, message].forEach(input => input.addEventListener('input', refreshPreview));
   get('smsRequestSearch').addEventListener('input', filterRequests);
-  get('smsResidentSearch').addEventListener('input', () => {
-    const text = get('smsResidentSearch').value.toLowerCase().trim();
-    Array.from(resident.options).forEach(option => { option.hidden = Boolean(option.value) && !option.textContent.toLowerCase().includes(text); });
+  const searchInput = get('smsResidentSearch');
+  const searchResults = get('smsResidentResults');
+  const searchStatus = get('smsResidentSearchStatus');
+  let searchTimer, searchController, searchVersion = 0;
+  searchInput.addEventListener('input', () => {
+    clearTimeout(searchTimer);
+    searchController?.abort();
+    const version = ++searchVersion;
+    const text = searchInput.value.trim();
+    searchResults.replaceChildren();
+    searchResults.hidden = true;
+    searchStatus.textContent = text ? 'Searching residents…' : '';
+    if (!text) return;
+    searchTimer = setTimeout(async () => {
+      searchController = new AbortController();
+      try {
+        const response = await fetch('resident-service-lookup.php', {
+          method: 'POST', credentials: 'same-origin', signal: searchController.signal,
+          headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+          body: new URLSearchParams({kind: 'sms-resident-search', search: text, csrf: form.querySelector('[name="csrf"]').value})
+        });
+        const result = await response.json();
+        if (version !== searchVersion) return;
+        if (!response.ok || !result.ok) throw new Error(result.message || 'Resident search is unavailable. Try again.');
+        searchStatus.textContent = result.residents.length ? `${result.residents.length} matching residents. Select a recipient below.` : 'No active residents match your search.';
+        result.residents.forEach(row => {
+          const button = document.createElement('button');
+          button.type = 'button';
+          button.textContent = `${row.full_name} · ${row.user_code} · ${row.mobile || 'No mobile number recorded'}`;
+          button.addEventListener('click', () => {
+            residents.set(row.user_code, row);
+            let option = Array.from(resident.options).find(item => item.value === row.user_code);
+            if (!option) { option = document.createElement('option'); option.value = row.user_code; resident.appendChild(option); }
+            option.textContent = `${row.full_name} - ${row.user_code}`;
+            resident.value = row.user_code;
+            resident.dispatchEvent(new Event('change', {bubbles: true}));
+            searchResults.hidden = true;
+            searchStatus.textContent = `${row.full_name} selected.`;
+            searchInput.value = row.full_name;
+            searchInput.focus();
+          });
+          searchResults.appendChild(button);
+        });
+        searchResults.hidden = !result.residents.length;
+      } catch (error) {
+        if (version === searchVersion && error.name !== 'AbortError') searchStatus.textContent = error instanceof SyntaxError ? 'Your session may have expired. Refresh the page and search again.' : error.message;
+      }
+    }, 220);
+  });
+  searchInput.addEventListener('keydown', event => {
+    if (event.key === 'ArrowDown' && !searchResults.hidden) { event.preventDefault(); searchResults.firstElementChild?.focus(); }
+    if (event.key === 'Enter') event.preventDefault();
+    if (event.key === 'Escape') searchResults.hidden = true;
+  });
+  searchResults.addEventListener('keydown', event => {
+    const buttons = Array.from(searchResults.children);
+    const index = buttons.indexOf(document.activeElement);
+    if (event.key === 'ArrowDown') { event.preventDefault(); buttons[(index + 1) % buttons.length]?.focus(); }
+    if (event.key === 'ArrowUp') { event.preventDefault(); if (index <= 0) searchInput.focus(); else buttons[index - 1].focus(); }
+    if (event.key === 'Escape') { searchResults.hidden = true; searchInput.focus(); }
   });
   function review() {
     refreshPreview();

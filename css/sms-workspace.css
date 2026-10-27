@@ -56,3 +56,8 @@
   .sms-preview dd { margin-bottom: 10px; }
   .sms-dialog { padding: 16px; }
 }
+.sms-resident-results { display: grid; gap: 6px; max-height: 260px; overflow-y: auto; padding: 8px; border: 1px solid #a9cbb6; border-radius: 12px; background: #f0f7f2; box-shadow: 0 4px 12px rgba(15,65,39,.12); }
+.sms-resident-results[hidden] { display: none; }
+.sms-resident-results button { width: 100%; padding: 10px 12px; border: 1px solid #c7ddce; border-radius: 8px; background: white; color: #16482c; text-align: left; white-space: normal; overflow-wrap: anywhere; cursor: pointer; transition: background-color .15s ease; }
+.sms-resident-results button:hover, .sms-resident-results button:focus-visible { background: #dcefe2; }
+@media (prefers-reduced-motion: reduce) { .sms-resident-results button { transition: none; } }

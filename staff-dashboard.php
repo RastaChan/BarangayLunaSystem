@@ -67,6 +67,7 @@ $statusMessage = staff_status_message();
   <?php include __DIR__ . '/includes/staff-sidebar.php'; ?>
   <?php include __DIR__ . '/includes/sidebar-state.php'; ?>
   <script src="js/live-search.js?v=<?= filemtime(__DIR__ . '/js/live-search.js') ?>" defer></script>
+  <script src="js/formal-text.js?v=<?= filemtime(__DIR__ . '/js/formal-text.js') ?>" defer></script>
   <script src="js/time-controls.js?v=<?= filemtime(__DIR__ . '/js/time-controls.js') ?>" defer></script>
   <script src="js/registration-requirements.js?v=<?= filemtime(__DIR__ . '/js/registration-requirements.js') ?>" defer></script>
 

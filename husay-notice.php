@@ -6,6 +6,7 @@ header('Cache-Control: private, no-store'); header('X-Content-Type-Options: nosn
 if (!$user || !in_array($user['role'] ?? '', ['admin','staff'], true)) { http_response_code(403); exit('Staff sign-in is required.'); }
 $hearing = null;
 foreach (husay_rows() as $row) if ((int)$row['id'] === (int)($_GET['id'] ?? 0)) { $hearing = $row; break; }
+if ($hearing && in_array($hearing['status'], ['Pending Approval','Declined'], true)) { http_response_code(403); exit('This appointment is not approved. A notice cannot be printed.'); }
 if (!$hearing) { http_response_code(404); exit('Mediation session unavailable.'); }
 $escape = static fn($value) => htmlspecialchars((string)$value, ENT_QUOTES);
 ?>

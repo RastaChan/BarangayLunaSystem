@@ -13,7 +13,7 @@ class Element {
 }
 const nodes = Object.fromEntries(['status','officer','period','from','to','no-match','date-range','calendar','agenda-label','month-label','calendar-grid'].map(key => [key, new Element()]));
 nodes.status.value = 'active'; nodes.period.value = 'upcoming';
-const counts = Object.fromEntries(['today','upcoming','completed'].map(key => [key,new Element()]));
+const counts = Object.fromEntries(['today','upcoming','completed','pending'].map(key => [key,new Element()]));
 const modes = ['calendar','list'].map(mode => { const button = new Element(); button.dataset.husayMode = mode; return button; });
 const root = new Element();
 root.querySelector = selector => {
@@ -49,3 +49,12 @@ assert.deepEqual(cards.map(card=>!card.hidden),[true,false,false,false,false]);
 cards.push(makeRow(today,'In Progress','1','CMP-NEW')); workspace.filter(); assert.equal(counts.today.textContent,3); assert.equal(cards[5].hidden,false);
 nodes.period.value='today'; click({husayToday:''}); assert.equal(nodes.period.value,'all'); assert.equal(nodes['date-range'].hidden,true);
 console.log('PASS: calendar/list views, Manila dates, active/history filters, official and search filters, custom ranges, leap-year month navigation, live additions, counts and reset.');
+
+cards.push(makeRow('2000-01-01','Pending Approval','1','CMP-PROPOSAL'));
+workspace.filter();
+assert.equal(counts.pending.textContent,1);
+click({husayPending:''});
+assert.equal(nodes.status.value,'Pending Approval');
+assert.equal(nodes.period.value,'all');
+assert.equal(cards.at(-1).hidden,false,'Pending review shortcut includes proposals whose requested date has passed');
+console.log('PASS: Pending approval count and shortcut surface all proposals without treating them as confirmed sessions.');

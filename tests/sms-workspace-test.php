@@ -52,6 +52,7 @@ try {
       $loggedInUser = ['role' => $role, 'id' => 0]; $_GET = ['sms_tab' => $tab, 'sms_search' => 'SMS Test Recipient'];
       ob_start(); require __DIR__ . '/../includes/sms-alerts-view.php'; $html = ob_get_clean();
       check_sms(str_contains($html, 'SMS Alerts') && !str_contains($html, 'Warning:'), "$role $tab screen renders");
+      if ($tab === 'send') check_sms(str_contains($html, 'name="recipient_mode"') && str_contains($html, 'Unregistered recipient'), "$role can choose registered or unregistered recipients");
       if ($tab === 'automatic') {
         check_sms(str_contains($html, 'Save preferences'), "$role automatic settings permission");
         check_sms(str_contains($html, 'name="templates[ready]"') && str_contains($html, 'name="templates[released]"'), "$role can edit both automatic messages");

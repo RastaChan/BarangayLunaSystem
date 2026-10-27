@@ -4,7 +4,7 @@
   const asDate = value => new Date(value + 'T00:00:00Z');
   const todayInManila = () => new Intl.DateTimeFormat('en-CA', {timeZone: 'Asia/Manila', year: 'numeric', month: '2-digit', day: '2-digit'}).format(new Date());
   function matches(row, filters, today) {
-    const active = ['Scheduled', 'In Progress'].includes(row.status);
+    const active = ['Pending Approval', 'Scheduled', 'In Progress'].includes(row.status);
     return (!filters.query || row.text.toLowerCase().includes(filters.query)) &&
       (!filters.officer || row.officer === filters.officer) &&
       (filters.status === 'all' || (filters.status === 'active' ? active : row.status === filters.status)) &&
@@ -60,11 +60,12 @@
       find('calendar').hidden = mode !== 'calendar';
       find('agenda-label').textContent = mode === 'calendar' ? new Intl.DateTimeFormat('en-PH', {dateStyle: 'full', timeZone: 'UTC'}).format(asDate(selected)) + ' · ' + visible.size + (visible.size === 1 ? ' session' : ' sessions') : visible.size + ' matching sessions';
       const totals = {
-        today: all.filter(row => row.date === today && !['Cancelled', 'Rescheduled'].includes(row.status)).length,
+        today: all.filter(row => row.date === today && ['Scheduled','In Progress','Completed'].includes(row.status)).length,
+        pending: all.filter(row => row.status === 'Pending Approval').length,
         upcoming: all.filter(row => row.date > today && ['Scheduled', 'In Progress'].includes(row.status)).length,
         completed: all.filter(row => row.status === 'Completed').length
       };
-      Object.entries(totals).forEach(([key, value]) => { root.querySelector('[data-husay-count="' + key + '"]').textContent = value; });
+      Object.entries(totals).forEach(([key, value]) => { const counter = root.querySelector('[data-husay-count="' + key + '"]'); if (counter) counter.textContent = value; });
       root.querySelectorAll('[data-husay-mode]').forEach(button => {
         const pressed = button.dataset.husayMode === mode;
         button.setAttribute('aria-pressed', String(pressed)); button.classList.toggle('btn-primary', pressed); button.classList.toggle('btn-outline', !pressed);
@@ -80,7 +81,8 @@
         const date = asDate(month + '-01'); date.setUTCMonth(date.getUTCMonth() + Number(move.dataset.husayMonth));
         if (date.getUTCFullYear() < 1900 || date.getUTCFullYear() > 2199) return;
         month = iso(date).slice(0, 7); selected = month + '-01';
-      } else if (event.target.closest('[data-husay-today]')) { jumpToday(); controls.period.value = 'all'; controls.period.dispatchEvent(new Event('change', {bubbles: true})); }
+      } else if (event.target.closest('[data-husay-pending]')) { controls.status.value = 'Pending Approval'; controls.period.value = 'all'; mode = 'list'; Object.values(controls).forEach(input => input.dispatchEvent(new Event('change', {bubbles:true}))); }
+      else if (event.target.closest('[data-husay-today]')) { jumpToday(); controls.period.value = 'all'; controls.period.dispatchEvent(new Event('change', {bubbles: true})); }
       else if (event.target.closest('[data-husay-reset]')) {
         search.value = ''; controls.status.value = 'active'; controls.officer.value = ''; controls.period.value = 'upcoming'; controls.from.value = ''; controls.to.value = ''; jumpToday();
         Object.values(controls).forEach(input => input.dispatchEvent(new Event('change', {bubbles: true})));
